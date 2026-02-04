@@ -1,0 +1,153 @@
+
+============================================================
+RSE TEAM JIRA DASHBOARD AUTO-UPDATER
+============================================================
+
+✓ Connected as: Megan Peurach (Contractor)
+
+Fetching RSE metrics from Jira...
+Using Board ID: 17
+
+  → Finding active RSE sprints...
+    Found 1 active RSE sprints
+    - RSE 26Q1-S2 1/14-1/28 (ID: 5350)
+
+  → Current RSE Backlog...
+    Result: 133 issues
+
+  → Average Velocity...
+    Result: 65 points/sprint
+
+  → Sprint Contamination...
+    Old items: 67, Total: 124
+
+  → Zombie Issues (90+ days not updated, in backlog only)...
+    Fetching backlog issues...
+    Fetched 100/208 backlog issues...
+    Fetched 200/208 backlog issues...
+    Fetched 208/208 backlog issues...
+    Filtering 208 backlog issues...
+    Result: 52 issues
+
+  → Monthly Churn Metrics...
+    Looking for issues resolved since 2026-01-01...
+      ✓ TRI-46562 - Not Needed - 2026-01-26
+      ✓ TRI-42201 - Done - 2026-01-28
+      ✓ TRI-45687 - Done - 2026-01-21
+      ✓ TRI-47677 - Done - 2026-01-19
+      ✓ TRI-47920 - Done - 2026-01-20
+      ✓ TRI-48478 - Done - 2026-01-15
+      ✓ TRI-48443 - Done - 2026-01-22
+      ✓ TRI-48306 - Done - 2026-01-26
+      ✓ TRI-48498 - Done - 2026-01-15
+      ✓ TRI-48433 - Done - 2026-01-21
+    Total: 57 issues resolved this month
+
+============================================================
+RSE TEAM DASHBOARD METRICS SUMMARY
+============================================================
+Current RSE Backlog:      133 issues
+Average Velocity:         65 points/sprint
+Sprint Contamination:     54.0%
+Zombie Issues:            52 issues
+
+Monthly Churn Breakdown:
+  Duplicate:              0 (0.0%)
+  Not Needed:             1 (1.8%)
+  Won't Do:               1 (1.8%)
+  Total Churn:            2 (3.6%)
+
+Successfully Completed:   53 (96.4%)
+Total Resolved:           55 issues
+============================================================
+
+
+Updating dashboard: /Users/meganpeurach/Documents/jira-dashboard/dashboard.html
+✓ Dashboard updated successfully!
+✓ All done! Your RSE dashboard has been updated.
+✓ Last updated: January 28, 2026 at 02:31 PM
+
+============================================================
+RSE TEAM JIRA DASHBOARD AUTO-UPDATER
+============================================================
+
+✓ Connected as: Megan Peurach (Contractor)
+
+Fetching RSE metrics from Jira...
+Using Board ID: 17
+
+  → Finding active RSE sprints...
+    Found 1 active RSE sprints
+    - RSE 26Q1-S3 1/28-2/11 (ID: 5383)
+
+  → Current Sprint Stats...
+    Fetching stats for sprint: RSE 26Q1-S3 1/28-2/11
+      Total: 68, Done: 7, In Review: 5, In Progress: 14, To Do: 42
+      Completion Rate: 10.3%
+
+  → Current RSE Backlog...
+    Result: 134 issues
+
+  → Average Velocity...
+    Result: 65 points/sprint
+
+  → Sprint Contamination...
+    Old items: 27, Total: 98
+
+  → Zombie Issues (90+ days not updated, in backlog only)...
+    Fetching backlog issues...
+    Fetched 100/211 backlog issues...
+    Fetched 200/211 backlog issues...
+    Fetched 211/211 backlog issues...
+    Filtering 211 backlog issues...
+    Result: 52 issues
+
+  → Monthly Churn Metrics...
+    Looking for RSE issues resolved since 2026-01-01...
+    Found 256 total issues resolved this month on board
+      ✓ TRI-47954 - Done - 2026-01-12
+      ✓ TRI-48402 - Cannot Reproduce - 2026-01-28
+      ✓ TRI-47950 - Not Needed - 2026-01-12
+      ✓ TRI-46884 - Not Needed - 2026-01-12
+      ✓ TRI-47382 - Not Needed - 2026-01-12
+      ✓ TRI-46683 - Done - 2026-01-15
+      ✓ TRI-46522 - Not Needed - 2026-01-14
+      ✓ TRI-46562 - Not Needed - 2026-01-26
+      ✓ TRI-42201 - Done - 2026-01-28
+      ✓ TRI-46415 - Done - 2026-01-12
+    RSE team issues (excluding Epic/Sub-task): 163
+      Done: 139, Duplicate/Cannot Reproduce: 4, Not Needed: 13, Won't Do: 7
+
+============================================================
+RSE TEAM DASHBOARD METRICS SUMMARY
+============================================================
+
+Current Sprint Stats:
+  Total Issues:           68
+  Done:                   7
+  In Review:              5
+  In Progress:            14
+  To Do:                  42
+  Completion Rate:        10.3%
+
+Backlog & Health:
+  Current RSE Backlog:    134 issues
+  Average Velocity:       65 points/sprint
+  Sprint Contamination:   27.6%
+  Zombie Issues:          52 issues
+
+Monthly Churn Breakdown:
+  Duplicate:              4 (2.5%)
+  Not Needed:             13 (8.0%)
+  Won't Do:               7 (4.3%)
+  Total Churn:            24 (14.7%)
+
+Successfully Completed:   139 (85.3%)
+Total Resolved:           163 issues
+============================================================
+
+
+Updating dashboard: /Users/meganpeurach/Documents/jira-dashboard/dashboard.html
+✓ Dashboard updated successfully!
+✓ All done! Your RSE dashboard has been updated.
+✓ Last updated: January 29, 2026 at 12:30 PM

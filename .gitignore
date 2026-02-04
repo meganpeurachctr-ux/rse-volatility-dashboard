@@ -1,0 +1,7 @@
+# Don't commit the Python script with credentials
+update_dashboard.py
+
+# Mac system files
+.DS_Store
+
+
