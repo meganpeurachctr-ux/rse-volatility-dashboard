@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Trends Dashboard - RSE Team</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+            }
+        }
+        
+        .animate-slide-in {
+            animation: slideInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .status-badge {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .metric-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .card-hover:hover .metric-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen">
+    <div class="w-full min-h-screen p-6 md:p-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="mb-8 animate-slide-in" style="animation-delay: 0.1s;">
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <div>
+                        <div class="flex items-center gap-4 mb-2">
+                            <a href="dashboard.html" class="text-indigo-600 hover:text-indigo-800 transition-colors">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                                </svg>
+                            </a>
+                            <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                                Historical Trends Analysis
+                            </h1>
+                        </div>
+                        <p class="text-slate-600 text-lg ml-12">12-month performance metrics and trend analysis</p>
+                    </div>
+                    <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
+                        <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
+                        <span class="text-sm font-medium text-slate-700">Live</span>
+                        <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">January 29, 2026 at 01:39 PM</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Average Churn Rate -->
+                <div class="glass-effect rounded-2xl shadow-xl p-6 card-hover animate-slide-in" style="animation-delay: 0.2s;">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-gradient-to-br from-red-500 to-orange-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
+                            </svg>
+                        </div>
+                        <div class="w-12 h-1 bg-gradient-to-r from-red-400 to-transparent rounded-full"></div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold bg-gradient-to-r from-red-600 to-orange-800 bg-clip-text text-transparent mb-1" id="avgChurn">0.0%</div>
+                        <div class="text-sm text-slate-700 font-semibold mb-1">Avg Churn Rate</div>
+                        <div class="text-xs text-slate-500">12-month average</div>
+                    </div>
+                </div>
+
+                <!-- Average Contamination -->
+                <div class="glass-effect rounded-2xl shadow-xl p-6 card-hover animate-slide-in" style="animation-delay: 0.3s;">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-gradient-to-br from-orange-500 to-amber-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                        </div>
+                        <div class="w-12 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full"></div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" id="avgContamination">0.0%</div>
+                        <div class="text-sm text-slate-700 font-semibold mb-1">Avg Contamination</div>
+                        <div class="text-xs text-slate-500">12-month average</div>
+                    </div>
+                </div>
+
+                <!-- Average Velocity -->
+                <div class="glass-effect rounded-2xl shadow-xl p-6 card-hover animate-slide-in" style="animation-delay: 0.4s;">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-gradient-to-br from-green-500 to-emerald-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </div>
+                        <div class="w-12 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-800 bg-clip-text text-transparent mb-1" id="avgVelocity">0</div>
+                        <div class="text-sm text-slate-700 font-semibold mb-1">Avg Velocity</div>
+                        <div class="text-xs text-slate-500">points per sprint</div>
+                    </div>
+                </div>
+
+                <!-- Current Zombies -->
+                <div class="glass-effect rounded-2xl shadow-xl p-6 card-hover animate-slide-in" style="animation-delay: 0.5s;">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="bg-gradient-to-br from-purple-500 to-violet-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div class="w-12 h-1 bg-gradient-to-r from-purple-400 to-transparent rounded-full"></div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold bg-gradient-to-r from-purple-600 to-violet-800 bg-clip-text text-transparent mb-1" id="currentZombies">52</div>
+                        <div class="text-sm text-slate-700 font-semibold mb-1">Current Zombies</div>
+                        <div class="text-xs text-slate-500">90+ days old</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Churn Rate Trend -->
+            <div class="glass-effect rounded-2xl shadow-xl p-6 md:p-8 mb-8 animate-slide-in" style="animation-delay: 0.6s;">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2 flex items-center">
+                    <span class="w-1 h-8 bg-gradient-to-b from-red-500 to-orange-500 rounded-full mr-3"></span>
+                    Monthly Churn Rate Trend
+                    <div class="relative inline-block ml-2 group">
+                        <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div class="absolute left-0 top-8 w-80 p-4 bg-slate-800 text-white text-sm rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <p class="font-semibold mb-2">Monthly Churn Rate</p>
+                            <p class="mb-2">Percentage of resolved issues each month that were closed without completing intended work.</p>
+                            <p class="text-xs text-slate-300">Includes: Duplicates, Not Needed, and Won't Do resolutions</p>
+                        </div>
+                    </div>
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">Last 12 months • <span id="churnAvgText">Average: 0.0%</span></p>
+                <div style="position: relative; height: 400px;">
+                    <canvas id="historicalChurnChart"></canvas>
+                </div>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-4 bg-gradient-to-r from-red-50 to-rose-50 rounded-xl border border-red-200">
+                        <p class="text-xs text-slate-600 mb-1">Peak Churn Month</p>
+                        <p class="text-2xl font-bold text-red-600" id="peakChurnMonth">--</p>
+                        <p class="text-xs text-slate-500 mt-1" id="peakChurnValue">0.0%</p>
+                    </div>
+                    <div class="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                        <p class="text-xs text-slate-600 mb-1">Best Month</p>
+                        <p class="text-2xl font-bold text-green-600" id="bestChurnMonth">--</p>
+                        <p class="text-xs text-slate-500 mt-1" id="bestChurnValue">0.0%</p>
+                    </div>
+                    <div class="p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
+                        <p class="text-xs text-slate-600 mb-1">Trend Direction</p>
+                        <p class="text-2xl font-bold text-blue-600" id="churnTrend">--</p>
+                        <p class="text-xs text-slate-500 mt-1">vs previous month</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sprint Contamination Trend -->
+            <div class="glass-effect rounded-2xl shadow-xl p-6 md:p-8 mb-8 animate-slide-in" style="animation-delay: 0.7s;">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2 flex items-center">
+                    <span class="w-1 h-8 bg-gradient-to-b from-orange-500 to-amber-500 rounded-full mr-3"></span>
+                    Sprint Contamination Trend
+                    <div class="relative inline-block ml-2 group">
+                        <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div class="absolute left-0 top-8 w-80 p-4 bg-slate-800 text-white text-sm rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <p class="font-semibold mb-2">Sprint Contamination</p>
+                            <p class="mb-2">Percentage of sprint items that carried over from previous sprints.</p>
+                            <p class="text-xs text-slate-300">Measured by issues created 14+ days before sprint start</p>
+                        </div>
+                    </div>
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">Last 12 months • <span id="contaminationAvgText">Average: 0.0%</span></p>
+                <div style="position: relative; height: 400px;">
+                    <canvas id="historicalContaminationChart"></canvas>
+                </div>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl border border-orange-200">
+                        <p class="text-xs text-slate-600 mb-1">Highest Contamination</p>
+                        <p class="text-2xl font-bold text-orange-600" id="peakContaminationMonth">--</p>
+                        <p class="text-xs text-slate-500 mt-1" id="peakContaminationValue">0.0%</p>
+                    </div>
+                    <div class="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                        <p class="text-xs text-slate-600 mb-1">Cleanest Sprint</p>
+                        <p class="text-2xl font-bold text-green-600" id="bestContaminationMonth">--</p>
+                        <p class="text-xs text-slate-500 mt-1" id="bestContaminationValue">0.0%</p>
+                    </div>
+                    <div class="p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
+                        <p class="text-xs text-slate-600 mb-1">Trend Direction</p>
+                        <p class="text-2xl font-bold text-blue-600" id="contaminationTrend">--</p>
+                        <p class="text-xs text-slate-500 mt-1">vs previous month</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Velocity Trend -->
+            <div class="glass-effect rounded-2xl shadow-xl p-6 md:p-8 mb-8 animate-slide-in" style="animation-delay: 0.8s;">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2 flex items-center">
+                    <span class="w-1 h-8 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full mr-3"></span>
+                    Sprint Velocity Trend with Rolling Average
+                    <div class="relative inline-block ml-2 group">
+                        <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div class="absolute left-0 top-8 w-80 p-4 bg-slate-800 text-white text-sm rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <p class="font-semibold mb-2">Sprint Velocity</p>
+                            <p class="mb-2">Number of issues completed per sprint over time.</p>
+                            <p class="text-xs text-slate-300">Rolling average calculated over 3 sprints to smooth out variations</p>
+                        </div>
+                    </div>
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">Last 12 months • <span id="velocityAvgText">Average: 0 points</span></p>
+                <div style="position: relative; height: 400px;">
+                    <canvas id="historicalVelocityChart"></canvas>
+                </div>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                        <p class="text-xs text-slate-600 mb-1">Highest Sprint</p>
+                        <p class="text-2xl font-bold text-green-600" id="highestVelocityMonth">--</p>
+                        <p class="text-xs text-slate-500 mt-1"><span id="highestVelocityValue">0</span> points</p>
+                    </div>
+                    <div class="p-4 bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl border border-purple-200">
+                        <p class="text-xs text-slate-600 mb-1">Lowest Sprint</p>
+                        <p class="text-2xl font-bold text-purple-600" id="lowestVelocityMonth">--</p>
+                        <p class="text-xs text-slate-500 mt-1"><span id="lowestVelocityValue">0</span> points</p>
+                    </div>
+                    <div class="p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
+                        <p class="text-xs text-slate-600 mb-1">Velocity Stability</p>
+                        <p class="text-2xl font-bold text-blue-600" id="velocityStability">--</p>
+                        <p class="text-xs text-slate-500 mt-1">standard deviation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zombie Issues Trend -->
+            <div class="glass-effect rounded-2xl shadow-xl p-6 md:p-8 mb-8 animate-slide-in" style="animation-delay: 0.9s;">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2 flex items-center">
+                    <span class="w-1 h-8 bg-gradient-to-b from-purple-500 to-violet-500 rounded-full mr-3"></span>
+                    Zombie Issues Trend
+                    <div class="relative inline-block ml-2 group">
+                        <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div class="absolute left-0 top-8 w-80 p-4 bg-slate-800 text-white text-sm rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <p class="font-semibold mb-2">Zombie Issues</p>
+                            <p class="mb-2">Issues that have not been updated in 90+ days.</p>
+                            <p class="text-xs text-slate-300">Tracking how many stale issues exist over time</p>
+                        </div>
+                    </div>
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">Last 12 months • Tracking stale backlog items</p>
+                <div style="position: relative; height: 400px;">
+                    <canvas id="historicalZombieChart"></canvas>
+                </div>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-4 bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl border border-purple-200">
+                        <p class="text-xs text-slate-600 mb-1">Peak Zombie Count</p>
+                        <p class="text-2xl font-bold text-purple-600" id="peakZombieMonth">--</p>
+                        <p class="text-xs text-slate-500 mt-1"><span id="peakZombieValue">0</span> issues</p>
+                    </div>
+                    <div class="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                        <p class="text-xs text-slate-600 mb-1">Best Month</p>
+                        <p class="text-2xl font-bold text-green-600" id="bestZombieMonth">--</p>
+                        <p class="text-xs text-slate-500 mt-1"><span id="bestZombieValue">0</span> issues</p>
+                    </div>
+                    <div class="p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
+                        <p class="text-xs text-slate-600 mb-1">Monthly Change</p>
+                        <p class="text-2xl font-bold text-blue-600" id="zombieTrend">--</p>
+                        <p class="text-xs text-slate-500 mt-1">vs previous month</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Historical data (12 months) - will be updated by Python script
+        var historicalMonths = ["Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26"];
+        var historicalChurnData = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+        var historicalContaminationData = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+        var historicalVelocityData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var historicalZombieData = [0, 0, 0, 2, 2, 2, 2, 2, 3, 7, 35, 52];
+
+        // Calculate statistics
+        function calculateStats(data) {
+            var sum = data.reduce((a, b) => a + b, 0);
+            var avg = sum / data.length;
+            var max = Math.max(...data);
+            var min = Math.min(...data);
+            var maxIdx = data.indexOf(max);
+            var minIdx = data.indexOf(min);
+            
+            // Standard deviation
+            var variance = data.reduce((acc, val) => acc + Math.pow(val - avg, 2), 0) / data.length;
+            var stdDev = Math.sqrt(variance);
+            
+            return { avg, max, min, maxIdx, minIdx, stdDev };
+        }
+
+        // Calculate rolling average
+        function calculateRollingAverage(data, window = 3) {
+            var result = [];
+            for (var i = 0; i < data.length; i++) {
+                var start = Math.max(0, i - window + 1);
+                var slice = data.slice(start, i + 1);
+                var avg = slice.reduce((a, b) => a + b, 0) / slice.length;
+                result.push(Math.round(avg));
+            }
+            return result;
+        }
+
+        // Determine trend direction
+        function getTrend(data) {
+            var lastTwo = data.slice(-2);
+            if (lastTwo.length < 2) return 'N/A';
+            var change = lastTwo[1] - lastTwo[0];
+            if (Math.abs(change) < 0.1) return 'Stable';
+            return change > 0 ? '↑ Increasing' : '↓ Decreasing';
+        }
+
+        // Update summary cards and insights
+        function updateSummaryCards() {
+            // Churn stats
+            var churnStats = calculateStats(historicalChurnData);
+            document.getElementById('avgChurn').textContent = churnStats.avg.toFixed(1) + '%';
+            document.getElementById('churnAvgText').textContent = 'Average: ' + churnStats.avg.toFixed(1) + '%';
+            document.getElementById('peakChurnMonth').textContent = historicalMonths[churnStats.maxIdx];
+            document.getElementById('peakChurnValue').textContent = churnStats.max.toFixed(1) + '%';
+            document.getElementById('bestChurnMonth').textContent = historicalMonths[churnStats.minIdx];
+            document.getElementById('bestChurnValue').textContent = churnStats.min.toFixed(1) + '%';
+            document.getElementById('churnTrend').textContent = getTrend(historicalChurnData);
+
+            // Contamination stats
+            var contamStats = calculateStats(historicalContaminationData);
+            document.getElementById('avgContamination').textContent = contamStats.avg.toFixed(1) + '%';
+            document.getElementById('contaminationAvgText').textContent = 'Average: ' + contamStats.avg.toFixed(1) + '%';
+            document.getElementById('peakContaminationMonth').textContent = historicalMonths[contamStats.maxIdx];
+            document.getElementById('peakContaminationValue').textContent = contamStats.max.toFixed(1) + '%';
+            document.getElementById('bestContaminationMonth').textContent = historicalMonths[contamStats.minIdx];
+            document.getElementById('bestContaminationValue').textContent = contamStats.min.toFixed(1) + '%';
+            document.getElementById('contaminationTrend').textContent = getTrend(historicalContaminationData);
+
+            // Velocity stats
+            var velocityStats = calculateStats(historicalVelocityData);
+            document.getElementById('avgVelocity').textContent = Math.round(velocityStats.avg);
+            document.getElementById('velocityAvgText').textContent = 'Average: ' + Math.round(velocityStats.avg) + ' points';
+            document.getElementById('highestVelocityMonth').textContent = historicalMonths[velocityStats.maxIdx];
+            document.getElementById('highestVelocityValue').textContent = velocityStats.max;
+            document.getElementById('lowestVelocityMonth').textContent = historicalMonths[velocityStats.minIdx];
+            document.getElementById('lowestVelocityValue').textContent = velocityStats.min;
+            document.getElementById('velocityStability').textContent = velocityStats.stdDev.toFixed(1);
+
+            // Zombie stats
+            var zombieStats = calculateStats(historicalZombieData);
+            document.getElementById('currentZombies').textContent = historicalZombieData[historicalZombieData.length - 1];
+            document.getElementById('peakZombieMonth').textContent = historicalMonths[zombieStats.maxIdx];
+            document.getElementById('peakZombieValue').textContent = zombieStats.max;
+            document.getElementById('bestZombieMonth').textContent = historicalMonths[zombieStats.minIdx];
+            document.getElementById('bestZombieValue').textContent = zombieStats.min;
+            document.getElementById('zombieTrend').textContent = getTrend(historicalZombieData);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSummaryCards();
+
+            // Historical Churn Chart
+            new Chart(document.getElementById('historicalChurnChart'), {
+                type: 'line',
+                data: {
+                    labels: historicalMonths,
+                    datasets: [{
+                        label: 'Monthly Churn Rate (%)',
+                        data: historicalChurnData,
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        pointBackgroundColor: 'rgba(239, 68, 68, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                            ticks: { callback: function(v) { return v + '%'; } }
+                        },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: { 
+                        legend: { position: 'top' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Churn Rate: ' + context.parsed.y.toFixed(1) + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Historical Contamination Chart
+            new Chart(document.getElementById('historicalContaminationChart'), {
+                type: 'line',
+                data: {
+                    labels: historicalMonths,
+                    datasets: [{
+                        label: 'Sprint Contamination (%)',
+                        data: historicalContaminationData,
+                        borderColor: 'rgba(245, 158, 11, 1)',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        pointBackgroundColor: 'rgba(245, 158, 11, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                            ticks: { callback: function(v) { return v + '%'; } }
+                        },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: { 
+                        legend: { position: 'top' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Contamination: ' + context.parsed.y.toFixed(1) + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Historical Velocity Chart with Rolling Average
+            var rollingAvg = calculateRollingAverage(historicalVelocityData, 3);
+
+            new Chart(document.getElementById('historicalVelocityChart'), {
+                type: 'line',
+                data: {
+                    labels: historicalMonths,
+                    datasets: [{
+                        label: 'Sprint Velocity',
+                        data: historicalVelocityData,
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        pointBackgroundColor: 'rgba(59, 130, 246, 1)'
+                    }, {
+                        label: '3-Sprint Rolling Average',
+                        data: rollingAvg,
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        tension: 0.4,
+                        pointRadius: 0,
+                        pointHoverRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                            ticks: { callback: function(v) { return v + ' pts'; } }
+                        },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: { 
+                        legend: { position: 'top' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y + ' points';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Historical Zombie Chart
+            new Chart(document.getElementById('historicalZombieChart'), {
+                type: 'line',
+                data: {
+                    labels: historicalMonths,
+                    datasets: [{
+                        label: 'Zombie Issues (90+ days)',
+                        data: historicalZombieData,
+                        borderColor: 'rgba(124, 58, 237, 1)',
+                        backgroundColor: 'rgba(124, 58, 237, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        pointBackgroundColor: 'rgba(124, 58, 237, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                            ticks: { 
+                                callback: function(v) { return v + ' issues'; },
+                                stepSize: 10
+                            }
+                        },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: { 
+                        legend: { position: 'top' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Zombie Issues: ' + context.parsed.y;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
