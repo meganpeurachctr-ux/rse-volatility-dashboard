@@ -82,7 +82,7 @@
                     <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                         <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                         <span class="text-sm font-medium text-slate-700">Live</span>
-                        <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">January 29, 2026 at 01:39 PM</span></span>
+                        <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">February 11, 2026 at 11:47 AM</span></span>
                     </div>
                 </div>
             </div>
@@ -319,11 +319,11 @@
 
     <script>
         // Historical data (12 months) - will be updated by Python script
-        var historicalMonths = ["Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26"];
-        var historicalChurnData = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
-        var historicalContaminationData = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
-        var historicalVelocityData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        var historicalZombieData = [0, 0, 0, 2, 2, 2, 2, 2, 3, 7, 35, 52];
+        var historicalMonths = ["Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26"];
+        var historicalChurnData = [2.6, 3.2, 0.0, 1.8, 5.4, 1.9];
+        var historicalContaminationData = [15.1, 12.6, 10.6, 18.1, 23.4, 0.0];
+        var historicalVelocityData = [86, 97, 102, 80, 112, 0];
+        var historicalZombieData = [2, 3, 6, 33, 49, 52];
 
         // Calculate statistics
         function calculateStats(data) {
