@@ -77,12 +77,12 @@
                                 Historical Trends Analysis
                             </h1>
                         </div>
-                        <p class="text-slate-600 text-lg ml-12">12-month performance metrics and trend analysis</p>
+                        <p class="text-slate-600 text-lg ml-12">6-month performance metrics and trend analysis</p>
                     </div>
                     <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                         <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                         <span class="text-sm font-medium text-slate-700">Live</span>
-                        <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">February 12, 2026 at 11:59 AM</span></span>
+                        <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">January 29, 2026 at 01:39 PM</span></span>
                     </div>
                 </div>
             </div>
@@ -102,7 +102,7 @@
                     <div>
                         <div class="text-4xl font-bold bg-gradient-to-r from-red-600 to-orange-800 bg-clip-text text-transparent mb-1" id="avgChurn">0.0%</div>
                         <div class="text-sm text-slate-700 font-semibold mb-1">Avg Churn Rate</div>
-                        <div class="text-xs text-slate-500">12-month average</div>
+                        <div class="text-xs text-slate-500">6-month average</div>
                     </div>
                 </div>
 
@@ -119,7 +119,7 @@
                     <div>
                         <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" id="avgContamination">0.0%</div>
                         <div class="text-sm text-slate-700 font-semibold mb-1">Avg Contamination</div>
-                        <div class="text-xs text-slate-500">12-month average</div>
+                        <div class="text-xs text-slate-500">6-month average</div>
                     </div>
                 </div>
 
@@ -174,7 +174,7 @@
                         </div>
                     </div>
                 </h2>
-                <p class="text-sm text-slate-600 mb-6">Last 12 months • <span id="churnAvgText">Average: 0.0%</span></p>
+                <p class="text-sm text-slate-600 mb-6">Last 6 months • <span id="churnAvgText">Average: 0.0%</span></p>
                 <div style="position: relative; height: 400px;">
                     <canvas id="historicalChurnChart"></canvas>
                 </div>
@@ -213,7 +213,7 @@
                         </div>
                     </div>
                 </h2>
-                <p class="text-sm text-slate-600 mb-6">Last 12 months • <span id="contaminationAvgText">Average: 0.0%</span></p>
+                <p class="text-sm text-slate-600 mb-6">Last 6 months • <span id="contaminationAvgText">Average: 0.0%</span></p>
                 <div style="position: relative; height: 400px;">
                     <canvas id="historicalContaminationChart"></canvas>
                 </div>
@@ -252,7 +252,7 @@
                         </div>
                     </div>
                 </h2>
-                <p class="text-sm text-slate-600 mb-6">Last 12 months • <span id="velocityAvgText">Average: 0 points</span></p>
+                <p class="text-sm text-slate-600 mb-6">Last 6 months • <span id="velocityAvgText">Average: 0 points</span></p>
                 <div style="position: relative; height: 400px;">
                     <canvas id="historicalVelocityChart"></canvas>
                 </div>
@@ -291,7 +291,7 @@
                         </div>
                     </div>
                 </h2>
-                <p class="text-sm text-slate-600 mb-6">Last 12 months • Tracking stale backlog items</p>
+                <p class="text-sm text-slate-600 mb-6">Last 6 months • Tracking stale backlog items</p>
                 <div style="position: relative; height: 400px;">
                     <canvas id="historicalZombieChart"></canvas>
                 </div>
@@ -318,12 +318,12 @@
     </div>
 
     <script>
-        // Historical data (12 months) - will be updated by Python script
-        var historicalMonths = ["Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26"];
-        var historicalChurnData = [2.6, 3.2, 0.0, 1.8, 5.4, 1.4];
-        var historicalContaminationData = [15.1, 12.6, 10.6, 18.1, 23.4, 17.4];
-        var historicalVelocityData = [86, 97, 102, 80, 113, 109];
-        var historicalZombieData = [2, 3, 6, 33, 49, 52];
+        // Historical data (6 months) - will be updated by Python script
+        var historicalMonths = ["Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25"];
+        var historicalChurnData = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+        var historicalContaminationData = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+        var historicalVelocityData = [0, 0, 0, 0, 0, 0];
+        var historicalZombieData = [0, 0, 0, 2, 2, 2];
 
         // Calculate statistics
         function calculateStats(data) {
