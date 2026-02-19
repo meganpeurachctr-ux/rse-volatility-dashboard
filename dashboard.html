@@ -98,17 +98,14 @@
         .tooltip-container .tooltip-text {
             visibility: hidden;
             opacity: 0;
-            width: 260px;
+            width: 220px;
             background-color: #1e293b;
             color: #fff;
             font-size: 0.75rem;
             border-radius: 8px;
             padding: 10px 12px;
-            position: absolute;
-            z-index: 100;
-            left: 0;
-            bottom: 24px;
-            top: auto;
+            position: fixed;
+            z-index: 9999;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             transition: opacity 0.2s ease;
             pointer-events: none;
