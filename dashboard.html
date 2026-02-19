@@ -94,6 +94,28 @@
             animation: countUp 0.5s ease-out;
         }
         
+        .tooltip-container { position: relative; display: inline-block; }
+        .tooltip-container .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            width: 260px;
+            background-color: #1e293b;
+            color: #fff;
+            font-size: 0.75rem;
+            border-radius: 8px;
+            padding: 10px 12px;
+            position: absolute;
+            z-index: 100;
+            left: 0;
+            top: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+        }
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
         .shimmer-bg {
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             background-size: 200% 100%;
@@ -204,7 +226,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                                 </svg>
                             </div>
-                            <div class="relative inline-block group">
+                            <div class="tooltip-container">
                                 <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
@@ -236,7 +258,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                                 </svg>
                             </div>
-                            <div class="relative inline-block group">
+                            <div class="tooltip-container">
                                 <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
@@ -268,7 +290,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
                             </div>
-                            <div class="relative inline-block group">
+                            <div class="tooltip-container">
                                 <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
@@ -464,9 +486,9 @@
                             <div class="mb-3">
                                 <div class="text-4xl font-bold bg-gradient-to-r from-rose-600 to-pink-700 bg-clip-text text-transparent mb-1" id="priority-change-total">38</div>
                                 <div class="text-sm text-slate-700 font-semibold mb-1 flex items-center gap-1">Priority Change Count
-                                    <div class="relative inline-block group">
+                                    <div class="tooltip-container">
                                         <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                        <div class="absolute left-0 top-6 w-64 p-3 bg-slate-800 text-white text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">Number of times issue priorities were changed during this sprint. High counts may indicate unclear requirements or shifting team focus.</div>
+                                        <div class="tooltip-text">Number of times issue priorities were changed during this sprint. High counts may indicate unclear requirements or shifting team focus.</div>
                                     </div>
                                 </div>
                                 <div class="text-xs text-slate-500">total changes this sprint</div>
@@ -493,9 +515,9 @@
                             <div class="mb-3">
                                 <div class="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-teal-700 bg-clip-text text-transparent mb-1" id="estimate-change-total">0</div>
                                 <div class="text-sm text-slate-700 font-semibold mb-1 flex items-center gap-1">Estimate Change Count
-                                    <div class="relative inline-block group">
+                                    <div class="tooltip-container">
                                         <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                        <div class="absolute left-0 top-6 w-64 p-3 bg-slate-800 text-white text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">Number of times story point estimates were revised during this sprint. Frequent re-estimation can signal scope creep or poor initial sizing.</div>
+                                        <div class="tooltip-text">Number of times story point estimates were revised during this sprint. Frequent re-estimation can signal scope creep or poor initial sizing.</div>
                                     </div>
                                 </div>
                                 <div class="text-xs text-slate-500">total re-estimations this sprint</div>
@@ -517,9 +539,9 @@
                             </div>
                             <div class="mt-2">
                                 <h4 class="text-lg font-semibold text-slate-700 mb-2 flex items-center gap-1">Contamination Source
-                                    <div class="relative inline-block group">
+                                    <div class="tooltip-container">
                                         <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                        <div class="absolute left-0 top-6 w-64 p-3 bg-slate-800 text-white text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">The sprint from which carried-over work originated. Helps identify patterns in incomplete work.</div>
+                                        <div class="tooltip-text">The sprint from which carried-over work originated. Helps identify patterns in incomplete work.</div>
                                     </div>
                                 </h4>
                                 <p class="text-sm text-slate-500 mb-4">Origin sprint of carried-over work</p>
@@ -545,9 +567,9 @@
                             <div class="mb-3">
                                 <div class="text-4xl font-bold bg-gradient-to-r from-violet-600 to-indigo-700 bg-clip-text text-transparent mb-1" id="refinement-date-total">0</div>
                                 <div class="text-sm text-slate-700 font-semibold mb-1 flex items-center gap-1">Refinement Date Count
-                                    <div class="relative inline-block group">
+                                    <div class="tooltip-container">
                                         <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                        <div class="absolute left-0 top-6 w-64 p-3 bg-slate-800 text-white text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">Number of issues that went through backlog refinement this sprint. Tracks how well the team is preparing work before it enters the sprint.</div>
+                                        <div class="tooltip-text">Number of issues that went through backlog refinement this sprint. Tracks how well the team is preparing work before it enters the sprint.</div>
                                     </div>
                                 </div>
                                 <div class="text-xs text-slate-500">total refinements this sprint</div>
