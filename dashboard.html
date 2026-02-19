@@ -1022,6 +1022,14 @@
     <div id="global-tooltip"></div>
     <script>
     var gt = document.getElementById('global-tooltip');
+    // Prevent tooltip icon clicks from triggering parent <a> link
+    document.querySelectorAll('a .tooltip-container').forEach(function(el) {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    });
+
     document.querySelectorAll('.tooltip-container').forEach(function(el) {
         var text = el.querySelector('.tooltip-text');
         if (!text) return;
