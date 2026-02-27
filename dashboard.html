@@ -155,7 +155,7 @@ w<!DOCTYPE html>
                             <span class="text-sm font-medium text-slate-700">Live</span>
                         </div>
                         <div class="text-xs text-slate-500">
-                            Updated: <span id="lastUpdatedDate">February 27, 2026</span> at <span id="lastUpdatedTime">01:19 PM</span>
+                            Updated: <span id="lastUpdatedDate">February 27, 2026</span> at <span id="lastUpdatedTime">02:44 PM</span>
                         </div>
                     </div>
                 </div>
@@ -612,12 +612,12 @@ w<!DOCTYPE html>
 
     // Sprint data
     var sprintDataWithDates = [
-        { sprint: 'RSE 25Q4-S6 12/17-12/31', startDate: '2025-12-17', endDate: '2025-12-31', planned: 23, completed: 21, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/jira/software/c/projects/TRI/boards/17?sprint=4942' },
-        { sprint: 'RSE 26Q1-S1 12/31-1/14', startDate: '2026-01-01', endDate: '2026-01-14', planned: 64, completed: 64, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/jira/software/c/projects/TRI/boards/17?sprint=5142' },
-        { sprint: 'RSE 26Q1-S2 1/14-1/28', startDate: '2026-01-14', endDate: '2026-01-29', planned: 74, completed: 74, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/jira/software/c/projects/TRI/boards/17?sprint=5350' },
-        { sprint: 'RSE 26Q1-S3 1/28-2/11', startDate: '2026-01-28', endDate: '2026-02-12', planned: 76, completed: 75, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/jira/software/c/projects/TRI/boards/17?sprint=5383' },
-        { sprint: 'RSE 26Q1-S4 2/11-2/25', startDate: '2026-02-11', endDate: '2026-02-26', planned: 69, completed: 66, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/jira/software/c/projects/TRI/boards/17?sprint=5586' },
-        { sprint: 'RSE 26Q1-S5 2/25-3/11', startDate: '2026-02-25', endDate: '2026-03-12', planned: 65, completed: 4, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/jira/software/c/projects/TRI/boards/17?sprint=5853' }
+        { sprint: 'RSE 25Q4-S6 12/17-12/31', startDate: '2025-12-17', endDate: '2025-12-31', planned: 23, completed: 21, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2025Q4-S6%2012/17-12/31%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20ORDER%20BY%20status', jiraUrlDone: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2025Q4-S6%2012/17-12/31%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20AND%20status%3DDone%20ORDER%20BY%20updated%20DESC' },
+        { sprint: 'RSE 26Q1-S1 12/31-1/14', startDate: '2026-01-01', endDate: '2026-01-14', planned: 64, completed: 64, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2026Q1-S1%2012/31-1/14%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20ORDER%20BY%20status', jiraUrlDone: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2026Q1-S1%2012/31-1/14%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20AND%20status%3DDone%20ORDER%20BY%20updated%20DESC' },
+        { sprint: 'RSE 26Q1-S2 1/14-1/28', startDate: '2026-01-14', endDate: '2026-01-29', planned: 74, completed: 74, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2026Q1-S2%201/14-1/28%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20ORDER%20BY%20status', jiraUrlDone: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2026Q1-S2%201/14-1/28%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20AND%20status%3DDone%20ORDER%20BY%20updated%20DESC' },
+        { sprint: 'RSE 26Q1-S3 1/28-2/11', startDate: '2026-01-28', endDate: '2026-02-12', planned: 76, completed: 75, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2026Q1-S3%201/28-2/11%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20ORDER%20BY%20status', jiraUrlDone: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2026Q1-S3%201/28-2/11%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20AND%20status%3DDone%20ORDER%20BY%20updated%20DESC' },
+        { sprint: 'RSE 26Q1-S4 2/11-2/25', startDate: '2026-02-11', endDate: '2026-02-26', planned: 69, completed: 66, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2026Q1-S4%202/11-2/25%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20ORDER%20BY%20status', jiraUrlDone: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2026Q1-S4%202/11-2/25%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20AND%20status%3DDone%20ORDER%20BY%20updated%20DESC' },
+        { sprint: 'RSE 26Q1-S5 2/25-3/11', startDate: '2026-02-25', endDate: '2026-03-12', planned: 65, completed: 4, contamination: 0, jiraUrl: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2026Q1-S5%202/25-3/11%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20ORDER%20BY%20status', jiraUrlDone: 'https://toyotaresearchinstitute.atlassian.net/issues/?jql=sprint%3D%22RSE%2026Q1-S5%202/25-3/11%22%20AND%20cf%5B10001%5D%3D%22RSE%22%20AND%20status%3DDone%20ORDER%20BY%20updated%20DESC' }
     ];
 
     // Historical data (12 months) - will be updated by Python script
@@ -751,12 +751,15 @@ w<!DOCTYPE html>
                     tooltip: customTooltip,
                     legend: { position: 'top' }
                 },
-                onClick: function(evt, activeEls) {
-                    if (activeEls.length > 0) {
-                        window.open(sprintDataWithDates[activeEls[0].index].jiraUrl, '_blank');
-                    }
-                }
-            }
+	onClick: function(evt, activeEls) {
+       	    if (activeEls.length > 0) {
+             	   var idx     = activeEls[0].index;
+       		   var dataset = activeEls[0].datasetIndex;  // 0 = Planned, 1 = Completed
+                   var sprint  = sprintDataWithDates[idx];
+                   var url     = dataset === 1 ? sprint.jiraUrlDone : sprint.jiraUrl;
+                   window.open(url, '_blank');
+                   }
+		}           
         });
 
         // Age Distribution Chart
