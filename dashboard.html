@@ -155,7 +155,7 @@ www<!DOCTYPE html>
                             <span class="text-sm font-medium text-slate-700">Live</span>
                         </div>
                         <div class="text-xs text-slate-500">
-                            Updated: <span id="lastUpdatedDate">February 27, 2026</span> at <span id="lastUpdatedTime">02:50 PM</span>
+                            Updated: <span id="lastUpdatedDate">February 27, 2026</span> at <span id="lastUpdatedTime">03:01 PM</span>
                         </div>
                     </div>
                 </div>
@@ -747,21 +747,21 @@ www<!DOCTYPE html>
                         grid: { display: false }
                     }
                 },
-                plugins: { 
+		plugins: { 
                     tooltip: customTooltip,
                     legend: { position: 'top' }
                 },
-	        onClick: function(evt, activeEls) {
-       	            if (activeEls.length > 0) {
-             	        var idx     = activeEls[0].index;
-       		        var dataset = activeEls[0].datasetIndex;  // 0 = Planned, 1 = Completed
+                onClick: function(evt, activeEls) {
+                    if (activeEls.length > 0) {
+                        var idx     = activeEls[0].index;
+                        var dataset = activeEls[0].datasetIndex;
                         var sprint  = sprintDataWithDates[idx];
                         var url     = dataset === 1 ? sprint.jiraUrlDone : sprint.jiraUrl;
                         window.open(url, '_blank');
                     }
-	      	 }           
+                }
+            }
         });
-
         // Age Distribution Chart
         new Chart(document.getElementById('ageDistributionChart'), {
             type: 'bar',
