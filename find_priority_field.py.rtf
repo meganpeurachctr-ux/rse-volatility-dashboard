@@ -1,0 +1,120 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 #!/usr/bin/env python3\
+"""\
+Quick utility to discover the priority change count custom field ID.\
+Run this once, find the field, then we'll add it to the main updater.\
+"""\
+\
+import requests\
+from requests.auth import HTTPBasicAuth\
+import json\
+\
+JIRA_URL = "https://toyotaresearchinstitute.atlassian.net"\
+EMAIL = "megan.peurach.ctr@tri.global"\
+API_TOKEN = "ATATT3xFfGF0r1UwSLBGBB7ZVl5EtncuNq63OmLJuXjE1ClmtITJioHfA0oIcvev9riNo2sV41j7AgOmBSixho16Co16EiWfYoQXD63OoytwpU9W4qLd0W0ziCiZeS5WHI1v7FSQFu7FyAD78SD_2IOmmPg_p0ss19kRBRZ2TYAhoPP-9CbTIVo=68EDC3BD"\
+RSE_BOARD_ID = 17\
+SPRINT_PREFIX = "RSE"\
+\
+auth = HTTPBasicAuth(EMAIL, API_TOKEN)\
+headers = \{"Accept": "application/json"\}\
+\
+\
+def get_active_sprint_id():\
+    """Get the first active RSE sprint ID."""\
+    url = f"\{JIRA_URL\}/rest/agile/1.0/board/\{RSE_BOARD_ID\}/sprint"\
+    r = requests.get(url, headers=headers, auth=auth, params=\{"state": "active"\}, timeout=30)\
+    r.raise_for_status()\
+    sprints = [s for s in r.json().get("values", []) if s.get("name", "").startswith(SPRINT_PREFIX)]\
+    if not sprints:\
+        raise RuntimeError("No active RSE sprint found.")\
+    return sprints[0]["id"], sprints[0]["name"]\
+\
+\
+def get_sample_issue_key(sprint_id):\
+    """Get the first RSE team issue key from the active sprint."""\
+    RSE_TEAM_ID = "e83576e2-2517-4baf-8dd6-8d277b5eba80-3"\
+    url = f"\{JIRA_URL\}/rest/agile/1.0/sprint/\{sprint_id\}/issue"\
+    r = requests.get(url, headers=headers, auth=auth,\
+                     params=\{"maxResults": 50, "fields": "summary,customfield_10001"\},\
+                     timeout=30)\
+    r.raise_for_status()\
+    for issue in r.json().get("issues", []):\
+        team = issue["fields"].get("customfield_10001", \{\})\
+        if isinstance(team, dict) and team.get("id") == RSE_TEAM_ID:\
+            return issue["key"]\
+    raise RuntimeError("No RSE team issues found in active sprint.")\
+\
+\
+def inspect_issue_fields(issue_key):\
+    """Fetch all fields on an issue and print custom ones."""\
+    url = f"\{JIRA_URL\}/rest/api/3/issue/\{issue_key\}"\
+    r = requests.get(url, headers=headers, auth=auth, params=\{"expand": "names"\}, timeout=30)\
+    r.raise_for_status()\
+    data = r.json()\
+\
+    fields = data.get("fields", \{\})\
+    names = data.get("names", \{\})  # maps field ID -> display name\
+\
+    print(f"\\nInspecting issue: \{issue_key\}")\
+    print(f"Summary: \{fields.get('summary', 'N/A')\}\\n")\
+    print("=" * 70)\
+    print(f"\{'Field ID':<30\} \{'Display Name':<30\} \{'Value'\}")\
+    print("=" * 70)\
+\
+    # Keywords to search for in field names\
+    keywords = ["priority", "change", "count", "chg", "prio"]\
+\
+    print("\\n--- Fields matching priority/change/count keywords ---\\n")\
+    for fid, val in sorted(fields.items()):\
+        name = names.get(fid, "")\
+        name_lower = name.lower()\
+        fid_lower = fid.lower()\
+        if any(k in name_lower or k in fid_lower for k in keywords):\
+            print(f"\{fid:<30\} \{name:<30\} \{repr(val)\}")\
+\
+    print("\\n--- All custom fields (customfield_*) ---\\n")\
+    for fid, val in sorted(fields.items()):\
+        if fid.startswith("customfield_") and val not in [None, [], \{\}]:\
+            name = names.get(fid, "(no name)")\
+            print(f"\{fid:<30\} \{name:<30\} \{repr(val)[:80]\}")\
+\
+\
+def list_all_jira_fields():\
+    """Also check the global fields endpoint for any priority-change field."""\
+    url = f"\{JIRA_URL\}/rest/api/3/field"\
+    r = requests.get(url, headers=headers, auth=auth, timeout=30)\
+    r.raise_for_status()\
+    all_fields = r.json()\
+\
+    print("\\n--- Global field search: 'priority' or 'change' in name ---\\n")\
+    keywords = ["priority", "change", "chg"]\
+    for f in all_fields:\
+        name = f.get("name", "").lower()\
+        if any(k in name for k in keywords):\
+            print(f"  ID: \{f['id']:<30\} Name: \{f['name']\}")\
+\
+\
+if __name__ == "__main__":\
+    print("Discovering priority change count custom field...\\n")\
+\
+    sprint_id, sprint_name = get_active_sprint_id()\
+    print(f"Active sprint: \{sprint_name\} (ID: \{sprint_id\})")\
+\
+    issue_key = get_sample_issue_key(sprint_id)\
+    print(f"Sample RSE issue: \{issue_key\}")\
+\
+    # Check global field list first\
+    list_all_jira_fields()\
+\
+    # Then inspect the actual issue\
+    inspect_issue_fields(issue_key)\
+\
+    print("\\nNext step: find the field ID above that corresponds to")\
+    print("'priority change count' and share it \'97 then we'll add it")\
+    print("to the main dashboard updater!")}

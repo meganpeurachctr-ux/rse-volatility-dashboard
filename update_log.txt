@@ -1,0 +1,84 @@
+
+============================================================
+RSE TEAM JIRA DASHBOARD AUTO-UPDATER
+============================================================
+
+✔ Connected as: Megan Peurach (Contractor)
+
+Reading current dashboard values...
+  backlog_count = 156
+  average_velocity = 65
+  contamination_percent = 44.1
+  zombie_count = 63
+  sprint_total_issues = 71
+  sprint_completion_rate = 56.3
+  sprint_in_progress = 12
+  sprint_to_do = 12
+
+Fetching RSE metrics from Jira...
+
+  → Active sprints...
+    RSE 26Q1-S4 2/11-2/25 (ID:5586)
+
+  → Sprint stats...
+    Sprint: RSE 26Q1-S4 2/11-2/25
+      Total:71 Done:40 InReview:7 InProgress:12 ToDo:12 Rate:56.3%
+
+  → Backlog count...
+    156 issues
+
+  → Velocity...
+    65 issues/sprint
+
+  → Contamination...
+    49/111 = 44.1%
+
+  → Zombie issues...
+    Fetching backlog issues...
+    Got 234 backlog issues
+    63 zombie issues
+
+  → Monthly churn...
+    Churn since 2026-02-01...
+    Sprint issues matched: 36
+    Fetching backlog issues...
+    Got 234 backlog issues
+    Total matched: 36
+
+============================================================
+SUMMARY
+============================================================
+  sprint_total_issues: 71
+  sprint_in_progress: 12
+  sprint_in_review: 7
+  sprint_to_do: 12
+  sprint_done: 40
+  sprint_completion_rate: 56.3
+  backlog_count: 156
+  average_velocity: 65
+  contamination_percent: 44.1
+  zombie_count: 63
+  done_count: 36
+  duplicate_count: 0
+  not_needed_count: 0
+  wont_do_count: 0
+  total_resolved: 36
+  churned_count: 0
+  churn_rate: 0.0
+  duplicate_percent: 0.0
+  not_needed_percent: 0.0
+  wont_do_percent: 0.0
+  completion_rate: 100.0
+
+Updating dashboard (60,763 chars)...
+  ✔ Updated backlog_count: 156 → 156
+  ✔ Updated average_velocity: 65 → 65
+  ✔ Updated contamination_percent: 44.1 → 44.1
+  ✔ Updated zombie_count: 63 → 63
+  ✔ Updated sprint_total_issues: 71 → 71
+  ✔ Updated sprint_completion_rate: 56.3 → 56.3
+  ✔ Updated sprint_in_progress: 12 → 12
+  ✔ Updated sprint_to_do: 12 → 12
+✔ Dashboard written successfully
+
+✔ Done! Updated at February 24, 2026 at 03:14 PM

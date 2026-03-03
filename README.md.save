@@ -1,0 +1,13 @@
+## Files
+
+- `dashboard.html` - Main dashboard showing current sprint metrics
+- `historical_dashboard.html` - 12-month historical trends analysis
+- `update_dashboard_template.py` - Template for automation script (add your credentials)
+- `update_dashboard.py` - Local script with credentials (gitignored for security)
+
+## Setup
+
+1. Copy `update_dashboard_template.py` to `update_dashboard.py`
+2. Add your Jira credentials to `update_dashboard.py`
+3. Run the script to update both dashboards# rse-volatility-dashboard
+RSE Team Jira Backlog Volatility Dashboard - Real-time metrics 
