@@ -133,16 +133,16 @@
                         <button class="scope-btn active" id="btnRse"     onclick="setScope('rse')">RSE</button>
                         <button class="scope-btn"        id="btnRsePlus" onclick="setScope('rse_plus')">RSE+</button>
                     </div>
-                    <div class="relative group">
-                        <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <div class="absolute right-0 top-6 w-64 p-3 bg-slate-800 text-white text-xs rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                            <p class="font-semibold mb-1">RSE vs RSE+</p>
-                            <p><strong>RSE</strong> — issues assigned to the RSE team only.</p>
-                            <p class="mt-1"><strong>RSE+</strong> — RSE team issues plus TCIN-assigned issues on the same board.</p>
-                        </div>
-                    </div>
+                    <div id="scopeInfoIcon" class="cursor-help" onmouseenter="showScopeTooltip(event)" onmouseleave="hideScopeTooltip()"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
 
@@ -717,6 +717,8 @@ function setCounter(id, value, isDecimal) {
 }
 
 // ── Tab switching ──────────────────────────────────────────────────────────
+function showScopeTooltip(e){var tip=document.getElementById("scopeTooltip");tip.style.display="block";var rect=e.currentTarget.getBoundingClientRect();tip.style.top=(rect.bottom+8)+"px";tip.style.left=Math.min(rect.left,window.innerWidth-270)+"px";}
+function hideScopeTooltip(){document.getElementById("scopeTooltip").style.display="none";}
 function switchTab(tabName, e) {
     document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
     document.querySelectorAll('.tab-button').forEach(function(b)  { b.classList.remove('active'); });
@@ -957,5 +959,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-</body>
+<div id="scopeTooltip" style="display:none;position:fixed;z-index:99999;width:256px;padding:12px;background:#1e293b;color:white;font-size:0.75rem;border-radius:8px;box-shadow:0 10px 25px rgba(0,0,0,0.3);pointer-events:none;"><p style="font-weight:600;margin-bottom:4px;">RSE vs RSE+</p><p><strong>RSE</strong> — issues assigned to the RSE team only.</p><p style="margin-top:4px;"><strong>RSE+</strong> — RSE team issues plus TCIN-assigned issues on the same board.</p></div></body>
 </html>
