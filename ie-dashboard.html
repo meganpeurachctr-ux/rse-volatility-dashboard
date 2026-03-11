@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IE Team Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59,130,246,0.3); }
+            50%       { box-shadow: 0 0 30px rgba(59,130,246,0.6); }
+        }
+        @keyframes shimmer {
+            0%   { background-position: -1000px 0; }
+            100% { background-position:  1000px 0; }
+        }
+        .animate-slide-in { animation: slideInUp 0.6s ease-out forwards; opacity: 0; }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+        .card-hover:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2); }
+        .glass-effect { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+        .status-badge { animation: pulse-glow 2s ease-in-out infinite; }
+        .progress-bar { transition: width 1s ease-out; }
+        .metric-icon { transition: transform 0.3s ease; }
+        .card-hover:hover .metric-icon { transform: rotate(10deg) scale(1.1); }
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .count-animate { animation: countUp 0.5s ease-out; }
+        .tooltip-container { position: relative; display: inline-block; }
+        .tooltip-text { display: none; }
+        #global-tooltip {
+            visibility: hidden;
+            opacity: 0;
+            width: 220px;
+            background-color: #1e293b;
+            color: #fff;
+            font-size: 0.75rem;
+            border-radius: 8px;
+            padding: 10px 12px;
+            position: fixed;
+            z-index: 9999;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: opacity 0.15s ease;
+            pointer-events: none;
+        }
+        .shimmer-bg { background: linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent); background-size: 200% 100%; animation: shimmer 2s infinite; }
+        .tab-button { transition: all 0.3s ease; }
+        .tab-button.active { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); color: white; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: slideInUp 0.4s ease-out; }
