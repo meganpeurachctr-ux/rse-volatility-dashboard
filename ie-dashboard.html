@@ -54,7 +54,6 @@
         .tab-button.active { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); color: white; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: slideInUp 0.4s ease-out; }
-        
     </style>
 </head>
 <body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen">
@@ -73,7 +72,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 11, 2026 at 03:48 PM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 11, 2026 at 04:01 PM</span></span>
             </div>
         </div>
     </div>
@@ -112,7 +111,6 @@
                     <span class="w-1 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full mr-3"></span>
                     Current Sprint Breakdown
                 </h2>
-                
 
             <!-- Summary stat cards -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-in" style="animation-delay:0.18s;">
@@ -615,7 +613,8 @@ var JIRA_CONFIG = {
 };
 
 // ── Sprint chart data ──────────────────────────────────────────────────────
-var sprintDataWithDates = [];
+var sprintDataWithDates = [
+];
 
 // ── Historical data ────────────────────────────────────────────────────────
 var historicalMonths            = ['Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26'];
@@ -690,7 +689,7 @@ function renderContaminationSources() {
 
     container.innerHTML = html;
 }
-
+// ── Scope toggle ───────────────────────────────────────────────────────────
 
 // ── Counter animation ──────────────────────────────────────────────────────
 function animateCounter(el) {
@@ -718,6 +717,29 @@ function setCounter(id, value, isDecimal) {
 }
 
 // ── Tooltip & tab functions ────────────────────────────────────────────────
+function switchTab(tabName, e) {
+    document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.tab-button').forEach(function(b)  { b.classList.remove('active'); });
+    document.getElementById(tabName + '-tab').classList.add('active');
+    if (e) e.target.closest('.tab-button').classList.add('active');
+}
+
+// ── DOMContentLoaded ───────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+
+    var now = new Date();
+    document.getElementById('lastUpdated').textContent =
+        now.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}) +
+        ' at ' + now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+
+    document.getElementById('backlogLink').href       = JIRA_CONFIG.baseUrl + JIRA_CONFIG.backlogFilter;
+    document.getElementById('velocityLink').href      = JIRA_CONFIG.baseUrl + JIRA_CONFIG.velocityReport;
+    document.getElementById('contaminationLink').href = JIRA_CONFIG.baseUrl + JIRA_CONFIG.contaminationFilter;
+    document.getElementById('zombieLink').href        = JIRA_CONFIG.baseUrl + JIRA_CONFIG.zombieFilter;
+
+    setTimeout(function() {
+        document.querySelectorAll('[data-counter]').forEach(animateCounter);
+    }, 300);
 
     setTimeout(function() {
         document.querySelectorAll('.progress-bar').forEach(function(bar) {
@@ -889,7 +911,6 @@ function setCounter(id, value, isDecimal) {
     });
 });
 </script>
-
 
 </body>
 </html>
