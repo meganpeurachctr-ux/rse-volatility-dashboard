@@ -33,7 +33,6 @@
         }
         .count-animate { animation: countUp 0.5s ease-out; }
         .tooltip-container { position: relative; display: inline-block; }
-
         .tooltip-text { display: none; }
         #global-tooltip {
             visibility: hidden;
@@ -55,7 +54,6 @@
         .tab-button.active { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); color: white; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: slideInUp 0.4s ease-out; }
-
         /* RSE/RSE+ toggle */
         .scope-toggle { display: inline-flex; background: #f1f5f9; border-radius: 9999px; padding: 3px; gap: 2px; }
         .scope-btn {
@@ -87,7 +85,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 03, 2026 at 02:58 PM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 11, 2026 at 11:59 AM</span></span>
             </div>
         </div>
     </div>
@@ -119,7 +117,7 @@
     <!-- ════════════════════════════════════════════════════════════════════ -->
     <div id="current-tab" class="tab-content active">
 
-        <!-- ── Sprint Breakdown (NOW FIRST) ─────────────────────────────── -->
+        <!-- ── Sprint Breakdown ──────────────────────────────────────────── -->
         <div class="mb-8">
             <div class="flex items-center justify-between flex-wrap gap-4 mb-6 animate-slide-in" style="animation-delay:0.15s;">
                 <h2 class="text-2xl font-bold text-slate-800 flex items-center">
@@ -133,35 +131,30 @@
                         <button class="scope-btn active" id="btnRse"     onclick="setScope('rse')">RSE</button>
                         <button class="scope-btn"        id="btnRsePlus" onclick="setScope('rse_plus')">RSE+</button>
                     </div>
-                    <div id="scopeInfoIcon" class="cursor-help" onmouseenter="showScopeTooltip(event)" onmouseleave="hideScopeTooltip()"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-
-
-
-
-
-
-
-
-
+                    <div id="scopeInfoIcon" class="cursor-help" onmouseenter="showScopeTooltip(event)" onmouseleave="hideScopeTooltip()">
+                        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
                 </div>
             </div>
 
             <!-- Summary stat cards -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-in" style="animation-delay:0.18s;">
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="68">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="75">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Total Issues</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="10.3" data-decimal="true">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="80.0" data-decimal="true">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="13">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="7">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="42">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="6">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">To Do</div>
                 </div>
             </div>
@@ -178,7 +171,7 @@
             </div>
         </div>
 
-        <!-- ── Key Performance Metrics ─────────────────────────────────── -->
+        <!-- ── Key Performance Metrics ───────────────────────────────────── -->
         <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center animate-slide-in" style="animation-delay:0.25s;">
             <span class="w-1 h-8 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mr-3"></span>
             Key Performance Metrics
@@ -195,7 +188,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-blue-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1" data-counter="150">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1" data-counter="172">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Current Backlog</div>
                     <div class="text-xs text-slate-500 mb-3">open items</div>
                 </div>
@@ -241,7 +234,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="36.1" data-decimal="true">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="52.3" data-decimal="true">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Sprint Contamination</div>
                     <div class="text-xs text-slate-500 mb-3">carryover rate</div>
                 </div>
@@ -264,7 +257,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-purple-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-purple-600 to-violet-800 bg-clip-text text-transparent mb-1" data-counter="66">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-purple-600 to-violet-800 bg-clip-text text-transparent mb-1" data-counter="69">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Zombie Issues</div>
                     <div class="text-xs text-slate-500 mb-3">90+ days old</div>
                 </div>
@@ -295,7 +288,7 @@
                     <div class="space-y-3">
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Done</span>
-                            <span class="text-2xl font-bold text-green-600">4</span>
+                            <span class="text-2xl font-bold text-green-600">52</span>
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Duplicate</span>
@@ -307,11 +300,11 @@
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-red-50 to-rose-50 rounded-xl border border-red-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Won't Do</span>
-                            <span class="text-2xl font-bold text-red-600">0</span>
+                            <span class="text-2xl font-bold text-red-600">2</span>
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl border-2 border-slate-400 shadow-md">
                             <span class="font-bold text-slate-800">Grand Total</span>
-                            <span class="text-2xl font-bold text-slate-800">4</span>
+                            <span class="text-2xl font-bold text-slate-800">54</span>
                         </div>
                     </div>
                 </div>
@@ -320,8 +313,8 @@
                     <div class="space-y-4">
                         <div class="p-6 bg-gradient-to-br from-red-50 via-orange-50 to-amber-50 rounded-xl border-2 border-red-300 shadow-lg">
                             <div class="text-sm text-slate-600 mb-2 font-medium">Monthly Churn Rate</div>
-                            <div class="text-5xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mb-2">0.0%</div>
-                            <div class="text-xs text-slate-600">0 churned items out of 4 total</div>
+                            <div class="text-5xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mb-2">3.7%</div>
+                            <div class="text-xs text-slate-600">2 churned items out of 54 total</div>
                         </div>
                         <div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
                             <div class="text-sm font-semibold text-slate-700 mb-3">Churn Categories:</div>
@@ -342,7 +335,7 @@
                                 </div>
                                 <div class="flex justify-between items-center pt-2">
                                     <span class="text-slate-600">Won't Do (deprioritized)</span>
-                                    <span class="font-semibold text-red-600">0 (0.0%)</span>
+                                    <span class="font-semibold text-red-600">2 (3.7%)</span>
                                 </div>
                                 <div class="w-full bg-slate-200 rounded-full h-1.5">
                                     <div class="bg-red-500 h-1.5 rounded-full progress-bar" style="width:0.0%;"></div>
@@ -351,8 +344,8 @@
                         </div>
                         <div class="p-5 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200 shadow-md">
                             <div class="text-sm text-slate-600 mb-2 font-medium">Completion Rate</div>
-                            <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">100.0%</div>
-                            <div class="text-xs text-slate-600 mt-1">4 successfully completed</div>
+                            <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">96.3%</div>
+                            <div class="text-xs text-slate-600 mt-1">52 successfully completed</div>
                         </div>
                     </div>
                 </div>
@@ -393,6 +386,7 @@
                 <span class="ml-3 px-3 py-1 text-xs font-semibold bg-amber-100 text-amber-800 rounded-full">Data Collection in Progress</span>
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+
                 <!-- Priority Change Count -->
                 <div class="glass-effect rounded-2xl shadow-lg p-6 card-hover">
                     <div class="flex items-center justify-between mb-4">
@@ -404,7 +398,7 @@
                         <div class="w-12 h-1 bg-gradient-to-r from-rose-400 to-transparent rounded-full"></div>
                     </div>
                     <div class="mb-3">
-                        <div class="text-4xl font-bold bg-gradient-to-r from-rose-600 to-pink-700 bg-clip-text text-transparent mb-1" id="priority-change-total">32</div>
+                        <div class="text-4xl font-bold bg-gradient-to-r from-rose-600 to-pink-700 bg-clip-text text-transparent mb-1" id="priority-change-total">31</div>
                         <div class="text-sm text-slate-700 font-semibold mb-1 flex items-center gap-1">Priority Change Count
                             <div class="tooltip-container">
                                 <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -416,9 +410,9 @@
                     <div class="mt-3 pt-3 border-t border-slate-200">
                         <div class="flex justify-between items-center">
                             <span class="text-xs text-slate-500">Avg per issue</span>
-                            <span class="text-sm font-bold text-rose-600" id="priority-change-avg">0.5</span>
+                            <span class="text-sm font-bold text-rose-600" id="priority-change-avg">0.4</span>
                         </div>
-                        <div class="text-xs text-slate-400 mt-1">across <span id="automation-issue-count">68</span> RSE issues</div>
+                        <div class="text-xs text-slate-400 mt-1">across <span id="automation-issue-count">75</span> RSE issues</div>
                     </div>
                 </div>
 
@@ -451,20 +445,19 @@
                     </div>
                 </div>
 
-                <!-- Contamination Source — still Coming Soon -->
-                <div class="glass-effect rounded-2xl shadow-lg p-6 border-2 border-dashed border-slate-300 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 shimmer-bg"></div>
-                    <div class="absolute top-2 right-2"><span class="px-3 py-1 text-xs font-semibold bg-amber-100 text-amber-800 rounded-full">Coming Soon</span></div>
-                    <div class="mt-2">
-                        <h4 class="text-lg font-semibold text-slate-700 mb-2 flex items-center gap-1">Contamination Source
+                <!-- Contamination Source — LIVE -->
+                <div class="glass-effect rounded-2xl shadow-lg p-6 card-hover">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-amber-400 rounded-t-2xl"></div>
+                    <div class="mb-3">
+                        <h4 class="text-sm text-slate-700 font-semibold mb-1 flex items-center gap-1">Contamination Source
                             <div class="tooltip-container">
                                 <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <div class="tooltip-text">The sprint from which carried-over work originated. Helps identify patterns in incomplete work.</div>
+                                <div class="tooltip-text">Reason carried-over issues were not completed in a previous sprint. Counts come from the Contamination Source custom field on each issue.</div>
                             </div>
                         </h4>
-                        <p class="text-sm text-slate-500 mb-4">Origin sprint of carried-over work</p>
-                        <div class="flex items-center justify-center h-20 bg-slate-50 rounded-xl">
-                            <div class="text-center"><div class="text-4xl font-bold text-slate-300">--</div><div class="text-xs text-slate-400 mt-1">No data yet</div></div>
+                        <p class="text-xs text-slate-500 mb-3">Why issues carried over this sprint</p>
+                        <div id="contamination-source-breakdown" class="space-y-2">
+                            <div class="text-center text-slate-400 text-xs py-3">Loading...</div>
                         </div>
                     </div>
                 </div>
@@ -497,6 +490,7 @@
                         <div class="text-xs text-slate-400 mt-1">issues refined per sprint</div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div><!-- /current-tab -->
@@ -513,13 +507,13 @@
         <div class="glass-effect rounded-2xl shadow-xl p-6 mb-8">
             <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
                 <span class="w-1 h-6 bg-gradient-to-b from-red-500 to-orange-500 rounded-full mr-2"></span>
-                                        Monthly Churn Rate Trend (Last 12 Months)
-                        <div class="tooltip-container ml-2">
-                            <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <div class="tooltip-text">Percentage of resolved issues each month closed without completing intended work. Includes Duplicates, Not Needed, and Won't Do resolutions.</div>
-                        </div>
+                Monthly Churn Rate Trend (Last 12 Months)
+                <div class="tooltip-container ml-2">
+                    <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div class="tooltip-text">Percentage of resolved issues each month closed without completing intended work. Includes Duplicates, Not Needed, and Won't Do resolutions.</div>
+                </div>
             </h3>
             <div style="position:relative;height:400px;"><canvas id="historicalChurnChart"></canvas></div>
             <div class="mt-4 p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-xl border border-red-200">
@@ -530,13 +524,13 @@
         <div class="glass-effect rounded-2xl shadow-xl p-6 mb-8">
             <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
                 <span class="w-1 h-6 bg-gradient-to-b from-orange-500 to-amber-500 rounded-full mr-2"></span>
-                                        Sprint Contamination Trend (Last 12 Months)
-                        <div class="tooltip-container ml-2">
-                            <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <div class="tooltip-text">Percentage of sprint items that carried over from previous sprints. Measured by issues created 14+ days before sprint start.</div>
-                        </div>
+                Sprint Contamination Trend (Last 12 Months)
+                <div class="tooltip-container ml-2">
+                    <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div class="tooltip-text">Percentage of sprint items that carried over from previous sprints. Measured by issues created 14+ days before sprint start.</div>
+                </div>
             </h3>
             <div style="position:relative;height:400px;"><canvas id="historicalContaminationChart"></canvas></div>
             <div class="mt-4 p-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl border border-orange-200">
@@ -547,13 +541,13 @@
         <div class="glass-effect rounded-2xl shadow-xl p-6 mb-8">
             <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
                 <span class="w-1 h-6 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full mr-2"></span>
-                                        Velocity Trend with Rolling Average (Last 12 Months)
-                        <div class="tooltip-container ml-2">
-                            <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <div class="tooltip-text">Number of issues completed per sprint over time. Rolling average calculated over 3 sprints to smooth out variations.</div>
-                        </div>
+                Velocity Trend with Rolling Average (Last 12 Months)
+                <div class="tooltip-container ml-2">
+                    <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div class="tooltip-text">Number of issues completed per sprint over time. Rolling average calculated over 3 sprints to smooth out variations.</div>
+                </div>
             </h3>
             <div style="position:relative;height:400px;"><canvas id="historicalVelocityChart"></canvas></div>
             <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -572,13 +566,13 @@
         <div class="glass-effect rounded-2xl shadow-xl p-6 mb-8">
             <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
                 <span class="w-1 h-6 bg-gradient-to-b from-purple-500 to-violet-500 rounded-full mr-2"></span>
-                                        Zombie Issues Trend (Last 12 Months)
-                        <div class="tooltip-container ml-2">
-                            <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                            <div class="tooltip-text">Issues not updated in 90+ days. Tracks how many stale backlog items exist over time.</div>
-                        </div>
+                Zombie Issues Trend (Last 12 Months)
+                <div class="tooltip-container ml-2">
+                    <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div class="tooltip-text">Issues not updated in 90+ days. Tracks how many stale backlog items exist over time.</div>
+                </div>
             </h3>
             <div style="position:relative;height:400px;"><canvas id="historicalZombieChart"></canvas></div>
             <div class="mt-4 p-4 bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl border border-purple-200">
@@ -596,7 +590,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     var gt = document.getElementById('global-tooltip');
 
-    // Prevent tooltip icon clicks from triggering parent <a> link
     document.querySelectorAll('a .tooltip-container').forEach(function(el) {
         el.addEventListener('click', function(e) {
             e.preventDefault();
@@ -604,7 +597,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Tooltip hover behaviour
     document.querySelectorAll('.tooltip-container').forEach(function(el) {
         var text = el.querySelector('.tooltip-text');
         if (!text) return;
@@ -636,8 +628,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
-var RSE_DATA = {"total": 68, "done": 10, "in_review": 5, "in_progress": 21, "to_do": 32, "rate": 14.7};
-var RSE_PLUS_DATA = {"total": 97, "done": 17, "in_review": 10, "in_progress": 29, "to_do": 41, "rate": 17.5};
+var RSE_DATA = {"total": 75, "done": 60, "in_review": 2, "in_progress": 7, "to_do": 6, "rate": 80.0};
+var RSE_PLUS_DATA = {"total": 109, "done": 88, "in_review": 8, "in_progress": 7, "to_do": 6, "rate": 80.7};
+var CONTAMINATION_SOURCES = {"Unspecified": 37};
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
@@ -659,32 +652,90 @@ var sprintDataWithDates = [
 ];
 
 // ── Historical data ────────────────────────────────────────────────────────
-var historicalMonths          = ['Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26'];
-var historicalChurnData       = [5.2,4.8,3.9,4.5,3.2,4.1,5.0,3.8,4.2,3.5,4.7,3.7,0.0];
-var historicalCompletedData   = [0, 0, 0, 0, 0, 0, 0, 60, 116, 128, 135, 122, 4];
+var historicalMonths            = ['Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26'];
+var historicalChurnData         = [5.2,4.8,3.9,4.5,3.2,4.1,5.0,3.8,4.2,3.5,4.7,3.7,0.0];
+var historicalCompletedData     = [0, 0, 0, 0, 0, 0, 0, 60, 116, 128, 135, 122, 52];
 var historicalContaminationData = [15,13,11,14,10,12,16,11,12,14,9,11,37.1];
-var historicalVelocityData    = [0,0,0,0,0,0,0,109.5,198.5,221.0,243.0,223.5,222.5];
-var historicalZombieData      = [45,48,52,50,47,49,53,51,48,50,52,51,63];
+var historicalVelocityData      = [0,0,0,0,0,0,0,109.5,198.5,221.0,243.0,223.5,222.5];
+var historicalZombieData        = [45,48,52,50,47,49,53,51,48,50,52,51,63];
 
 // ── Current scope ──────────────────────────────────────────────────────────
 var currentScope = 'rse';
 var statusChartInstance = null;
 
+// ── Contamination Source renderer ─────────────────────────────────────────
+function renderContaminationSources() {
+    var container = document.getElementById('contamination-source-breakdown');
+    if (!container) return;
+
+    var sources = CONTAMINATION_SOURCES;
+
+    // Filter out Unspecified entirely
+    var filteredKeys = Object.keys(sources).filter(function(k) {
+        return k !== 'Unspecified';
+    });
+
+    // Total issues in sprint (including Unspecified, for the count)
+    var totalContaminated = Object.keys(sources).reduce(function(sum, k) {
+        return sum + sources[k];
+    }, 0);
+
+    // Total for percentage bars (named sources only)
+    var namedTotal = filteredKeys.reduce(function(sum, k) {
+        return sum + sources[k];
+    }, 0);
+
+    // Header showing total count regardless
+    var headerHtml = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #e2e8f0;">' +
+        '<span style="font-size:0.7rem;color:#64748b;font-weight:500;">Total issues in sprint</span>' +
+        '<span style="font-size:0.7rem;font-weight:700;color:#1e293b;">' + totalContaminated + '</span>' +
+    '</div>';
+
+    if (filteredKeys.length === 0) {
+        container.innerHTML = headerHtml +
+            '<div style="text-align:center;color:#94a3b8;font-size:0.7rem;padding:10px 0;">Source breakdown: none to record</div>';
+        return;
+    }
+
+    filteredKeys.sort(function(a, b) { return sources[b] - sources[a]; });
+
+    var colors = [
+        { bar: 'background:#f97316', label: 'color:#c2410c' },
+        { bar: 'background:#f59e0b', label: 'color:#b45309' },
+        { bar: 'background:#ef4444', label: 'color:#b91c1c' },
+        { bar: 'background:#a855f7', label: 'color:#7e22ce' },
+        { bar: 'background:#3b82f6', label: 'color:#1d4ed8' },
+        { bar: 'background:#64748b', label: 'color:#334155' }
+    ];
+
+    var html = headerHtml;
+    filteredKeys.forEach(function(key, i) {
+        var count = sources[key];
+        var pct = namedTotal > 0 ? Math.round(count / namedTotal * 100) : 0;
+        var c = colors[Math.min(i, colors.length - 1)];
+        html += '<div style="margin-bottom:8px;">' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
+                '<span style="font-size:0.7rem;font-weight:500;color:#334155;">' + key + '</span>' +
+                '<span style="font-size:0.7rem;font-weight:700;' + c.label + '">' + count + ' (' + pct + '%)</span>' +
+            '</div>' +
+            '<div style="width:100%;background:#e2e8f0;border-radius:9999px;height:6px;">' +
+                '<div style="' + c.bar + ';height:6px;border-radius:9999px;width:' + pct + '%;transition:width 1s ease-out;"></div>' +
+            '</div>' +
+        '</div>';
+    });
+
+    container.innerHTML = html;
+}
 // ── Scope toggle ───────────────────────────────────────────────────────────
 function setScope(scope) {
     currentScope = scope;
     document.getElementById('btnRse').classList.toggle('active',     scope === 'rse');
     document.getElementById('btnRsePlus').classList.toggle('active', scope === 'rse_plus');
-
     var d = scope === 'rse' ? RSE_DATA : RSE_PLUS_DATA;
-
-    // Update stat cards (animate)
-    setCounter('stat-total',      d.total,  false);
-    setCounter('stat-rate',       d.rate,   true);
+    setCounter('stat-total',      d.total,       false);
+    setCounter('stat-rate',       d.rate,        true);
     setCounter('stat-inprogress', d.in_progress, false);
-    setCounter('stat-todo',       d.to_do,  false);
-
-    // Update status doughnut
+    setCounter('stat-todo',       d.to_do,       false);
     if (statusChartInstance) {
         statusChartInstance.data.datasets[0].data = [d.done, d.in_review, d.in_progress, d.to_do];
         statusChartInstance.update();
@@ -700,7 +751,7 @@ function animateCounter(el) {
     function update(t) {
         if (!startTime) startTime = t;
         var p = Math.min((t - startTime) / duration, 1);
-        var v = target * (p * (2 - p)); // easeOutQuad
+        var v = target * (p * (2 - p));
         el.textContent = isDecimal ? v.toFixed(1) + '%' : Math.floor(v);
         if (p < 1) requestAnimationFrame(update);
         else el.textContent = isDecimal ? target.toFixed(1) + '%' : target;
@@ -716,9 +767,17 @@ function setCounter(id, value, isDecimal) {
     animateCounter(el);
 }
 
-// ── Tab switching ──────────────────────────────────────────────────────────
-function showScopeTooltip(e){var tip=document.getElementById("scopeTooltip");tip.style.display="block";var rect=e.currentTarget.getBoundingClientRect();tip.style.top=(rect.bottom+8)+"px";tip.style.left=Math.min(rect.left,window.innerWidth-270)+"px";}
-function hideScopeTooltip(){document.getElementById("scopeTooltip").style.display="none";}
+// ── Tooltip & tab functions ────────────────────────────────────────────────
+function showScopeTooltip(e) {
+    var tip = document.getElementById('scopeTooltip');
+    tip.style.display = 'block';
+    var rect = e.currentTarget.getBoundingClientRect();
+    tip.style.top  = (rect.bottom + 8) + 'px';
+    tip.style.left = Math.min(rect.left, window.innerWidth - 270) + 'px';
+}
+function hideScopeTooltip() {
+    document.getElementById('scopeTooltip').style.display = 'none';
+}
 function switchTab(tabName, e) {
     document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
     document.querySelectorAll('.tab-button').forEach(function(b)  { b.classList.remove('active'); });
@@ -729,24 +788,20 @@ function switchTab(tabName, e) {
 // ── DOMContentLoaded ───────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Timestamp
     var now = new Date();
     document.getElementById('lastUpdated').textContent =
         now.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}) +
         ' at ' + now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
 
-    // Jira links
     document.getElementById('backlogLink').href       = JIRA_CONFIG.baseUrl + JIRA_CONFIG.backlogFilter;
     document.getElementById('velocityLink').href      = JIRA_CONFIG.baseUrl + JIRA_CONFIG.velocityReport;
     document.getElementById('contaminationLink').href = JIRA_CONFIG.baseUrl + JIRA_CONFIG.contaminationFilter;
     document.getElementById('zombieLink').href        = JIRA_CONFIG.baseUrl + JIRA_CONFIG.zombieFilter;
 
-    // Animate all static counters
     setTimeout(function() {
         document.querySelectorAll('[data-counter]').forEach(animateCounter);
     }, 300);
 
-    // Progress bars
     setTimeout(function() {
         document.querySelectorAll('.progress-bar').forEach(function(bar) {
             var w = bar.style.width; bar.style.width = '0%';
@@ -754,7 +809,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, 500);
 
-    // ── Historical summary calculations ──────────────────────────────────
+    // Render contamination sources
+    renderContaminationSources();
+
+    // ── Historical summary calculations ───────────────────────────────────
     function calcStats(data) {
         var sum = data.reduce(function(a,b){return a+b;},0);
         var avg = sum/data.length;
@@ -771,42 +829,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     function setText(id, val) { var el=document.getElementById(id); if(el) el.textContent=val; }
 
-    // Churn summary
     var cs = calcStats(historicalChurnData);
-    setText('hist-churn-avg',    'Average: ' + cs.avg.toFixed(1) + '%');
-    setText('hist-churn-peak',   historicalMonths[cs.maxIdx]);
-    setText('hist-churn-peak-val', cs.max.toFixed(1) + '%');
-    setText('hist-churn-best',   historicalMonths[cs.minIdx]);
-    setText('hist-churn-best-val', cs.min.toFixed(1) + '%');
-    setText('hist-churn-trend',  getTrend(historicalChurnData));
-    setText('hist-completed-this-month', historicalCompletedData[historicalCompletedData.length - 1]);
+    setText('hist-churn-avg', 'Average: ' + cs.avg.toFixed(1) + '%');
+    setText('hist-completed-this-month', historicalCompletedData[historicalCompletedData.length-1]);
 
-    // Contamination summary
     var conts = calcStats(historicalContaminationData);
-    setText('hist-cont-avg',     'Average: ' + conts.avg.toFixed(1) + '%');
-    setText('hist-cont-peak',    historicalMonths[conts.maxIdx]);
-    setText('hist-cont-peak-val', conts.max.toFixed(1) + '%');
-    setText('hist-cont-best',    historicalMonths[conts.minIdx]);
-    setText('hist-cont-best-val', conts.min.toFixed(1) + '%');
-    setText('hist-cont-trend',   getTrend(historicalContaminationData));
+    setText('hist-cont-avg', 'Average: ' + conts.avg.toFixed(1) + '%');
 
-    // Velocity summary
     var vs = calcStats(historicalVelocityData);
-    setText('hist-vel-avg',      Math.round(vs.avg) + ' SP');
-    setText('hist-vel-high',     historicalMonths[vs.maxIdx]);
-    setText('hist-vel-high-val', vs.max + ' SP');
-    setText('hist-vel-low',      historicalMonths[vs.minIdx]);
-    setText('hist-vel-low-val',  vs.min + ' SP');
-    setText('hist-vel-stability', vs.stdDev.toFixed(1));
+    setText('hist-vel-avg',  Math.round(vs.avg) + ' SP');
+    setText('hist-vel-high', historicalMonths[vs.maxIdx]);
+    setText('hist-vel-low',  historicalMonths[vs.minIdx]);
 
-    // Zombie summary
     var zs = calcStats(historicalZombieData);
     setText('hist-zombie-current', historicalZombieData[historicalZombieData.length-1]);
-    setText('hist-zombie-peak',   historicalMonths[zs.maxIdx]);
-    setText('hist-zombie-peak-val', zs.max + ' issues');
-    setText('hist-zombie-best',   historicalMonths[zs.minIdx]);
-    setText('hist-zombie-best-val', zs.min + ' issues');
-    setText('hist-zombie-trend',  getTrend(historicalZombieData));
 
     // ── Status Doughnut ───────────────────────────────────────────────────
     var d = RSE_DATA;
@@ -816,14 +852,8 @@ document.addEventListener('DOMContentLoaded', function() {
             labels: ['Done','In Review','In Progress','To Do'],
             datasets: [{
                 data: [d.done, d.in_review, d.in_progress, d.to_do],
-                backgroundColor: [
-                    'rgba(16,185,129,0.8)', 'rgba(59,130,246,0.8)',
-                    'rgba(245,158,11,0.8)', 'rgba(148,163,184,0.8)'
-                ],
-                borderColor: [
-                    'rgba(16,185,129,1)', 'rgba(59,130,246,1)',
-                    'rgba(245,158,11,1)', 'rgba(148,163,184,1)'
-                ],
+                backgroundColor: ['rgba(16,185,129,0.8)','rgba(59,130,246,0.8)','rgba(245,158,11,0.8)','rgba(148,163,184,0.8)'],
+                borderColor:     ['rgba(16,185,129,1)',  'rgba(59,130,246,1)',  'rgba(245,158,11,1)',  'rgba(148,163,184,1)'],
                 borderWidth: 3
             }]
         },
@@ -832,12 +862,7 @@ document.addEventListener('DOMContentLoaded', function() {
             plugins: { legend: { position:'bottom', labels:{ padding:15, font:{ size:12 } } } },
             onClick: function(evt, els) {
                 if (!els.length) return;
-                var queries = [
-                    '/issues/?jql=status%3DDone',
-                    '/issues/?jql=status%3D%22In%20Review%22',
-                    '/issues/?jql=status%3D%22In%20Progress%22',
-                    '/issues/?jql=status%3D%22To%20Do%22'
-                ];
+                var queries = ['/issues/?jql=status%3DDone','/issues/?jql=status%3D%22In%20Review%22','/issues/?jql=status%3D%22In%20Progress%22','/issues/?jql=status%3D%22To%20Do%22'];
                 window.open(JIRA_CONFIG.baseUrl + queries[els[0].index], '_blank');
             }
         }
@@ -876,18 +901,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 borderWidth:2, borderRadius:6 }]
         },
         options: {
-            indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+            indexAxis:'y', responsive:true, maintainAspectRatio:false,
             scales: { x:{ beginAtZero:true, grid:{ color:'rgba(0,0,0,0.05)' } }, y:{ grid:{ display:false } } },
             plugins: { legend:{ display:false } },
             onClick: function(evt, els) {
                 if (!els.length) return;
-                var q = [
-                    '/issues/?jql=created%3E%3D-30d%20AND%20status!%3DDone',
-                    '/issues/?jql=created%3E%3D-90d%20AND%20created%3C-30d%20AND%20status!%3DDone',
-                    '/issues/?jql=created%3E%3D-180d%20AND%20created%3C-90d%20AND%20status!%3DDone',
-                    '/issues/?jql=created%3E%3D-365d%20AND%20created%3C-180d%20AND%20status!%3DDone',
-                    JIRA_CONFIG.zombieFilter
-                ];
+                var q = ['/issues/?jql=created%3E%3D-30d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-90d%20AND%20created%3C-30d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-180d%20AND%20created%3C-90d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-365d%20AND%20created%3C-180d%20AND%20status!%3DDone',JIRA_CONFIG.zombieFilter];
                 window.open(JIRA_CONFIG.baseUrl + q[els[0].index], '_blank');
             }
         }
@@ -896,20 +915,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // ── Historical Churn Chart ────────────────────────────────────────────
     new Chart(document.getElementById('historicalChurnChart'), {
         type: 'line',
-        data: { labels: historicalMonths, datasets: [
-            {
-                label:'Monthly Churn Rate (%)', data: historicalChurnData,
-                borderColor:'rgba(239,68,68,1)', backgroundColor:'rgba(239,68,68,0.1)',
-                borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7,
-                pointBackgroundColor:'rgba(239,68,68,1)', yAxisID:'y'
-            }
-        ]},
+        data: { labels: historicalMonths, datasets: [{
+            label:'Monthly Churn Rate (%)', data: historicalChurnData,
+            borderColor:'rgba(239,68,68,1)', backgroundColor:'rgba(239,68,68,0.1)',
+            borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(239,68,68,1)'
+        }]},
         options: { responsive:true, maintainAspectRatio:false,
-            scales:{
-                y:{ beginAtZero:true, position:'left', ticks:{ callback:function(v){return v+'%';} }, grid:{ color:'rgba(0,0,0,0.05)' } },
-                x:{ grid:{ display:false } }
-            },
-            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { var completed = historicalCompletedData[ctx.dataIndex]; return 'Issues Completed: ' + completed; } }}}
+            scales:{ y:{ beginAtZero:true, ticks:{ callback:function(v){return v+'%';} }, grid:{ color:'rgba(0,0,0,0.05)' } }, x:{ grid:{ display:false } } },
+            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { return 'Issues Completed: ' + historicalCompletedData[ctx.dataIndex]; }}}}
         }
     });
 
@@ -923,7 +936,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }]},
         options: { responsive:true, maintainAspectRatio:false,
             scales:{ y:{ beginAtZero:true, ticks:{ callback:function(v){return v+'%';} }, grid:{ color:'rgba(0,0,0,0.05)' } }, x:{ grid:{ display:false } } },
-            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { var completed = historicalCompletedData[ctx.dataIndex]; return 'Issues Completed: ' + completed; } }}}
+            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { return 'Issues Completed: ' + historicalCompletedData[ctx.dataIndex]; }}}}
         }
     });
 
@@ -940,7 +953,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ]},
         options: { responsive:true, maintainAspectRatio:false,
             scales:{ y:{ beginAtZero:true, ticks:{ callback:function(v){return v+' pts';} }, grid:{ color:'rgba(0,0,0,0.05)' } }, x:{ grid:{ display:false } } },
-            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { var completed = historicalCompletedData[ctx.dataIndex]; return 'Issues Completed: ' + completed; } }}}
+            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { return 'Issues Completed: ' + historicalCompletedData[ctx.dataIndex]; }}}}
         }
     });
 
@@ -954,10 +967,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }]},
         options: { responsive:true, maintainAspectRatio:false,
             scales:{ y:{ beginAtZero:true, ticks:{ callback:function(v){return v+' issues';}, stepSize:10 }, grid:{ color:'rgba(0,0,0,0.05)' } }, x:{ grid:{ display:false } } },
-            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { var completed = historicalCompletedData[ctx.dataIndex]; return 'Issues Completed: ' + completed; } }}}
+            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { return 'Issues Completed: ' + historicalCompletedData[ctx.dataIndex]; }}}}
         }
     });
 });
 </script>
-<div id="scopeTooltip" style="display:none;position:fixed;z-index:99999;width:256px;padding:12px;background:#1e293b;color:white;font-size:0.75rem;border-radius:8px;box-shadow:0 10px 25px rgba(0,0,0,0.3);pointer-events:none;"><p style="font-weight:600;margin-bottom:4px;">RSE vs RSE+</p><p><strong>RSE</strong> — issues assigned to the RSE team only.</p><p style="margin-top:4px;"><strong>RSE+</strong> — RSE team issues plus TCIN-assigned issues on the same board.</p></div></body>
+
+<div id="scopeTooltip" style="display:none;position:fixed;z-index:99999;width:256px;padding:12px;background:#1e293b;color:white;font-size:0.75rem;border-radius:8px;box-shadow:0 10px 25px rgba(0,0,0,0.3);pointer-events:none;">
+    <p style="font-weight:600;margin-bottom:4px;">RSE vs RSE+</p>
+    <p><strong>RSE</strong> — issues assigned to the RSE team only.</p>
+    <p style="margin-top:4px;"><strong>RSE+</strong> — RSE team issues plus TCIN-assigned issues on the same board.</p>
+</div>
+</body>
 </html>
