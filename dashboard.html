@@ -54,7 +54,6 @@
         .tab-button.active { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); color: white; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: slideInUp 0.4s ease-out; }
-        /* RSE/RSE+ toggle */
         .scope-toggle { display: inline-flex; background: #f1f5f9; border-radius: 9999px; padding: 3px; gap: 2px; }
         .scope-btn {
             padding: 6px 18px; border-radius: 9999px; font-size: 0.8rem; font-weight: 600;
@@ -85,7 +84,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 19, 2026 at 10:31 AM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 19, 2026 at 11:20 AM</span></span>
             </div>
         </div>
     </div>
@@ -124,7 +123,6 @@
                     <span class="w-1 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full mr-3"></span>
                     Current Sprint Breakdown
                 </h2>
-                <!-- RSE / RSE+ toggle -->
                 <div class="flex items-center gap-3">
                     <span class="text-xs text-slate-500 font-medium">Scope:</span>
                     <div class="scope-toggle" id="scopeToggle">
@@ -139,7 +137,6 @@
                 </div>
             </div>
 
-            <!-- Summary stat cards -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-in" style="animation-delay:0.18s;">
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
                     <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="72">0</div>
@@ -159,7 +156,6 @@
                 </div>
             </div>
 
-            <!-- Status doughnut chart -->
             <div class="glass-effect rounded-2xl shadow-xl p-6 animate-slide-in" style="animation-delay:0.21s;">
                 <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
                     <span class="w-1 h-6 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full mr-2"></span>
@@ -177,7 +173,6 @@
             Key Performance Metrics
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <!-- Backlog -->
             <a href="#" id="backlogLink" class="glass-effect rounded-2xl shadow-xl p-6 card-hover cursor-pointer animate-slide-in" style="animation-delay:0.3s;">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
@@ -200,7 +195,6 @@
                 </div>
             </a>
 
-            <!-- Velocity -->
             <a href="#" id="velocityLink" class="glass-effect rounded-2xl shadow-xl p-6 card-hover cursor-pointer animate-slide-in" style="animation-delay:0.4s;">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-gradient-to-br from-green-500 to-emerald-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
@@ -223,7 +217,6 @@
                 </div>
             </a>
 
-            <!-- Contamination -->
             <a href="#" id="contaminationLink" class="glass-effect rounded-2xl shadow-xl p-6 card-hover cursor-pointer animate-slide-in" style="animation-delay:0.5s;">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-gradient-to-br from-orange-500 to-amber-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
@@ -246,7 +239,6 @@
                 </div>
             </a>
 
-            <!-- Zombie Issues -->
             <a href="#" id="zombieLink" class="glass-effect rounded-2xl shadow-xl p-6 card-hover cursor-pointer animate-slide-in" style="animation-delay:0.6s;">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-gradient-to-br from-purple-500 to-violet-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
@@ -324,21 +316,21 @@
                                     <span class="font-semibold text-blue-600">0 (0.0%)</span>
                                 </div>
                                 <div class="w-full bg-slate-200 rounded-full h-1.5">
-                                    <div class="bg-blue-500 h-1.5 rounded-full progress-bar" style="width:0.0%;"></div>
+                                    <div class="bg-blue-500 h-1.5 rounded-full progress-bar" style="width: 0.0%;"></div>
                                 </div>
                                 <div class="flex justify-between items-center pt-2">
                                     <span class="text-slate-600">Not Needed (wasted effort)</span>
                                     <span class="font-semibold text-amber-600">0 (0.0%)</span>
                                 </div>
                                 <div class="w-full bg-slate-200 rounded-full h-1.5">
-                                    <div class="bg-amber-500 h-1.5 rounded-full progress-bar" style="width:0.0%;"></div>
+                                    <div class="bg-amber-500 h-1.5 rounded-full progress-bar" style="width: 0.0%;"></div>
                                 </div>
                                 <div class="flex justify-between items-center pt-2">
                                     <span class="text-slate-600">Won't Do (deprioritized)</span>
                                     <span class="font-semibold text-red-600">0 (0.0%)</span>
                                 </div>
                                 <div class="w-full bg-slate-200 rounded-full h-1.5">
-                                    <div class="bg-red-500 h-1.5 rounded-full progress-bar" style="width:0.0%;"></div>
+                                    <div class="bg-red-500 h-1.5 rounded-full progress-bar" style="width: 0.0%;"></div>
                                 </div>
                             </div>
                         </div>
@@ -352,7 +344,7 @@
             </div>
         </div>
 
-        <!-- ── Recent Sprint Analysis charts ─────────────────────────────── -->
+        <!-- ── Recent Sprint Analysis ─────────────────────────────────────── -->
         <h2 class="text-2xl font-bold text-slate-800 mb-6 mt-8 flex items-center animate-slide-in" style="animation-delay:0.7s;">
             <span class="w-1 h-8 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full mr-3"></span>
             Recent Sprint Analysis
@@ -445,21 +437,17 @@
                     </div>
                 </div>
 
-                <!-- Contamination Source — LIVE -->
-                <div class="glass-effect rounded-2xl shadow-lg p-6 card-hover">
+                <!-- Contamination Source — Option D layout -->
+                <div class="glass-effect rounded-2xl shadow-lg p-6 card-hover relative overflow-hidden">
                     <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-amber-400 rounded-t-2xl"></div>
-                    <div class="mb-3">
-                        <h4 class="text-sm text-slate-700 font-semibold mb-1 flex items-center gap-1">Contamination Source
-                            <div class="tooltip-container">
-                                <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <div class="tooltip-text">Reason carried-over issues were not completed in a previous sprint. Counts come from the Contamination Source custom field on each issue.</div>
-                            </div>
-                        </h4>
-                        <p class="text-xs text-slate-500 mb-3">Why issues carried over this sprint</p>
-                        <div id="contamination-source-breakdown" class="space-y-2">
-                            <div class="text-center text-slate-400 text-xs py-3">Loading...</div>
+                    <h4 class="text-sm text-slate-700 font-semibold mb-1 flex items-center gap-1 mt-1">Contamination Source
+                        <div class="tooltip-container">
+                            <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <div class="tooltip-text">Why carried-over issues were not completed in a previous sprint. reactive = unplanned work that surfaced mid-sprint; external = came from outside the team; internal = process or planning issues the team owns.</div>
                         </div>
-                    </div>
+                    </h4>
+                    <p class="text-xs text-slate-500 mb-3">Why issues carried over this sprint</p>
+                    <div id="contamination-source-breakdown"></div>
                 </div>
 
                 <!-- Refinement Date Count -->
@@ -581,22 +569,17 @@
         </div>
     </div><!-- /historical-tab -->
 
-</div><!-- /max-w -->
-</div><!-- /container -->
+</div>
+</div>
 
 <!-- Global Tooltip -->
 <div id="global-tooltip"></div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var gt = document.getElementById('global-tooltip');
-
     document.querySelectorAll('a .tooltip-container').forEach(function(el) {
-        el.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        });
+        el.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); });
     });
-
     document.querySelectorAll('.tooltip-container').forEach(function(el) {
         var text = el.querySelector('.tooltip-text');
         if (!text) return;
@@ -614,10 +597,8 @@ document.addEventListener('DOMContentLoaded', function() {
             gt.style.opacity = '0';
         });
     });
-
     function positionTooltip(e) {
-        var x = e.clientX + 12;
-        var y = e.clientY - 60;
+        var x = e.clientX + 12, y = e.clientY - 60;
         if (x + 220 > window.innerWidth) x = e.clientX - 232;
         if (y < 0) y = e.clientY + 12;
         gt.style.left = x + 'px';
@@ -630,102 +611,102 @@ document.addEventListener('DOMContentLoaded', function() {
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
 var RSE_DATA = {"total": 72, "done": 20, "in_review": 15, "in_progress": 18, "to_do": 19, "rate": 27.8};
 var RSE_PLUS_DATA = {"total": 106, "done": 30, "in_review": 18, "in_progress": 29, "to_do": 29, "rate": 28.3};
-var CONTAMINATION_SOURCES = {"Stakeholder Urgent": 2, "Bug Discovery": 4};
+var CONTAMINATION_SOURCES = {"Mis-Planning": 1, "Stakeholder Urgent": 1, "Bug Discovery": 1};
+var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Mis-Planning", "count": 1, "percent": 5, "badge": "internal", "color": "blue"}, {"source": "Stakeholder Urgent", "count": 1, "percent": 5, "badge": "external", "color": "purple"}, {"source": "Bug Discovery", "count": 1, "percent": 5, "badge": "reactive", "color": "amber"}], "total": 20};
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
-    baseUrl:              'https://toyotaresearchinstitute.atlassian.net',
-    backlogFilter:        '/issues/?filter=12974&atlOrigin=eyJpIjoiYzY2MjlhNDZmYmVjNDMyZThlZTEyNTA4N2MwYzdhMmUiLCJwIjoiaiJ9',
-    velocityReport:       '/jira/software/c/projects/TRI/boards/17/reports/velocity?atlOrigin=eyJpIjoiODQxOWZiZDI5ZjEyNGZlYmIyNmRlM2I2NzZhOWY0ZjciLCJwIjoiaiJ9',
-    contaminationFilter:  '/issues/?filter=12733&atlOrigin=eyJpIjoiMmZmZjgwMGI3YWU2NDRhZjg4NGE2NTk2MDFiNjI4ZjYiLCJwIjoiaiJ9',
-    zombieFilter:         '/issues/?filter=12736&atlOrigin=eyJpIjoiMjljYjNlMzhjYTExNDQ3Mzk5ZGU3MDg4MDkwNzYxNDgiLCJwIjoiaiJ9'
+    baseUrl:             'https://toyotaresearchinstitute.atlassian.net',
+    backlogFilter:       '/issues/?filter=12974&atlOrigin=eyJpIjoiYzY2MjlhNDZmYmVjNDMyZThlZTEyNTA4N2MwYzdhMmUiLCJwIjoiaiJ9',
+    velocityReport:      '/jira/software/c/projects/TRI/boards/17/reports/velocity?atlOrigin=eyJpIjoiODQxOWZiZDI5ZjEyNGZlYmIyNmRlM2I2NzZhOWY0ZjciLCJwIjoiaiJ9',
+    contaminationFilter: '/issues/?filter=12733&atlOrigin=eyJpIjoiMmZmZjgwMGI3YWU2NDRhZjg4NGE2NTk2MDFiNjI4ZjYiLCJwIjoiaiJ9',
+    zombieFilter:        '/issues/?filter=12736&atlOrigin=eyJpIjoiMjljYjNlMzhjYTExNDQ3Mzk5ZGU3MDg4MDkwNzYxNDgiLCJwIjoiaiJ9'
 };
 
 // ── Sprint chart data ──────────────────────────────────────────────────────
 var sprintDataWithDates = [
-    { sprint:'RSE 25Q4-S6 12/17-12/31', startDate:'2025-12-17', endDate:'2025-12-31', planned:45.0, completed:43.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=4942' },
-    { sprint:'RSE 26Q1-S1 12/31-1/14', startDate:'2026-01-01', endDate:'2026-01-14', planned:118.5, completed:118.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5142' },
-    { sprint:'RSE 26Q1-S2 1/14-1/28', startDate:'2026-01-14', endDate:'2026-01-29', planned:150.0, completed:150.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5350' },
-    { sprint:'RSE 26Q1-S3 1/28-2/11', startDate:'2026-01-28', endDate:'2026-02-12', planned:136.0, completed:135.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5383' },
-    { sprint:'RSE 26Q1-S4 2/11-2/25', startDate:'2026-02-11', endDate:'2026-02-26', planned:119.0, completed:117.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5586' },
-    { sprint:'RSE 26Q1-S5 2/25-3/11', startDate:'2026-02-25', endDate:'2026-03-12', planned:130.0, completed:125.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5853' }
+    { sprint:'RSE 25Q4-S6 12/17-12/31', startDate:'2025-12-17', endDate:'2025-12-31', planned:45.0,  completed:43.5,  jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=4942' },
+    { sprint:'RSE 26Q1-S1 12/31-1/14',  startDate:'2026-01-01', endDate:'2026-01-14', planned:118.5, completed:118.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5142' },
+    { sprint:'RSE 26Q1-S2 1/14-1/28',   startDate:'2026-01-14', endDate:'2026-01-29', planned:150.0, completed:150.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5350' },
+    { sprint:'RSE 26Q1-S3 1/28-2/11',   startDate:'2026-01-28', endDate:'2026-02-12', planned:136.0, completed:135.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5383' },
+    { sprint:'RSE 26Q1-S4 2/11-2/25',   startDate:'2026-02-11', endDate:'2026-02-26', planned:119.0, completed:117.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5586' },
+    { sprint:'RSE 26Q1-S5 2/25-3/11',   startDate:'2026-02-25', endDate:'2026-03-12', planned:130.0, completed:125.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5853' }
 ];
 
 // ── Historical data ────────────────────────────────────────────────────────
 var historicalMonths            = ['Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26'];
 var historicalChurnData         = [5.2,4.8,3.9,4.5,3.2,4.1,5.0,3.8,4.2,3.5,4.7,3.7,0.0];
-var historicalCompletedData     = [0, 0, 0, 0, 0, 0, 0, 60, 116, 128, 135, 122, 8];
+var historicalCompletedData     = [0,0,0,0,0,0,0,60,116,128,135,122,8];
 var historicalContaminationData = [15,13,11,14,10,12,16,11,12,14,9,11,37.1];
 var historicalVelocityData      = [0,0,0,0,0,0,0,109.5,198.5,221.0,243.0,223.5,222.5];
 var historicalZombieData        = [45,48,52,50,47,49,53,51,48,50,52,51,63];
 
-// ── Current scope ──────────────────────────────────────────────────────────
+// ── Scope / chart state ────────────────────────────────────────────────────
 var currentScope = 'rse';
 var statusChartInstance = null;
 
-// ── Contamination Source renderer ─────────────────────────────────────────
+// ── Option D contamination source renderer ────────────────────────────────
 function renderContaminationSources() {
     var container = document.getElementById('contamination-source-breakdown');
     if (!container) return;
 
-    var sources = CONTAMINATION_SOURCES;
+    var data  = CONTAMINATION_SOURCES_FULL;
+    var items = data.items || [];
+    var total = data.total || 0;
 
-    // Filter out Unspecified entirely
-    var filteredKeys = Object.keys(sources).filter(function(k) {
-        return k !== 'Unspecified';
-    });
+    // Colour config keyed by the color field from Python
+    var colorMap = {
+        amber:  { chip: 'background:#fef3c7;color:#92400e;', bar: '#f59e0b' },
+        purple: { chip: 'background:#ede9fe;color:#5b21b6;', bar: '#a78bfa' },
+        blue:   { chip: 'background:#dbeafe;color:#1e40af;', bar: '#60a5fa' },
+        gray:   { chip: 'background:#f1f5f9;color:#475569;', bar: '#94a3b8' }
+    };
 
-    // Total issues in sprint (including Unspecified, for the count)
-    var totalContaminated = Object.keys(sources).reduce(function(sum, k) {
-        return sum + sources[k];
-    }, 0);
-
-    // Total for percentage bars (named sources only)
-    var namedTotal = filteredKeys.reduce(function(sum, k) {
-        return sum + sources[k];
-    }, 0);
-
-    // Header showing total count regardless
-    var headerHtml = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #e2e8f0;">' +
-        '<span style="font-size:0.7rem;color:#64748b;font-weight:500;">Total issues in sprint</span>' +
-        '<span style="font-size:0.7rem;font-weight:700;color:#1e293b;">' + totalContaminated + '</span>' +
+    // ── Summary chips ─────────────────────────────────────────────────────
+    var html = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">' +
+        '<div style="background:#fff7ed;border-radius:8px;padding:8px;text-align:center;">' +
+            '<div style="font-size:1.25rem;font-weight:600;color:#c2610c;">' + total + '</div>' +
+            '<div style="font-size:0.65rem;color:#64748b;">carried over</div>' +
+        '</div>' +
+        '<div style="background:#fff7ed;border-radius:8px;padding:8px;text-align:center;">' +
+            '<div style="font-size:1.25rem;font-weight:600;color:#c2610c;" id="src-rate-display">--</div>' +
+            '<div style="font-size:0.65rem;color:#64748b;">of sprint total</div>' +
+        '</div>' +
     '</div>';
 
-    if (filteredKeys.length === 0) {
-        container.innerHTML = headerHtml +
-            '<div style="text-align:center;color:#94a3b8;font-size:0.7rem;padding:10px 0;">Source breakdown: none to record</div>';
-        return;
+    // ── Category rows ─────────────────────────────────────────────────────
+    if (items.length === 0) {
+        html += '<div style="text-align:center;color:#94a3b8;font-size:0.7rem;padding:8px 0;">No source data recorded</div>';
+    } else {
+        html += '<div style="border-top:1px solid #e2e8f0;padding-top:10px;">';
+        items.forEach(function(item) {
+            var c = colorMap[item.color] || colorMap.gray;
+            html +=
+                '<div style="margin-bottom:9px;">' +
+                    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
+                        '<div style="display:flex;align-items:center;gap:5px;">' +
+                            '<span style="font-size:0.72rem;font-weight:500;color:#334155;">' + item.source + '</span>' +
+                            '<span style="font-size:0.6rem;font-weight:600;padding:1px 6px;border-radius:9999px;' + c.chip + '">' + item.badge + '</span>' +
+                        '</div>' +
+                        '<span style="font-size:0.72rem;font-weight:700;color:#1e293b;">' + item.count + ' (' + item.percent + '%)</span>' +
+                    '</div>' +
+                    '<div style="width:100%;background:#e2e8f0;border-radius:9999px;height:5px;">' +
+                        '<div style="background:' + c.bar + ';height:5px;border-radius:9999px;width:' + item.percent + '%;transition:width 1s ease-out;"></div>' +
+                    '</div>' +
+                '</div>';
+        });
+        html += '</div>';
     }
 
-    filteredKeys.sort(function(a, b) { return sources[b] - sources[a]; });
-
-    var colors = [
-        { bar: 'background:#f97316', label: 'color:#c2410c' },
-        { bar: 'background:#f59e0b', label: 'color:#b45309' },
-        { bar: 'background:#ef4444', label: 'color:#b91c1c' },
-        { bar: 'background:#a855f7', label: 'color:#7e22ce' },
-        { bar: 'background:#3b82f6', label: 'color:#1d4ed8' },
-        { bar: 'background:#64748b', label: 'color:#334155' }
-    ];
-
-    var html = headerHtml;
-    filteredKeys.forEach(function(key, i) {
-        var count = sources[key];
-        var pct = namedTotal > 0 ? Math.round(count / namedTotal * 100) : 0;
-        var c = colors[Math.min(i, colors.length - 1)];
-        html += '<div style="margin-bottom:8px;">' +
-            '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
-                '<span style="font-size:0.7rem;font-weight:500;color:#334155;">' + key + '</span>' +
-                '<span style="font-size:0.7rem;font-weight:700;' + c.label + '">' + count + ' (' + pct + '%)</span>' +
-            '</div>' +
-            '<div style="width:100%;background:#e2e8f0;border-radius:9999px;height:6px;">' +
-                '<div style="' + c.bar + ';height:6px;border-radius:9999px;width:' + pct + '%;transition:width 1s ease-out;"></div>' +
-            '</div>' +
-        '</div>';
-    });
-
     container.innerHTML = html;
+
+    // Fill in the contamination rate chip once the KPI card value is available
+    var rateEl = document.querySelector('[data-counter][class*="from-orange-600"]');
+    if (rateEl) {
+        document.getElementById('src-rate-display').textContent = rateEl.dataset.counter + '%';
+    }
 }
+
 // ── Scope toggle ───────────────────────────────────────────────────────────
 function setScope(scope) {
     currentScope = scope;
@@ -746,8 +727,7 @@ function setScope(scope) {
 function animateCounter(el) {
     var target    = parseFloat(el.dataset.counter);
     var isDecimal = el.dataset.decimal === 'true';
-    var duration  = 1500;
-    var startTime = null;
+    var duration  = 1500, startTime = null;
     function update(t) {
         if (!startTime) startTime = t;
         var p = Math.min((t - startTime) / duration, 1);
@@ -767,7 +747,7 @@ function setCounter(id, value, isDecimal) {
     animateCounter(el);
 }
 
-// ── Tooltip & tab functions ────────────────────────────────────────────────
+// ── Tooltip & tab helpers ──────────────────────────────────────────────────
 function showScopeTooltip(e) {
     var tip = document.getElementById('scopeTooltip');
     tip.style.display = 'block';
@@ -809,40 +789,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, 500);
 
-    // Render contamination sources
     renderContaminationSources();
 
-    // ── Historical summary calculations ───────────────────────────────────
+    // ── Historical stats ───────────────────────────────────────────────────
     function calcStats(data) {
         var sum = data.reduce(function(a,b){return a+b;},0);
-        var avg = sum/data.length;
-        var max = Math.max.apply(null,data);
-        var min = Math.min.apply(null,data);
-        var variance = data.reduce(function(a,v){return a+Math.pow(v-avg,2);},0)/data.length;
-        return { avg:avg, max:max, min:min, maxIdx:data.indexOf(max), minIdx:data.indexOf(min), stdDev:Math.sqrt(variance) };
-    }
-    function getTrend(data) {
-        if (data.length < 2) return 'N/A';
-        var diff = data[data.length-1] - data[data.length-2];
-        if (Math.abs(diff) < 0.1) return 'Stable';
-        return diff > 0 ? '↑ Increasing' : '↓ Decreasing';
+        var avg = sum/data.length, max = Math.max.apply(null,data), min = Math.min.apply(null,data);
+        return { avg:avg, max:max, min:min, maxIdx:data.indexOf(max), minIdx:data.indexOf(min) };
     }
     function setText(id, val) { var el=document.getElementById(id); if(el) el.textContent=val; }
 
     var cs = calcStats(historicalChurnData);
     setText('hist-churn-avg', 'Average: ' + cs.avg.toFixed(1) + '%');
-    setText('hist-completed-this-month', historicalCompletedData[historicalCompletedData.length-1]);
-
     var conts = calcStats(historicalContaminationData);
     setText('hist-cont-avg', 'Average: ' + conts.avg.toFixed(1) + '%');
-
     var vs = calcStats(historicalVelocityData);
     setText('hist-vel-avg',  Math.round(vs.avg) + ' SP');
     setText('hist-vel-high', historicalMonths[vs.maxIdx]);
     setText('hist-vel-low',  historicalMonths[vs.minIdx]);
-
-    var zs = calcStats(historicalZombieData);
-    setText('hist-zombie-current', historicalZombieData[historicalZombieData.length-1]);
 
     // ── Status Doughnut ───────────────────────────────────────────────────
     var d = RSE_DATA;
@@ -850,124 +814,109 @@ document.addEventListener('DOMContentLoaded', function() {
         type: 'doughnut',
         data: {
             labels: ['Done','In Review','In Progress','To Do'],
-            datasets: [{
-                data: [d.done, d.in_review, d.in_progress, d.to_do],
-                backgroundColor: ['rgba(16,185,129,0.8)','rgba(59,130,246,0.8)','rgba(245,158,11,0.8)','rgba(148,163,184,0.8)'],
-                borderColor:     ['rgba(16,185,129,1)',  'rgba(59,130,246,1)',  'rgba(245,158,11,1)',  'rgba(148,163,184,1)'],
-                borderWidth: 3
-            }]
+            datasets: [{ data:[d.done,d.in_review,d.in_progress,d.to_do],
+                backgroundColor:['rgba(16,185,129,0.8)','rgba(59,130,246,0.8)','rgba(245,158,11,0.8)','rgba(148,163,184,0.8)'],
+                borderColor:    ['rgba(16,185,129,1)',  'rgba(59,130,246,1)',  'rgba(245,158,11,1)',  'rgba(148,163,184,1)'],
+                borderWidth:3 }]
         },
-        options: {
-            responsive: true, maintainAspectRatio: false,
-            plugins: { legend: { position:'bottom', labels:{ padding:15, font:{ size:12 } } } },
-            onClick: function(evt, els) {
+        options: { responsive:true, maintainAspectRatio:false,
+            plugins:{ legend:{ position:'bottom', labels:{ padding:15, font:{ size:12 } } } },
+            onClick: function(evt,els) {
                 if (!els.length) return;
-                var queries = ['/issues/?jql=status%3DDone','/issues/?jql=status%3D%22In%20Review%22','/issues/?jql=status%3D%22In%20Progress%22','/issues/?jql=status%3D%22To%20Do%22'];
-                window.open(JIRA_CONFIG.baseUrl + queries[els[0].index], '_blank');
+                var q=['/issues/?jql=status%3DDone','/issues/?jql=status%3D%22In%20Review%22','/issues/?jql=status%3D%22In%20Progress%22','/issues/?jql=status%3D%22To%20Do%22'];
+                window.open(JIRA_CONFIG.baseUrl+q[els[0].index],'_blank');
             }
         }
     });
 
     // ── Sprint Velocity Chart ─────────────────────────────────────────────
-    var sprintLabels = sprintDataWithDates.map(function(s) { return s.sprint; });
+    var sprintLabels = sprintDataWithDates.map(function(s){return s.sprint;});
     new Chart(document.getElementById('sprintVelocityChart'), {
-        type: 'bar',
-        data: {
-            labels: sprintLabels,
-            datasets: [
-                { label:'Planned',   data: sprintDataWithDates.map(function(s){return s.planned;}),   backgroundColor:'rgba(147,197,253,0.8)', borderColor:'rgba(59,130,246,1)',  borderWidth:2, borderRadius:6 },
-                { label:'Completed', data: sprintDataWithDates.map(function(s){return s.completed;}), backgroundColor:'rgba(59,130,246,0.8)',  borderColor:'rgba(37,99,235,1)',   borderWidth:2, borderRadius:6 }
-            ]
-        },
-        options: {
-            responsive: true, maintainAspectRatio: false,
-            scales: { y:{ beginAtZero:true, grid:{ color:'rgba(0,0,0,0.05)' } }, x:{ grid:{ display:false } } },
-            plugins: { legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) {
-                var s = sprintDataWithDates[ctx.dataIndex];
-                return s ? ['', s.startDate + ' to ' + s.endDate, 'Click to view in Jira'] : '';
+        type:'bar',
+        data:{ labels:sprintLabels, datasets:[
+            { label:'Planned',   data:sprintDataWithDates.map(function(s){return s.planned;}),   backgroundColor:'rgba(147,197,253,0.8)', borderColor:'rgba(59,130,246,1)',  borderWidth:2, borderRadius:6 },
+            { label:'Completed', data:sprintDataWithDates.map(function(s){return s.completed;}), backgroundColor:'rgba(59,130,246,0.8)',  borderColor:'rgba(37,99,235,1)',   borderWidth:2, borderRadius:6 }
+        ]},
+        options:{ responsive:true, maintainAspectRatio:false,
+            scales:{ y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} },
+            plugins:{ legend:{position:'top'}, tooltip:{ callbacks:{ afterLabel:function(ctx){
+                var s=sprintDataWithDates[ctx.dataIndex];
+                return s?['',s.startDate+' to '+s.endDate,'Click to view in Jira']:'';
             }}}},
-            onClick: function(evt, els) { if (els.length) window.open(sprintDataWithDates[els[0].index].jiraUrl,'_blank'); }
+            onClick:function(evt,els){ if(els.length) window.open(sprintDataWithDates[els[0].index].jiraUrl,'_blank'); }
         }
     });
 
     // ── Age Distribution Chart ────────────────────────────────────────────
     new Chart(document.getElementById('ageDistributionChart'), {
-        type: 'bar',
-        data: {
-            labels: ['0-30 days','31-90 days','91-180 days','181-365 days','365+ days'],
-            datasets: [{ label:'Issues', data:[35,28,22,15,28],
+        type:'bar',
+        data:{ labels:['0-30 days','31-90 days','91-180 days','181-365 days','365+ days'],
+            datasets:[{ label:'Issues', data:[35,28,22,15,28],
                 backgroundColor:['rgba(16,185,129,0.8)','rgba(59,130,246,0.8)','rgba(245,158,11,0.8)','rgba(239,68,68,0.8)','rgba(124,58,237,0.8)'],
                 borderColor:    ['rgba(16,185,129,1)',  'rgba(59,130,246,1)',  'rgba(245,158,11,1)',  'rgba(239,68,68,1)',  'rgba(124,58,237,1)'],
                 borderWidth:2, borderRadius:6 }]
         },
-        options: {
-            indexAxis:'y', responsive:true, maintainAspectRatio:false,
-            scales: { x:{ beginAtZero:true, grid:{ color:'rgba(0,0,0,0.05)' } }, y:{ grid:{ display:false } } },
-            plugins: { legend:{ display:false } },
-            onClick: function(evt, els) {
-                if (!els.length) return;
-                var q = ['/issues/?jql=created%3E%3D-30d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-90d%20AND%20created%3C-30d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-180d%20AND%20created%3C-90d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-365d%20AND%20created%3C-180d%20AND%20status!%3DDone',JIRA_CONFIG.zombieFilter];
-                window.open(JIRA_CONFIG.baseUrl + q[els[0].index], '_blank');
+        options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+            scales:{ x:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'}}, y:{grid:{display:false}} },
+            plugins:{ legend:{display:false} },
+            onClick:function(evt,els){
+                if(!els.length) return;
+                var q=['/issues/?jql=created%3E%3D-30d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-90d%20AND%20created%3C-30d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-180d%20AND%20created%3C-90d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-365d%20AND%20created%3C-180d%20AND%20status!%3DDone',JIRA_CONFIG.zombieFilter];
+                window.open(JIRA_CONFIG.baseUrl+q[els[0].index],'_blank');
             }
         }
     });
 
-    // ── Historical Churn Chart ────────────────────────────────────────────
+    // ── Historical Churn ──────────────────────────────────────────────────
     new Chart(document.getElementById('historicalChurnChart'), {
-        type: 'line',
-        data: { labels: historicalMonths, datasets: [{
-            label:'Monthly Churn Rate (%)', data: historicalChurnData,
+        type:'line',
+        data:{ labels:historicalMonths, datasets:[{ label:'Monthly Churn Rate (%)', data:historicalChurnData,
             borderColor:'rgba(239,68,68,1)', backgroundColor:'rgba(239,68,68,0.1)',
-            borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(239,68,68,1)'
-        }]},
-        options: { responsive:true, maintainAspectRatio:false,
-            scales:{ y:{ beginAtZero:true, ticks:{ callback:function(v){return v+'%';} }, grid:{ color:'rgba(0,0,0,0.05)' } }, x:{ grid:{ display:false } } },
-            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { return 'Issues Completed: ' + historicalCompletedData[ctx.dataIndex]; }}}}
+            borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(239,68,68,1)' }]},
+        options:{ responsive:true, maintainAspectRatio:false,
+            scales:{ y:{beginAtZero:true,ticks:{callback:function(v){return v+'%';}},grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} },
+            plugins:{ legend:{position:'top'}, tooltip:{ callbacks:{ afterLabel:function(ctx){ return 'Issues Completed: '+historicalCompletedData[ctx.dataIndex]; }}}}
         }
     });
 
-    // ── Historical Contamination Chart ────────────────────────────────────
+    // ── Historical Contamination ──────────────────────────────────────────
     new Chart(document.getElementById('historicalContaminationChart'), {
-        type: 'line',
-        data: { labels: historicalMonths, datasets: [{
-            label:'Sprint Contamination (%)', data: historicalContaminationData,
+        type:'line',
+        data:{ labels:historicalMonths, datasets:[{ label:'Sprint Contamination (%)', data:historicalContaminationData,
             borderColor:'rgba(245,158,11,1)', backgroundColor:'rgba(245,158,11,0.1)',
-            borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(245,158,11,1)'
-        }]},
-        options: { responsive:true, maintainAspectRatio:false,
-            scales:{ y:{ beginAtZero:true, ticks:{ callback:function(v){return v+'%';} }, grid:{ color:'rgba(0,0,0,0.05)' } }, x:{ grid:{ display:false } } },
-            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { return 'Issues Completed: ' + historicalCompletedData[ctx.dataIndex]; }}}}
+            borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(245,158,11,1)' }]},
+        options:{ responsive:true, maintainAspectRatio:false,
+            scales:{ y:{beginAtZero:true,ticks:{callback:function(v){return v+'%';}},grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} },
+            plugins:{ legend:{position:'top'}, tooltip:{ callbacks:{ afterLabel:function(ctx){ return 'Issues Completed: '+historicalCompletedData[ctx.dataIndex]; }}}}
         }
     });
 
-    // ── Historical Velocity Chart ─────────────────────────────────────────
+    // ── Historical Velocity ───────────────────────────────────────────────
     var rollingAvg = historicalVelocityData.map(function(_,i) {
-        var slice = historicalVelocityData.slice(Math.max(0,i-2), i+1);
-        return Math.round(slice.reduce(function(a,b){return a+b;},0) / slice.length);
+        var slice = historicalVelocityData.slice(Math.max(0,i-2),i+1);
+        return Math.round(slice.reduce(function(a,b){return a+b;},0)/slice.length);
     });
     new Chart(document.getElementById('historicalVelocityChart'), {
-        type: 'line',
-        data: { labels: historicalMonths, datasets: [
+        type:'line',
+        data:{ labels:historicalMonths, datasets:[
             { label:'Sprint Velocity', data:historicalVelocityData, borderColor:'rgba(59,130,246,1)', backgroundColor:'rgba(59,130,246,0.1)', borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(59,130,246,1)' },
             { label:'3-Sprint Rolling Average', data:rollingAvg, borderColor:'rgba(16,185,129,1)', backgroundColor:'transparent', borderWidth:2, borderDash:[5,5], tension:0.4, pointRadius:0, pointHoverRadius:5 }
         ]},
-        options: { responsive:true, maintainAspectRatio:false,
-            scales:{ y:{ beginAtZero:true, ticks:{ callback:function(v){return v+' pts';} }, grid:{ color:'rgba(0,0,0,0.05)' } }, x:{ grid:{ display:false } } },
-            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { return 'Issues Completed: ' + historicalCompletedData[ctx.dataIndex]; }}}}
+        options:{ responsive:true, maintainAspectRatio:false,
+            scales:{ y:{beginAtZero:true,ticks:{callback:function(v){return v+' pts';}},grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} },
+            plugins:{ legend:{position:'top'}, tooltip:{ callbacks:{ afterLabel:function(ctx){ return 'Issues Completed: '+historicalCompletedData[ctx.dataIndex]; }}}}
         }
     });
 
-    // ── Historical Zombie Chart ───────────────────────────────────────────
+    // ── Historical Zombie ─────────────────────────────────────────────────
     new Chart(document.getElementById('historicalZombieChart'), {
-        type: 'line',
-        data: { labels: historicalMonths, datasets: [{
-            label:'Zombie Issues (90+ days)', data:historicalZombieData,
+        type:'line',
+        data:{ labels:historicalMonths, datasets:[{ label:'Zombie Issues (90+ days)', data:historicalZombieData,
             borderColor:'rgba(124,58,237,1)', backgroundColor:'rgba(124,58,237,0.1)',
-            borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(124,58,237,1)'
-        }]},
-        options: { responsive:true, maintainAspectRatio:false,
-            scales:{ y:{ beginAtZero:true, ticks:{ callback:function(v){return v+' issues';}, stepSize:10 }, grid:{ color:'rgba(0,0,0,0.05)' } }, x:{ grid:{ display:false } } },
-            plugins:{ legend:{ position:'top' }, tooltip:{ callbacks:{ afterLabel: function(ctx) { return 'Issues Completed: ' + historicalCompletedData[ctx.dataIndex]; }}}}
+            borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(124,58,237,1)' }]},
+        options:{ responsive:true, maintainAspectRatio:false,
+            scales:{ y:{beginAtZero:true,ticks:{callback:function(v){return v+' issues';},stepSize:10},grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} },
+            plugins:{ legend:{position:'top'}, tooltip:{ callbacks:{ afterLabel:function(ctx){ return 'Issues Completed: '+historicalCompletedData[ctx.dataIndex]; }}}}
         }
     });
 });
