@@ -72,7 +72,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 19, 2026 at 11:41 AM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 19, 2026 at 03:20 PM</span></span>
             </div>
         </div>
     </div>
@@ -115,19 +115,19 @@
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-in" style="animation-delay:0.18s;">
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="21">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="22">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Total Issues</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="47.6" data-decimal="true">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="45.5" data-decimal="true">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="6">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="5">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="0">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="1">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">To Do</div>
                 </div>
             </div>
@@ -159,7 +159,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-blue-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1" data-counter="123">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1" data-counter="122">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Current Backlog</div>
                     <div class="text-xs text-slate-500 mb-3">open items</div>
                 </div>
@@ -203,7 +203,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="14.3" data-decimal="true">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="13.6" data-decimal="true">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Sprint Contamination</div>
                     <div class="text-xs text-slate-500 mb-3">carryover rate</div>
                 </div>
@@ -747,7 +747,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setText('hist-vel-low',  historicalMonths[vs.minIdx]);
 
     // ── Status Doughnut ───────────────────────────────────────────────────
-    var d = {"total": 21, "done": 10, "in_review": 5, "in_progress": 6, "to_do": 0, "rate": 47.6};
+    var d = {"total": 22, "done": 10, "in_review": 6, "in_progress": 5, "to_do": 1, "rate": 45.5};
     statusChartInstance = new Chart(document.getElementById('statusChart'), {
         type: 'doughnut',
         data: {
@@ -789,7 +789,7 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(document.getElementById('ageDistributionChart'), {
         type:'bar',
         data:{ labels:['0-30 days','31-90 days','91-180 days','181-365 days','365+ days'],
-            datasets:[{ label:'Issues', data:[7,6,6,40,30],
+            datasets:[{ label:'Issues', data:[6,6,6,40,30],
                 backgroundColor:['rgba(16,185,129,0.8)','rgba(59,130,246,0.8)','rgba(245,158,11,0.8)','rgba(239,68,68,0.8)','rgba(124,58,237,0.8)'],
                 borderColor:    ['rgba(16,185,129,1)',  'rgba(59,130,246,1)',  'rgba(245,158,11,1)',  'rgba(239,68,68,1)',  'rgba(124,58,237,1)'],
                 borderWidth:2, borderRadius:6 }]
