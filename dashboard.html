@@ -861,7 +861,7 @@ document.addEventListener('DOMContentLoaded', function() {
             plugins:{ legend:{display:false} },
             onClick:function(evt,els){
                 if(!els.length) return;
-                var q=['/issues/?jql=created%3E%3D-30d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2CSub-task)','/issues/?jql=created%3E%3D-90d%20AND%20created%3C-30d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2CSub-task)','/issues/?jql=created%3E%3D-180d%20AND%20created%3C-90d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2CSub-task)','/issues/?jql=created%3E%3D-365d%20AND%20created%3C-180d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2CSub-task)',JIRA_CONFIG.zombieFilter];
+                var q=['/issues/?jql=created%3E%3D-30d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22','/issues/?jql=created%3E%3D-90d%20AND%20created%3C-30d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22','/issues/?jql=created%3E%3D-180d%20AND%20created%3C-90d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22','/issues/?jql=created%3E%3D-365d%20AND%20created%3C-180d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22',JIRA_CONFIG.zombieFilter];
                 window.open(JIRA_CONFIG.baseUrl+q[els[0].index],'_blank');
             }
         }
