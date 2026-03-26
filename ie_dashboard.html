@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backlog Velocity Dashboard</title>
+    <title>IE Team Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
     <style>
@@ -54,18 +54,6 @@
         .tab-button.active { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); color: white; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: slideInUp 0.4s ease-out; }
-        .scope-toggle { display: inline-flex; background: #f1f5f9; border-radius: 9999px; padding: 3px; gap: 2px; }
-        .scope-btn {
-            padding: 6px 18px; border-radius: 9999px; font-size: 0.8rem; font-weight: 600;
-            cursor: pointer; border: none; background: transparent; color: #64748b;
-            transition: all 0.25s ease;
-        }
-        .scope-btn.active {
-            background: linear-gradient(135deg,#667eea,#764ba2);
-            color: white;
-            box-shadow: 0 2px 8px rgba(102,126,234,0.45);
-        }
-        .scope-btn:not(.active):hover { background: #e2e8f0; color: #334155; }
     </style>
 </head>
 <body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen">
@@ -77,14 +65,14 @@
         <div class="flex items-center justify-between flex-wrap gap-4">
             <div>
                 <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-                    Backlog Velocity Dashboard
+                    IE Team Dashboard
                 </h1>
                 <p class="text-slate-600 text-lg">Team performance metrics and backlog health analysis</p>
             </div>
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 26, 2026 at 10:18 AM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 26, 2026 at 10:19 AM</span></span>
             </div>
         </div>
     </div>
@@ -123,35 +111,23 @@
                     <span class="w-1 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full mr-3"></span>
                     Current Sprint Breakdown
                 </h2>
-                <div class="flex items-center gap-3">
-                    <span class="text-xs text-slate-500 font-medium">Scope:</span>
-                    <div class="scope-toggle" id="scopeToggle">
-                        <button class="scope-btn active" id="btnRse"     onclick="setScope('rse')">RSE</button>
-                        <button class="scope-btn"        id="btnRsePlus" onclick="setScope('rse_plus')">RSE+</button>
-                    </div>
-                    <div id="scopeInfoIcon" class="cursor-help" onmouseenter="showScopeTooltip(event)" onmouseleave="hideScopeTooltip()">
-                        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                </div>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-in" style="animation-delay:0.18s;">
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="63">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="17">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Total Issues</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="4.8" data-decimal="true">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="5.9" data-decimal="true">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="12">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="3">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="42">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="11">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">To Do</div>
                 </div>
             </div>
@@ -183,7 +159,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-blue-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1" data-counter="188">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1" data-counter="120">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Current Backlog</div>
                     <div class="text-xs text-slate-500 mb-3">open items</div>
                 </div>
@@ -205,7 +181,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-800 bg-clip-text text-transparent mb-1" data-counter="65">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-800 bg-clip-text text-transparent mb-1" data-counter="55">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Average Velocity</div>
                     <div class="text-xs text-slate-500 mb-3">points/sprint</div>
                 </div>
@@ -227,7 +203,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="45.1" data-decimal="true">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="16.7" data-decimal="true">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Sprint Contamination</div>
                     <div class="text-xs text-slate-500 mb-3">carryover rate</div>
                 </div>
@@ -280,7 +256,7 @@
                     <div class="space-y-3">
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Done</span>
-                            <span class="text-2xl font-bold text-green-600">3</span>
+                            <span class="text-2xl font-bold text-green-600">0</span>
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Duplicate</span>
@@ -288,7 +264,7 @@
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border border-amber-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Not Needed</span>
-                            <span class="text-2xl font-bold text-amber-600">0</span>
+                            <span class="text-2xl font-bold text-amber-600">1</span>
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-red-50 to-rose-50 rounded-xl border border-red-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Won't Do</span>
@@ -296,7 +272,7 @@
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl border-2 border-slate-400 shadow-md">
                             <span class="font-bold text-slate-800">Grand Total</span>
-                            <span class="text-2xl font-bold text-slate-800">3</span>
+                            <span class="text-2xl font-bold text-slate-800">1</span>
                         </div>
                     </div>
                 </div>
@@ -305,8 +281,8 @@
                     <div class="space-y-4">
                         <div class="p-6 bg-gradient-to-br from-red-50 via-orange-50 to-amber-50 rounded-xl border-2 border-red-300 shadow-lg">
                             <div class="text-sm text-slate-600 mb-2 font-medium">Monthly Churn Rate</div>
-                            <div class="text-5xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mb-2">0.0%</div>
-                            <div class="text-xs text-slate-600">0 churned items out of 3 total</div>
+                            <div class="text-5xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mb-2">100.0%</div>
+                            <div class="text-xs text-slate-600">1 churned items out of 1 total</div>
                         </div>
                         <div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
                             <div class="text-sm font-semibold text-slate-700 mb-3">Churn Categories:</div>
@@ -320,10 +296,10 @@
                                 </div>
                                 <div class="flex justify-between items-center pt-2">
                                     <span class="text-slate-600">Not Needed (wasted effort)</span>
-                                    <span class="font-semibold text-amber-600">0 (0.0%)</span>
+                                    <span class="font-semibold text-amber-600">1 (100.0%)</span>
                                 </div>
                                 <div class="w-full bg-slate-200 rounded-full h-1.5">
-                                    <div class="bg-amber-500 h-1.5 rounded-full progress-bar" style="width: 0.0%;"></div>
+                                    <div class="bg-amber-500 h-1.5 rounded-full progress-bar" style="width: 100.0%;"></div>
                                 </div>
                                 <div class="flex justify-between items-center pt-2">
                                     <span class="text-slate-600">Won't Do (deprioritized)</span>
@@ -336,8 +312,8 @@
                         </div>
                         <div class="p-5 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200 shadow-md">
                             <div class="text-sm text-slate-600 mb-2 font-medium">Completion Rate</div>
-                            <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">100.0%</div>
-                            <div class="text-xs text-slate-600 mt-1">3 successfully completed</div>
+                            <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">0.0%</div>
+                            <div class="text-xs text-slate-600 mt-1">0 successfully completed</div>
                         </div>
                     </div>
                 </div>
@@ -394,17 +370,17 @@
                         </div>
                     </div>
                     <div class="mb-1">
-                        <div class="text-4xl font-bold bg-gradient-to-r from-rose-600 to-pink-700 bg-clip-text text-transparent" id="priority-change-affected">30</div>
+                        <div class="text-4xl font-bold bg-gradient-to-r from-rose-600 to-pink-700 bg-clip-text text-transparent" id="priority-change-affected">0</div>
                         <div class="text-sm text-slate-700 font-semibold mt-1">Priority Changed</div>
-                        <div class="text-xs text-slate-500 mt-0.5">of <span id="priority-change-total-issues">63</span> sprint issues</div>
+                        <div class="text-xs text-slate-500 mt-0.5">of <span id="priority-change-total-issues">17</span> sprint issues</div>
                     </div>
                     <div class="mt-3 pt-3 border-t border-slate-200">
                         <div class="flex justify-between items-center mb-1">
                             <span class="text-xs text-slate-500">% of sprint affected</span>
-                            <span class="text-sm font-bold text-rose-600" id="priority-change-percent">47.6%</span>
+                            <span class="text-sm font-bold text-rose-600" id="priority-change-percent">0.0%</span>
                         </div>
                         <div class="w-full bg-slate-200 rounded-full h-1.5">
-                            <div id="priority-change-bar" class="bg-gradient-to-r from-rose-400 to-pink-500 h-1.5 rounded-full progress-bar" style="width: 47.6%;"></div>
+                            <div id="priority-change-bar" class="bg-gradient-to-r from-rose-400 to-pink-500 h-1.5 rounded-full progress-bar" style="width: 0.0%;"></div>
                         </div>
                     </div>
                 </div>
@@ -610,10 +586,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
-var RSE_DATA = {"total": 63, "done": 3, "in_review": 6, "in_progress": 12, "to_do": 42, "rate": 4.8};
-var RSE_PLUS_DATA = {"total": 91, "done": 4, "in_review": 8, "in_progress": 22, "to_do": 57, "rate": 4.4};
-var CONTAMINATION_SOURCES = {};
-var CONTAMINATION_SOURCES_FULL = {"items": [], "total": 0};
+var CONTAMINATION_SOURCES = {"Production Incident": 2};
+var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Production Incident", "count": 2, "percent": 100, "badge": "reactive", "color": "amber"}], "total": 2};
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
@@ -626,24 +600,20 @@ var JIRA_CONFIG = {
 
 // ── Sprint chart data ──────────────────────────────────────────────────────
 var sprintDataWithDates = [
-    { sprint:'RSE 25Q4-S6 12/17-12/31', startDate:'2025-12-17', endDate:'2025-12-31', planned:45.0,  completed:43.5,  jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=4942' },
-    { sprint:'RSE 26Q1-S1 12/31-1/14',  startDate:'2026-01-01', endDate:'2026-01-14', planned:118.5, completed:118.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5142' },
-    { sprint:'RSE 26Q1-S2 1/14-1/28',   startDate:'2026-01-14', endDate:'2026-01-29', planned:150.0, completed:150.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5350' },
-    { sprint:'RSE 26Q1-S3 1/28-2/11',   startDate:'2026-01-28', endDate:'2026-02-12', planned:136.0, completed:135.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5383' },
-    { sprint:'RSE 26Q1-S4 2/11-2/25',   startDate:'2026-02-11', endDate:'2026-02-26', planned:119.0, completed:117.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5586' },
-    { sprint:'RSE 26Q1-S5 2/25-3/11',   startDate:'2026-02-25', endDate:'2026-03-12', planned:130.0, completed:125.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5853' }
+    { sprint:'IE 25Q4 - S7', startDate:'2025-12-17', endDate:'2025-12-31', planned:13.0, completed:13.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=6&sprint=5041' },
+    { sprint:'IE 26Q1 - S1', startDate:'2025-12-31', endDate:'2026-01-14', planned:27.5, completed:27.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=6&sprint=5076' },
+    { sprint:'IE 26Q1 - S2', startDate:'2026-01-14', endDate:'2026-01-28', planned:45.0, completed:45.0, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=6&sprint=5282' },
+    { sprint:'IE 26Q1 - S3', startDate:'2026-01-28', endDate:'2026-02-11', planned:46.5, completed:46.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=6&sprint=5485' },
+    { sprint:'IE 26Q1 - S4', startDate:'2026-02-11', endDate:'2026-02-25', planned:43.5, completed:43.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=6&sprint=5785' },
+    { sprint:'IE 26Q1 - S5', startDate:'2026-02-25', endDate:'2026-03-11', planned:45.5, completed:42.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=6&sprint=5922' }
 ];
-
-// ── Historical data ────────────────────────────────────────────────────────
 var historicalMonths            = ['Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26'];
-var historicalChurnData         = [5.2,4.8,3.9,4.5,3.2,4.1,5.0,3.8,4.2,3.5,4.7,3.7,0.0];
-var historicalCompletedData     = [0,0,0,0,0,0,0,60,116,128,135,122,8];
-var historicalContaminationData = [15,13,11,14,10,12,16,11,12,14,9,11,37.1];
-var historicalVelocityData      = [0,0,0,0,0,0,0,109.5,198.5,221.0,243.0,223.5,222.5];
+var historicalChurnData         = [4.7,3.6,2.8,0.0,2.4,1.5,0.0,11.5,1.3,2.1,3.4,2.2,2.7];
+var historicalCompletedData     = [0,0,0,0,0,0,0,60,116,128,135,122,4];
+var historicalContaminationData = [7.0,13.8,19.7,9.0,18.5,8.5,10.0,30.9,10.1,24.0,22.3,31.8,24.4];
+var historicalVelocityData      = [74,119,105,101,145,96,113,126,94,83,84,73,89];
 var historicalZombieData        = [45,48,52,50,47,49,53,51,48,50,52,51,63];
 
-// ── Scope / chart state ────────────────────────────────────────────────────
-var currentScope = 'rse';
 var statusChartInstance = null;
 
 // ── Option D contamination source renderer ────────────────────────────────
@@ -704,22 +674,6 @@ function renderContaminationSources() {
     }
 }
 
-// ── Scope toggle ───────────────────────────────────────────────────────────
-function setScope(scope) {
-    currentScope = scope;
-    document.getElementById('btnRse').classList.toggle('active',     scope === 'rse');
-    document.getElementById('btnRsePlus').classList.toggle('active', scope === 'rse_plus');
-    var d = scope === 'rse' ? RSE_DATA : RSE_PLUS_DATA;
-    setCounter('stat-total',      d.total,       false);
-    setCounter('stat-rate',       d.rate,        true);
-    setCounter('stat-inprogress', d.in_progress, false);
-    setCounter('stat-todo',       d.to_do,       false);
-    if (statusChartInstance) {
-        statusChartInstance.data.datasets[0].data = [d.done, d.in_review, d.in_progress, d.to_do];
-        statusChartInstance.update();
-    }
-}
-
 // ── Counter animation ──────────────────────────────────────────────────────
 function animateCounter(el) {
     var target    = parseFloat(el.dataset.counter);
@@ -744,17 +698,6 @@ function setCounter(id, value, isDecimal) {
     animateCounter(el);
 }
 
-// ── Tooltip & tab helpers ──────────────────────────────────────────────────
-function showScopeTooltip(e) {
-    var tip = document.getElementById('scopeTooltip');
-    tip.style.display = 'block';
-    var rect = e.currentTarget.getBoundingClientRect();
-    tip.style.top  = (rect.bottom + 8) + 'px';
-    tip.style.left = Math.min(rect.left, window.innerWidth - 270) + 'px';
-}
-function hideScopeTooltip() {
-    document.getElementById('scopeTooltip').style.display = 'none';
-}
 function switchTab(tabName, e) {
     document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
     document.querySelectorAll('.tab-button').forEach(function(b)  { b.classList.remove('active'); });
@@ -788,7 +731,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     renderContaminationSources();
 
-    // ── Historical stats ───────────────────────────────────────────────────
     function calcStats(data) {
         var sum = data.reduce(function(a,b){return a+b;},0);
         var avg = sum/data.length, max = Math.max.apply(null,data), min = Math.min.apply(null,data);
@@ -806,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setText('hist-vel-low',  historicalMonths[vs.minIdx]);
 
     // ── Status Doughnut ───────────────────────────────────────────────────
-    var d = RSE_DATA;
+    var d = {"total": 17, "done": 1, "in_review": 2, "in_progress": 3, "to_do": 11, "rate": 5.9};
     statusChartInstance = new Chart(document.getElementById('statusChart'), {
         type: 'doughnut',
         data: {
@@ -848,7 +790,7 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(document.getElementById('ageDistributionChart'), {
         type:'bar',
         data:{ labels:['0-30 days','31-90 days','91-180 days','181-365 days','365+ days'],
-            datasets:[{ label:'Issues', data:[50,36,24,53,25],
+            datasets:[{ label:'Issues', data:[4,5,2,43,32],
                 backgroundColor:['rgba(16,185,129,0.8)','rgba(59,130,246,0.8)','rgba(245,158,11,0.8)','rgba(239,68,68,0.8)','rgba(124,58,237,0.8)'],
                 borderColor:    ['rgba(16,185,129,1)',  'rgba(59,130,246,1)',  'rgba(245,158,11,1)',  'rgba(239,68,68,1)',  'rgba(124,58,237,1)'],
                 borderWidth:2, borderRadius:6 }]
@@ -858,7 +800,7 @@ document.addEventListener('DOMContentLoaded', function() {
             plugins:{ legend:{display:false} },
             onClick:function(evt,els){
                 if(!els.length) return;
-                var q=['/issues/?jql=created%3E%3D-30d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22','/issues/?jql=created%3E%3D-90d%20AND%20created%3C-30d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22','/issues/?jql=created%3E%3D-180d%20AND%20created%3C-90d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22','/issues/?jql=created%3E%3D-365d%20AND%20created%3C-180d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22',JIRA_CONFIG.zombieFilter];
+                var q=['/issues/?jql=created%3E%3D-30d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-90d%20AND%20created%3C-30d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-180d%20AND%20created%3C-90d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-365d%20AND%20created%3C-180d%20AND%20status!%3DDone',JIRA_CONFIG.zombieFilter];
                 window.open(JIRA_CONFIG.baseUrl+q[els[0].index],'_blank');
             }
         }
@@ -919,10 +861,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<div id="scopeTooltip" style="display:none;position:fixed;z-index:99999;width:256px;padding:12px;background:#1e293b;color:white;font-size:0.75rem;border-radius:8px;box-shadow:0 10px 25px rgba(0,0,0,0.3);pointer-events:none;">
-    <p style="font-weight:600;margin-bottom:4px;">RSE vs RSE+</p>
-    <p><strong>RSE</strong> — issues assigned to the RSE team only.</p>
-    <p style="margin-top:4px;"><strong>RSE+</strong> — RSE team issues plus TCIN-assigned issues on the same board.</p>
-</div>
 </body>
 </html>
