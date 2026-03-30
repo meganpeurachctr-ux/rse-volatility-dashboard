@@ -84,7 +84,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 29, 2026 at 09:17 PM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 29, 2026 at 10:01 PM</span></span>
             </div>
         </div>
     </div>
@@ -227,7 +227,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="47.3" data-decimal="true">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="0.0" data-decimal="true">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Sprint Contamination</div>
                     <div class="text-xs text-slate-500 mb-3">carryover rate</div>
                 </div>
@@ -612,8 +612,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
 var RSE_DATA = {"total": 65, "done": 9, "in_review": 10, "in_progress": 13, "to_do": 33, "rate": 13.8};
 var RSE_PLUS_DATA = {"total": 93, "done": 12, "in_review": 13, "in_progress": 24, "to_do": 44, "rate": 12.9};
-var CONTAMINATION_SOURCES = {};
-var CONTAMINATION_SOURCES_FULL = {"items": [], "total": 0};
+var CONTAMINATION_SOURCES = {"Mis-Planning": 1, "Bug Discovery": 1};
+var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Mis-Planning", "count": 1, "percent": 50, "badge": "internal", "color": "blue"}, {"source": "Bug Discovery", "count": 1, "percent": 50, "badge": "reactive", "color": "amber"}], "total": 2};
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
