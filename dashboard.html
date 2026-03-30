@@ -84,7 +84,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 28, 2026 at 02:49 PM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">March 29, 2026 at 09:17 PM</span></span>
             </div>
         </div>
     </div>
@@ -611,9 +611,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
 var RSE_DATA = {"total": 65, "done": 9, "in_review": 10, "in_progress": 13, "to_do": 33, "rate": 13.8};
-var RSE_PLUS_DATA = {"total": 93, "done": 12, "in_review": 13, "in_progress": 23, "to_do": 45, "rate": 12.9};
-var CONTAMINATION_SOURCES = {"Mis-Planning": 1, "Bug Discovery": 1};
-var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Mis-Planning", "count": 1, "percent": 50, "badge": "internal", "color": "blue"}, {"source": "Bug Discovery", "count": 1, "percent": 50, "badge": "reactive", "color": "amber"}], "total": 2};
+var RSE_PLUS_DATA = {"total": 93, "done": 12, "in_review": 13, "in_progress": 24, "to_do": 44, "rate": 12.9};
+var CONTAMINATION_SOURCES = {};
+var CONTAMINATION_SOURCES_FULL = {"items": [], "total": 0};
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
@@ -631,7 +631,7 @@ var sprintDataWithDates = [
     { sprint:"RSE 26Q1-S3 1/28-2/11", startDate:"2026-01-28", endDate:"2026-02-12", planned:190.5, completed:190.5, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5383" },
     { sprint:"RSE 26Q1-S4 2/11-2/25", startDate:"2026-02-11", endDate:"2026-02-26", planned:176.0, completed:176.0, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5586" },
     { sprint:"RSE 26Q1-S5 2/25-3/11", startDate:"2026-02-25", endDate:"2026-03-12", planned:185.0, completed:175.0, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=5853" },
-    { sprint:"RSE 26Q1-S6 3/11-3/25", startDate:"2026-03-11", endDate:"2026-03-26", planned:191.5, completed:171.5, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=6056" }
+    { sprint:"RSE 26Q1-S6 3/11-3/25", startDate:"2026-03-11", endDate:"2026-03-26", planned:194.5, completed:174.5, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=6056" }
 ];
 
 // ── Historical data ────────────────────────────────────────────────────────
@@ -848,7 +848,7 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(document.getElementById('ageDistributionChart'), {
         type:'bar',
         data:{ labels:['0-30 days','31-90 days','91-180 days','181-365 days','365+ days'],
-            datasets:[{ label:'Issues', data:[52,39,24,51,27],
+            datasets:[{ label:'Issues', data:[50,41,24,51,27],
                 backgroundColor:['rgba(16,185,129,0.8)','rgba(59,130,246,0.8)','rgba(245,158,11,0.8)','rgba(239,68,68,0.8)','rgba(124,58,237,0.8)'],
                 borderColor:    ['rgba(16,185,129,1)',  'rgba(59,130,246,1)',  'rgba(245,158,11,1)',  'rgba(239,68,68,1)',  'rgba(124,58,237,1)'],
                 borderWidth:2, borderRadius:6 }]
