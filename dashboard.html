@@ -84,7 +84,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">April 10, 2026 at 05:26 PM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">April 12, 2026 at 11:17 AM</span></span>
             </div>
         </div>
     </div>
@@ -139,19 +139,19 @@
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-in" style="animation-delay:0.18s;">
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="72">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="0">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Total Issues</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="4.2" data-decimal="true">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="0.0" data-decimal="true">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="12">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="0">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="46">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="0">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">To Do</div>
                 </div>
             </div>
@@ -610,8 +610,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
-var RSE_DATA = {"total": 72, "done": 3, "in_review": 11, "in_progress": 12, "to_do": 46, "rate": 4.2};
-var RSE_PLUS_DATA = {"total": 112, "done": 11, "in_review": 20, "in_progress": 22, "to_do": 59, "rate": 9.8};
+var RSE_DATA = {"total": 0, "done": 0, "in_review": 0, "in_progress": 0, "to_do": 0, "rate": 0.0};
+var RSE_PLUS_DATA = {"total": 0, "done": 0, "in_review": 0, "in_progress": 0, "to_do": 0, "rate": 0.0};
 var CONTAMINATION_SOURCES = {"Mis-Planning": 1, "Unexpected Capacity": 1, "Bug Discovery": 1};
 var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Mis-Planning", "count": 1, "percent": 33, "badge": "internal", "color": "blue"}, {"source": "Unexpected Capacity", "count": 1, "percent": 33, "badge": "other", "color": "gray"}, {"source": "Bug Discovery", "count": 1, "percent": 33, "badge": "reactive", "color": "amber"}], "total": 3};
 
@@ -848,7 +848,7 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(document.getElementById('ageDistributionChart'), {
         type:'bar',
         data:{ labels:['0-30 days','31-90 days','91-180 days','181-365 days','365+ days'],
-            datasets:[{ label:'Issues', data:[66,34,25,36,28],
+            datasets:[{ label:'Issues', data:[56,44,25,36,28],
                 backgroundColor:['rgba(16,185,129,0.8)','rgba(59,130,246,0.8)','rgba(245,158,11,0.8)','rgba(239,68,68,0.8)','rgba(124,58,237,0.8)'],
                 borderColor:    ['rgba(16,185,129,1)',  'rgba(59,130,246,1)',  'rgba(245,158,11,1)',  'rgba(239,68,68,1)',  'rgba(124,58,237,1)'],
                 borderWidth:2, borderRadius:6 }]
