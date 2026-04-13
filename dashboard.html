@@ -84,7 +84,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">April 13, 2026 at 01:34 PM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">April 13, 2026 at 01:36 PM</span></span>
             </div>
         </div>
     </div>
@@ -510,17 +510,26 @@
             </div>
         </div>
 
+        <!-- ── Historical Contamination (stacked bar + ghost line) ────────── -->
         <div class="glass-effect rounded-2xl shadow-xl p-6 mb-8">
-            <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
+            <h3 class="text-lg font-semibold text-slate-800 mb-2 flex items-center">
                 <span class="w-1 h-6 bg-gradient-to-b from-orange-500 to-amber-500 rounded-full mr-2"></span>
                 Sprint Contamination Trend (Last 12 Months)
                 <div class="tooltip-container ml-2">
                     <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    <div class="tooltip-text">Percentage of sprint items that carried over from previous sprints. Measured by issues created 14+ days before sprint start.</div>
+                    <div class="tooltip-text">Percentage of sprint items that carried over from previous sprints. Measured by issues created 14+ days before sprint start. Bars show source breakdown from when tracking began; ghost line shows total % for all months.</div>
                 </div>
             </h3>
+            <!-- Legend -->
+            <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:12px;font-size:12px;color:#64748b;align-items:center;">
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#f59e0b;display:inline-block;"></span>Reactive</span>
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#a78bfa;display:inline-block;"></span>External</span>
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#60a5fa;display:inline-block;"></span>Internal</span>
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#94a3b8;display:inline-block;"></span>Uncategorized</span>
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:18px;border-top:2px dashed rgba(249,115,22,0.6);display:inline-block;"></span> Total %</span>
+            </div>
             <div style="position:relative;height:400px;"><canvas id="historicalContaminationChart"></canvas></div>
             <div class="mt-4 p-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl border border-orange-200">
                 <p class="text-sm text-slate-700"><strong>Average Contamination:</strong> <span id="hist-cont-avg">calculating...</span></p>
@@ -613,7 +622,7 @@ document.addEventListener('DOMContentLoaded', function() {
 var RSE_DATA = {"total": 72, "done": 7, "in_review": 9, "in_progress": 14, "to_do": 42, "rate": 9.7};
 var RSE_PLUS_DATA = {"total": 111, "done": 17, "in_review": 17, "in_progress": 29, "to_do": 48, "rate": 15.3};
 var CONTAMINATION_SOURCES = {"Mis-Planning": 1, "Unexpected Capacity": 1, "Bug Discovery": 1};
-var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Mis-Planning", "count": 1, "percent": 33, "badge": "internal", "color": "blue"}, {"source": "Unexpected Capacity", "count": 1, "percent": 33, "badge": "other", "color": "gray"}, {"source": "Bug Discovery", "count": 1, "percent": 33, "badge": "reactive", "color": "amber"}], "total": 3};
+var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Mis-Planning", "count": 1, "percent": 33, "badge": "internal", "color": "blue"}, {"source": "Unexpected Capacity", "count": 1, "percent": 33, "badge": "internal", "color": "blue"}, {"source": "Bug Discovery", "count": 1, "percent": 33, "badge": "reactive", "color": "amber"}], "total": 3};
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
@@ -641,6 +650,7 @@ var historicalCompletedData     = [0, 0, 0, 0, 0, 0, 60, 116, 128, 135, 122, 8, 
 var historicalContaminationData = [13, 11, 14, 10, 12, 16, 11, 12, 14, 9, 11, 37.1, 41.9];
 var historicalVelocityData      = [0, 0, 0, 0, 0, 0, 109.5, 198.5, 221.0, 243.0, 223.5, 222.5, 65];
 var historicalZombieData        = [48, 52, 50, 47, 49, 53, 51, 48, 50, 52, 51, 63, 51];
+var historicalContaminationSources = [];
 
 // ── Scope / chart state ────────────────────────────────────────────────────
 var currentScope = 'rse';
@@ -876,17 +886,87 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ── Historical Contamination ──────────────────────────────────────────
-    new Chart(document.getElementById('historicalContaminationChart'), {
-        type:'line',
-        data:{ labels:historicalMonths, datasets:[{ label:'Sprint Contamination (%)', data:historicalContaminationData,
-            borderColor:'rgba(245,158,11,1)', backgroundColor:'rgba(245,158,11,0.1)',
-            borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(245,158,11,1)' }]},
-        options:{ responsive:true, maintainAspectRatio:false,
-            scales:{ y:{beginAtZero:true,ticks:{callback:function(v){return v+'%';}},grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} },
-            plugins:{ legend:{position:'top'}, tooltip:{ callbacks:{ afterLabel:function(ctx){ return 'Issues Completed: '+historicalCompletedData[ctx.dataIndex]; }}}}
+    // ── Historical Contamination (stacked bar + ghost line) ───────────────
+    (function() {
+        var n = null;
+        var numMonths = historicalMonths.length;
+        var srcLen    = historicalContaminationSources.length;
+
+        // Build per-category arrays: null for months with no source data
+        var reactive      = [];
+        var external      = [];
+        var internal      = [];
+        var uncategorized = [];
+
+        for (var i = 0; i < numMonths; i++) {
+            var srcIdx = srcLen - (numMonths - i);
+            if (srcIdx >= 0 && srcIdx < srcLen && historicalContaminationSources[srcIdx] !== null) {
+                var s = historicalContaminationSources[srcIdx];
+                reactive.push(s.reactive      || 0);
+                external.push(s.external      || 0);
+                internal.push(s.internal      || 0);
+                uncategorized.push(s.uncategorized || 0);
+            } else {
+                reactive.push(n);
+                external.push(n);
+                internal.push(n);
+                uncategorized.push(n);
+            }
         }
-    });
+
+        new Chart(document.getElementById('historicalContaminationChart'), {
+            data: {
+                labels: historicalMonths,
+                datasets: [
+                    { type:'bar',  label:'Reactive',      data:reactive,      backgroundColor:'#f59e0b', stack:'sources', yAxisID:'y2', borderRadius:2 },
+                    { type:'bar',  label:'External',      data:external,      backgroundColor:'#a78bfa', stack:'sources', yAxisID:'y2', borderRadius:2 },
+                    { type:'bar',  label:'Internal',      data:internal,      backgroundColor:'#60a5fa', stack:'sources', yAxisID:'y2', borderRadius:2 },
+                    { type:'bar',  label:'Uncategorized', data:uncategorized, backgroundColor:'#94a3b8', stack:'sources', yAxisID:'y2', borderRadius:2 },
+                    {
+                        type:'line', label:'Total %', data:historicalContaminationData,
+                        borderColor:'rgba(249,115,22,0.6)', backgroundColor:'transparent',
+                        borderWidth:2, borderDash:[5,4],
+                        pointRadius:4, pointBackgroundColor:'rgba(249,115,22,0.6)',
+                        pointHoverRadius:6, tension:0.3,
+                        yAxisID:'y1', spanGaps:false
+                    }
+                ]
+            },
+            options: {
+                responsive:true, maintainAspectRatio:false,
+                interaction:{ mode:'index', intersect:false },
+                scales:{
+                    x:{ grid:{display:false}, ticks:{font:{size:11}, autoSkip:false, maxRotation:45} },
+                    y2:{ type:'linear', position:'left',  beginAtZero:true,
+                         title:{display:true, text:'Issue count', font:{size:11}},
+                         grid:{color:'rgba(0,0,0,0.05)'}, ticks:{stepSize:1, font:{size:11}} },
+                    y1:{ type:'linear', position:'right', beginAtZero:true, max:55,
+                         title:{display:true, text:'Contamination %', font:{size:11}},
+                         grid:{display:false}, ticks:{callback:function(v){return v+'%';}, font:{size:11}} }
+                },
+                plugins:{
+                    legend:{display:false},
+                    tooltip:{
+                        callbacks:{
+                            label: function(ctx) {
+                                if (ctx.dataset.label === 'Total %') return null;
+                                if (ctx.parsed.y === null || ctx.parsed.y === undefined) return null;
+                                return ctx.dataset.label + ': ' + ctx.parsed.y;
+                            },
+                            footer: function(items) {
+                                var idx = items[0].dataIndex;
+                                var pct = historicalContaminationData[idx];
+                                if (pct !== null && pct !== undefined) {
+                                    return 'Total contamination: ' + pct.toFixed(1) + '%';
+                                }
+                                return '';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    })();
 
     // ── Historical Velocity ───────────────────────────────────────────────
     var rollingAvg = historicalVelocityData.map(function(_,i) {
