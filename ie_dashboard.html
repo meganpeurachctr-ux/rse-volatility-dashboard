@@ -72,7 +72,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">April 28, 2026 at 03:26 PM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">April 29, 2026 at 02:21 PM</span></span>
             </div>
         </div>
     </div>
@@ -119,11 +119,11 @@
                     <div class="text-xs text-slate-600 font-medium mt-1">Total Issues</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="23.1" data-decimal="true">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="26.9" data-decimal="true">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="11">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="9">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
@@ -256,7 +256,7 @@
                     <div class="space-y-3">
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Done</span>
-                            <span class="text-2xl font-bold text-green-600">5</span>
+                            <span class="text-2xl font-bold text-green-600">6</span>
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Duplicate</span>
@@ -272,7 +272,7 @@
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl border-2 border-slate-400 shadow-md">
                             <span class="font-bold text-slate-800">Grand Total</span>
-                            <span class="text-2xl font-bold text-slate-800">5</span>
+                            <span class="text-2xl font-bold text-slate-800">6</span>
                         </div>
                     </div>
                 </div>
@@ -282,7 +282,7 @@
                         <div class="p-6 bg-gradient-to-br from-red-50 via-orange-50 to-amber-50 rounded-xl border-2 border-red-300 shadow-lg">
                             <div class="text-sm text-slate-600 mb-2 font-medium">Monthly Churn Rate</div>
                             <div class="text-5xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mb-2">0.0%</div>
-                            <div class="text-xs text-slate-600">0 churned items out of 5 total</div>
+                            <div class="text-xs text-slate-600">0 churned items out of 6 total</div>
                         </div>
                         <div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
                             <div class="text-sm font-semibold text-slate-700 mb-3">Churn Categories:</div>
@@ -313,7 +313,7 @@
                         <div class="p-5 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200 shadow-md">
                             <div class="text-sm text-slate-600 mb-2 font-medium">Completion Rate</div>
                             <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">100.0%</div>
-                            <div class="text-xs text-slate-600 mt-1">5 successfully completed</div>
+                            <div class="text-xs text-slate-600 mt-1">6 successfully completed</div>
                         </div>
                     </div>
                 </div>
@@ -748,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setText('hist-vel-low',  historicalMonths[vs.minIdx]);
 
     // ── Status Doughnut ───────────────────────────────────────────────────
-    var d = {"total": 26, "done": 6, "in_review": 9, "in_progress": 11, "to_do": 0, "rate": 23.1};
+    var d = {"total": 26, "done": 7, "in_review": 10, "in_progress": 9, "to_do": 0, "rate": 26.9};
     statusChartInstance = new Chart(document.getElementById('statusChart'), {
         type: 'doughnut',
         data: {
