@@ -72,7 +72,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">April 30, 2026 at 12:42 PM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">May 01, 2026 at 01:52 PM</span></span>
             </div>
         </div>
     </div>
@@ -119,7 +119,7 @@
                     <div class="text-xs text-slate-600 font-medium mt-1">Total Issues</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="42.3" data-decimal="true">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="46.2" data-decimal="true">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
@@ -159,7 +159,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-blue-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1" data-counter="113">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1" data-counter="114">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Current Backlog</div>
                     <div class="text-xs text-slate-500 mb-3">open items</div>
                 </div>
@@ -256,7 +256,7 @@
                     <div class="space-y-3">
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Done</span>
-                            <span class="text-2xl font-bold text-green-600">10</span>
+                            <span class="text-2xl font-bold text-green-600">0</span>
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Duplicate</span>
@@ -272,7 +272,7 @@
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl border-2 border-slate-400 shadow-md">
                             <span class="font-bold text-slate-800">Grand Total</span>
-                            <span class="text-2xl font-bold text-slate-800">10</span>
+                            <span class="text-2xl font-bold text-slate-800">0</span>
                         </div>
                     </div>
                 </div>
@@ -282,7 +282,7 @@
                         <div class="p-6 bg-gradient-to-br from-red-50 via-orange-50 to-amber-50 rounded-xl border-2 border-red-300 shadow-lg">
                             <div class="text-sm text-slate-600 mb-2 font-medium">Monthly Churn Rate</div>
                             <div class="text-5xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mb-2">0.0%</div>
-                            <div class="text-xs text-slate-600">0 churned items out of 10 total</div>
+                            <div class="text-xs text-slate-600">0 churned items out of 0 total</div>
                         </div>
                         <div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
                             <div class="text-sm font-semibold text-slate-700 mb-3">Churn Categories:</div>
@@ -312,8 +312,8 @@
                         </div>
                         <div class="p-5 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200 shadow-md">
                             <div class="text-sm text-slate-600 mb-2 font-medium">Completion Rate</div>
-                            <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">100.0%</div>
-                            <div class="text-xs text-slate-600 mt-1">10 successfully completed</div>
+                            <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">0.0%</div>
+                            <div class="text-xs text-slate-600 mt-1">0 successfully completed</div>
                         </div>
                     </div>
                 </div>
@@ -607,12 +607,12 @@ var sprintDataWithDates = [
     { sprint:'IE 26Q1 - S4', startDate:'2026-02-11', endDate:'2026-02-25', planned:43.5, completed:43.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=6&sprint=5785' },
     { sprint:'IE 26Q1 - S5', startDate:'2026-02-25', endDate:'2026-03-11', planned:45.5, completed:42.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=6&sprint=5922' }
 ];
-var historicalMonths            = ["Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26", "Mar 26"];
-var historicalChurnData         = [3.6, 2.8, 0.0, 2.4, 1.5, 0.0, 11.5, 1.3, 2.1, 3.4, 2.2, 2.7, 0.0];
-var historicalCompletedData     = [0, 0, 0, 0, 0, 0, 60, 116, 128, 135, 122, 4, 0];
-var historicalContaminationData = [13.8, 19.7, 9.0, 18.5, 8.5, 10.0, 30.9, 10.1, 24.0, 22.3, 31.8, 24.4, 34.8];
-var historicalVelocityData      = [119, 105, 101, 145, 96, 113, 126, 94, 83, 84, 73, 89, 55];
-var historicalZombieData        = [48, 52, 50, 47, 49, 53, 51, 48, 50, 52, 51, 63, 56];
+var historicalMonths            = ["Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26", "Mar 26", "Apr 26"];
+var historicalChurnData         = [2.8, 0.0, 2.4, 1.5, 0.0, 11.5, 1.3, 2.1, 3.4, 2.2, 2.7, 0.0, 0.0];
+var historicalCompletedData     = [0, 0, 0, 0, 0, 60, 116, 128, 135, 122, 4, 0, 0];
+var historicalContaminationData = [19.7, 9.0, 18.5, 8.5, 10.0, 30.9, 10.1, 24.0, 22.3, 31.8, 24.4, 34.8, 15.4];
+var historicalVelocityData      = [105, 101, 145, 96, 113, 126, 94, 83, 84, 73, 89, 55, 55];
+var historicalZombieData        = [52, 50, 47, 49, 53, 51, 48, 50, 52, 51, 63, 56, 18];
 
 var statusChartInstance = null;
 
@@ -748,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setText('hist-vel-low',  historicalMonths[vs.minIdx]);
 
     // ── Status Doughnut ───────────────────────────────────────────────────
-    var d = {"total": 26, "done": 11, "in_review": 9, "in_progress": 6, "to_do": 0, "rate": 42.3};
+    var d = {"total": 26, "done": 12, "in_review": 8, "in_progress": 6, "to_do": 0, "rate": 46.2};
     statusChartInstance = new Chart(document.getElementById('statusChart'), {
         type: 'doughnut',
         data: {
@@ -790,7 +790,7 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(document.getElementById('ageDistributionChart'), {
         type:'bar',
         data:{ labels:['0-30 days','31-90 days','91-180 days','181-365 days','365+ days'],
-            datasets:[{ label:'Issues', data:[6,6,3,41,30],
+            datasets:[{ label:'Issues', data:[7,6,3,41,30],
                 backgroundColor:['rgba(16,185,129,0.8)','rgba(59,130,246,0.8)','rgba(245,158,11,0.8)','rgba(239,68,68,0.8)','rgba(124,58,237,0.8)'],
                 borderColor:    ['rgba(16,185,129,1)',  'rgba(59,130,246,1)',  'rgba(245,158,11,1)',  'rgba(239,68,68,1)',  'rgba(124,58,237,1)'],
                 borderWidth:2, borderRadius:6 }]
