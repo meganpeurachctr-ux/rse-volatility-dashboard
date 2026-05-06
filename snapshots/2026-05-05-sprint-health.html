@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TCIN / RSE Sprint Health — 2026-05-05</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js"></script>
+<style>
+  :root { color-scheme: light; }
+  html, body { margin: 0; padding: 0; background: #fafaf7; color: #1d1d1b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 20px 24px 48px; }
+  h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.01em; }
+  h2 { font-size: 15px; font-weight: 600; margin: 28px 0 10px; letter-spacing: -0.01em; color: #1d1d1b; }
+  .sub { color: #6b6b66; font-size: 13px; margin-bottom: 18px; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 500; margin-left: 6px; }
+  .pill.green { background: #e6f4ea; color: #1e6b36; }
+  .pill.amber { background: #fff4e0; color: #8a5a12; }
+  .pill.red   { background: #fdeaea; color: #a63434; }
+  .pill.blue  { background: #e8f0fb; color: #1e4f9d; }
+  .pill.gray  { background: #eee; color: #555; }
+  .kpis { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 10px 0 4px; }
+  .kpi { background: #fff; border: 1px solid #ececea; border-radius: 10px; padding: 12px 12px 10px; }
+  .kpi .label { font-size: 11px; color: #6b6b66; text-transform: uppercase; letter-spacing: 0.04em; }
+  .kpi .val { font-size: 22px; font-weight: 600; margin-top: 4px; line-height: 1.1; }
+  .kpi .val.red { color: #a63434; }
+  .kpi .val.amber { color: #8a5a12; }
+  .kpi .val.green { color: #1e6b36; }
+  .kpi .sub2 { font-size: 11px; color: #8a8a85; margin-top: 2px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card { background: #fff; border: 1px solid #ececea; border-radius: 12px; padding: 16px 18px; margin-top: 12px; }
+  .card h3 { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: #3a3a36; letter-spacing: -0.005em; }
+  .card .note { font-size: 12px; color: #6b6b66; margin-bottom: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #f0f0ec; }
+  th { color: #6b6b66; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .muted { color: #8a8a85; }
+  .assess { background: #f7f7f3; border-left: 3px solid #c9b375; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.5; margin-top: 12px; }
+  .verdict { display: flex; gap: 12px; align-items: baseline; margin: 4px 0 12px; }
+  .verdict .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #6b6b66; }
+  .verdict .val { font-size: 15px; font-weight: 600; }
+  .status-bar { display: flex; height: 10px; border-radius: 6px; overflow: hidden; background: #f0f0ec; margin: 8px 0 4px; }
+  .status-bar span { display: block; height: 100%; }
+  .seg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11.5px; color: #4a4a46; margin-top: 4px; }
+  .seg-legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+  canvas { max-width: 100%; }
+  .gridline { height: 1px; background: #ececea; margin: 22px 0 0; }
+  a { color: #1e4f9d; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .footer { font-size: 11px; color: #8a8a85; margin-top: 22px; }
+  .num-right { text-align: right; font-variant-numeric: tabular-nums; }
+  .tag-gap { background: #fdeaea; border: 1px solid #f5c6c6; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #7a2020; margin-top: 8px; }
+  .tag-gap strong { display: block; margin-bottom: 2px; }
+  .untagged-row { background: #fff8f8; }
+  @media (max-width: 820px){ .kpis { grid-template-columns: repeat(3, 1fr); } .row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>TCIN / RSE Sprint Health <span class="pill red">Highly Volatile</span></h1>
+  <div class="sub">RSE 26Q2 S2 4/22-5/6 &nbsp;·&nbsp; Day 14 of 15 &nbsp;·&nbsp; Snapshot: May 5, 2026 &nbsp;·&nbsp; <a href="https://toyotaresearchinstitute.atlassian.net/jira/software/c/projects/TRI/boards/17" target="_blank">Board 17</a></div>
+
+  <!-- KPI Tiles -->
+  <div class="kpis">
+    <div class="kpi">
+      <div class="label">Total Issues</div>
+      <div class="val">33</div>
+      <div class="sub2">52 SP total</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Done</div>
+      <div class="val amber">21</div>
+      <div class="sub2">63.6% · 28 SP (53.8%)</div>
+    </div>
+    <div class="kpi">
+      <div class="label">In Progress / Review</div>
+      <div class="val">7</div>
+      <div class="sub2">21.2% of sprint</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Mid-Sprint Injected</div>
+      <div class="val red">23</div>
+      <div class="sub2">69.7% items · 63.5% SP</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Tagging Coverage</div>
+      <div class="val red">39.1%</div>
+      <div class="sub2">9 of 23 injections tagged</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Days Remaining</div>
+      <div class="val">1</div>
+      <div class="sub2">Ends May 6, 2026</div>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="card" style="margin-top:10px;">
+    <h3>Completion vs. Ideal Pace &nbsp;<span class="pill amber">Behind</span></h3>
+    <div class="note">Day 14 of 15 — ideal pace at this point: 93.3% done. Actual: 63.6% items / 53.8% SP.</div>
+    <div style="margin-bottom:6px;">
+      <div style="font-size:11px;color:#6b6b66;text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px;">Items done vs. ideal</div>
+      <div style="background:#f0f0ec;border-radius:6px;height:10px;position:relative;overflow:visible;">
+        <div style="background:#4caf7d;height:10px;width:63.6%;border-radius:6px 0 0 6px;"></div>
+        <div style="position:absolute;top:-2px;left:93.3%;width:2px;height:14px;background:#8a5a12;border-radius:1px;" title="Ideal 93.3%"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:#8a8a85;margin-top:3px;">
+        <span>0%</span><span style="color:#8a5a12;">▲ Ideal 93.3%</span><span>100%</span>
+      </div>
+    </div>
+    <div style="margin-top:8px;">
+      <div style="font-size:11px;color:#6b6b66;text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px;">SP done vs. ideal</div>
+      <div style="background:#f0f0ec;border-radius:6px;height:10px;position:relative;overflow:visible;">
+        <div style="background:#4caf7d;height:10px;width:53.8%;border-radius:6px 0 0 6px;"></div>
+        <div style="position:absolute;top:-2px;left:93.3%;width:2px;height:14px;background:#8a5a12;border-radius:1px;" title="Ideal 93.3%"></div>
+      </div>
+    </div>
+    <div class="seg-legend" style="margin-top:8px;">
+      <span><span class="dot" style="background:#4caf7d;"></span>Done</span>
+      <span><span class="dot" style="background:#8a5a12;width:3px;border-radius:1px;"></span>Ideal pace (93.3%)</span>
+    </div>
+  </div>
+
+  <!-- Verdict -->
+  <div class="gridline"></div>
+  <h2>Sprint Volatility</h2>
+  <div class="verdict">
+    <span class="label">Verdict</span>
+    <span class="val" style="color:#a63434;">⚠ Highly Volatile</span>
+  </div>
+  <div class="assess">
+    True mid-sprint injections stand at <strong>69.7% of items and 63.5% of SP</strong> — roughly <strong>3×</strong> the prior sprint's 21%/16% pace and <strong>~6×</strong> the ~10% agile guideline. Sustained burst Apr 27–29 (Days 6–8) added 16 items / 21 SP across three days, with Apr 29 (Day 8) the worst single day at 6 new items. Completion is behind ideal pace: 63.6% items done at Day 14 of 15 vs. ideal 93.3%. Contamination tagging covers only 39.1% of true injections (9 of 23) — a critical process gap.
+  </div>
+
+  <!-- Scope Composition -->
+  <div class="gridline"></div>
+  <h2>Scope Composition</h2>
+  <div class="row">
+    <div class="card">
+      <h3>By Category</h3>
+      <table>
+        <thead><tr>
+          <th>Category</th><th class="num-right">Items</th><th class="num-right">SP</th><th class="num-right">% Items</th><th class="num-right">% SP</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td>Pre-sprint (before Apr 22)</td>
+            <td class="num-right">8</td><td class="num-right">16</td>
+            <td class="num-right">24.2%</td><td class="num-right">30.8%</td>
+          </tr>
+          <tr>
+            <td>Day-1 planning dump (Apr 22, first 24h)</td>
+            <td class="num-right">2</td><td class="num-right">3</td>
+            <td class="num-right">6.1%</td><td class="num-right">5.8%</td>
+          </tr>
+          <tr style="color:#a63434;font-weight:500;">
+            <td>True mid-sprint injections (Days 2+)</td>
+            <td class="num-right">23</td><td class="num-right">33</td>
+            <td class="num-right">69.7%</td><td class="num-right">63.5%</td>
+          </tr>
+          <tr style="font-weight:600;border-top:2px solid #ececea;">
+            <td>Current sprint total</td>
+            <td class="num-right">33</td><td class="num-right">52</td>
+            <td class="num-right">100%</td><td class="num-right">100%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note" style="margin-top:8px;">Prior sprint (S1): 29 true injections = 21% items / 16% SP. Current pace is ~3× prior.</div>
+    </div>
+    <div class="card">
+      <h3>Scope Composition (Items)</h3>
+      <canvas id="scopeChart" height="160"></canvas>
+    </div>
+  </div>
+
+  <!-- Injection Timeline -->
+  <div class="gridline"></div>
+  <h2>Daily Injection Timeline</h2>
+  <div class="row">
+    <div class="card" style="grid-column: 1 / -1;">
+      <h3>Items Added Per Day</h3>
+      <canvas id="injectionChart" height="100"></canvas>
+    </div>
+  </div>
+  <div class="card" style="margin-top:0;">
+    <table>
+      <thead><tr>
+        <th>Sprint Day</th><th>Date</th><th>+Items</th><th>+SP</th><th>Issue</th><th>Assignee</th><th>Contamination Source</th><th>Status</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+              <td rowspan="1">Day 1</td>
+              <td>04-22</td><td>1</td><td>2</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51605" target="_blank">TRI-51605</a> — Bring in Scott&#x27;s changes from Lap Review to the actual Lap Rev</td>
+              <td>Ashish Mangukiya</td><td><span class="pill amber">Stakeholder Urgent</span></td><td>Done</td>
+            </tr><tr>
+              <td rowspan="2">Day 2</td>
+              <td>04-23</td><td>2</td><td>3</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51624" target="_blank">TRI-51624</a> — Whyzen - Execute the functional test case on new build version</td>
+              <td>Priyadharshan Pargunan</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr>
+              <td>04-23</td><td></td><td>1</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51607" target="_blank">TRI-51607</a> — Create a pop up for session expired</td>
+              <td>Veera Raghavulu</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr>
+              <td rowspan="1">Day 5</td>
+              <td>04-26</td><td>1</td><td>2</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51627" target="_blank">TRI-51627</a> — Create download_csv endpoint for historical records tab</td>
+              <td>Arijit Saha</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td rowspan="5"><strong>Day 6 ⚠</strong></td>
+              <td>04-27</td><td>5</td><td>7</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51658" target="_blank">TRI-51658</a> — Restore the racing line for lap review</td>
+              <td>Ashish Mangukiya</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-27</td><td></td><td>2</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51656" target="_blank">TRI-51656</a> — Back up skill scores to AWS S3 bucket</td>
+              <td>Chris Fajardo</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-27</td><td></td><td>1</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51648" target="_blank">TRI-51648</a> — Fix issue where sample lap data is modified when calling Apex </td>
+              <td>Michael Puzon</td><td><span class="pill gray">Untagged</span></td><td>Open</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-27</td><td></td><td>2</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51646" target="_blank">TRI-51646</a> — Back up lap data to AWS S3 buckets</td>
+              <td>Chris Fajardo</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-27</td><td></td><td>1</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51639" target="_blank">TRI-51639</a> — Switch AgentCore credential provider from CustomOauth2 to Atla</td>
+              <td>Devang Motwani</td><td><span class="pill green">Bug Discovery</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td rowspan="5"><strong>Day 7 ⚠</strong></td>
+              <td>04-28</td><td>5</td><td>7</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51696" target="_blank">TRI-51696</a> — Backend boto3 too old for bedrock-agentcore service</td>
+              <td>Devang Motwani</td><td><span class="pill green">Bug Discovery</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-28</td><td></td><td>1</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51695" target="_blank">TRI-51695</a> — E2E test: Nodes</td>
+              <td>Michael Puzon</td><td><span class="pill blue">Unexpected Capacity</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-28</td><td></td><td>1</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51687" target="_blank">TRI-51687</a> — Restore the cones for lap review gaze</td>
+              <td>Ashish Mangukiya</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-28</td><td></td><td>3</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51686" target="_blank">TRI-51686</a> — Treat generated 2D objects as decals.  Use the normal of the s</td>
+              <td>Jason Johnson</td><td><span class="pill amber">Stakeholder Urgent</span></td><td>In Review</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-28</td><td></td><td>1</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51681" target="_blank">TRI-51681</a> — Create endpoint for fetching session details</td>
+              <td>Arijit Saha</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td rowspan="6"><strong>Day 8 ⚠</strong></td>
+              <td>04-29</td><td>6</td><td>7</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51765" target="_blank">TRI-51765</a> — Address Design QA and make all the changes suggested</td>
+              <td>Nadimpalli Varma</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-29</td><td></td><td>2</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51762" target="_blank">TRI-51762</a> — [NAVSIM v2] Research on the existence of driving command as in</td>
+              <td>Pooja Kabra</td><td><span class="pill green">Bug Discovery</span></td><td>In Progress</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-29</td><td></td><td>1</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51733" target="_blank">TRI-51733</a> — Undo/Redo in combination with edge deletion not fully function</td>
+              <td>Michael Puzon</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-29</td><td></td><td>1</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51732" target="_blank">TRI-51732</a> — Add hover icon on node to display mechanism popup and popup fu</td>
+              <td>Nadimpalli Varma</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-29</td><td></td><td>1</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51714" target="_blank">TRI-51714</a> — Remove functionality - Display info for user such as [ Double </td>
+              <td>Nadimpalli Varma</td><td><span class="pill gray">Untagged</span></td><td>Done</td>
+            </tr><tr style="background:#fff8f0;">
+              <td>04-29</td><td></td><td>1</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51710" target="_blank">TRI-51710</a> — Handle Rotation/Scale of 2D objects.</td>
+              <td>Jason Johnson</td><td><span class="pill amber">Stakeholder Urgent</span></td><td>In Review</td>
+            </tr><tr>
+              <td rowspan="2">Day 9</td>
+              <td>04-30</td><td>2</td><td>3</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51775" target="_blank">TRI-51775</a> — When VPN is turned off, api returns static html that is cached</td>
+              <td>Chris Fajardo</td><td><span class="pill green">Bug Discovery</span></td><td>Done</td>
+            </tr><tr>
+              <td>04-30</td><td></td><td>2</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51766" target="_blank">TRI-51766</a> — Set up Batch SageMaker training queues</td>
+              <td>Sem Onyalo</td><td><span class="pill amber">Mis-Planning</span></td><td>Done</td>
+            </tr><tr>
+              <td rowspan="2">Day 12</td>
+              <td>05-03</td><td>2</td><td>2</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51779" target="_blank">TRI-51779</a> — Proposal docs for LLM response benchmarking</td>
+              <td>Ayush Nema</td><td><span class="pill gray">Untagged</span></td><td>In Progress</td>
+            </tr><tr>
+              <td>05-03</td><td></td><td>1</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51778" target="_blank">TRI-51778</a> — Proposal doc for performing app security tests</td>
+              <td>Ayush Nema</td><td><span class="pill gray">Untagged</span></td><td>In Progress</td>
+            </tr><tr>
+              <td rowspan="1">Day 13</td>
+              <td>05-04</td><td>1</td><td>3</td>
+              <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51813" target="_blank">TRI-51813</a> — Switch atlassian-mcp gateway to DCR-based CustomOauth2 credent</td>
+              <td>Devang Motwani</td><td><span class="pill green">Bug Discovery</span></td><td>Open</td>
+            </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Contamination Tagging -->
+  <div class="gridline"></div>
+  <h2>Contamination Tagging Coverage</h2>
+  <div class="card">
+    <h3>True Mid-Sprint Injections — 9 of 23 tagged (39.1%) <span class="pill red">Process Gap</span></h3>
+    <p class="note">Target: ≥80% tagged within 24h of injection. Coverage well below threshold makes it impossible to classify reactive vs. external vs. internal causes on the volatility dashboard.</p>
+    <div class="tag-gap">
+      <strong>⚠ 14 untagged true injections — team should backfill:</strong>
+      TRI-51779, TRI-51778, TRI-51765, TRI-51733, TRI-51732, TRI-51714, TRI-51687, TRI-51681, TRI-51658, TRI-51656, TRI-51648, TRI-51646, TRI-51627, TRI-51624
+    </div>
+    <table style="margin-top:12px;">
+      <thead><tr>
+        <th>Source</th><th class="num-right">Count</th><th class="num-right">% of tagged</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Bug Discovery</td><td class="num-right">5</td><td class="num-right">50.0%</td></tr>
+<tr><td>Stakeholder Urgent</td><td class="num-right">3</td><td class="num-right">30.0%</td></tr>
+<tr><td>Mis-Planning</td><td class="num-right">1</td><td class="num-right">10.0%</td></tr>
+<tr><td>Unexpected Capacity</td><td class="num-right">1</td><td class="num-right">10.0%</td></tr>
+<tr><td class="muted">Untagged</td><td class="num-right muted">15</td><td class="num-right muted">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Volatility Dashboard Cross-Reference -->
+  <div class="gridline"></div>
+  <h2>Volatility Dashboard Cross-Reference</h2>
+  <div class="card">
+    <div class="note">Source: <a href="https://meganpeurachctr-ux.github.io/rse-volatility-dashboard/dashboard.html" target="_blank">RSE Volatility Dashboard</a> — last updated April 28, 2026 at 3:26 PM (8 days stale relative to today). Dashboard is on RSE+ scope (60 issues, includes TCIN); this snapshot is board-17 active sprint only (33 issues).</div>
+    <table>
+      <thead><tr>
+        <th>Signal</th><th>Dashboard Value</th><th>This Sprint So Far</th><th>Assessment</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>Priority Changed</td><td>37 of 60 (61.7%)</td><td>—</td>
+          <td><span class="pill red">High</span> Well above normal</td>
+        </tr>
+        <tr>
+          <td>Estimate Change Count</td><td>0</td><td>—</td><td><span class="pill green">Clean</span></td>
+        </tr>
+        <tr>
+          <td>Refinement Count</td><td>0</td><td>—</td><td><span class="pill gray">No data</span></td>
+        </tr>
+        <tr>
+          <td>True Mid-Sprint Injection %</td><td>—</td><td>69.7% items / 63.5% SP</td>
+          <td><span class="pill red">Critical</span> ~3× prior sprint</td>
+        </tr>
+        <tr>
+          <td>Contamination Tagging</td><td>—</td><td>39.1%</td>
+          <td><span class="pill red">Critical gap</span></td>
+        </tr>
+        <tr>
+          <td>Completion vs. Ideal Pace</td><td>—</td><td>63.6% vs 93.3% ideal</td>
+          <td><span class="pill amber">Behind</span> ~29.7 pts behind</td>
+        </tr>
+        <tr>
+          <td>Zombie Issues</td><td>0</td><td>—</td><td><span class="pill green">Clean</span></td>
+        </tr>
+        <tr>
+          <td>Monthly Churn Rate</td><td>0.0% (10 done, 0 churn)</td><td>—</td><td><span class="pill green">Clean</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Burndown / Velocity -->
+  <div class="gridline"></div>
+  <h2>Burndown</h2>
+  <div class="row">
+    <div class="card">
+      <h3>SP Burndown vs Ideal</h3>
+      <canvas id="burndownChart" height="160"></canvas>
+    </div>
+    <div class="card">
+      <h3>Items Done vs Ideal</h3>
+      <canvas id="velocityChart" height="160"></canvas>
+    </div>
+  </div>
+
+  <!-- Assignee Table -->
+  <div class="gridline"></div>
+  <h2>Assignee Breakdown</h2>
+  <div class="card">
+    <table>
+      <thead><tr>
+        <th>Assignee</th><th class="num-right">Items</th><th class="num-right">SP</th><th class="num-right">Done</th><th class="num-right">SP Done</th><th class="num-right">Open</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Andrew Patrikalakis</td><td class='num-right'>3</td><td class='num-right'>8</td><td class='num-right'>0</td><td class='num-right'>0</td><td class='num-right'>3</td></tr>
+<tr><td>Jason Johnson (Contractor)</td><td class='num-right'>4</td><td class='num-right'>7</td><td class='num-right'>2</td><td class='num-right'>3</td><td class='num-right'>2</td></tr>
+<tr><td>Devang Motwani</td><td class='num-right'>3</td><td class='num-right'>5</td><td class='num-right'>2</td><td class='num-right'>2</td><td class='num-right'>1</td></tr>
+<tr><td>Chris Fajardo</td><td class='num-right'>3</td><td class='num-right'>5</td><td class='num-right'>3</td><td class='num-right'>5</td><td class='num-right'>0</td></tr>
+<tr><td>Ashish Mangukiya (Contractor)</td><td class='num-right'>3</td><td class='num-right'>4</td><td class='num-right'>3</td><td class='num-right'>4</td><td class='num-right'>0</td></tr>
+<tr><td>Carla Bellido (Contractor)</td><td class='num-right'>2</td><td class='num-right'>4</td><td class='num-right'>0</td><td class='num-right'>0</td><td class='num-right'>2</td></tr>
+<tr><td>Nadimpalli Varma (Contractor)</td><td class='num-right'>3</td><td class='num-right'>3</td><td class='num-right'>3</td><td class='num-right'>3</td><td class='num-right'>0</td></tr>
+<tr><td>Michael Puzon</td><td class='num-right'>3</td><td class='num-right'>3</td><td class='num-right'>2</td><td class='num-right'>2</td><td class='num-right'>1</td></tr>
+<tr><td>Arijit Saha (Contractor)</td><td class='num-right'>2</td><td class='num-right'>3</td><td class='num-right'>2</td><td class='num-right'>3</td><td class='num-right'>0</td></tr>
+<tr><td>Ayush Nema (Contractor)</td><td class='num-right'>2</td><td class='num-right'>2</td><td class='num-right'>0</td><td class='num-right'>0</td><td class='num-right'>2</td></tr>
+<tr><td>Sem Onyalo (Contractor)</td><td class='num-right'>1</td><td class='num-right'>2</td><td class='num-right'>1</td><td class='num-right'>2</td><td class='num-right'>0</td></tr>
+<tr><td>Pooja Kabra (Contractor)</td><td class='num-right'>1</td><td class='num-right'>2</td><td class='num-right'>0</td><td class='num-right'>0</td><td class='num-right'>1</td></tr>
+<tr><td>Priyadharshan Pargunan (Contractor)</td><td class='num-right'>1</td><td class='num-right'>2</td><td class='num-right'>1</td><td class='num-right'>2</td><td class='num-right'>0</td></tr>
+<tr><td>Veera Raghavulu (Contractor)</td><td class='num-right'>1</td><td class='num-right'>1</td><td class='num-right'>1</td><td class='num-right'>1</td><td class='num-right'>0</td></tr>
+<tr><td>Hieu Nguyen</td><td class='num-right'>1</td><td class='num-right'>1</td><td class='num-right'>1</td><td class='num-right'>1</td><td class='num-right'>0</td></tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- vs Prior Sprint -->
+  <div class="gridline"></div>
+  <h2>vs. Prior Sprint (RSE 26Q2 S1 — Sprint 6801 Final)</h2>
+  <div class="card">
+    <table>
+      <thead><tr>
+        <th>Metric</th><th>S1 Final</th><th>S2 Day 14 (so far)</th><th>Trend</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Total Items / SP</td><td>138 / 214.5</td><td>33 / 52</td><td class="muted">S2 closing tomorrow</td></tr>
+        <tr><td>Items Done %</td><td>89%</td><td>63.6%</td><td><span class="pill amber">Behind ideal pace</span></td></tr>
+        <tr><td>SP Done %</td><td>91%</td><td>53.8%</td><td><span class="pill amber">Behind ideal pace</span></td></tr>
+        <tr><td>True Mid-Sprint Injection % (items)</td><td>21%</td><td>69.7%</td><td><span class="pill red">~3× higher ↑</span></td></tr>
+        <tr><td>True Mid-Sprint Injection % (SP)</td><td>16%</td><td>63.5%</td><td><span class="pill red">~4× higher ↑</span></td></tr>
+        <tr><td>Worst single-day injection spike</td><td>10 items (Apr 14, Day 7)</td><td>6 items (Apr 29, Day 8)</td><td><span class="pill amber">Lower spike, but sustained 3-day burst</span></td></tr>
+        <tr><td>Contamination tagging coverage</td><td>—</td><td>39.1%</td><td><span class="pill red">Below 80% target</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Assessment -->
+  <div class="gridline"></div>
+  <h2>Assessment</h2>
+  <div class="assess">
+    Biggest risk: With 1 day remaining (Day 14 of 15), the sprint is closing at 63.6% items / 53.8% SP done — well below the prior sprint&#x27;s 89%/91% final and the 93.3% ideal pace. True mid-sprint injection rate hit 69.7% items / 63.5% SP, roughly 3× the prior sprint&#x27;s 21%/16% pace; the 16-item burst across Apr 27–29 (Days 6–8) is the dominant driver, exceeding the prior sprint&#x27;s worst day (10 items on a single day) when measured cumulatively. Contamination tagging at 39.1% on true injections is a critical process gap — 14 of 23 untagged injections prevent the dashboard from classifying causes. One positive signal: the contractor-heavy backlog (Ashish, Nadimpalli, Arijit, Devang, Chris) is closing efficiently — those teams are at 100% done on assigned work; the carryover risk is concentrated in Andrew Patrikalakis (3 items / 8 SP, 0 done) and a small number of in-flight tickets. Recommend freezing non-critical injections through sprint close and backfilling contamination tags before retro.
+  </div>
+
+  <div class="footer">Frozen snapshot · May 5, 2026 &nbsp;·&nbsp; Sprint RSE 26Q2 S2 4/22-5/6 &nbsp;·&nbsp; Live artifact: <a href="https://meganpeurachctr-ux.github.io/rse-volatility-dashboard/dashboard.html" target="_blank">RSE Volatility Dashboard</a></div>
+</div>
+
+<script>
+const SNAPSHOT = {
+  scope: {
+    pre: 8,
+    d1: 2,
+    mid: 23
+  },
+  daily: {
+    labels: ["04-22", "04-23", "04-24", "04-25", "04-26", "04-27", "04-28", "04-29", "04-30", "05-01", "05-02", "05-03", "05-04", "05-05"],
+    items: [1, 2, 0, 0, 1, 5, 5, 6, 2, 0, 0, 2, 1, 0],
+    sp: [2, 3, 0, 0, 2, 7, 7, 7, 3, 0, 0, 2, 3, 0]
+  },
+  totals: {
+    total: 33,
+    totalSp: 52.0,
+    done: 21,
+    doneSp: 28.0,
+    dayN: 14,
+    totalDays: 15
+  }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Scope Composition Donut
+  const scopeCtx = document.getElementById('scopeChart');
+  if (scopeCtx) {
+    new Chart(scopeCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Pre-sprint (' + SNAPSHOT.scope.pre + ')', 'Day-1 dump (' + SNAPSHOT.scope.d1 + ')', 'True injections (' + SNAPSHOT.scope.mid + ')'],
+        datasets: [{
+          data: [SNAPSHOT.scope.pre, SNAPSHOT.scope.d1, SNAPSHOT.scope.mid],
+          backgroundColor: ['#4caf7d', '#c9b375', '#e07070'],
+          borderWidth: 2,
+          borderColor: '#fff'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 10 } } },
+        cutout: '60%'
+      }
+    });
+  }
+
+  // Daily Injection Bar Chart
+  const injCtx = document.getElementById('injectionChart');
+  if (injCtx) {
+    const items = SNAPSHOT.daily.items;
+    new Chart(injCtx, {
+      type: 'bar',
+      data: {
+        labels: SNAPSHOT.daily.labels,
+        datasets: [
+          {
+            label: 'Items Added',
+            data: items,
+            backgroundColor: items.map((v,i) => v >= 5 ? '#e07070' : (i === 0 ? '#c9b375' : (v > 0 ? '#7bb8f5' : '#ddd'))),
+            borderRadius: 3,
+            yAxisID: 'y'
+          },
+          {
+            label: 'SP Added',
+            data: SNAPSHOT.daily.sp,
+            type: 'line',
+            borderColor: '#8a5a12',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            pointRadius: 3,
+            tension: 0.3,
+            yAxisID: 'y2'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } }, tooltip: { mode: 'index' } },
+        scales: {
+          y: { title: { display: true, text: 'Items', font: { size: 11 } }, beginAtZero: true, ticks: { stepSize: 1 } },
+          y2: { position: 'right', title: { display: true, text: 'SP', font: { size: 11 } }, beginAtZero: true, grid: { drawOnChartArea: false } }
+        }
+      }
+    });
+  }
+
+  // Burndown chart - SP remaining vs ideal
+  const burnCtx = document.getElementById('burndownChart');
+  if (burnCtx) {
+    const dayN = SNAPSHOT.totals.dayN;
+    const totalDays = SNAPSHOT.totals.totalDays;
+    const totalSp = SNAPSHOT.totals.totalSp;
+    const doneSp = SNAPSHOT.totals.doneSp;
+    const labels = [];
+    const ideal = [];
+    for (let i=0; i<=totalDays; i++) {
+      labels.push('D'+i);
+      ideal.push(totalSp * (1 - i/totalDays));
+    }
+    // actual: linearly distribute done over completed days (simplification)
+    const actual = [];
+    for (let i=0; i<=dayN; i++) {
+      actual.push(totalSp - (doneSp * i/dayN));
+    }
+    new Chart(burnCtx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          { label: 'Ideal', data: ideal, borderColor: '#8a5a12', borderDash: [4,4], pointRadius: 0, borderWidth: 1.5, tension: 0 },
+          { label: 'Actual SP Remaining', data: actual, borderColor: '#a63434', backgroundColor: 'rgba(166,52,52,0.08)', fill: true, pointRadius: 3, borderWidth: 2, tension: 0.2 }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } },
+        scales: { y: { beginAtZero: true, title: { display: true, text: 'SP Remaining' } } }
+      }
+    });
+  }
+
+  // Velocity / items done line
+  const velCtx = document.getElementById('velocityChart');
+  if (velCtx) {
+    const dayN = SNAPSHOT.totals.dayN;
+    const totalDays = SNAPSHOT.totals.totalDays;
+    const total = SNAPSHOT.totals.total;
+    const done = SNAPSHOT.totals.done;
+    const labels = [];
+    const ideal = [];
+    for (let i=0; i<=totalDays; i++) {
+      labels.push('D'+i);
+      ideal.push(total * (i/totalDays));
+    }
+    const actual = [];
+    for (let i=0; i<=dayN; i++) {
+      actual.push(done * (i/dayN));
+    }
+    new Chart(velCtx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          { label: 'Ideal Items Done', data: ideal, borderColor: '#8a5a12', borderDash: [4,4], pointRadius: 0, borderWidth: 1.5, tension: 0 },
+          { label: 'Actual Items Done', data: actual, borderColor: '#1e6b36', backgroundColor: 'rgba(30,107,54,0.08)', fill: true, pointRadius: 3, borderWidth: 2, tension: 0.2 }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } },
+        scales: { y: { beginAtZero: true, title: { display: true, text: 'Items Done (cumulative)' } } }
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>
