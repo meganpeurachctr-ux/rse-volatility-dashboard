@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RSE 26Q2 S3 — Day 14 of 14 — 2026-05-19</title>
+<title>RSE 26Q2 S4 — Day 2 of 14 — 2026-05-21</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js"></script>
 <style>
   :root { color-scheme: light; }
@@ -40,8 +40,6 @@
   .verdict .val { font-size: 15px; font-weight: 600; }
   .status-bar { display: flex; height: 10px; border-radius: 6px; overflow: hidden; background: #f0f0ec; margin: 8px 0 4px; }
   .status-bar span { display: block; height: 100%; }
-  .seg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11.5px; color: #4a4a46; margin-top: 4px; }
-  .seg-legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
   canvas { max-width: 100%; }
   .gridline { height: 1px; background: #ececea; margin: 22px 0 0; }
   a { color: #1e4f9d; text-decoration: none; }
@@ -50,54 +48,49 @@
   .num-right { text-align: right; font-variant-numeric: tabular-nums; }
   .tag-gap { background: #fdeaea; border: 1px solid #f5c6c6; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #7a2020; margin-top: 8px; }
   .tag-gap strong { display: block; margin-bottom: 2px; }
-  .untagged-row { background: #fff8f8; }
-  .burst-row { background: #fff8e8; font-weight: 500; }
+  .trend-warn { background: #fff4e0; border: 1px solid #f5d98a; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #7a4a00; margin-top: 8px; }
   @media (max-width: 820px){ .kpis { grid-template-columns: repeat(3, 1fr); } .row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <h1>TCIN / RSE Sprint Health <span class="pill red">High risk — completion shortfall</span></h1>
-  <div class="sub">RSE 26Q2 S3 5/6-5/20 &nbsp;·&nbsp; Day 14 of 14 &nbsp;·&nbsp; Snapshot: 2026-05-19 &nbsp;·&nbsp; <a href="https://toyotaresearchinstitute.atlassian.net/jira/software/c/projects/TRI/boards/17" target="_blank">Board 17</a></div>
+  <h1>TCIN / RSE Sprint Health <span class="pill green">Healthy — Day 2, clean start</span></h1>
+  <div class="sub">RSE 26Q2 S4 5/20-6/3 &nbsp;·&nbsp; Day 2 of 14 &nbsp;·&nbsp; Snapshot: 2026-05-21 &nbsp;·&nbsp; <a href="https://toyotaresearchinstitute.atlassian.net/jira/software/c/projects/TRI/boards/17" target="_blank">Board 17</a></div>
 
-  <!-- KPI TILES -->
   <div class="kpis">
-    <div class="kpi"><div class="label">Total Issues</div><div class="val">123</div><div class="sub2">205.5 SP total</div></div>
-    <div class="kpi"><div class="label">Done</div><div class="val red">81</div><div class="sub2">65.9% &middot; 128.5 SP (62.5%)</div></div>
-    <div class="kpi"><div class="label">Days Remaining</div><div class="val red">0</div><div class="sub2">Sprint closes 2026-05-20</div></div>
-    <div class="kpi"><div class="label">Mid-Sprint Injected</div><div class="val amber">27</div><div class="sub2">22.0% items &middot; 15.3% SP</div></div>
-    <div class="kpi"><div class="label">Tagging Coverage</div><div class="val red">25%</div><div class="sub2">8 of 32 post-start items tagged</div></div>
-    <div class="kpi"><div class="label">Ideal Pace</div><div class="val red">100%</div><div class="sub2">at day 14/14 &mdash; actual 65.9%</div></div>
+    <div class="kpi"><div class="label">Total Issues</div><div class="val">89</div><div class="sub2">157.0 SP total</div></div>
+    <div class="kpi"><div class="label">Done</div><div class="val amber">5</div><div class="sub2">5.6% &middot; 5.0 SP (3.2%)</div></div>
+    <div class="kpi"><div class="label">Days Remaining</div><div class="val blue">12</div><div class="sub2">Sprint closes 2026-06-03</div></div>
+    <div class="kpi"><div class="label">Mid-Sprint Injected</div><div class="val green">0</div><div class="sub2">0.0% — no injections yet</div></div>
+    <div class="kpi"><div class="label">Tagging Coverage</div><div class="val amber">33%</div><div class="sub2">1 of 3 Day-1 items tagged</div></div>
+    <div class="kpi"><div class="label">Ideal Pace</div><div class="val amber">14.3%</div><div class="sub2">at Day 2/14 &mdash; actual 5.6%</div></div>
   </div>
 
-  <!-- COMPLETION PACE CARD -->
   <div class="card" style="margin-top:10px;">
-    <h3>Completion vs. Ideal Pace &nbsp;<span class="pill red">Behind by ~34 pts on close day</span></h3>
-    <div class="note">Day 14 of 14 — ideal pace: 100% done. Actual: 65.9% items / 62.5% SP. Sprint closes 2026-05-20. 42 items remain open.</div>
+    <h3>Completion vs. Ideal Pace &nbsp;<span class="pill amber">Behind by ~9 pts — early-sprint lag normal</span></h3>
+    <div class="note">Day 2 of 14 — ideal pace: 14.3% done. Actual: 5.6% items / 3.2% SP. Sprint closes 2026-06-03. 84 items remain open.</div>
     <div style="margin-bottom:6px;">
       <div style="font-size:11px;color:#6b6b66;text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px;">Items done vs. ideal</div>
       <div style="background:#f0f0ec;border-radius:6px;height:10px;position:relative;overflow:visible;">
-        <div style="background:#e05252;height:10px;width:65.9%;border-radius:6px 0 0 6px;"></div>
-        <div style="position:absolute;top:-2px;left:99%;width:2px;height:14px;background:#8a5a12;border-radius:1px;" title="Ideal 100%"></div>
+        <div style="background:#d97c1a;height:10px;width:5.6%;border-radius:6px 0 0 6px;"></div>
+        <div style="position:absolute;top:-2px;left:14.3%;width:2px;height:14px;background:#8a5a12;border-radius:1px;" title="Ideal 14.3%"></div>
       </div>
       <div style="display:flex;justify-content:space-between;font-size:11px;color:#8a8a85;margin-top:3px;">
-        <span>0%</span><span style="color:#8a5a12;">&#9650; Ideal 100%</span><span>100%</span>
-      </div>
-    </div>
-    <div style="margin-top:8px;">
-      <div style="font-size:11px;color:#6b6b66;text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px;">SP done vs. ideal</div>
-      <div style="background:#f0f0ec;border-radius:6px;height:10px;position:relative;overflow:visible;">
-        <div style="background:#e05252;height:10px;width:62.5%;border-radius:6px 0 0 6px;"></div>
-        <div style="position:absolute;top:-2px;left:99%;width:2px;height:14px;background:#8a5a12;border-radius:1px;" title="Ideal 100%"></div>
+        <span>0%</span><span style="color:#8a5a12;">&#9650; Ideal 14.3%</span><span>100%</span>
       </div>
     </div>
   </div>
 
   <div class="gridline"></div>
   <h2>Sprint Volatility</h2>
-  <div class="verdict"><span class="label">Verdict</span><span class="val" style="color:#a63434;">&#9888; Moderately volatile — critical completion shortfall</span></div>
-  <div class="assess">Day 14 of 14. <strong>91 of 123 items (74.0%)</strong> are pre-sprint, 5 are Day-1 dump (within 24h of sprint start), and 27 are true mid-sprint injections at <strong>22.0% items / 15.3% SP</strong> — on par with S6801's final benchmark of 21%/16%. Injection rate is not the problem. <strong>Completion pace is critical:</strong> only 65.9% of items done on the final work day (ideal: 100%), with 42 items open as the sprint closes tomorrow (2026-05-20). Contamination tagging at <strong>25%</strong> (8/32) is a persistent process gap — 19 true injections enter the close uncategorized. Largest single-day burst: Day 9 (2026-05-14) with 9 items / 11.0 SP — paralleling S6801's Day-7 burst of 10 items. No new injections on 2026-05-19 (close day).</div>
+  <div class="verdict"><span class="label">Verdict</span><span class="val" style="color:#1e6b36;">&#10003; Healthy — no mid-sprint injections at Day 2</span></div>
+  <div class="assess">Day 2 of 14 (2026-05-21). RSE 26Q2 S4 started 2026-05-20 with <strong>86 of 89 items (96.6%)</strong> pre-planned. 3 Day-1 planning dump items were added within the first 24 hours (3.4% items / 2.5% SP). No true mid-sprint injections have occurred as of 2026-05-21. Completion at 5 items (5.6%) is below the 14.3% Day-2 ideal — typical for early sprint days. The prior sprint S3 closed with a 25.4% injection rate and 28.6% tagging coverage; tagging is the watch metric entering S4.</div>
+
+  <div class="trend-warn">
+    <strong>&#9888; Trend watch entering S4: contamination tagging declining</strong>
+    S1 closed at 43%, S2 at 43%, S3 at 29%. Tagging on Day-1 dump is already 1/3 (33%). If the pattern continues, cross-sprint root-cause analysis becomes unreliable. Encourage tagging any mid-sprint injection as it enters the board.
+  </div>
 
   <div class="gridline"></div>
   <h2>Scope Composition</h2>
@@ -106,12 +99,12 @@
       <h3>By Category</h3>
       <table><thead><tr><th>Category</th><th class="num-right">Items</th><th class="num-right">SP</th><th class="num-right">% Items</th><th class="num-right">% SP</th></tr></thead>
       <tbody>
-        <tr><td>Pre-sprint (before 2026-05-06 20:45 UTC)</td><td class="num-right">91</td><td class="num-right">165.0</td><td class="num-right">74.0%</td><td class="num-right">80.3%</td></tr>
-        <tr><td>Day-1 planning dump (first 24h after start)</td><td class="num-right">5</td><td class="num-right">9.0</td><td class="num-right">4.1%</td><td class="num-right">4.4%</td></tr>
-        <tr style="color:#8a5a12;font-weight:500;"><td>True mid-sprint injections (Days 2+)</td><td class="num-right">27</td><td class="num-right">31.5</td><td class="num-right">22.0%</td><td class="num-right">15.3%</td></tr>
-        <tr style="font-weight:600;border-top:2px solid #ececea;"><td>Current sprint total</td><td class="num-right">123</td><td class="num-right">205.5</td><td class="num-right">100%</td><td class="num-right">100%</td></tr>
+        <tr><td>Pre-sprint (before 2026-05-20 20:49 UTC)</td><td class="num-right">86</td><td class="num-right">153.0</td><td class="num-right">96.6%</td><td class="num-right">97.5%</td></tr>
+        <tr><td>Day-1 planning dump (first 24h after start)</td><td class="num-right">3</td><td class="num-right">4.0</td><td class="num-right">3.4%</td><td class="num-right">2.5%</td></tr>
+        <tr style="color:#1e6b36;"><td>True mid-sprint injections (Days 2+)</td><td class="num-right">0</td><td class="num-right">0.0</td><td class="num-right">0.0%</td><td class="num-right">0.0%</td></tr>
+        <tr style="font-weight:600;border-top:2px solid #ececea;"><td>Current sprint total</td><td class="num-right">89</td><td class="num-right">157.0</td><td class="num-right">100%</td><td class="num-right">100%</td></tr>
       </tbody></table>
-      <div class="note" style="margin-top:8px;">S6801 final: 29 true injections = 21% items / 16% SP. S3 at Day 14: 27 = 22.0% / 15.3% — nearly identical injection rate to prior sprint final.</div>
+      <div class="note" style="margin-top:8px;">S3 final: 30 true injections = 25.4% items / 19.9% SP. S4 at Day 2: 0 — too early to assess trend.</div>
     </div>
     <div class="card">
       <h3>Scope Composition (Items)</h3>
@@ -119,118 +112,47 @@
     </div>
   </div>
 
-  <!-- STATUS BAR -->
   <div class="card" style="margin-top:12px;">
-    <h3>Status Breakdown — 123 items</h3>
-    <div class="status-bar">
-      <span style="background:#4caf7d;width:65.9%;" title="Done: 81"></span>
-      <span style="background:#5b9bd5;width:10.6%;" title="In Review: 13"></span>
-      <span style="background:#f5a623;width:13.0%;" title="In Progress: 16"></span>
-      <span style="background:#c8c8c4;width:10.6%;" title="Open/To Do: 13"></span>
-    </div>
-    <div class="seg-legend">
-      <span><span class="dot" style="background:#4caf7d;"></span>Done: 81 (65.9%)</span>
-      <span><span class="dot" style="background:#5b9bd5;"></span>In Review: 13 (10.6%)</span>
-      <span><span class="dot" style="background:#f5a623;"></span>In Progress: 16 (13.0%)</span>
-      <span><span class="dot" style="background:#c8c8c4;"></span>Open/To Do: 13 (10.6%)</span>
-    </div>
-  </div>
-
-  <div class="gridline"></div>
-  <h2>Daily Injection Timeline</h2>
-  <div class="card">
-    <h3>Injections since sprint start (Day-1 dump + true injections)</h3>
+    <h3>Day-1 Planning Dump (3 items added within 24h of sprint start)</h3>
     <table>
-      <thead><tr><th>Sprint Day</th><th>Date</th><th class="num-right">+Items</th><th class="num-right">+SP</th><th>Issues &amp; Contamination Source</th></tr></thead>
+      <thead><tr><th>Day</th><th>Date</th><th class="num-right">+Items</th><th class="num-right">+SP</th><th>Issues &amp; Contamination Source</th></tr></thead>
       <tbody>
-        <tr><td>Day 1</td><td>2026-05-06</td><td class="num-right">5</td><td class="num-right">9.0</td><td>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51923">TRI-51923</a> Varma &middot; <span class="muted">UNTAGGED</span><br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51933">TRI-51933</a> Nema &middot; <span class="muted">UNTAGGED</span> — Setup base repo for API-Apex<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51934">TRI-51934</a> Nema &middot; <span class="muted">UNTAGGED</span> — Terraform Cognito related lambdas<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51935">TRI-51935</a> Nema &middot; <span class="muted">UNTAGGED</span> — Create authorizer via API Gateway<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51936">TRI-51936</a> Raghavulu &middot; <span class="muted">UNTAGGED</span> — Exploring adding authoriser to cognito
-        </td></tr>
-        <tr><td>Day 2</td><td>2026-05-07</td><td class="num-right">4</td><td class="num-right">2.0</td><td>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51982">TRI-51982</a> Kabra &middot; <span class="muted">UNTAGGED</span> — Audit datasets and define unified label schema<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51983">TRI-51983</a> Unassigned &middot; <span class="muted">UNTAGGED</span> — Build unified training dataset<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51984">TRI-51984</a> Unassigned &middot; <span class="muted">UNTAGGED</span> — Train v1 unified detector<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51999">TRI-51999</a> Mangukiya &middot; <span class="muted">UNTAGGED</span> — Delivery dialog scroll
-        </td></tr>
-        <tr><td>Day 3</td><td>2026-05-08</td><td class="num-right">2</td><td class="num-right">2.0</td><td>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52000">TRI-52000</a> Khandelwal &middot; <span class="muted">UNTAGGED</span> — Load testing harness (Locust)<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52001">TRI-52001</a> Khandelwal &middot; <span class="muted">UNTAGGED</span> — Evaluate OpenObserve vs grafana/otel-lgtm
-        </td></tr>
-        <tr><td>Day 4</td><td>2026-05-09</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">—</span></td></tr>
-        <tr><td>Day 5</td><td>2026-05-10</td><td class="num-right">2</td><td class="num-right">3.0</td><td>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52007">TRI-52007</a> Saha &middot; <span class="muted">UNTAGGED</span> — Add timestamp in downloaded CSV<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52008">TRI-52008</a> Pargunan &middot; <span class="muted">UNTAGGED</span> — Analysis script failure + test scripts
-        </td></tr>
-        <tr><td>Day 6</td><td>2026-05-11</td><td class="num-right">3</td><td class="num-right">5.0</td><td>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52009">TRI-52009</a> Nema &middot; <span class="muted">UNTAGGED</span> — Terraform dev/prod env<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52010">TRI-52010</a> Khandelwal &middot; <span class="muted">UNTAGGED</span> — Refactor web_synthetic_monitor<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52101">TRI-52101</a> Puzon &middot; <strong>Bug Discovery</strong> — Incorrect Gas Constant
-        </td></tr>
-        <tr><td>Day 7</td><td>2026-05-12</td><td class="num-right">4</td><td class="num-right">4.0</td><td>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52103">TRI-52103</a> Raghavulu &middot; <span class="muted">UNTAGGED</span> — Colour Name not editable once saved<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52104">TRI-52104</a> Raghavulu &middot; <span class="muted">UNTAGGED</span> — download_records replace results_csv<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52105">TRI-52105</a> Saha &middot; <span class="muted">UNTAGGED</span> — Disable swagger docs for prod<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52123">TRI-52123</a> Raghavulu &middot; <span class="muted">UNTAGGED</span> — Add Colour name validation
-        </td></tr>
-        <tr><td>Day 8</td><td>2026-05-13</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">—</span></td></tr>
-        <tr class="burst-row"><td>&#9650; Day 9</td><td>2026-05-14</td><td class="num-right">9</td><td class="num-right">11.0</td><td>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52211">TRI-52211</a> Motwani &middot; <strong>Bug Discovery</strong> — AgentCore Gateway auth fix<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52212">TRI-52212</a> Mangukiya &middot; <span class="muted">UNTAGGED</span> — Louder notification audio<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52261">TRI-52261</a> Shepherd &middot; <strong>Unexpected Capacity</strong> — Edge+node multi-select bug<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52262">TRI-52262</a> Shepherd &middot; <strong>Unexpected Capacity</strong> — Multiselect edge<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52263">TRI-52263</a> Shepherd &middot; <strong>Unexpected Capacity</strong> — Notification banners stay in view<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52264">TRI-52264</a> Fajardo &middot; <strong>Mis-Planning</strong> — Deploy restructured app<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52265">TRI-52265</a> Fajardo &middot; <strong>Mis-Planning</strong> — File watcher uploads recorded data<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52266">TRI-52266</a> Saha &middot; <span class="muted">UNTAGGED</span> — Format response data file<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52283">TRI-52283</a> Varma &middot; <span class="muted">UNTAGGED</span> — JSON import shows ID not name
-        </td></tr>
-        <tr><td>Day 10</td><td>2026-05-15</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">—</span></td></tr>
-        <tr><td>Day 11</td><td>2026-05-16</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">—</span></td></tr>
-        <tr><td>Day 12</td><td>2026-05-17</td><td class="num-right">1</td><td class="num-right">2.0</td><td>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52284">TRI-52284</a> Mangukiya &middot; <span class="muted">UNTAGGED</span> — Message timeout delay and modal close issue
-        </td></tr>
-        <tr><td>Day 13</td><td>2026-05-18</td><td class="num-right">2</td><td class="num-right">2.5</td><td>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52285">TRI-52285</a> Pargunan &middot; <span class="muted">UNTAGGED</span> — Analysis script failure (about us page)<br>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52329">TRI-52329</a> Motwani &middot; <strong>Bug Discovery</strong> — AgentCore Gateway JWT 403 on Env
-        </td></tr>
-        <tr style="background:#f0f7f0;"><td>Day 14</td><td>2026-05-19</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">— No new injections on close day</span></td></tr>
+        <tr>
+          <td>Day 1</td><td>2026-05-20</td><td class="num-right">3</td><td class="num-right">4.0</td>
+          <td>
+            <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52519">TRI-52519</a> Viewmaxr: Evaluate Unity Cloud Logging &mdash; <em>Stakeholder Urgent</em><br>
+            <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52522">TRI-52522</a> Whyzen - Analysis login E2E failure &mdash; <span class="muted">untagged</span><br>
+            <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52521">TRI-52521</a> Explore ClaudeDesign -&gt; Code capabilities &mdash; <span class="muted">untagged</span>
+          </td>
+        </tr>
+        <tr><td colspan="5" style="color:#6b6b66;font-size:11px;padding:8px;">No mid-sprint injections on 2026-05-21.</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- CONTAMINATION TAGGING -->
   <div class="card" style="margin-top:12px;">
-    <h3>Contamination Tagging Coverage</h3>
-    <div class="tag-gap">
-      <strong>&#9888; Critical gap: 8 of 32 post-start items tagged = 25% (target: &ge;80%)</strong>
-      19 true mid-sprint injections have no Contamination Source recorded. These are backfill candidates before sprint closes 2026-05-20.
-    </div>
-    <table style="margin-top:10px;">
-      <thead><tr><th>Key</th><th>Date Added</th><th>Assignee</th><th>Summary</th><th>Status</th></tr></thead>
+    <h3>Contamination Tagging &nbsp;<span class="pill amber">1/3 tagged = 33%</span></h3>
+    <div class="note">No mid-sprint injections yet. Day-1 dump: 1 of 3 items tagged (TRI-52519 Stakeholder Urgent). TRI-52522 and TRI-52521 are untagged. Backfill candidates.</div>
+    <table>
+      <thead><tr><th>Key</th><th>Date</th><th>Summary</th><th>Tag needed</th></tr></thead>
       <tbody>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51982">TRI-51982</a></td><td>2026-05-07</td><td>Pooja Kabra</td><td>Audit datasets and define unified label schema</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51983">TRI-51983</a></td><td>2026-05-07</td><td>Unassigned</td><td>Build unified training dataset</td><td>Open</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51984">TRI-51984</a></td><td>2026-05-07</td><td>Unassigned</td><td>Train v1 unified detector</td><td>Open</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-51999">TRI-51999</a></td><td>2026-05-07</td><td>Ashish Mangukiya</td><td>Delivery dialog scroll with "type x N" format</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52000">TRI-52000</a></td><td>2026-05-08</td><td>Sarthak Khandelwal</td><td>Load testing harness — Locust variants</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52001">TRI-52001</a></td><td>2026-05-08</td><td>Sarthak Khandelwal</td><td>Evaluate OpenObserve vs grafana/otel-lgtm</td><td>In Progress</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52007">TRI-52007</a></td><td>2026-05-10</td><td>Arijit Saha</td><td>Add timestamp in the downloaded CSV</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52008">TRI-52008</a></td><td>2026-05-10</td><td>Priyadharshan Pargunan</td><td>Analysis script failure and update test scripts</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52009">TRI-52009</a></td><td>2026-05-11</td><td>Ayush Nema</td><td>Create dev and prod env in Terraform scripts</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52010">TRI-52010</a></td><td>2026-05-11</td><td>Sarthak Khandelwal</td><td>Refactor web_synthetic_monitor repo</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52103">TRI-52103</a></td><td>2026-05-12</td><td>Veera Raghavulu</td><td>Colour Name should not be editable once saved</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52104">TRI-52104</a></td><td>2026-05-12</td><td>Veera Raghavulu</td><td>download_records to replace results_csv</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52105">TRI-52105</a></td><td>2026-05-12</td><td>Arijit Saha</td><td>Disable swagger docs for prod</td><td>Open</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52123">TRI-52123</a></td><td>2026-05-12</td><td>Veera Raghavulu</td><td>Add Colour name validation</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52212">TRI-52212</a></td><td>2026-05-14</td><td>Ashish Mangukiya</td><td>Louder notification audio</td><td>In Review</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52266">TRI-52266</a></td><td>2026-05-14</td><td>Arijit Saha</td><td>Format response data file of results_csv</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52283">TRI-52283</a></td><td>2026-05-14</td><td>Nadimpalli Varma</td><td>JSON import shows mechanism ID instead of name</td><td>Done</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52284">TRI-52284</a></td><td>2026-05-17</td><td>Ashish Mangukiya</td><td>Message timeout delay and end delivery modal close</td><td>In Review</td></tr>
-        <tr class="untagged-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52285">TRI-52285</a></td><td>2026-05-18</td><td>Priyadharshan Pargunan</td><td>Analysis script failure (new link in about us page)</td><td>Done</td></tr>
+        <tr style="background:#fff8f8;"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52522">TRI-52522</a></td><td>2026-05-20</td><td>Whyzen - Analysis login E2E failure</td><td><span class="muted">untagged</span></td></tr>
+        <tr style="background:#fff8f8;"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52521">TRI-52521</a></td><td>2026-05-20</td><td>Explore ClaudeDesign -&gt; Code capabilities</td><td><span class="muted">untagged</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gridline"></div>
+  <h2>Sprint Trend Context (S1 → S3 → S4)</h2>
+  <div class="card">
+    <h3>Injection Rate &amp; Tagging Trend</h3>
+    <table>
+      <thead><tr><th>Sprint</th><th>Closed</th><th class="num-right">Total Items</th><th class="num-right">Mid-Sprint %</th><th class="num-right">Tagging %</th><th class="num-right">Done %</th></tr></thead>
+      <tbody>
+        <tr><td>RSE 26Q2 S1</td><td>2026-04-22</td><td class="num-right">139</td><td class="num-right" style="color:#d97c1a;">20.9%</td><td class="num-right" style="color:#d97c1a;">43%</td><td class="num-right" style="color:#2e7d32;">99.3%</td></tr>
+        <tr><td>RSE 26Q2 S2</td><td>2026-05-06</td><td class="num-right">—</td><td class="num-right">—</td><td class="num-right" style="color:#d97c1a;">~43%</td><td class="num-right">—</td></tr>
+        <tr><td>RSE 26Q2 S3</td><td>2026-05-20</td><td class="num-right">118</td><td class="num-right" style="color:#a63434;">25.4%</td><td class="num-right" style="color:#a63434;">29%</td><td class="num-right" style="color:#d97c1a;">94.9%</td></tr>
+        <tr style="font-weight:600;"><td>RSE 26Q2 S4 (Day 2)</td><td>Active → 2026-06-03</td><td class="num-right">89</td><td class="num-right" style="color:#2e7d32;">0% so far</td><td class="num-right" style="color:#d97c1a;">33% Day-1</td><td class="num-right">5.6%</td></tr>
       </tbody>
     </table>
   </div>
@@ -239,76 +161,58 @@
   <h2>Volatility Dashboard Cross-Reference</h2>
   <div class="card">
     <table>
-      <thead><tr><th>Signal</th><th>Dashboard Reading</th><th>S3 Reading</th><th>Assessment</th></tr></thead>
+      <thead><tr><th>Signal</th><th>Dashboard Value</th><th>S4 Day 2 Status</th></tr></thead>
       <tbody>
-        <tr><td>Priority Changed</td><td>43 of 72 sprint issues (59.7%)</td><td>—</td><td>Prior-sprint metric, not current S3</td></tr>
-        <tr><td>Estimate Change Count</td><td>0 re-estimations</td><td>—</td><td>Clean</td></tr>
-        <tr><td>Sprint Contamination</td><td>0 carryover shown</td><td>27 true injections = 22%</td><td>Dashboard likely not refreshed to S3</td></tr>
-        <tr><td>Zombie Issues</td><td>0 shown</td><td>—</td><td>Dashboard tracking gap</td></tr>
-        <tr><td>Monthly Churn Rate</td><td>0.0% (0/31 churned)</td><td>—</td><td>Good — no wasted resolutions</td></tr>
-        <tr><td>Dashboard last updated</td><td>2026-05-15</td><td>—</td><td>4 days stale as of 2026-05-19</td></tr>
+        <tr><td>Priority changed</td><td>29 of 62 (46.8%)</td><td><span class="muted">From S3 close state — S4 too new</span></td></tr>
+        <tr><td>Estimate change count</td><td>0</td><td><span class="muted">S4 too new</span></td></tr>
+        <tr><td>Monthly churn rate</td><td>0.0% (2 resolved)</td><td><span class="muted">Early May data</span></td></tr>
+        <tr><td>Zombie issues</td><td>0</td><td style="color:#1e6b36;">&#10003; Clean</td></tr>
+        <tr><td>Refinement count</td><td>0</td><td><span class="muted">S4 too new</span></td></tr>
+        <tr><td>Dashboard updated</td><td>2026-05-20 19:35 UTC</td><td><span class="muted">Pre-S4-start; will refresh as sprint progresses</span></td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="gridline"></div>
-  <h2>Assignee Summary</h2>
+  <h2>By Assignee</h2>
   <div class="card">
     <table>
-      <thead><tr><th>Assignee</th><th class="num-right">Total</th><th class="num-right">Done</th><th class="num-right">SP</th><th class="num-right">Done %</th></tr></thead>
+      <thead><tr><th>Assignee</th><th class="num-right">Total</th><th class="num-right">Done</th><th class="num-right">SP</th><th class="num-right">Injected</th></tr></thead>
       <tbody>
-        <tr><td>Devang Motwani</td><td class="num-right">11</td><td class="num-right">10</td><td class="num-right">16</td><td class="num-right">90.9%</td></tr>
-        <tr><td>John Shepherd</td><td class="num-right">11</td><td class="num-right">7</td><td class="num-right">14</td><td class="num-right">63.6%</td></tr>
-        <tr><td>Michael Puzon</td><td class="num-right">9</td><td class="num-right">7</td><td class="num-right">10</td><td class="num-right">77.8%</td></tr>
-        <tr><td>Ayush Nema (Contractor)</td><td class="num-right">8</td><td class="num-right">7</td><td class="num-right">14</td><td class="num-right">87.5%</td></tr>
-        <tr><td>Chris Fajardo</td><td class="num-right">7</td><td class="num-right">5</td><td class="num-right">11</td><td class="num-right">71.4%</td></tr>
-        <tr><td>Sem Onyalo (Contractor)</td><td class="num-right">6</td><td class="num-right">4</td><td class="num-right">12</td><td class="num-right">66.7%</td></tr>
-        <tr><td>Ashish Mangukiya (Contractor)</td><td class="num-right">6</td><td class="num-right">4</td><td class="num-right">10</td><td class="num-right">66.7%</td></tr>
-        <tr><td>Arijit Saha (Contractor)</td><td class="num-right">6</td><td class="num-right">4</td><td class="num-right">10</td><td class="num-right">66.7%</td></tr>
-        <tr><td>Veera Raghavulu (Contractor)</td><td class="num-right">6</td><td class="num-right">4</td><td class="num-right">8</td><td class="num-right">66.7%</td></tr>
-        <tr><td>Priyadharshan Pargunan (Contractor)</td><td class="num-right">6</td><td class="num-right">5</td><td class="num-right">8</td><td class="num-right">83.3%</td></tr>
-        <tr><td>Jason Johnson (Contractor)</td><td class="num-right">6</td><td class="num-right">6</td><td class="num-right">14</td><td class="num-right">100%</td></tr>
-        <tr><td>Samit Pranav (Contractor)</td><td class="num-right">5</td><td class="num-right">2</td><td class="num-right">11</td><td class="num-right">40.0%</td></tr>
-        <tr><td>Krish Sharma (Contractor)</td><td class="num-right">5</td><td class="num-right">0</td><td class="num-right">16</td><td class="num-right" style="color:#a63434;">0%</td></tr>
-        <tr><td>Sarthak Khandelwal (Contractor)</td><td class="num-right">5</td><td class="num-right">3</td><td class="num-right">6</td><td class="num-right">60.0%</td></tr>
-        <tr><td>Nadimpalli Varma (Contractor)</td><td class="num-right">6</td><td class="num-right">5</td><td class="num-right">10</td><td class="num-right">83.3%</td></tr>
+        <tr><td>Jason Johnson (Contractor)</td><td class="num-right">8</td><td class="num-right">0</td><td class="num-right">11.0</td><td class="num-right">1</td></tr>
+        <tr><td>Michael Puzon</td><td class="num-right">8</td><td class="num-right">1</td><td class="num-right">12.0</td><td class="num-right">0</td></tr>
+        <tr><td>Chris Fajardo</td><td class="num-right">7</td><td class="num-right">1</td><td class="num-right">10.0</td><td class="num-right">0</td></tr>
+        <tr><td>Devang Motwani</td><td class="num-right">5</td><td class="num-right">0</td><td class="num-right">8.0</td><td class="num-right">0</td></tr>
+        <tr><td>Andrew Patrikalakis</td><td class="num-right">5</td><td class="num-right">0</td><td class="num-right">9.0</td><td class="num-right">0</td></tr>
+        <tr><td>John Shepherd</td><td class="num-right">5</td><td class="num-right">0</td><td class="num-right">6.0</td><td class="num-right">0</td></tr>
+        <tr><td>Veera Raghavulu (Contractor)</td><td class="num-right">5</td><td class="num-right">0</td><td class="num-right">7.0</td><td class="num-right">0</td></tr>
+        <tr><td>Samit Pranav (Contractor)</td><td class="num-right">5</td><td class="num-right">1</td><td class="num-right">10.0</td><td class="num-right">0</td></tr>
+        <tr><td>Sem Onyalo (Contractor)</td><td class="num-right">5</td><td class="num-right">0</td><td class="num-right">10.0</td><td class="num-right">0</td></tr>
+        <tr><td>Nadimpalli Varma (Contractor)</td><td class="num-right">4</td><td class="num-right">0</td><td class="num-right">8.0</td><td class="num-right">1</td></tr>
+        <tr><td>Carla Bellido (Contractor)</td><td class="num-right">4</td><td class="num-right">0</td><td class="num-right">8.0</td><td class="num-right">0</td></tr>
+        <tr><td>Krish Sharma (Contractor)</td><td class="num-right">4</td><td class="num-right">0</td><td class="num-right">18.0</td><td class="num-right">0</td></tr>
       </tbody>
     </table>
-    <div class="note" style="margin-top:8px;">Notable: Krish Sharma (Contractor) has 0/5 items done, 16 SP open entering close day. Samit Pranav at 40% (2/5). Jason Johnson at 100% (6/6).</div>
   </div>
 
   <div class="gridline"></div>
   <h2>Assessment</h2>
   <div class="assess">
-    <strong>Final work day (Day 14 of 14). Sprint closes 2026-05-20.</strong> This sprint is on course for significant carryover: 65.9% items done / 62.5% SP done against an ideal of 100%, with 42 items (In Progress: 16, In Review: 13, Open: 12, To Do: 1) still open. At S6801's close rate of 89%, the expected carryover is approximately 13–15 items and 45–55 SP. True injection rate is not the driver — 27 true mid-sprint injections at 22% items / 15.3% SP is essentially the same as S6801's 29 injections at 21%/16%. The Day-9 burst (2026-05-14, 9 items / 11 SP) mirrors S6801's Day-7 spike pattern. One positive signal: scope held completely stable for the past five days (2026-05-15 through 2026-05-19), which is encouraging heading into the close. The contamination tagging gap (25%, 19 untagged true injections) remains an open process risk — these will carry into S4 uncategorized unless backfilled today.
+    RSE 26Q2 S4 is at Day 2 of 14 (2026-05-21) with 89 items / 157.0 SP committed. The sprint is structurally healthy: 96.6% of items were pre-planned and no mid-sprint injections have occurred yet. Completion at 5 items (5.6%) is below the 14.3% Day-2 ideal pace — early-sprint lag is expected and not yet a concern. The single largest watch item heading into this sprint is contamination tagging: the trend has declined across S1 (43%) → S3 (29%), and Day-1 tagging is already only 33% (1/3). Any mid-sprint injection that enters un-tagged this sprint compounds an already-weak baseline for root-cause analysis. Sprint closes 2026-06-03.
   </div>
 
-  <div class="gridline"></div>
-
-  <div class="footer">Frozen snapshot &middot; 2026-05-19 &nbsp;·&nbsp; <a href="https://meganpeurachctr-ux.github.io/rse-volatility-dashboard/sprint-health-latest.html">Live dashboard</a> &nbsp;·&nbsp; <a href="https://toyotaresearchinstitute.atlassian.net/jira/software/c/projects/TRI/boards/17">Board 17</a></div>
-
+  <div class="footer">Frozen snapshot &middot; 2026-05-21 &middot; <a href="https://meganpeurachctr-ux.github.io/rse-volatility-dashboard/sprint-health-latest.html">Live dashboard</a> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/wiki/x/BgDyJAE">Confluence</a></div>
 </div>
 
 <script>
 if (typeof Chart !== 'undefined') {
-  const ctx = document.getElementById('scopeChart').getContext('2d');
-  new Chart(ctx, {
+  new Chart(document.getElementById('scopeChart'), {
     type: 'doughnut',
     data: {
-      labels: ['Pre-sprint (91)', 'Day-1 dump (5)', 'True injection (27)'],
-      datasets: [{
-        data: [91, 5, 27],
-        backgroundColor: ['#4caf7d', '#f5c542', '#e05252'],
-        borderWidth: 2,
-        borderColor: '#fff'
-      }]
+      labels: ['Pre-sprint (86)', 'Day-1 dump (3)', 'Mid-sprint (0)'],
+      datasets: [{ data: [86, 3, 0], backgroundColor: ['#4a90d9','#c9b375','#e05252'], borderWidth: 1 }]
     },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 10 } }
-      }
-    }
+    options: { plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } }, responsive: true }
   });
 }
 </script>
