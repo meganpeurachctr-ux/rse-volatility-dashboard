@@ -72,7 +72,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">May 26, 2026 at 11:57 AM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">May 27, 2026 at 10:17 AM</span></span>
             </div>
         </div>
     </div>
@@ -115,19 +115,19 @@
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-in" style="animation-delay:0.18s;">
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="34">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="36">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Total Issues</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="35.3" data-decimal="true">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="38.9" data-decimal="true">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="14">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="12">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="7">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="5">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">To Do</div>
                 </div>
             </div>
@@ -203,7 +203,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="16.7" data-decimal="true">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="28.9" data-decimal="true">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Sprint Contamination</div>
                     <div class="text-xs text-slate-500 mb-3">carryover rate</div>
                 </div>
@@ -372,7 +372,7 @@
                     <div class="mb-1">
                         <div class="text-4xl font-bold bg-gradient-to-r from-rose-600 to-pink-700 bg-clip-text text-transparent" id="priority-change-affected">0</div>
                         <div class="text-sm text-slate-700 font-semibold mt-1">Priority Changed</div>
-                        <div class="text-xs text-slate-500 mt-0.5">of <span id="priority-change-total-issues">20</span> sprint issues</div>
+                        <div class="text-xs text-slate-500 mt-0.5">of <span id="priority-change-total-issues">21</span> sprint issues</div>
                     </div>
                     <div class="mt-3 pt-3 border-t border-slate-200">
                         <div class="flex justify-between items-center mb-1">
@@ -586,8 +586,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
-var CONTAMINATION_SOURCES = {"Stakeholder Urgent": 1};
-var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Stakeholder Urgent", "count": 1, "percent": 100, "badge": "external", "color": "purple"}], "total": 1};
+var CONTAMINATION_SOURCES = {"Production Incident": 1, "Stakeholder Urgent": 1};
+var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Production Incident", "count": 1, "percent": 50, "badge": "reactive", "color": "amber"}, {"source": "Stakeholder Urgent", "count": 1, "percent": 50, "badge": "external", "color": "purple"}], "total": 2};
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
@@ -748,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setText('hist-vel-low',  historicalMonths[vs.minIdx]);
 
     // ── Status Doughnut ───────────────────────────────────────────────────
-    var d = {"total": 34, "done": 12, "in_review": 1, "in_progress": 14, "to_do": 7, "rate": 35.3};
+    var d = {"total": 36, "done": 14, "in_review": 5, "in_progress": 12, "to_do": 5, "rate": 38.9};
     statusChartInstance = new Chart(document.getElementById('statusChart'), {
         type: 'doughnut',
         data: {
