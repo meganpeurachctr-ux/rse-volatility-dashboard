@@ -72,7 +72,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">May 31, 2026 at 08:24 AM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">June 01, 2026 at 02:47 PM</span></span>
             </div>
         </div>
     </div>
@@ -115,15 +115,15 @@
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-in" style="animation-delay:0.18s;">
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="43">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="46">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Total Issues</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="44.2" data-decimal="true">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="60.9" data-decimal="true">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="13">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="9">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
@@ -159,7 +159,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-blue-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1" data-counter="101">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1" data-counter="103">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Current Backlog</div>
                     <div class="text-xs text-slate-500 mb-3">open items</div>
                 </div>
@@ -203,7 +203,7 @@
                     <div class="w-12 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full"></div>
                 </div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="24.4" data-decimal="true">0</div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="23.4" data-decimal="true">0</div>
                     <div class="text-sm text-slate-700 font-semibold mb-1">Sprint Contamination</div>
                     <div class="text-xs text-slate-500 mb-3">carryover rate</div>
                 </div>
@@ -372,7 +372,7 @@
                     <div class="mb-1">
                         <div class="text-4xl font-bold bg-gradient-to-r from-rose-600 to-pink-700 bg-clip-text text-transparent" id="priority-change-affected">0</div>
                         <div class="text-sm text-slate-700 font-semibold mt-1">Priority Changed</div>
-                        <div class="text-xs text-slate-500 mt-0.5">of <span id="priority-change-total-issues">27</span> sprint issues</div>
+                        <div class="text-xs text-slate-500 mt-0.5">of <span id="priority-change-total-issues">28</span> sprint issues</div>
                     </div>
                     <div class="mt-3 pt-3 border-t border-slate-200">
                         <div class="flex justify-between items-center mb-1">
@@ -586,8 +586,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
-var CONTAMINATION_SOURCES = {"SLA Expected": 6, "Production Incident": 2, "Stakeholder Urgent": 1};
-var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "SLA Expected", "count": 6, "percent": 67, "badge": "internal", "color": "blue"}, {"source": "Production Incident", "count": 2, "percent": 22, "badge": "reactive", "color": "amber"}, {"source": "Stakeholder Urgent", "count": 1, "percent": 11, "badge": "external", "color": "purple"}], "total": 9};
+var CONTAMINATION_SOURCES = {"SLA Expected": 7, "Production Incident": 3, "Stakeholder Urgent": 1};
+var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "SLA Expected", "count": 7, "percent": 64, "badge": "internal", "color": "blue"}, {"source": "Production Incident", "count": 3, "percent": 27, "badge": "reactive", "color": "amber"}, {"source": "Stakeholder Urgent", "count": 1, "percent": 9, "badge": "external", "color": "purple"}], "total": 11};
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
@@ -607,12 +607,12 @@ var sprintDataWithDates = [
     { sprint:'IE 26Q1 - S4', startDate:'2026-02-11', endDate:'2026-02-25', planned:43.5, completed:43.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=6&sprint=5785' },
     { sprint:'IE 26Q1 - S5', startDate:'2026-02-25', endDate:'2026-03-11', planned:45.5, completed:42.5, jiraUrl:'https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=6&sprint=5922' }
 ];
-var historicalMonths            = ["Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26", "Mar 26", "Apr 26"];
-var historicalChurnData         = [2.8, 0.0, 2.4, 1.5, 0.0, 11.5, 1.3, 2.1, 3.4, 2.2, 2.7, 0.0, 0.0];
-var historicalCompletedData     = [0, 0, 0, 0, 0, 60, 116, 128, 135, 122, 4, 0, 0];
-var historicalContaminationData = [19.7, 9.0, 18.5, 8.5, 10.0, 30.9, 10.1, 24.0, 22.3, 31.8, 24.4, 34.8, 15.4];
-var historicalVelocityData      = [105, 101, 145, 96, 113, 126, 94, 83, 84, 73, 89, 55, 55];
-var historicalZombieData        = [52, 50, 47, 49, 53, 51, 48, 50, 52, 51, 63, 56, 18];
+var historicalMonths            = ["May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26", "Mar 26", "Apr 26", "May 26"];
+var historicalChurnData         = [0.0, 2.4, 1.5, 0.0, 11.5, 1.3, 2.1, 3.4, 2.2, 2.7, 0.0, 0.0, 0.0];
+var historicalCompletedData     = [0, 0, 0, 0, 60, 116, 128, 135, 122, 4, 0, 0, 6];
+var historicalContaminationData = [9.0, 18.5, 8.5, 10.0, 30.9, 10.1, 24.0, 22.3, 31.8, 24.4, 34.8, 15.4, 23.4];
+var historicalVelocityData      = [101, 145, 96, 113, 126, 94, 83, 84, 73, 89, 55, 55, 55];
+var historicalZombieData        = [50, 47, 49, 53, 51, 48, 50, 52, 51, 63, 56, 18, 17];
 
 var statusChartInstance = null;
 
@@ -748,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setText('hist-vel-low',  historicalMonths[vs.minIdx]);
 
     // ── Status Doughnut ───────────────────────────────────────────────────
-    var d = {"total": 43, "done": 19, "in_review": 7, "in_progress": 13, "to_do": 4, "rate": 44.2};
+    var d = {"total": 46, "done": 28, "in_review": 5, "in_progress": 9, "to_do": 4, "rate": 60.9};
     statusChartInstance = new Chart(document.getElementById('statusChart'), {
         type: 'doughnut',
         data: {
