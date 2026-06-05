@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSE 26Q2 S4 5/20-6/3 — Final</title>
+<style>
+  :root { color-scheme: light; }
+  html, body { margin: 0; padding: 0; background: #fafaf7; color: #1d1d1b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 20px 24px 48px; }
+  h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.01em; }
+  h2 { font-size: 15px; font-weight: 600; margin: 28px 0 10px; letter-spacing: -0.01em; color: #1d1d1b; }
+  .sub { color: #6b6b66; font-size: 13px; margin-bottom: 18px; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 500; margin-left: 6px; }
+  .pill.green { background: #e6f4ea; color: #1e6b36; }
+  .pill.amber { background: #fff4e0; color: #8a5a12; }
+  .pill.red   { background: #fdeaea; color: #a63434; }
+  .pill.blue  { background: #e8f0fb; color: #1e4f9d; }
+  .pill.gray  { background: #eee; color: #555; }
+  .kpis { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 10px 0 4px; }
+  .kpi { background: #fff; border: 1px solid #ececea; border-radius: 10px; padding: 12px 12px 10px; }
+  .kpi .label { font-size: 11px; color: #6b6b66; text-transform: uppercase; letter-spacing: 0.04em; }
+  .kpi .val { font-size: 22px; font-weight: 600; margin-top: 4px; line-height: 1.1; }
+  .kpi .val.red { color: #a63434; }
+  .kpi .val.amber { color: #8a5a12; }
+  .kpi .val.green { color: #1e6b36; }
+  .kpi .sub2 { font-size: 11px; color: #8a8a85; margin-top: 2px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card { background: #fff; border: 1px solid #ececea; border-radius: 12px; padding: 16px 18px; margin-top: 12px; }
+  .card h3 { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: #3a3a36; letter-spacing: -0.005em; }
+  .card .note { font-size: 12px; color: #6b6b66; margin-bottom: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #f0f0ec; }
+  th { color: #6b6b66; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .muted { color: #8a8a85; }
+  .assess { background: #f7f7f3; border-left: 3px solid #c9b375; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.5; margin-top: 12px; }
+  .verdict { display: flex; gap: 12px; align-items: baseline; margin: 4px 0 12px; }
+  .verdict .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #6b6b66; }
+  .verdict .val { font-size: 15px; font-weight: 600; }
+  .status-bar { display: flex; height: 10px; border-radius: 6px; overflow: hidden; background: #f0f0ec; margin: 8px 0 4px; }
+  .status-bar span { display: block; height: 100%; }
+  canvas { max-width: 100%; }
+  .gridline { height: 1px; background: #ececea; margin: 22px 0 0; }
+  a { color: #1e4f9d; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .footer { font-size: 11px; color: #8a8a85; margin-top: 22px; }
+  .num-right { text-align: right; font-variant-numeric: tabular-nums; }
+  .tag-gap { background: #fdeaea; border: 1px solid #f5c6c6; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #7a2020; margin-top: 8px; }
+  .tag-gap strong { display: block; margin-bottom: 2px; }
+  .trend-warn { background: #fff4e0; border: 1px solid #f5d98a; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #7a4a00; margin-top: 8px; }
+  @media (max-width: 820px){ .kpis { grid-template-columns: repeat(3, 1fr); } .row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>RSE 26Q2 S4 5/20-6/3 <span class="pill gray">Final</span></h1>
+<div class="sub">Sprint: 2026-05-20 → 2026-06-03 &nbsp;·&nbsp; Closed: 2026-06-03 &nbsp;·&nbsp; Board 17</div>
+
+<div class="kpis">
+  <div class="kpi"><div class="label">Items Done</div><div class="val amber">79%</div><div class="sub2">79 / 100</div></div>
+  <div class="kpi"><div class="label">SP Done</div><div class="val amber">77%</div><div class="sub2">136.5 / 176.5</div></div>
+  <div class="kpi"><div class="label">True Injections</div><div class="val green">12</div><div class="sub2">12% of scope</div></div>
+  <div class="kpi"><div class="label">Injection SP</div><div class="val green">10%</div><div class="sub2">18.0 / 176.5 SP</div></div>
+  <div class="kpi"><div class="label">Tag Coverage</div><div class="val red">2%</div><div class="sub2">1 of 46 tagged</div></div>
+  <div class="kpi"><div class="label">Day-1 Dump</div><div class="val amber">34</div><div class="sub2">34% of scope</div></div>
+</div>
+
+<div class="status-bar" style="margin:14px 0 4px;">
+  <span style="width:77%;background:#c9b375;" title="SP Done: 77%"></span>
+  <span style="width:23%;background:#ececea;"></span>
+</div>
+<div style="font-size:11px;color:#6b6b66;display:flex;justify-content:space-between;"><span>0%</span><span>Final SP completion</span><span>100%</span></div>
+
+<h2>Sprint Volatility</h2>
+<div class="verdict">
+  <span class="label">Verdict</span>
+  <span class="val amber">Moderately Volatile</span>
+</div>
+<p style="font-size:13px;color:#3a3a36;margin:0 0 12px;line-height:1.55;">
+True mid-sprint injection rate: 12% items / 10% SP — below the prior sprint S3 (21%/16%) and near the ~10% agile guideline. 
+Items done (79%) and SP done (77%) fell short of the prior sprint finals (89%/91%), indicating meaningful carryover into S5. 
+Contamination tagging at 2% (1/46 post-start items) is a critical process gap — all 12 true mid-sprint injections remain untagged.
+The day-1 planning dump was unusually large at 34 items (34% of scope).
+</p>
+
+<h2>Scope Composition</h2>
+<table>
+  <thead><tr><th>Category</th><th class="num-right">Items</th><th class="num-right">SP</th><th class="num-right">% of Total</th></tr></thead>
+  <tbody>
+    <tr><td>Pre-sprint (before 2026-05-20)</td><td class="num-right">54</td><td class="num-right">88.5</td><td class="num-right">54%</td></tr>
+    <tr><td>Day-1 planning dump (first 24h)</td><td class="num-right">34</td><td class="num-right">70.0</td><td class="num-right">34%</td></tr>
+    <tr><td>True mid-sprint injections (days 2+)</td><td class="num-right">12</td><td class="num-right">18.0</td><td class="num-right">12%</td></tr>
+    <tr style="font-weight:600;border-top:2px solid #ddd;"><td>Sprint total</td><td class="num-right">100</td><td class="num-right">176.5</td><td class="num-right">100%</td></tr>
+  </tbody>
+</table>
+
+<h2>Injection Timeline</h2>
+<table>
+  <thead><tr><th>Day</th><th>Date</th><th class="num-right">+Items</th><th class="num-right">+SP</th><th>Issues &amp; Contamination Source</th></tr></thead>
+  <tbody>
+    <tr><td>Day 1</td><td>2026-05-20</td><td class="num-right">34</td><td class="num-right">70.0</td><td class="muted">Large batch — see Jira (sprint start dump)</td></tr>
+    <tr><td>Day 2</td><td>2026-05-21</td><td class="num-right">4</td><td class="num-right">8.0</td><td>
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52521">TRI-52521</a> UNTAGGED,
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52522">TRI-52522</a> UNTAGGED,
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52541">TRI-52541</a> UNTAGGED,
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52598">TRI-52598</a> UNTAGGED
+    </td></tr>
+    <tr><td>Day 5</td><td>2026-05-24</td><td class="num-right">2</td><td class="num-right">5.0</td><td>
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52610">TRI-52610</a> UNTAGGED,
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52611">TRI-52611</a> UNTAGGED
+    </td></tr>
+    <tr><td>Day 6</td><td>2026-05-25</td><td class="num-right">1</td><td class="num-right">1.0</td><td>
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52612">TRI-52612</a> UNTAGGED
+    </td></tr>
+    <tr><td>Day 7</td><td>2026-05-26</td><td class="num-right">4</td><td class="num-right">5.0</td><td>
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52645">TRI-52645</a> UNTAGGED,
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52648">TRI-52648</a> UNTAGGED,
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52679">TRI-52679</a> UNTAGGED,
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52678">TRI-52678</a> UNTAGGED
+    </td></tr>
+    <tr><td>Day 8</td><td>2026-05-27</td><td class="num-right">1</td><td class="num-right">0.0</td><td>
+      <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-52720">TRI-52720</a> UNTAGGED
+    </td></tr>
+  </tbody>
+</table>
+
+<div class="tag-gap" style="margin-top:12px;">
+  <strong>⚠ Contamination Tagging: 1/46 = 2% — Critical Gap</strong>
+  All 12 true mid-sprint injections are untagged. Backfill required:
+  TRI-52521, TRI-52522, TRI-52541, TRI-52598, TRI-52610, TRI-52611, TRI-52612, TRI-52645, TRI-52648, TRI-52678, TRI-52679, TRI-52720
+</div>
+
+<h2>Volatility Dashboard Cross-Reference</h2>
+<table>
+  <thead><tr><th>Signal</th><th>S4 (Final)</th><th>S3 / 6801 (Baseline)</th></tr></thead>
+  <tbody>
+    <tr><td>True injection rate</td><td>12% items / 10% SP</td><td>21% items / 16% SP</td></tr>
+    <tr><td>Largest single-day spike</td><td>4 items on 2026-05-26 (Day 7)</td><td>10 items on 2026-04-14 (Day 7)</td></tr>
+    <tr><td>Items done at close</td><td>79%</td><td>89%</td></tr>
+    <tr><td>SP done at close</td><td>77%</td><td>91%</td></tr>
+    <tr><td>Tag coverage</td><td class="muted" style="color:#a63434">2%</td><td>Not reported</td></tr>
+    <tr><td>Day-1 dump</td><td>34 items (34%)</td><td>22 items (16%)</td></tr>
+  </tbody>
+</table>
+
+<h2>Assessment</h2>
+<div class="assess">
+RSE 26Q2 S4 closed 2026-06-03 with 79% items done (79/100) and 77% SP done (136.5/176.5) — both below the prior sprint's final rates of 89%/91%, indicating notable carryover into S5. The injection rate improved vs. S3 (12%/10% vs. 21%/16%), which is a positive directional signal. However, contamination tagging at 2% (1/46) is a critical process failure: all 12 true mid-sprint injections remain untagged. The unusually large day-1 dump (34 items, 34% of scope) warrants a retro discussion about whether scope is truly finalized at sprint start. Biggest risk: carryover items inflating S5 scope before the sprint has a chance to breathe.
+</div>
+
+<div class="footer">Final snapshot · sprint closed 2026-06-03</div>
+</div>
+</body>
+</html>
