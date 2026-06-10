@@ -54,126 +54,82 @@
 <body>
 <div class="wrap">
 <script>
-const SNAPSHOT = {
+var SNAPSHOT = {
   sprintName: "RSE 26Q2 S5 6/3-6/17",
   snapshotDate: "2026-06-10",
   dayN: 8,
   totalDays: 14,
-  totalItems: 105,
-  totalSP: 196.0,
+  totalItems: 104,
+  totalSP: 192.0,
   doneItems: 34,
   doneSP: 59.0,
-  pctItemsDone: 32.4,
-  pctSPDone: 30.1,
+  pctItemsDone: 32.7,
+  pctSPDone: 30.7,
   idealPct: 57.1,
-  preSprint: { count: 89, sp: 180.0 },
+  preSprint: { count: 88, sp: 176.0 },
   day1Dump: { count: 2, sp: 3.0 },
   trueInjection: { count: 14, sp: 13.0 },
-  taggingTagged: 3,
-  taggingTotal: 14,
-  taggingPct: 21.4,
-  verdictLabel: "Moderately Volatile",
+  taggingTagged: 4,
+  taggingTotal: 16,
+  taggingPct: 25.0,
+  verdictLabel: "Moderately volatile",
   verdictColor: "amber",
   untaggedTrue: [
-    { key: "TRI-53015", date: "2026-06-04", summary: "Update look and feel of bottom bar", assignee: "Nadimpalli Varma" },
-    { key: "TRI-53019", date: "2026-06-04", summary: "Integrate cognito UI", assignee: "Veera Raghavulu" },
-    { key: "TRI-53082", date: "2026-06-08", summary: "Elicitation URL CTA card not working", assignee: "Sarthak Khandelwal" },
-    { key: "TRI-53083", date: "2026-06-09", summary: "Update Icons in ReactFlow library based side-panel", assignee: "Nadimpalli Varma" },
-    { key: "TRI-53088", date: "2026-06-09", summary: "[AIM][Parts] E2E testing for streaming on MMAS board", assignee: "Samit Pranav" },
-    { key: "TRI-53109", date: "2026-06-09", summary: "When saving url to safari, url appends mockup to homepage", assignee: "Michael Puzon" },
-    { key: "TRI-53110", date: "2026-06-09", summary: "White background shows up on ipad landing page", assignee: "Ashish Mangukiya" },
-    { key: "TRI-53111", date: "2026-06-09", summary: "2 columns are stacking on the apex trainer on the ipad view", assignee: "Ashish Mangukiya" },
-    { key: "TRI-53114", date: "2026-06-09", summary: "Get CALVIN datasets to S3", assignee: "Pooja Kabra" },
-    { key: "TRI-53115", date: "2026-06-09", summary: "Preprocess CALVIN dataset into WebDataset shards on S3", assignee: "Pooja Kabra" },
-    { key: "TRI-53116", date: "2026-06-09", summary: "Dry run on Sagemaker: CALVIN Debug dataset training job", assignee: "Pooja Kabra" }
+    { key: "TRI-52985", date: "2026-06-03", bucket: "Day-1 dump", summary: "Move iPad app from old repo to new repo", assignee: "Ashish Mangukiya" },
+    { key: "TRI-53015", date: "2026-06-04", bucket: "True injection", summary: "Update look and feel of bottom bar", assignee: "Nadimpalli Varma" },
+    { key: "TRI-53019", date: "2026-06-04", bucket: "True injection", summary: "Integrate cognito UI", assignee: "Veera Raghavulu" },
+    { key: "TRI-53082", date: "2026-06-08", bucket: "True injection", summary: "Elicitation URL CTA card not working", assignee: "Sarthak Khandelwal" },
+    { key: "TRI-53083", date: "2026-06-09", bucket: "True injection", summary: "Update Icons in ReactFlow side-panel", assignee: "Nadimpalli Varma" },
+    { key: "TRI-53088", date: "2026-06-09", bucket: "True injection", summary: "[AIM][Parts] E2E testing for streaming on MMAS board", assignee: "Samit Pranav" },
+    { key: "TRI-53109", date: "2026-06-09", bucket: "True injection", summary: "URL appends mockup to homepage on safari save", assignee: "Michael Puzon" },
+    { key: "TRI-53110", date: "2026-06-09", bucket: "True injection", summary: "White background on ipad landing page", assignee: "Ashish Mangukiya" },
+    { key: "TRI-53111", date: "2026-06-09", bucket: "True injection", summary: "2 columns stacking on apex trainer on ipad view", assignee: "Ashish Mangukiya" },
+    { key: "TRI-53114", date: "2026-06-09", bucket: "True injection", summary: "Get CALVIN datasets to S3", assignee: "Pooja Kabra" },
+    { key: "TRI-53115", date: "2026-06-09", bucket: "True injection", summary: "Preprocess CALVIN dataset into WebDataset shards on S3", assignee: "Pooja Kabra" },
+    { key: "TRI-53116", date: "2026-06-09", bucket: "True injection", summary: "Dry run on Sagemaker: CALVIN Debug dataset training job", assignee: "Pooja Kabra" }
   ],
   injectionTimeline: [
-    { day: 2, date: "2026-06-04", items: 3, sp: 4.0, issues: [
-      { key: "TRI-53013", summary: "validate with Eric's real car model", assignee: "Chris Fajardo", contamination: "Dependency Unblock" },
-      { key: "TRI-53015", summary: "Update look and feel of bottom bar", assignee: "Nadimpalli Varma", contamination: null },
-      { key: "TRI-53019", summary: "Integrate cognito UI", assignee: "Veera Raghavulu", contamination: null }
+    { day: 1, date: "2026-06-03", items: 1, sp: 1.0, issues: [{ key: "TRI-52985", summary: "Move iPad app from old repo to new repo", assignee: "Ashish Mangukiya", contamination: null, bucket: "Day-1 dump" }] },
+    { day: 2, date: "2026-06-04", items: 4, sp: 6.0, issues: [
+      { key: "TRI-53009", summary: "Improve Jira task output formatting", assignee: "Devang Motwani", contamination: "Unexpected Capacity", bucket: "Day-1 dump", done: true },
+      { key: "TRI-53013", summary: "validate with Eric's real car model", assignee: "Chris Fajardo", contamination: "Dependency Unblock", bucket: "True injection" },
+      { key: "TRI-53015", summary: "Update look and feel of bottom bar", assignee: "Nadimpalli Varma", contamination: null, bucket: "True injection", done: true },
+      { key: "TRI-53019", summary: "Integrate cognito UI", assignee: "Veera Raghavulu", contamination: null, bucket: "True injection", done: true }
     ]},
     { day: 3, date: "2026-06-05", items: 0, sp: 0, issues: [] },
     { day: 4, date: "2026-06-06", items: 0, sp: 0, issues: [] },
     { day: 5, date: "2026-06-07", items: 0, sp: 0, issues: [] },
     { day: 6, date: "2026-06-08", items: 1, sp: 2.0, issues: [
-      { key: "TRI-53082", summary: "Elicitation URL CTA card not working", assignee: "Sarthak Khandelwal", contamination: null }
+      { key: "TRI-53082", summary: "Elicitation URL CTA card not working", assignee: "Sarthak Khandelwal", contamination: null, bucket: "True injection" }
     ]},
     { day: 7, date: "2026-06-09", items: 10, sp: 7.0, issues: [
-      { key: "TRI-53083", summary: "Update Icons in ReactFlow library based side-panel", assignee: "Nadimpalli Varma", contamination: null },
-      { key: "TRI-53088", summary: "[AIM][Parts] E2E testing for streaming on MMAS board", assignee: "Samit Pranav", contamination: null },
-      { key: "TRI-53108", summary: "improve performance", assignee: "Chris Fajardo", contamination: "Bug Discovery" },
-      { key: "TRI-53109", summary: "When saving url to safari, url appends mockup to homepage", assignee: "Michael Puzon", contamination: null },
-      { key: "TRI-53110", summary: "White background shows up on ipad landing page", assignee: "Ashish Mangukiya", contamination: null },
-      { key: "TRI-53111", summary: "2 columns are stacking on apex trainer ipad view", assignee: "Ashish Mangukiya", contamination: null },
-      { key: "TRI-53113", summary: "Clean up websocket rtc refactor", assignee: "Chris Fajardo", contamination: "Bug Discovery" },
-      { key: "TRI-53114", summary: "Get CALVIN datasets to S3", assignee: "Pooja Kabra", contamination: null },
-      { key: "TRI-53115", summary: "Preprocess CALVIN dataset into WebDataset shards on S3", assignee: "Pooja Kabra", contamination: null },
-      { key: "TRI-53116", summary: "Dry run on Sagemaker: CALVIN Debug dataset training job", assignee: "Pooja Kabra", contamination: null }
+      { key: "TRI-53083", summary: "Update Icons in ReactFlow side-panel", assignee: "Nadimpalli Varma", contamination: null, bucket: "True injection" },
+      { key: "TRI-53088", summary: "[AIM][Parts] E2E testing for streaming on MMAS board", assignee: "Samit Pranav", contamination: null, bucket: "True injection" },
+      { key: "TRI-53108", summary: "improve performance", assignee: "Chris Fajardo", contamination: "Bug Discovery", bucket: "True injection" },
+      { key: "TRI-53109", summary: "URL appends mockup to homepage on safari save", assignee: "Michael Puzon", contamination: null, bucket: "True injection" },
+      { key: "TRI-53110", summary: "White background on ipad landing page", assignee: "Ashish Mangukiya", contamination: null, bucket: "True injection" },
+      { key: "TRI-53111", summary: "2 columns stacking on apex trainer on ipad view", assignee: "Ashish Mangukiya", contamination: null, bucket: "True injection" },
+      { key: "TRI-53113", summary: "Clean up websocket rtc refactor", assignee: "Chris Fajardo", contamination: "Bug Discovery", bucket: "True injection" },
+      { key: "TRI-53114", summary: "Get CALVIN datasets to S3", assignee: "Pooja Kabra", contamination: null, bucket: "True injection" },
+      { key: "TRI-53115", summary: "Preprocess CALVIN dataset into WebDataset shards on S3", assignee: "Pooja Kabra", contamination: null, bucket: "True injection", done: true },
+      { key: "TRI-53116", summary: "Dry run on Sagemaker: CALVIN Debug dataset training job", assignee: "Pooja Kabra", contamination: null, bucket: "True injection" }
     ]},
     { day: 8, date: "2026-06-10", items: 0, sp: 0, issues: [] }
   ],
-  doneIssues: [
-    { key: "TRI-49926", summary: "Get ipad certs working for the car", sp: 2, assignee: "Michael Puzon" },
-    { key: "TRI-50388", summary: "Cache papers and chunks", sp: 3, assignee: "Sem Onyalo" },
-    { key: "TRI-51540", summary: "Try out Claude Agent Teams and use it to develop a feature", sp: 2, assignee: "Devang Motwani" },
-    { key: "TRI-51869", summary: "Explore Caveman plugin for Claude", sp: 1, assignee: "Ayush Nema" },
-    { key: "TRI-52421", summary: "Add data from api into new Skill Review Design", sp: 1, assignee: "Ashish Mangukiya" },
-    { key: "TRI-52472", summary: "webrtc, app layer crypto", sp: 3, assignee: "Chris Fajardo" },
-    { key: "TRI-52645", summary: "Add popup to allow the user to select simulation types", sp: 2, assignee: "Nadimpalli Varma" },
-    { key: "TRI-52648", summary: "Add popup to allow the user to select valid node types", sp: 2, assignee: "Nadimpalli Varma" },
-    { key: "TRI-52694", summary: "Limit operations allowed in the custom mechanism by role", sp: 2, assignee: "Nadimpalli Varma" },
-    { key: "TRI-52735", summary: "If default constants are part of mechanism of any nodes", sp: 1, assignee: "Michael Puzon" },
-    { key: "TRI-52771", summary: "WFM - Data Loader Module - FsDataset Module Caching", sp: 3, assignee: "Jose Rojas" },
-    { key: "TRI-52778", summary: "WFM - Data Loader Module - Familiarize with WFM repo", sp: 1, assignee: "Jose Rojas" },
-    { key: "TRI-52860", summary: "ViewMAXR: QR Marker for tracking and collaboration mode", sp: 1, assignee: "Jason Johnson" },
-    { key: "TRI-52862", summary: "address DAST scan issues after prod deploy", sp: 1, assignee: "Chris Fajardo" },
-    { key: "TRI-52864", summary: "Restore Skill level loading", sp: 2, assignee: "Ashish Mangukiya" },
-    { key: "TRI-52866", summary: "Fix the pupil data not loading in the csv file", sp: 1, assignee: "Michael Puzon" },
-    { key: "TRI-52873", summary: "[AIM][Parts] Add chunking mechanism to AIM Arene Service", sp: 2, assignee: "Samit Pranav" },
-    { key: "TRI-52874", summary: "[AIM][Parts] Add thread to keep WS connection alive in AIM", sp: 2, assignee: "Samit Pranav" },
-    { key: "TRI-52876", summary: "[AIM][Parts] Create confluence page for p21-embedded docs", sp: 2, assignee: "Samit Pranav" },
-    { key: "TRI-52881", summary: "app repo - Summarize and rank security issues", sp: 1, assignee: "Ayush Nema" }
-  ],
-  assigneeStats: [
-    { name: "Michael Puzon", done: 4, total: 8, spDone: 5, spTotal: 12 },
-    { name: "Ayush Nema", done: 4, total: 8, spDone: 6, spTotal: 11 },
-    { name: "Chris Fajardo", done: 3, total: 8, spDone: 5, spTotal: 12 },
-    { name: "Nadimpalli Varma", done: 4, total: 8, spDone: 7, spTotal: 14 },
-    { name: "Devang Motwani", done: 3, total: 7, spDone: 5, spTotal: 12 },
-    { name: "Pooja Kabra", done: 1, total: 6, spDone: 0, spTotal: 9 },
-    { name: "Carla Bellido", done: 0, total: 6, spDone: 0, spTotal: 11 },
-    { name: "Samit Pranav", done: 3, total: 6, spDone: 6, spTotal: 12 },
-    { name: "John Shepherd", done: 0, total: 6, spDone: 0, spTotal: 12 },
-    { name: "Jose Rojas", done: 2, total: 5, spDone: 4, spTotal: 10 },
-    { name: "Jason Johnson", done: 1, total: 5, spDone: 1, spTotal: 10 },
-    { name: "Ashish Mangukiya", done: 2, total: 5, spDone: 3, spTotal: 5 },
-    { name: "Sem Onyalo", done: 1, total: 4, spDone: 3, spTotal: 9 },
-    { name: "Krish Sharma", done: 2, total: 4, spDone: 5, spTotal: 12 },
-    { name: "Shelley Su", done: 0, total: 4, spDone: 0, spTotal: 11 }
-  ],
-  dashboard: {
-    priorityChanged: 36, priorityChangedPct: 58.1, priorityChangedOf: 62,
-    estimateChanges: 0,
-    refinements: 0,
-    churnRate: 0.0,
-    updatedDate: "2026-06-09"
-  },
+  doneKeys: ["TRI-52892","TRI-53019","TRI-53115","TRI-52862","TRI-52472","TRI-52920","TRI-49926","TRI-50388","TRI-52771","TRI-51869","TRI-52882","TRI-52881","TRI-52883","TRI-52860","TRI-52648","TRI-52645","TRI-53015","TRI-52694","TRI-52864","TRI-52888","TRI-52874","TRI-52873","TRI-52876","TRI-52915","TRI-52916","TRI-52934","TRI-52735","TRI-52951","TRI-52778","TRI-52887","TRI-52421","TRI-53009","TRI-51540","TRI-52866"],
+  dashboard: { priorityChanged: 36, priorityChangedPct: 58.1, priorityChangedOf: 62, estimateChanges: 0, refinements: 0, churnRate: 0.0, updatedDate: "2026-06-09" },
   baseline6801: { itemsPct: 21, spPct: 16 }
 };
 </script>
 
 <h1 id="title"></h1>
 <div class="sub" id="subtitle"></div>
-
 <div class="kpis" id="kpis"></div>
 
-<div id="progress-bar-section">
-  <div class="card" style="margin-top:12px">
-    <h3>Sprint Progress</h3>
-    <div class="status-bar" id="status-bar"></div>
-    <div style="font-size:11px;color:#6b6b66;margin-top:3px;" id="progress-legend"></div>
-  </div>
+<div class="card" style="margin-top:12px">
+  <h3>Sprint Progress</h3>
+  <div class="status-bar" id="status-bar"></div>
+  <div style="font-size:11px;color:#6b6b66;margin-top:3px;" id="progress-legend"></div>
 </div>
 
 <div class="verdict" id="verdict"></div>
@@ -190,7 +146,7 @@ const SNAPSHOT = {
 </div>
 
 <div class="card" style="overflow-x:auto">
-  <h3 id="timeline-title">Injection Timeline (Days 2–8)</h3>
+  <h3 id="timeline-title">Injection Timeline</h3>
   <table id="timeline-table"></table>
 </div>
 
@@ -211,225 +167,136 @@ const SNAPSHOT = {
 </div>
 
 <div class="card">
-  <h3>Assignee Progress</h3>
-  <table id="assignee-table"></table>
-</div>
-
-<div class="card" style="overflow-x:auto">
-  <h3>Items Completed (as of 2026-06-10)</h3>
-  <table id="done-table"></table>
+  <h3>Items Completed (34 of 104, as of 2026-06-10)</h3>
+  <div id="done-section"></div>
 </div>
 
 <div class="assess" id="assessment"></div>
-
 <div class="footer" id="footer"></div>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const S = SNAPSHOT;
-  const JIRA_BASE = "https://toyotaresearchinstitute.atlassian.net/browse/";
+  var S = SNAPSHOT;
+  var JB = "https://toyotaresearchinstitute.atlassian.net/browse/";
 
-  // Title
   document.getElementById('title').textContent = S.sprintName + ' — Day ' + S.dayN + ' of ' + S.totalDays + ' (' + S.snapshotDate + ')';
   document.getElementById('subtitle').textContent = 'Sprint health snapshot · ' + S.snapshotDate;
 
-  // KPIs
-  const idealBehind = S.pctItemsDone < S.idealPct;
-  const injPct = +(S.trueInjection.count / S.totalItems * 100).toFixed(1);
-  const kpiData = [
-    { label: 'Total Items', val: S.totalItems, sub2: '' },
-    { label: 'Total SP', val: S.totalSP, sub2: '' },
-    { label: 'Items Done', val: S.doneItems + ' (' + S.pctItemsDone + '%)', sub2: 'Ideal: ' + S.idealPct + '%', cls: idealBehind ? 'red' : 'green' },
-    { label: 'SP Done', val: S.doneSP + ' (' + S.pctSPDone + '%)', sub2: '', cls: idealBehind ? 'red' : 'green' },
-    { label: 'Injections', val: S.trueInjection.count + ' (' + injPct + '%)', sub2: 'vs 21% S6801', cls: injPct > 15 ? 'amber' : 'green' },
-    { label: 'Tag Coverage', val: S.taggingPct + '%', sub2: S.taggingTagged + '/' + S.taggingTotal + ' tagged', cls: S.taggingPct < 80 ? 'red' : 'green' }
+  var kpiData = [
+    { label: 'Total Items', val: S.totalItems, sub2: '+11 vs. Day 5' },
+    { label: 'Total SP', val: S.totalSP, sub2: '+9 SP vs. Day 5' },
+    { label: 'Items Done', val: S.doneItems + ' (' + S.pctItemsDone + '%)', sub2: 'Ideal: ' + S.idealPct + '%', cls: 'red' },
+    { label: 'SP Done', val: S.doneSP + ' (' + S.pctSPDone + '%)', sub2: 'Day ' + S.dayN + '/' + S.totalDays, cls: 'red' },
+    { label: 'True Injections', val: S.trueInjection.count + ' (' + (S.trueInjection.count/S.totalItems*100).toFixed(1) + '%)', sub2: S.trueInjection.sp + ' SP', cls: 'amber' },
+    { label: 'Tag Coverage', val: S.taggingPct + '%', sub2: S.taggingTagged + '/' + S.taggingTotal + ' tagged', cls: 'red' }
   ];
-  const kpisEl = document.getElementById('kpis');
-  kpiData.forEach(function(k) {
-    var d = document.createElement('div'); d.className = 'kpi';
-    d.innerHTML = '<div class="label">' + k.label + '</div><div class="val ' + (k.cls||'') + '">' + k.val + '</div><div class="sub2">' + (k.sub2||'') + '</div>';
-    kpisEl.appendChild(d);
-  });
+  document.getElementById('kpis').innerHTML = kpiData.map(function(k) {
+    return '<div class="kpi"><div class="label">' + k.label + '</div><div class="val ' + (k.cls||'') + '">' + k.val + '</div><div class="sub2">' + (k.sub2||'') + '</div></div>';
+  }).join('');
 
-  // Status bar
   var donePct = S.pctItemsDone;
-  var bar = document.getElementById('status-bar');
-  bar.innerHTML = '<span style="width:' + donePct + '%;background:#1e6b36"></span><span style="width:' + (100-donePct) + '%;background:#f0f0ec"></span>';
-  document.getElementById('progress-legend').textContent = donePct + '% done · ideal ' + S.idealPct + '% at Day ' + S.dayN;
+  document.getElementById('status-bar').innerHTML =
+    '<span style="width:' + donePct + '%;background:#1e6b36"></span>' +
+    '<span style="width:20%;background:#c9b375"></span>' +
+    '<span style="width:' + (100-donePct-20) + '%;background:#f0f0ec"></span>';
+  document.getElementById('progress-legend').innerHTML =
+    '<span style="color:#1e6b36">■</span> Done ' + S.doneItems + ' &nbsp;&nbsp;' +
+    '<span style="color:#c9b375">■</span> In Progress (est.) &nbsp;&nbsp;' +
+    '<span style="color:#c0c0bc">■</span> To Do &nbsp;&nbsp;' +
+    '<span style="color:#6b6b66">Ideal pace: ' + S.idealPct + '% at Day ' + S.dayN + '/' + S.totalDays + '</span>';
 
-  // Verdict
-  var vColors = { green: '#1e6b36', amber: '#8a5a12', red: '#a63434' };
-  var vd = document.getElementById('verdict');
-  vd.innerHTML = '<span class="label">Verdict</span><span class="val" style="color:' + (vColors[S.verdictColor]||'#333') + '">' + S.verdictLabel + '</span>';
+  var vClr = { green: '#1e6b36', amber: '#8a5a12', red: '#a63434' };
+  document.getElementById('verdict').innerHTML =
+    '<span class="label">Verdict</span><span class="val" style="color:' + vClr[S.verdictColor] + '">' + S.verdictLabel + '</span>' +
+    '<span class="pill ' + S.verdictColor + '">Day ' + S.dayN + '/' + S.totalDays + '</span>';
 
-  // Scope table
-  var st = document.getElementById('scope-table');
-  st.innerHTML = '<thead><tr><th>Category</th><th class="num-right">Items</th><th class="num-right">SP</th><th class="num-right">% Items</th><th class="num-right">% SP</th></tr></thead>';
-  var stb = st.createTBody();
-  [
-    ['Pre-sprint (before 2026-06-03)', S.preSprint.count, S.preSprint.sp],
-    ['Day-1 planning dump (first 24h)', S.day1Dump.count, S.day1Dump.sp],
-    ['True mid-sprint injections (days 2+)', S.trueInjection.count, S.trueInjection.sp],
-  ].forEach(function(row) {
-    var tr = stb.insertRow();
-    tr.insertCell().textContent = row[0];
-    tr.insertCell().className = 'num-right'; tr.cells[1].textContent = row[1];
-    tr.insertCell().className = 'num-right'; tr.cells[2].textContent = row[2].toFixed(1);
-    tr.insertCell().className = 'num-right'; tr.cells[3].textContent = (row[1]/S.totalItems*100).toFixed(1) + '%';
-    tr.insertCell().className = 'num-right'; tr.cells[4].textContent = S.totalSP > 0 ? (row[2]/S.totalSP*100).toFixed(1) + '%' : 'N/A';
+  document.getElementById('scope-table').innerHTML =
+    '<tr><th>Category</th><th class="num-right">Items</th><th class="num-right">SP</th><th class="num-right">% scope</th></tr>' +
+    '<tr><td>Pre-sprint (before 2026-06-03)</td><td class="num-right">' + S.preSprint.count + '</td><td class="num-right">' + S.preSprint.sp + '</td><td class="num-right">' + (S.preSprint.count/S.totalItems*100).toFixed(1) + '%</td></tr>' +
+    '<tr><td>Day 1 planning dump (first 24h)</td><td class="num-right">' + S.day1Dump.count + '</td><td class="num-right">' + S.day1Dump.sp + '</td><td class="num-right">' + (S.day1Dump.count/S.totalItems*100).toFixed(1) + '%</td></tr>' +
+    '<tr><td>True mid-sprint injections (days 2+)</td><td class="num-right">' + S.trueInjection.count + '</td><td class="num-right">' + S.trueInjection.sp + '</td><td class="num-right">' + (S.trueInjection.count/S.totalItems*100).toFixed(1) + '%</td></tr>' +
+    '<tr style="font-weight:600"><td>Current sprint total</td><td class="num-right">' + S.totalItems + '</td><td class="num-right">' + S.totalSP + '</td><td class="num-right">—</td></tr>';
+
+  var tagHTML = '<div style="font-size:13px;margin-bottom:8px"><strong>' + S.taggingTagged + '/' + S.taggingTotal + '</strong> post-start issues tagged = <strong>' + S.taggingPct + '%</strong></div>';
+  tagHTML += '<div class="status-bar"><span style="width:' + S.taggingPct + '%;background:#a63434"></span></div>';
+  tagHTML += '<div style="font-size:11px;color:#6b6b66;margin:3px 0 8px">Target: 80% · Current: ' + S.taggingPct + '%</div>';
+  tagHTML += '<div class="tag-gap"><strong>⚠ Process gap — ' + (S.taggingTotal - S.taggingTagged) + ' items need contamination tags</strong>';
+  tagHTML += '<table style="margin-top:6px"><tr><th>Key</th><th>Date</th><th>Bucket</th><th>Assignee</th></tr>';
+  S.untaggedTrue.forEach(function(u) {
+    tagHTML += '<tr><td><a href="' + JB + u.key + '">' + u.key + '</a></td><td>' + u.date + '</td><td>' + u.bucket + '</td><td>' + u.assignee + '</td></tr>';
   });
-  var tr = stb.insertRow(); tr.style.fontWeight = '600';
-  tr.insertCell().textContent = 'Current total';
-  tr.insertCell().className = 'num-right'; tr.cells[1].textContent = S.totalItems;
-  tr.insertCell().className = 'num-right'; tr.cells[2].textContent = S.totalSP.toFixed(1);
-  tr.insertCell().className = 'num-right'; tr.cells[3].textContent = '100%';
-  tr.insertCell().className = 'num-right'; tr.cells[4].textContent = '100%';
+  tagHTML += '</table></div>';
+  document.getElementById('tagging-section').innerHTML = tagHTML;
 
-  // Tagging section
-  var ts = document.getElementById('tagging-section');
-  var tagPct = S.taggingPct;
-  var tagColor = tagPct >= 80 ? '#1e6b36' : tagPct >= 50 ? '#8a5a12' : '#a63434';
-  ts.innerHTML = '<div style="font-size:24px;font-weight:600;color:' + tagColor + '">' + tagPct + '%</div><div style="font-size:12px;color:#6b6b66;margin:2px 0 8px">' + S.taggingTagged + ' of ' + S.taggingTotal + ' true injections tagged</div>';
-  if (tagPct < 80) {
-    var gapDiv = document.createElement('div'); gapDiv.className = 'tag-gap';
-    gapDiv.innerHTML = '<strong>⚠ Process gap — below 80% threshold</strong>Backfill needed on ' + S.untaggedTrue.length + ' untagged items:';
-    var ul = document.createElement('table');
-    ul.innerHTML = '<thead><tr><th>Key</th><th>Date</th><th>Summary</th><th>Assignee</th></tr></thead>';
-    var ulb = ul.createTBody();
-    S.untaggedTrue.forEach(function(u) {
-      var r = ulb.insertRow();
-      r.insertCell().innerHTML = '<a href="' + JIRA_BASE + u.key + '" target="_blank">' + u.key + '</a>';
-      r.insertCell().textContent = u.date;
-      r.insertCell().textContent = u.summary.substring(0, 55) + (u.summary.length > 55 ? '...' : '');
-      r.insertCell().textContent = u.assignee.replace(' (Contractor)', '');
-    });
-    gapDiv.appendChild(ul);
-    ts.appendChild(gapDiv);
-  }
-
-  // Injection timeline
-  var tl = document.getElementById('timeline-table');
-  tl.innerHTML = '<thead><tr><th>Day</th><th>Date</th><th>+Items</th><th>+SP</th><th>Issues & Contamination</th><th>Notes</th></tr></thead>';
-  var tlb = tl.createTBody();
+  document.getElementById('timeline-title').textContent = 'Injection Timeline (Days 1–' + S.dayN + ')';
+  var tlHTML = '<tr><th>Day</th><th>Date</th><th class="num-right">+Items</th><th class="num-right">+SP</th><th>Issues</th></tr>';
   S.injectionTimeline.forEach(function(row) {
-    var tr = tlb.insertRow();
-    if (row.items > 5) tr.style.background = '#fff9f0';
-    tr.insertCell().textContent = 'Day ' + row.day;
-    tr.insertCell().textContent = row.date;
-    tr.insertCell().className = 'num-right'; tr.cells[2].textContent = row.items > 0 ? '+' + row.items : '—';
-    tr.insertCell().className = 'num-right'; tr.cells[3].textContent = row.sp > 0 ? '+' + row.sp.toFixed(1) : '—';
-    var issCell = tr.insertCell();
-    if (row.issues.length === 0) { issCell.textContent = '—'; issCell.className = 'muted'; }
-    else {
-      row.issues.forEach(function(iss) {
-        var link = document.createElement('a'); link.href = JIRA_BASE + iss.key; link.target = '_blank'; link.textContent = iss.key;
-        issCell.appendChild(link);
-        var tag = iss.contamination ? ' [' + iss.contamination + ']' : ' [untagged]';
-        issCell.appendChild(document.createTextNode(': ' + iss.summary.substring(0,40) + tag + ' '));
-        issCell.appendChild(document.createElement('br'));
-      });
+    var issueStr = '—';
+    if (row.issues && row.issues.length > 0) {
+      issueStr = row.issues.map(function(iss) {
+        var done = iss.done ? ' ✅' : '';
+        var tag = iss.contamination ? ' [' + iss.contamination + ']' : ' <span style="color:#a63434">[NO TAG]</span>';
+        return '<a href="' + JB + iss.key + '">' + iss.key + '</a>: ' + iss.summary + done + tag + ' — ' + iss.assignee;
+      }).join('<br>');
     }
-    var noteCell = tr.insertCell();
-    if (row.day === 7) { noteCell.textContent = 'Day-7 burst (10 items) — mirrors S6801 Day-7 pattern'; noteCell.style.color = '#8a5a12'; }
-    else noteCell.textContent = '—';
+    var rowStyle = row.items >= 10 ? ' style="background:#fff9e6"' : '';
+    tlHTML += '<tr' + rowStyle + '><td>Day ' + row.day + (row.items >= 10 ? ' <span class="pill amber">⚠ burst</span>' : '') + '</td><td>' + row.date + '</td><td class="num-right">' + (row.items||0) + '</td><td class="num-right">' + (row.sp||0) + '</td><td>' + issueStr + '</td></tr>';
   });
-
-  // Charts
-  var days = Array.from({length: S.totalDays}, function(_, i) { return 'D' + (i+1); });
-  var idealBurndown = days.map(function(_, i) { return +(S.totalItems * (1 - (i+1)/S.totalDays)).toFixed(1); });
-  // Approximate actual: start at totalItems, mark done today
-  var actualBurndown = days.map(function(_, i) {
-    if (i < S.dayN) return S.totalItems - Math.round(S.doneItems * (i+1) / S.dayN);
-    return null;
-  });
+  document.getElementById('timeline-table').innerHTML = tlHTML;
 
   if (typeof Chart !== 'undefined') {
+    var labels = [];
+    for (var i = 1; i <= S.totalDays; i++) labels.push('D'+i);
+    var ideal = labels.map(function(_, i){ return +(S.totalItems - S.totalItems/S.totalDays*(i+1)).toFixed(1); });
+    var actual = new Array(S.totalDays).fill(null);
+    actual[0] = S.totalItems;
+    actual[S.dayN-1] = S.totalItems - S.doneItems;
+    var slope = (actual[S.dayN-1] - actual[0]) / (S.dayN - 1);
+    for (var j = 1; j < S.dayN - 1; j++) actual[j] = +(actual[0] + slope*j).toFixed(0);
     new Chart(document.getElementById('burndown-chart'), {
       type: 'line',
-      data: {
-        labels: days,
-        datasets: [
-          { label: 'Ideal', data: idealBurndown, borderColor: '#aaa', borderDash: [4,4], pointRadius: 0, tension: 0.1 },
-          { label: 'Actual', data: actualBurndown, borderColor: '#1e4f9d', backgroundColor: 'rgba(30,79,157,0.08)', pointRadius: 3, tension: 0.1 }
-        ]
-      },
-      options: { plugins: { legend: { labels: { font: { size: 11 } } } }, scales: { y: { beginAtZero: true }, x: { ticks: { font: { size: 10 } } } } }
+      data: { labels: labels, datasets: [
+        { label: 'Ideal', data: ideal, borderColor: '#c0c0bc', borderDash: [4,3], pointRadius: 0, tension: 0 },
+        { label: 'Actual', data: actual, borderColor: '#1e4f9d', backgroundColor: 'rgba(30,79,157,0.06)', pointRadius: 3, tension: 0, spanGaps: false }
+      ]},
+      options: { plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } }, scales: { y: { beginAtZero: false, title: { display: true, text: 'Items remaining', font: { size: 11 } } } } }
     });
-
-    // Injection accumulation
-    var cumItems = []; var cumSP = []; var runItems = 0; var runSP = 0;
-    var dayInjMap = {};
-    S.injectionTimeline.forEach(function(r) { dayInjMap[r.day] = r; });
-    for (var d = 2; d <= S.totalDays; d++) {
-      var r = dayInjMap[d];
-      if (r) { runItems += r.items; runSP += r.sp; }
-      cumItems.push(runItems); cumSP.push(runSP);
-    }
-    var injLabels = Array.from({length: S.totalDays - 1}, function(_, i) { return 'D' + (i+2); });
+    var ci = 0, cs = 0, ii = [], is2 = [];
+    S.injectionTimeline.forEach(function(r){ ci += r.items||0; cs += r.sp||0; ii.push(ci); is2.push(cs); });
     new Chart(document.getElementById('injection-chart'), {
-      type: 'bar',
-      data: {
-        labels: injLabels,
-        datasets: [
-          { label: 'Cumulative items', data: cumItems, backgroundColor: 'rgba(163,52,52,0.55)', yAxisID: 'y' },
-          { label: 'Cumulative SP', data: cumSP, backgroundColor: 'rgba(30,79,157,0.35)', yAxisID: 'y' }
-        ]
-      },
-      options: { plugins: { legend: { labels: { font: { size: 11 } } } }, scales: { y: { beginAtZero: true }, x: { ticks: { font: { size: 10 } } } } }
+      type: 'line',
+      data: { labels: S.injectionTimeline.map(function(r){ return 'D'+r.day; }), datasets: [
+        { label: 'Cumul. Items', data: ii, borderColor: '#c9b375', pointRadius: 3, tension: 0 },
+        { label: 'Cumul. SP', data: is2, borderColor: '#a63434', pointRadius: 3, tension: 0 }
+      ]},
+      options: { plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } }, scales: { y: { beginAtZero: true, title: { display: true, text: 'Cumulative added', font: { size: 11 } } } } }
     });
   }
 
-  // Dashboard table
-  var dt = document.getElementById('dashboard-table');
-  dt.innerHTML = '<thead><tr><th>Signal</th><th>Dashboard Value</th><th>Assessment</th></tr></thead>';
-  var dtb = dt.createTBody();
-  [
-    ['Priority Changed', S.dashboard.priorityChanged + ' of ' + S.dashboard.priorityChangedOf + ' (' + S.dashboard.priorityChangedPct + '%)', 'Elevated — more than half of sprint issues re-prioritized'],
-    ['Estimate Changes', S.dashboard.estimateChanges, 'Clean'],
-    ['Refinements', S.dashboard.refinements, 'No refinements tracked'],
-    ['Monthly Churn Rate', S.dashboard.churnRate + '%', 'Clean'],
-    ['Dashboard Updated', S.dashboard.updatedDate, 'Current']
-  ].forEach(function(row) {
-    var tr = dtb.insertRow();
-    row.forEach(function(c) { tr.insertCell().textContent = c; });
-  });
+  var D = S.dashboard;
+  var injPct = (S.trueInjection.count/S.totalItems*100).toFixed(1);
+  document.getElementById('dashboard-table').innerHTML =
+    '<tr><th>Signal</th><th>Dashboard value</th><th>Sprint context</th></tr>' +
+    '<tr><td>Priority changed</td><td>' + D.priorityChanged + ' of ' + D.priorityChangedOf + ' (' + D.priorityChangedPct + '%)</td><td>Elevated — watch shifting requirements</td></tr>' +
+    '<tr><td>Estimate changes</td><td>0</td><td>Clean so far</td></tr>' +
+    '<tr><td>Sprint contamination %</td><td>~' + injPct + '% items</td><td style="color:#a63434">⚠ Above 10% threshold</td></tr>' +
+    '<tr><td>Monthly churn rate</td><td>0.0%</td><td>Very healthy</td></tr>' +
+    '<tr><td>S6801 baseline (final)</td><td>21% items / 16% SP injected</td><td>Current items above; SP below prior pace</td></tr>';
 
-  // Assignee table
-  var at = document.getElementById('assignee-table');
-  at.innerHTML = '<thead><tr><th>Assignee</th><th class="num-right">Done</th><th class="num-right">Total</th><th class="num-right">% Done</th><th class="num-right">SP Done</th><th class="num-right">SP Total</th></tr></thead>';
-  var atb = at.createTBody();
-  S.assigneeStats.forEach(function(row) {
-    var tr = atb.insertRow();
-    tr.insertCell().textContent = row.name.replace(' (Contractor)', '');
-    tr.insertCell().className = 'num-right'; tr.cells[1].textContent = row.done;
-    tr.insertCell().className = 'num-right'; tr.cells[2].textContent = row.total;
-    var pct = row.total > 0 ? (row.done/row.total*100).toFixed(0) + '%' : '—';
-    var pctCell = tr.insertCell(); pctCell.className = 'num-right'; pctCell.textContent = pct;
-    if (row.done === 0 && row.total > 0) pctCell.style.color = '#a63434';
-    tr.insertCell().className = 'num-right'; tr.cells[4].textContent = row.spDone;
-    tr.insertCell().className = 'num-right'; tr.cells[5].textContent = row.spTotal;
-  });
+  document.getElementById('done-section').innerHTML =
+    '<div style="font-size:12px;color:#6b6b66;margin-bottom:8px">34 items done (TRI keys): ' +
+    S.doneKeys.map(function(k){ return '<a href="' + JB + k + '">' + k + '</a>'; }).join(', ') + '</div>';
 
-  // Done table
-  var don = document.getElementById('done-table');
-  don.innerHTML = '<thead><tr><th>Key</th><th>Summary</th><th class="num-right">SP</th><th>Assignee</th></tr></thead>';
-  var donb = don.createTBody();
-  S.doneIssues.forEach(function(iss) {
-    var tr = donb.insertRow();
-    tr.insertCell().innerHTML = '<a href="' + JIRA_BASE + iss.key + '" target="_blank">' + iss.key + '</a>';
-    tr.insertCell().textContent = iss.summary;
-    tr.insertCell().className = 'num-right'; tr.cells[2].textContent = iss.sp || '—';
-    tr.insertCell().textContent = iss.assignee.replace(' (Contractor)', '');
-  });
+  document.getElementById('assessment').innerHTML =
+    '<strong>Assessment (2026-06-10, Day 8/14):</strong> At Day 8 of 14 (one day past midpoint), completion stands at 32.7% of items (59 / 192 SP, 30.7%) against an ideal pace of 57.1% — the team remains behind with 6 days left. ' +
+    'A significant positive: 28 items completed between 2026-06-08 and 2026-06-10, showing mid-sprint acceleration. ' +
+    'Primary concern: the injection rate crossed the ~10% guideline at 13.5% items, driven by a 10-item burst on 2026-06-09 that exactly mirrors Sprint 6801\'s Day 7 spike — a confirmed recurring pattern. ' +
+    'Contamination tagging fell to 25% (4/16 tagged); 11 untagged true injections from 2026-06-04 through 2026-06-09 need backfill this week.';
 
-  // Assessment
-  document.getElementById('assessment').innerHTML = '<strong>Assessment (2026-06-10):</strong> Completion stands at 32.4% of items and 30.1% of SP against a Day-8 ideal of 57.1% — the team needs to close roughly 25 percentage points in the remaining 7 days. The biggest risk is the contamination tagging gap: only 3 of 14 true mid-sprint injections are tagged (21.4%), making root-cause analysis unreliable. A 10-item burst on 2026-06-09 (Day 7) mirrors the exact same single-day spike seen in S6801 and appears to be a recurring pattern worth addressing in retro. On the positive side, total injection volume (13.3% items / 6.6% SP) is well below the S6801 reference (21%/16%), indicating scope containment is improving. The elevated priority change rate (58.1%) may be contributing to velocity drag and should be monitored.';
-
-  // Footer
-  document.getElementById('footer').innerHTML = 'Frozen snapshot · 2026-06-10 · <a href="https://meganpeurachctr-ux.github.io/rse-volatility-dashboard/sprint-health-latest.html">Live URL</a>';
+  document.getElementById('footer').innerHTML =
+    'Frozen snapshot · 2026-06-10 &nbsp;·&nbsp; <a href="https://meganpeurachctr-ux.github.io/rse-volatility-dashboard/sprint-health-latest.html">Live URL</a>';
 });
 </script>
-</div>
 </body>
 </html>
