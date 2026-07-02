@@ -6,69 +6,147 @@
     <title>Backlog Velocity Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --tri-neutral-50:  #FAFAFA;
+            --tri-neutral-100: #F4F4F5;
+            --tri-neutral-200: #E5E5E5;
+            --tri-neutral-300: #D4D4D4;
+            --tri-neutral-400: #A1A1AA;
+            --tri-neutral-500: #737373;
+            --tri-neutral-600: #525252;
+            --tri-neutral-700: #404040;
+            --tri-neutral-900: #171717;
+            --tri-neutral-950: #09090B;
+            --tri-red:         #CC2231;
+            --tri-red-dark:    #7A0E14;
+            --tri-red-bg:      #FCE6E8;
+            --tri-red-text:    #7A0E14;
+            --tri-blue:        #1D73BF;
+            --tri-blue-light:  #5BA3D6;
+            --tri-blue-bg:     #ECF6FF;
+            --tri-blue-text:   #0A4F8A;
+            --tri-amber:       #D14900;
+            --tri-amber-bg:    #FAEEDA;
+            --tri-amber-text:  #854F0B;
+            --tri-green:       #2E7D32;
+        }
+        * { font-family: 'Inter', -apple-system, sans-serif; }
+        body { background: var(--tri-neutral-50); color: var(--tri-neutral-900); }
+
         @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(12px); }
             to   { opacity: 1; transform: translateY(0); }
         }
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(59,130,246,0.3); }
-            50%       { box-shadow: 0 0 30px rgba(59,130,246,0.6); }
-        }
-        @keyframes shimmer {
-            0%   { background-position: -1000px 0; }
-            100% { background-position:  1000px 0; }
-        }
-        .animate-slide-in { animation: slideInUp 0.6s ease-out forwards; opacity: 0; }
-        .card-hover { transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
-        .card-hover:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2); }
-        .glass-effect { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
-        .status-badge { animation: pulse-glow 2s ease-in-out infinite; }
-        .progress-bar { transition: width 1s ease-out; }
-        .metric-icon { transition: transform 0.3s ease; }
-        .card-hover:hover .metric-icon { transform: rotate(10deg) scale(1.1); }
         @keyframes countUp {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(6px); }
             to   { opacity: 1; transform: translateY(0); }
         }
-        .count-animate { animation: countUp 0.5s ease-out; }
+        .animate-slide-in { animation: slideInUp 0.3s ease-out forwards; opacity: 0; }
+        .count-animate { animation: countUp 0.3s ease-out; }
+
+        /* ── Cards (TRI: flat white, 1px border, 10-12px radius) ───────── */
+        .glass-effect {
+            background: #FFFFFF;
+            border: 1px solid var(--tri-neutral-200);
+        }
+        .card-hover { transition: border-color 150ms ease-out; }
+        .card-hover:hover { border-color: var(--tri-neutral-300); }
+        .metric-icon { display: none; }
+
+        /* ── Stat card (Option C) ───────────────────────────────────────── */
+        .stat-card {
+            position: relative;
+            background: #FFFFFF;
+            border: 1px solid var(--tri-neutral-200);
+            border-radius: 10px;
+            padding: 20px;
+            transition: border-color 150ms ease-out;
+        }
+        .stat-card:hover { border-color: var(--tri-neutral-300); }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--tri-neutral-200);
+            border-radius: 10px 10px 0 0;
+        }
+        .stat-card.flag::before { background: var(--tri-red); }
+        .stat-label {
+            font-size: 12px; font-weight: 500; color: var(--tri-neutral-500);
+            margin-bottom: 10px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 6px;
+        }
+        .stat-num {
+            font-size: 28px; font-weight: 600; letter-spacing: -0.015em;
+            color: var(--tri-neutral-950); margin-bottom: 4px;
+        }
+        .stat-num.flag { color: var(--tri-red); }
+        .stat-meta { font-size: 12px; color: var(--tri-neutral-400); margin-bottom: 16px; }
+        .stat-footer {
+            border-top: 1px solid var(--tri-neutral-100);
+            padding-top: 10px;
+            font-size: 12px; font-weight: 500;
+            display: flex; align-items: center; justify-content: space-between;
+            color: var(--tri-neutral-400);
+        }
+        .stat-footer a { color: inherit; text-decoration: none; }
+        .stat-footer a:hover { color: var(--tri-neutral-600); }
+        .stat-footer .flag-text { color: var(--tri-red); }
+
+        /* ── Status badge / live pill ───────────────────────────────────── */
+        .status-badge { background: var(--tri-green); border-radius: 9999px; width: 6px; height: 6px; display: inline-block; }
+
+        .progress-bar { transition: width 600ms ease-out; }
+
+        /* ── Tooltip ─────────────────────────────────────────────────────── */
         .tooltip-container { position: relative; display: inline-block; }
         .tooltip-text { display: none; }
         #global-tooltip {
             visibility: hidden;
             opacity: 0;
             width: 220px;
-            background-color: #1e293b;
+            background-color: var(--tri-neutral-900);
             color: #fff;
             font-size: 0.75rem;
-            border-radius: 8px;
+            border-radius: 6px;
             padding: 10px 12px;
             position: fixed;
             z-index: 9999;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            transition: opacity 0.15s ease;
+            transition: opacity 150ms ease-out;
             pointer-events: none;
         }
-        .shimmer-bg { background: linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent); background-size: 200% 100%; animation: shimmer 2s infinite; }
-        .tab-button { transition: all 0.3s ease; }
-        .tab-button.active { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); color: white; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
+
+        /* ── Tabs (TRI: flat segmented control, no gradient) ────────────── */
+        .tab-button {
+            transition: background-color 150ms ease-out, color 150ms ease-out;
+            color: var(--tri-neutral-600);
+        }
+        .tab-button.active {
+            background: var(--tri-neutral-900);
+            color: #FFFFFF;
+        }
         .tab-content { display: none; }
-        .tab-content.active { display: block; animation: slideInUp 0.4s ease-out; }
-        .scope-toggle { display: inline-flex; background: #f1f5f9; border-radius: 9999px; padding: 3px; gap: 2px; }
+        .tab-content.active { display: block; animation: slideInUp 0.25s ease-out; }
+
+        /* ── Scope toggle (RSE / RSE+) ───────────────────────────────────── */
+        .scope-toggle { display: inline-flex; background: var(--tri-neutral-100); border-radius: 8px; padding: 3px; gap: 2px; }
         .scope-btn {
-            padding: 6px 18px; border-radius: 9999px; font-size: 0.8rem; font-weight: 600;
-            cursor: pointer; border: none; background: transparent; color: #64748b;
-            transition: all 0.25s ease;
+            padding: 6px 16px; border-radius: 6px; font-size: 0.8rem; font-weight: 500;
+            cursor: pointer; border: none; background: transparent; color: var(--tri-neutral-500);
+            transition: background-color 150ms ease-out, color 150ms ease-out;
         }
-        .scope-btn.active {
-            background: linear-gradient(135deg,#667eea,#764ba2);
-            color: white;
-            box-shadow: 0 2px 8px rgba(102,126,234,0.45);
-        }
-        .scope-btn:not(.active):hover { background: #e2e8f0; color: #334155; }
+        .scope-btn.active { background: var(--tri-neutral-900); color: #FFFFFF; }
+        .scope-btn:not(.active):hover { background: var(--tri-neutral-200); color: var(--tri-neutral-700); }
     </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen">
+
+<body class="min-h-screen" style="background: var(--tri-neutral-50);">
 <div class="w-full min-h-screen p-6 md:p-8">
 <div class="max-w-7xl mx-auto">
 
@@ -76,33 +154,33 @@
     <div class="mb-8 animate-slide-in" style="animation-delay:0.1s;">
         <div class="flex items-center justify-between flex-wrap gap-4">
             <div>
-                <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+                <h1 class="text-3xl font-bold mb-1" style="color: var(--tri-neutral-950); letter-spacing: -0.02em;">
                     Backlog Velocity Dashboard
                 </h1>
-                <p class="text-slate-600 text-lg">Team performance metrics and backlog health analysis</p>
+                <p class="text-sm" style="color: var(--tri-neutral-500);">Team performance metrics and backlog health analysis</p>
             </div>
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
-                <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
-                <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">July 01, 2026 at 01:59 PM</span></span>
+                <div class="status-badge"></div>
+                <span class="text-sm font-medium" style="color: var(--tri-neutral-700);">Live</span>
+                <span class="text-xs" style="color: var(--tri-neutral-400);">Updated: <span id="lastUpdated">June 30, 2026 at 12:38 PM</span></span>
             </div>
         </div>
     </div>
 
     <!-- ── Tab Navigation ─────────────────────────────────────────────────── -->
-    <div class="mb-8 glass-effect rounded-2xl shadow-lg p-2 animate-slide-in" style="animation-delay:0.12s;">
-        <div class="flex flex-wrap gap-2">
-            <button onclick="switchTab('current',event)" class="tab-button active flex-1 min-w-fit px-6 py-3 rounded-xl font-semibold text-slate-700 hover:bg-slate-100">
+    <div class="mb-8 glass-effect rounded-xl p-1 animate-slide-in" style="animation-delay:0.12s;">
+        <div class="flex flex-wrap gap-1">
+            <button onclick="switchTab('current',event)" class="tab-button active flex-1 min-w-fit px-6 py-2.5 rounded-lg font-medium text-sm">
                 <span class="flex items-center justify-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
                     </svg>
                     Current Sprint
                 </span>
             </button>
-            <button onclick="switchTab('historical',event)" class="tab-button flex-1 min-w-fit px-6 py-3 rounded-xl font-semibold text-slate-700 hover:bg-slate-100">
+            <button onclick="switchTab('historical',event)" class="tab-button flex-1 min-w-fit px-6 py-2.5 rounded-lg font-medium text-sm">
                 <span class="flex items-center justify-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                     </svg>
                     Historical Trends
@@ -119,18 +197,17 @@
         <!-- ── Sprint Breakdown ──────────────────────────────────────────── -->
         <div class="mb-8">
             <div class="flex items-center justify-between flex-wrap gap-4 mb-6 animate-slide-in" style="animation-delay:0.15s;">
-                <h2 class="text-2xl font-bold text-slate-800 flex items-center">
-                    <span class="w-1 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full mr-3"></span>
+                <h2 class="text-lg font-semibold" style="color: var(--tri-neutral-900);">
                     Current Sprint Breakdown
                 </h2>
                 <div class="flex items-center gap-3">
-                    <span class="text-xs text-slate-500 font-medium">Scope:</span>
+                    <span class="text-xs font-medium" style="color: var(--tri-neutral-500);">Scope:</span>
                     <div class="scope-toggle" id="scopeToggle">
                         <button class="scope-btn active" id="btnRse"     onclick="setScope('rse')">RSE</button>
                         <button class="scope-btn"        id="btnRsePlus" onclick="setScope('rse_plus')">RSE+</button>
                     </div>
                     <div id="scopeInfoIcon" class="cursor-help" onmouseenter="showScopeTooltip(event)" onmouseleave="hideScopeTooltip()">
-                        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4" style="color: var(--tri-neutral-400);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
@@ -138,27 +215,26 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-in" style="animation-delay:0.18s;">
-                <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" id="stat-total" data-counter="67">0</div>
-                    <div class="text-xs text-slate-600 font-medium mt-1">Total Issues</div>
+                <div class="glass-effect rounded-xl p-5 text-center card-hover">
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-total" data-counter="66">0</div>
+                    <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">Total Issues</div>
                 </div>
-                <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="76.1" data-decimal="true">0</div>
-                    <div class="text-xs text-slate-600 font-medium mt-1">Completion Rate</div>
+                <div class="glass-effect rounded-xl p-5 text-center card-hover">
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-rate" data-counter="60.6" data-decimal="true">0</div>
+                    <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">Completion Rate</div>
                 </div>
-                <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="7">0</div>
-                    <div class="text-xs text-slate-600 font-medium mt-1">In Progress</div>
+                <div class="glass-effect rounded-xl p-5 text-center card-hover">
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-inprogress" data-counter="13">0</div>
+                    <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">In Progress</div>
                 </div>
-                <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="3">0</div>
-                    <div class="text-xs text-slate-600 font-medium mt-1">To Do</div>
+                <div class="glass-effect rounded-xl p-5 text-center card-hover">
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-todo" data-counter="6">0</div>
+                    <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">To Do</div>
                 </div>
             </div>
 
-            <div class="glass-effect rounded-2xl shadow-xl p-6 animate-slide-in" style="animation-delay:0.21s;">
-                <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
-                    <span class="w-1 h-6 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full mr-2"></span>
+            <div class="glass-effect rounded-xl p-6 animate-slide-in" style="animation-delay:0.21s;">
+                <h3 class="text-sm font-medium mb-4" style="color: var(--tri-neutral-700);">
                     Issue Status Distribution
                 </h3>
                 <div style="position:relative;height:300px;">
@@ -168,107 +244,53 @@
         </div>
 
         <!-- ── Key Performance Metrics ───────────────────────────────────── -->
-        <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center animate-slide-in" style="animation-delay:0.25s;">
-            <span class="w-1 h-8 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mr-3"></span>
+        <h2 class="text-lg font-semibold mb-4 animate-slide-in" style="animation-delay:0.25s; color: var(--tri-neutral-900);">
             Key Performance Metrics
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <a href="#" id="backlogLink" class="glass-effect rounded-2xl shadow-xl p-6 card-hover cursor-pointer animate-slide-in" style="animation-delay:0.3s;">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                        </svg>
-                    </div>
-                    <div class="w-12 h-1 bg-gradient-to-r from-blue-400 to-transparent rounded-full"></div>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <a href="#" id="backlogLink" class="stat-card cursor-pointer animate-slide-in" style="animation-delay:0.3s;">
+                <div class="stat-label"><span>Current backlog</span></div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-1" data-counter="186">0</div>
-                    <div class="text-sm text-slate-700 font-semibold mb-1">Current Backlog</div>
-                    <div class="text-xs text-slate-500 mb-3">open items</div>
+                    <div class="stat-num" data-counter="165">0</div>
+                    <div class="stat-meta">open items</div>
                 </div>
-                <div class="flex items-center text-xs text-blue-600 font-medium">
-                    <span>View in Jira</span>
-                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                    </svg>
-                </div>
+                <div class="stat-footer"><span>vs. last sprint</span><span>Jira →</span></div>
             </a>
 
-            <a href="#" id="velocityLink" class="glass-effect rounded-2xl shadow-xl p-6 card-hover cursor-pointer animate-slide-in" style="animation-delay:0.4s;">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="bg-gradient-to-br from-green-500 to-emerald-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                        </svg>
-                    </div>
-                    <div class="w-12 h-1 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
-                </div>
+            <a href="#" id="velocityLink" class="stat-card cursor-pointer animate-slide-in" style="animation-delay:0.4s;">
+                <div class="stat-label"><span>Average velocity</span></div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-800 bg-clip-text text-transparent mb-1" data-counter="65">0</div>
-                    <div class="text-sm text-slate-700 font-semibold mb-1">Average Velocity</div>
-                    <div class="text-xs text-slate-500 mb-3">points/sprint</div>
+                    <div class="stat-num" data-counter="65">0</div>
+                    <div class="stat-meta">points / sprint</div>
                 </div>
-                <div class="flex items-center text-xs text-green-600 font-medium">
-                    <span>View in Jira</span>
-                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                    </svg>
-                </div>
+                <div class="stat-footer"><span>6-sprint avg</span><span>Jira →</span></div>
             </a>
 
-            <a href="#" id="contaminationLink" class="glass-effect rounded-2xl shadow-xl p-6 card-hover cursor-pointer animate-slide-in" style="animation-delay:0.5s;">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="bg-gradient-to-br from-orange-500 to-amber-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                        </svg>
-                    </div>
-                    <div class="w-12 h-1 bg-gradient-to-r from-orange-400 to-transparent rounded-full"></div>
-                </div>
+            <a href="#" id="contaminationLink" class="stat-card flag cursor-pointer animate-slide-in" style="animation-delay:0.5s;">
+                <div class="stat-label"><span>Sprint contamination</span></div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-800 bg-clip-text text-transparent mb-1" data-counter="28.0" data-decimal="true">0</div>
-                    <div class="text-sm text-slate-700 font-semibold mb-1">Sprint Contamination</div>
-                    <div class="text-xs text-slate-500 mb-3">carryover rate</div>
+                    <div class="stat-num flag" data-counter="46.3" data-decimal="true">0</div>
+                    <div class="stat-meta">carryover rate</div>
                 </div>
-                <div class="flex items-center text-xs text-orange-600 font-medium">
-                    <span>View in Jira</span>
-                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                    </svg>
-                </div>
+                <div class="stat-footer"><span class="flag-text">↑ above 15% target</span><span>Jira →</span></div>
             </a>
 
-            <a href="#" id="zombieLink" class="glass-effect rounded-2xl shadow-xl p-6 card-hover cursor-pointer animate-slide-in" style="animation-delay:0.6s;">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="bg-gradient-to-br from-purple-500 to-violet-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                    <div class="w-12 h-1 bg-gradient-to-r from-purple-400 to-transparent rounded-full"></div>
-                </div>
+            <a href="#" id="zombieLink" class="stat-card flag cursor-pointer animate-slide-in" style="animation-delay:0.6s;">
+                <div class="stat-label"><span>Zombie issues</span></div>
                 <div class="count-animate">
-                    <div class="text-4xl font-bold bg-gradient-to-r from-purple-600 to-violet-800 bg-clip-text text-transparent mb-1" data-counter="74">0</div>
-                    <div class="text-sm text-slate-700 font-semibold mb-1">Zombie Issues</div>
-                    <div class="text-xs text-slate-500 mb-3">90+ days old</div>
+                    <div class="stat-num flag" data-counter="37">0</div>
+                    <div class="stat-meta">90+ days old</div>
                 </div>
-                <div class="flex items-center text-xs text-purple-600 font-medium">
-                    <span>View in Jira</span>
-                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                    </svg>
-                </div>
+                <div class="stat-footer"><span class="flag-text">↑ above 10 item target</span><span>Jira →</span></div>
             </a>
         </div>
 
         <!-- ── Monthly Churn Rate ─────────────────────────────────────────── -->
-        <div class="mt-8 glass-effect rounded-2xl shadow-xl p-6 md:p-8 animate-slide-in" style="animation-delay:0.65s;">
-            <h2 class="text-2xl font-bold text-slate-800 mb-2 flex items-center">
-                <span class="w-1 h-8 bg-gradient-to-b from-red-500 to-orange-500 rounded-full mr-3"></span>
+        <div class="mt-8 glass-effect rounded-xl p-6 md:p-8 animate-slide-in" style="animation-delay:0.65s;">
+            <h2 class="text-lg font-semibold mb-2 flex items-center" style="color: var(--tri-neutral-900);">
                 Monthly Churn Rate Analysis
                 <div class="tooltip-container ml-2">
-                    <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 cursor-help" style="color: var(--tri-neutral-400);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     <div class="tooltip-text">The percentage of resolved issues this month closed without completing intended work. Includes: Duplicates (avoided work), Not Needed (wasted effort), and Won't Do (deprioritized items).</div>
@@ -276,68 +298,68 @@
             </h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
                 <div>
-                    <h3 class="text-lg font-semibold text-slate-700 mb-4">Resolution Breakdown</h3>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 hover:shadow-md transition-shadow">
-                            <span class="font-medium text-slate-700">Done</span>
-                            <span class="text-2xl font-bold text-green-600">5</span>
+                    <h3 class="text-sm font-medium mb-4" style="color: var(--tri-neutral-600);">Resolution Breakdown</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center p-3 rounded-lg border" style="border-color: var(--tri-neutral-200);">
+                            <span class="text-sm" style="color: var(--tri-neutral-700);">Done</span>
+                            <span class="text-lg font-semibold" style="color: var(--tri-neutral-950);">37</span>
                         </div>
-                        <div class="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200 hover:shadow-md transition-shadow">
-                            <span class="font-medium text-slate-700">Duplicate</span>
-                            <span class="text-2xl font-bold text-blue-600">0</span>
+                        <div class="flex justify-between items-center p-3 rounded-lg border" style="border-color: var(--tri-neutral-200);">
+                            <span class="text-sm" style="color: var(--tri-neutral-700);">Duplicate</span>
+                            <span class="text-lg font-semibold" style="color: var(--tri-neutral-950);">0</span>
                         </div>
-                        <div class="flex justify-between items-center p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border border-amber-200 hover:shadow-md transition-shadow">
-                            <span class="font-medium text-slate-700">Not Needed</span>
-                            <span class="text-2xl font-bold text-amber-600">0</span>
+                        <div class="flex justify-between items-center p-3 rounded-lg border" style="border-color: var(--tri-neutral-200);">
+                            <span class="text-sm" style="color: var(--tri-neutral-700);">Not Needed</span>
+                            <span class="text-lg font-semibold" style="color: var(--tri-neutral-950);">1</span>
                         </div>
-                        <div class="flex justify-between items-center p-4 bg-gradient-to-r from-red-50 to-rose-50 rounded-xl border border-red-200 hover:shadow-md transition-shadow">
-                            <span class="font-medium text-slate-700">Won't Do</span>
-                            <span class="text-2xl font-bold text-red-600">0</span>
+                        <div class="flex justify-between items-center p-3 rounded-lg border" style="border-color: var(--tri-neutral-200);">
+                            <span class="text-sm" style="color: var(--tri-neutral-700);">Won't Do</span>
+                            <span class="text-lg font-semibold" style="color: var(--tri-neutral-950);">1</span>
                         </div>
-                        <div class="flex justify-between items-center p-4 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl border-2 border-slate-400 shadow-md">
-                            <span class="font-bold text-slate-800">Grand Total</span>
-                            <span class="text-2xl font-bold text-slate-800">5</span>
+                        <div class="flex justify-between items-center p-3 rounded-lg" style="background: var(--tri-neutral-100);">
+                            <span class="text-sm font-medium" style="color: var(--tri-neutral-900);">Grand Total</span>
+                            <span class="text-lg font-semibold" style="color: var(--tri-neutral-950);">39</span>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold text-slate-700 mb-4">Churn Metrics</h3>
+                    <h3 class="text-sm font-medium mb-4" style="color: var(--tri-neutral-600);">Churn Metrics</h3>
                     <div class="space-y-4">
-                        <div class="p-6 bg-gradient-to-br from-red-50 via-orange-50 to-amber-50 rounded-xl border-2 border-red-300 shadow-lg">
-                            <div class="text-sm text-slate-600 mb-2 font-medium">Monthly Churn Rate</div>
-                            <div class="text-5xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mb-2">0.0%</div>
-                            <div class="text-xs text-slate-600">0 churned items out of 20 total</div>
+                        <div class="p-5 rounded-lg border" style="border-color: var(--tri-neutral-200);">
+                            <div class="text-xs font-medium mb-2" style="color: var(--tri-neutral-500);">Monthly Churn Rate</div>
+                            <div class="text-4xl font-semibold mb-2" style="color: var(--tri-red); letter-spacing: -0.015em;">5.1%</div>
+                            <div class="text-xs" style="color: var(--tri-neutral-400);">2 churned items out of 39 total</div>
                         </div>
-                        <div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
-                            <div class="text-sm font-semibold text-slate-700 mb-3">Churn Categories:</div>
+                        <div class="p-4 rounded-lg" style="background: var(--tri-neutral-50); border: 1px solid var(--tri-neutral-200);">
+                            <div class="text-xs font-medium mb-3" style="color: var(--tri-neutral-600);">Churn Categories</div>
                             <div class="space-y-2 text-sm">
                                 <div class="flex justify-between items-center">
-                                    <span class="text-slate-600">Duplicate (avoided work)</span>
-                                    <span class="font-semibold text-blue-600">0 (0.0%)</span>
+                                    <span style="color: var(--tri-neutral-600);">Duplicate (avoided work)</span>
+                                    <span class="font-medium" style="color: var(--tri-neutral-900);">0 (0.0%)</span>
                                 </div>
-                                <div class="w-full bg-slate-200 rounded-full h-1.5">
-                                    <div class="bg-blue-500 h-1.5 rounded-full progress-bar" style="width: 0.0%;"></div>
-                                </div>
-                                <div class="flex justify-between items-center pt-2">
-                                    <span class="text-slate-600">Not Needed (wasted effort)</span>
-                                    <span class="font-semibold text-amber-600">0 (0.0%)</span>
-                                </div>
-                                <div class="w-full bg-slate-200 rounded-full h-1.5">
-                                    <div class="bg-amber-500 h-1.5 rounded-full progress-bar" style="width: 0.0%;"></div>
+                                <div class="w-full rounded-full h-1.5" style="background: var(--tri-neutral-200);">
+                                    <div class="h-1.5 rounded-full progress-bar" style="background: var(--tri-neutral-400); width: 0.0%;"></div>
                                 </div>
                                 <div class="flex justify-between items-center pt-2">
-                                    <span class="text-slate-600">Won't Do (deprioritized)</span>
-                                    <span class="font-semibold text-red-600">0 (0.0%)</span>
+                                    <span style="color: var(--tri-neutral-600);">Not Needed (wasted effort)</span>
+                                    <span class="font-medium" style="color: var(--tri-neutral-900);">1 (2.6%)</span>
                                 </div>
-                                <div class="w-full bg-slate-200 rounded-full h-1.5">
-                                    <div class="bg-red-500 h-1.5 rounded-full progress-bar" style="width: 0.0%;"></div>
+                                <div class="w-full rounded-full h-1.5" style="background: var(--tri-neutral-200);">
+                                    <div class="h-1.5 rounded-full progress-bar" style="background: var(--tri-neutral-400); width: 2.6%;"></div>
+                                </div>
+                                <div class="flex justify-between items-center pt-2">
+                                    <span style="color: var(--tri-neutral-600);">Won't Do (deprioritized)</span>
+                                    <span class="font-medium" style="color: var(--tri-red);">1 (2.6%)</span>
+                                </div>
+                                <div class="w-full rounded-full h-1.5" style="background: var(--tri-neutral-200);">
+                                    <div class="h-1.5 rounded-full progress-bar" style="background: var(--tri-red); width: 2.6%;"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-5 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200 shadow-md">
-                            <div class="text-sm text-slate-600 mb-2 font-medium">Completion Rate</div>
-                            <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">100.0%</div>
-                            <div class="text-xs text-slate-600 mt-1">20 successfully completed</div>
+                        <div class="p-4 rounded-lg border" style="border-color: var(--tri-neutral-200);">
+                            <div class="text-xs font-medium mb-2" style="color: var(--tri-neutral-500);">Completion Rate</div>
+                            <div class="text-3xl font-semibold" style="color: var(--tri-neutral-950);">94.9%</div>
+                            <div class="text-xs mt-1" style="color: var(--tri-neutral-400);">37 successfully completed</div>
                         </div>
                     </div>
                 </div>
@@ -345,23 +367,20 @@
         </div>
 
         <!-- ── Recent Sprint Analysis ─────────────────────────────────────── -->
-        <h2 class="text-2xl font-bold text-slate-800 mb-6 mt-8 flex items-center animate-slide-in" style="animation-delay:0.7s;">
-            <span class="w-1 h-8 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full mr-3"></span>
+        <h2 class="text-lg font-semibold mb-4 mt-8 animate-slide-in" style="animation-delay:0.7s; color: var(--tri-neutral-900);">
             Recent Sprint Analysis
         </h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            <div class="glass-effect rounded-2xl shadow-xl p-6 animate-slide-in" style="animation-delay:0.75s;">
-                <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
-                    <span class="w-1 h-6 bg-gradient-to-b from-blue-500 to-cyan-500 rounded-full mr-2"></span>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+            <div class="glass-effect rounded-xl p-6 animate-slide-in" style="animation-delay:0.75s;">
+                <h3 class="text-sm font-medium mb-4" style="color: var(--tri-neutral-700);">
                     Sprint Velocity: Planned vs Completed
                 </h3>
                 <div style="position:relative;height:300px;">
                     <canvas id="sprintVelocityChart"></canvas>
                 </div>
             </div>
-            <div class="glass-effect rounded-2xl shadow-xl p-6 animate-slide-in" style="animation-delay:0.85s;">
-                <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
-                    <span class="w-1 h-6 bg-gradient-to-b from-purple-500 to-violet-500 rounded-full mr-2"></span>
+            <div class="glass-effect rounded-xl p-6 animate-slide-in" style="animation-delay:0.85s;">
+                <h3 class="text-sm font-medium mb-4" style="color: var(--tri-neutral-700);">
                     Issue Age Distribution
                 </h3>
                 <div style="position:relative;height:300px;">
@@ -372,111 +391,71 @@
 
         <!-- ── Automation Metrics ─────────────────────────────────────────── -->
         <div class="mt-8 animate-slide-in" style="animation-delay:1.0s;">
-            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center">
-                <span class="w-1 h-8 bg-gradient-to-b from-amber-500 to-orange-500 rounded-full mr-3"></span>
+            <h2 class="text-lg font-semibold mb-4 flex items-center" style="color: var(--tri-neutral-900);">
                 Automation Metrics
-                <span class="ml-3 px-3 py-1 text-xs font-semibold bg-amber-100 text-amber-800 rounded-full">Data Collection in Progress</span>
+                <span class="ml-3 px-2.5 py-0.5 text-xs font-medium rounded-full" style="background: var(--tri-neutral-100); color: var(--tri-neutral-600);">Data Collection in Progress</span>
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
 
                 <!-- Priority Change Count -->
-                <div class="glass-effect rounded-2xl shadow-lg p-6 card-hover">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="bg-gradient-to-br from-rose-500 to-pink-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
-                            </svg>
+                <div class="stat-card flag">
+                    <div class="stat-label">
+                        <span>Priority Change Count</span>
+                        <div class="tooltip-container">
+                            <svg class="w-3.5 h-3.5 cursor-help" style="color: var(--tri-neutral-400);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <div class="tooltip-text">Issues that had their priority changed at least once this sprint. High rates may indicate unclear requirements or shifting team focus.</div>
                         </div>
-                        <div class="w-12 h-1 bg-gradient-to-r from-rose-400 to-transparent rounded-full"></div>
                     </div>
-                    <div class="mb-3">
-                        <div class="text-4xl font-bold bg-gradient-to-r from-rose-600 to-pink-700 bg-clip-text text-transparent mb-1" id="priority-change-total">42</div>
-                        <div class="text-sm text-slate-700 font-semibold mb-1 flex items-center gap-1">Priority Change Count
-                            <div class="tooltip-container">
-                                <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <div class="tooltip-text">Number of times issue priorities were changed during this sprint. High counts may indicate unclear requirements or shifting team focus.</div>
-                            </div>
-                        </div>
-                        <div class="text-xs text-slate-500">total changes this sprint</div>
+                    <div class="stat-num flag" id="priority-change-affected">23</div>
+                    <div class="stat-meta">of <span id="priority-change-total-issues">66</span> sprint issues</div>
+                    <div class="stat-footer">
+                        <span class="flag-text" id="priority-change-percent">34.8%</span>
+                        <span>affected</span>
                     </div>
-                    <div class="mt-3 pt-3 border-t border-slate-200">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-slate-500">Avg per issue</span>
-                            <span class="text-sm font-bold text-rose-600" id="priority-change-avg">0.6</span>
-                        </div>
-                        <div class="text-xs text-slate-400 mt-1">across <span id="automation-issue-count">68</span> RSE issues</div>
+                    <div class="w-full rounded-full h-1 mt-2" style="background: var(--tri-neutral-200);">
+                        <div id="priority-change-bar" class="h-1 rounded-full progress-bar" style="background: var(--tri-red); width: 34.8%;"></div>
                     </div>
                 </div>
 
                 <!-- Estimate Change Count -->
-                <div class="glass-effect rounded-2xl shadow-lg p-6 card-hover">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="bg-gradient-to-br from-cyan-500 to-teal-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                            </svg>
+                <div class="stat-card">
+                    <div class="stat-label">
+                        <span>Estimate Change Count</span>
+                        <div class="tooltip-container">
+                            <svg class="w-3.5 h-3.5 cursor-help" style="color: var(--tri-neutral-400);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <div class="tooltip-text">Number of times story point estimates were revised during this sprint. Frequent re-estimation can signal scope creep or poor initial sizing.</div>
                         </div>
-                        <div class="w-12 h-1 bg-gradient-to-r from-cyan-400 to-transparent rounded-full"></div>
                     </div>
-                    <div class="mb-3">
-                        <div class="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-teal-700 bg-clip-text text-transparent mb-1" id="estimate-change-total">0</div>
-                        <div class="text-sm text-slate-700 font-semibold mb-1 flex items-center gap-1">Estimate Change Count
-                            <div class="tooltip-container">
-                                <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <div class="tooltip-text">Number of times story point estimates were revised during this sprint. Frequent re-estimation can signal scope creep or poor initial sizing.</div>
-                            </div>
-                        </div>
-                        <div class="text-xs text-slate-500">total re-estimations this sprint</div>
-                    </div>
-                    <div class="mt-3 pt-3 border-t border-slate-200">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-slate-500">Avg per issue</span>
-                            <span class="text-sm font-bold text-cyan-600" id="estimate-change-avg">0.0</span>
-                        </div>
-                        <div class="text-xs text-slate-400 mt-1">story point re-estimations</div>
-                    </div>
+                    <div class="stat-num" id="estimate-change-total">0</div>
+                    <div class="stat-meta">total re-estimations this sprint</div>
+                    <div class="stat-footer"><span id="estimate-change-avg">0.0</span><span>avg per issue</span></div>
                 </div>
 
-                <!-- Contamination Source — Option D layout -->
-                <div class="glass-effect rounded-2xl shadow-lg p-6 card-hover relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-amber-400 rounded-t-2xl"></div>
-                    <h4 class="text-sm text-slate-700 font-semibold mb-1 flex items-center gap-1 mt-1">Contamination Source
+                <!-- Contamination Source -->
+                <div class="stat-card" style="display:flex; flex-direction:column;">
+                    <div class="stat-label">
+                        <span>Contamination Source</span>
                         <div class="tooltip-container">
-                            <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <svg class="w-3.5 h-3.5 cursor-help" style="color: var(--tri-neutral-400);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             <div class="tooltip-text">Why carried-over issues were not completed in a previous sprint. reactive = unplanned work that surfaced mid-sprint; external = came from outside the team; internal = process or planning issues the team owns.</div>
                         </div>
-                    </h4>
-                    <p class="text-xs text-slate-500 mb-3">Why issues carried over this sprint</p>
+                    </div>
+                    <p class="stat-meta" style="margin-bottom:12px;">Why issues carried over this sprint</p>
                     <div id="contamination-source-breakdown"></div>
                 </div>
 
                 <!-- Refinement Date Count -->
-                <div class="glass-effect rounded-2xl shadow-lg p-6 card-hover">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="bg-gradient-to-br from-violet-500 to-indigo-600 text-white p-3 rounded-xl w-14 h-14 flex items-center justify-center metric-icon shadow-lg">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
+                <div class="stat-card">
+                    <div class="stat-label">
+                        <span>Refinement Date Count</span>
+                        <div class="tooltip-container">
+                            <svg class="w-3.5 h-3.5 cursor-help" style="color: var(--tri-neutral-400);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <div class="tooltip-text">Number of issues that went through backlog refinement this sprint. Tracks how well the team is preparing work before it enters the sprint.</div>
                         </div>
-                        <div class="w-12 h-1 bg-gradient-to-r from-violet-400 to-transparent rounded-full"></div>
                     </div>
-                    <div class="mb-3">
-                        <div class="text-4xl font-bold bg-gradient-to-r from-violet-600 to-indigo-700 bg-clip-text text-transparent mb-1" id="refinement-date-total">0</div>
-                        <div class="text-sm text-slate-700 font-semibold mb-1 flex items-center gap-1">Refinement Date Count
-                            <div class="tooltip-container">
-                                <svg class="w-4 h-4 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <div class="tooltip-text">Number of issues that went through backlog refinement this sprint. Tracks how well the team is preparing work before it enters the sprint.</div>
-                            </div>
-                        </div>
-                        <div class="text-xs text-slate-500">total refinements this sprint</div>
-                    </div>
-                    <div class="mt-3 pt-3 border-t border-slate-200">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-slate-500">Avg per issue</span>
-                            <span class="text-sm font-bold text-violet-600" id="refinement-date-avg">0.0</span>
-                        </div>
-                        <div class="text-xs text-slate-400 mt-1">issues refined per sprint</div>
-                    </div>
+                    <div class="stat-num" id="refinement-date-total">0</div>
+                    <div class="stat-meta">total refinements this sprint</div>
+                    <div class="stat-footer"><span id="refinement-date-avg">0.0</span><span>avg per issue</span></div>
                 </div>
 
             </div>
@@ -487,51 +466,56 @@
     <!-- HISTORICAL TRENDS TAB                                               -->
     <!-- ════════════════════════════════════════════════════════════════════ -->
     <div id="historical-tab" class="tab-content">
-        <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center">
-            <span class="w-1 h-8 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mr-3"></span>
+        <h2 class="text-lg font-semibold mb-4" style="color: var(--tri-neutral-900);">
             12-Month Historical Analysis
         </h2>
 
-        <div class="glass-effect rounded-2xl shadow-xl p-6 mb-8">
-            <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
-                <span class="w-1 h-6 bg-gradient-to-b from-red-500 to-orange-500 rounded-full mr-2"></span>
+        <div class="glass-effect rounded-xl p-6 mb-6">
+            <h3 class="text-sm font-medium mb-4 flex items-center" style="color: var(--tri-neutral-700);">
                 Monthly Churn Rate Trend (Last 12 Months)
                 <div class="tooltip-container ml-2">
-                    <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 cursor-help" style="color: var(--tri-neutral-400);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     <div class="tooltip-text">Percentage of resolved issues each month closed without completing intended work. Includes Duplicates, Not Needed, and Won't Do resolutions.</div>
                 </div>
             </h3>
             <div style="position:relative;height:400px;"><canvas id="historicalChurnChart"></canvas></div>
-            <div class="mt-4 p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-xl border border-red-200">
-                <p class="text-sm text-slate-700"><strong>Average Churn Rate:</strong> <span id="hist-churn-avg">calculating...</span></p>
+            <div class="mt-4 p-4 rounded-lg" style="background: var(--tri-neutral-50); border: 1px solid var(--tri-neutral-200);">
+                <p class="text-sm" style="color: var(--tri-neutral-700);"><strong>Average Churn Rate:</strong> <span id="hist-churn-avg">calculating...</span></p>
             </div>
         </div>
 
-        <div class="glass-effect rounded-2xl shadow-xl p-6 mb-8">
-            <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
-                <span class="w-1 h-6 bg-gradient-to-b from-orange-500 to-amber-500 rounded-full mr-2"></span>
+        <!-- ── Historical Contamination (stacked bar + ghost line) ────────── -->
+        <div class="glass-effect rounded-xl p-6 mb-6">
+            <h3 class="text-sm font-medium mb-2 flex items-center" style="color: var(--tri-neutral-700);">
                 Sprint Contamination Trend (Last 12 Months)
                 <div class="tooltip-container ml-2">
-                    <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 cursor-help" style="color: var(--tri-neutral-400);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    <div class="tooltip-text">Percentage of sprint items that carried over from previous sprints. Measured by issues created 14+ days before sprint start.</div>
+                    <div class="tooltip-text">Percentage of sprint items that carried over from previous sprints. Measured by issues created 14+ days before sprint start. Bars show source breakdown from when tracking began; ghost line shows total % for all months.</div>
                 </div>
             </h3>
+            <!-- Legend -->
+            <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:12px;font-size:12px;color:var(--tri-neutral-500);align-items:center;">
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#D14900;display:inline-block;"></span>Reactive</span>
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#1D73BF;display:inline-block;"></span>External</span>
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#5BA3D6;display:inline-block;"></span>Internal</span>
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#7F8183;display:inline-block;"></span>Uncategorized</span>
+                <span style="display:flex;align-items:center;gap:4px;"><span style="width:18px;border-top:2px dashed #CC2231;display:inline-block;"></span> Total %</span>
+            </div>
             <div style="position:relative;height:400px;"><canvas id="historicalContaminationChart"></canvas></div>
-            <div class="mt-4 p-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl border border-orange-200">
-                <p class="text-sm text-slate-700"><strong>Average Contamination:</strong> <span id="hist-cont-avg">calculating...</span></p>
+            <div class="mt-4 p-4 rounded-lg" style="background: var(--tri-neutral-50); border: 1px solid var(--tri-neutral-200);">
+                <p class="text-sm" style="color: var(--tri-neutral-700);"><strong>Average Contamination:</strong> <span id="hist-cont-avg">calculating...</span></p>
             </div>
         </div>
 
-        <div class="glass-effect rounded-2xl shadow-xl p-6 mb-8">
-            <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
-                <span class="w-1 h-6 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full mr-2"></span>
+        <div class="glass-effect rounded-xl p-6 mb-6">
+            <h3 class="text-sm font-medium mb-4 flex items-center" style="color: var(--tri-neutral-700);">
                 Velocity Trend with Rolling Average (Last 12 Months)
                 <div class="tooltip-container ml-2">
-                    <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 cursor-help" style="color: var(--tri-neutral-400);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     <div class="tooltip-text">Number of issues completed per sprint over time. Rolling average calculated over 3 sprints to smooth out variations.</div>
@@ -539,32 +523,31 @@
             </h3>
             <div style="position:relative;height:400px;"><canvas id="historicalVelocityChart"></canvas></div>
             <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
-                    <p class="text-xs text-slate-600 mb-1">Average Velocity</p><p class="text-2xl font-bold text-green-600" id="hist-vel-avg">--</p>
+                <div class="p-4 rounded-lg" style="background: var(--tri-neutral-50); border: 1px solid var(--tri-neutral-200);">
+                    <p class="text-xs mb-1" style="color: var(--tri-neutral-500);">Average Velocity</p><p class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="hist-vel-avg">--</p>
                 </div>
-                <div class="p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200">
-                    <p class="text-xs text-slate-600 mb-1">Highest Sprint</p><p class="text-2xl font-bold text-blue-600" id="hist-vel-high">--</p>
+                <div class="p-4 rounded-lg" style="background: var(--tri-neutral-50); border: 1px solid var(--tri-neutral-200);">
+                    <p class="text-xs mb-1" style="color: var(--tri-neutral-500);">Highest Sprint</p><p class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="hist-vel-high">--</p>
                 </div>
-                <div class="p-4 bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl border border-purple-200">
-                    <p class="text-xs text-slate-600 mb-1">Lowest Sprint</p><p class="text-2xl font-bold text-purple-600" id="hist-vel-low">--</p>
+                <div class="p-4 rounded-lg" style="background: var(--tri-neutral-50); border: 1px solid var(--tri-neutral-200);">
+                    <p class="text-xs mb-1" style="color: var(--tri-neutral-500);">Lowest Sprint</p><p class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="hist-vel-low">--</p>
                 </div>
             </div>
         </div>
 
-        <div class="glass-effect rounded-2xl shadow-xl p-6 mb-8">
-            <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
-                <span class="w-1 h-6 bg-gradient-to-b from-purple-500 to-violet-500 rounded-full mr-2"></span>
+        <div class="glass-effect rounded-xl p-6 mb-6">
+            <h3 class="text-sm font-medium mb-4 flex items-center" style="color: var(--tri-neutral-700);">
                 Zombie Issues Trend (Last 12 Months)
                 <div class="tooltip-container ml-2">
-                    <svg class="w-5 h-5 text-slate-400 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 cursor-help" style="color: var(--tri-neutral-400);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     <div class="tooltip-text">Issues not updated in 90+ days. Tracks how many stale backlog items exist over time.</div>
                 </div>
             </h3>
             <div style="position:relative;height:400px;"><canvas id="historicalZombieChart"></canvas></div>
-            <div class="mt-4 p-4 bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl border border-purple-200">
-                <p class="text-sm text-slate-700"><strong>Note:</strong> Tracking issues not updated in 90+ days over time</p>
+            <div class="mt-4 p-4 rounded-lg" style="background: var(--tri-neutral-50); border: 1px solid var(--tri-neutral-200);">
+                <p class="text-sm" style="color: var(--tri-neutral-700);"><strong>Note:</strong> Tracking issues not updated in 90+ days over time</p>
             </div>
         </div>
     </div><!-- /historical-tab -->
@@ -609,12 +592,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
-var RSE_DATA = {"total": 67, "done": 51, "in_review": 6, "in_progress": 7, "to_do": 3, "rate": 76.1};
-var RSE_PLUS_DATA = {"total": 93, "done": 76, "in_review": 7, "in_progress": 7, "to_do": 3, "rate": 81.7};
-var CONTAMINATION_SOURCES = {"Bug Discovery": 6, "Unexpected Capacity": 4, "Cross-Team Cadence": 2, "Mis-Planning": 2, "Stakeholder Urgent": 1};
-var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Bug Discovery", "count": 6, "percent": 40, "badge": "reactive", "color": "amber"}, {"source": "Unexpected Capacity", "count": 4, "percent": 27, "badge": "internal", "color": "sky"}, {"source": "Cross-Team Cadence", "count": 2, "percent": 13, "badge": "other", "color": "gray"}, {"source": "Mis-Planning", "count": 2, "percent": 13, "badge": "internal", "color": "sky"}, {"source": "Stakeholder Urgent", "count": 1, "percent": 7, "badge": "external", "color": "blue"}], "total": 15};
-var AGE_DIST_DATA = [44, 31, 33, 19, 28];
-var AGE_DIST_PREV = [0,0,0,0,0];
+var RSE_DATA = {"total": 66, "done": 40, "in_review": 7, "in_progress": 13, "to_do": 6, "rate": 60.6};
+var RSE_PLUS_DATA = {"total": 95, "done": 56, "in_review": 13, "in_progress": 19, "to_do": 7, "rate": 58.9};
+var CONTAMINATION_SOURCES = {"Bug Discovery": 6, "Unexpected Capacity": 3, "Cross-Team Cadence": 2, "Mis-Planning": 2, "Stakeholder Urgent": 1};
+var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Bug Discovery", "count": 6, "percent": 43, "badge": "reactive", "color": "amber"}, {"source": "Unexpected Capacity", "count": 3, "percent": 21, "badge": "internal", "color": "blue"}, {"source": "Cross-Team Cadence", "count": 2, "percent": 14, "badge": "other", "color": "gray"}, {"source": "Mis-Planning", "count": 2, "percent": 14, "badge": "internal", "color": "blue"}, {"source": "Stakeholder Urgent", "count": 1, "percent": 7, "badge": "external", "color": "purple"}], "total": 14};
+var AGE_DIST_DATA = [52, 33, 32, 19, 29];
+var AGE_DIST_PREV = [51, 33, 32, 19, 29];
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
@@ -632,16 +615,17 @@ var sprintDataWithDates = [
     { sprint:"RSE 26Q2 S2 4/22-5/6", startDate:"2026-04-22", endDate:"2026-05-06", planned:172.0, completed:172.0, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7233" },
     { sprint:"RSE 26Q2 S3 5/6-5/20", startDate:"2026-05-06", endDate:"2026-05-20", planned:200.5, completed:198.5, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7303" },
     { sprint:"RSE 26Q2 S4 5/20-6/3", startDate:"2026-05-20", endDate:"2026-06-03", planned:172.5, completed:166.5, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7351" },
-    { sprint:"RSE 26Q2 S5 6/3-6/17", startDate:"2026-06-03", endDate:"2026-06-17", planned:201.5, completed:195.5, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7465" }
+    { sprint:"RSE 26Q2 S5 6/3-6/17", startDate:"2026-06-03", endDate:"2026-06-17", planned:201.5, completed:193.5, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7465" }
 ];
 
 // ── Historical data ────────────────────────────────────────────────────────
-var historicalMonths            = ["Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26", "Jun 26"];
-var historicalChurnData         = [4.8, 3.9, 4.5, 3.2, 4.1, 5.0, 3.8, 4.2, 3.5, 4.7, 3.7, 0.0, 0.0];
-var historicalCompletedData     = [0, 0, 0, 0, 0, 0, 60, 116, 128, 135, 122, 8, 5];
-var historicalContaminationData = [13, 11, 14, 10, 12, 16, 11, 12, 14, 9, 11, 37.1, 48.4];
-var historicalVelocityData      = [0, 0, 0, 0, 0, 0, 109.5, 198.5, 221.0, 243.0, 223.5, 222.5, 65];
-var historicalZombieData        = [48, 52, 50, 47, 49, 53, 51, 48, 50, 52, 51, 63, 36];
+var historicalMonths            = ["May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26", "Mar 26", "Apr 26", "May 26"];
+var historicalChurnData         = [4.5, 3.2, 4.1, 5.0, 3.8, 4.2, 3.5, 4.7, 3.7, 0.0, 0.0, 0.0, 3.8];
+var historicalCompletedData     = [0, 0, 0, 0, 60, 116, 128, 135, 122, 8, 8, 0, 3];
+var historicalContaminationData = [14, 10, 12, 16, 11, 12, 14, 9, 11, 37.1, 41.9, 38.7, 28.0];
+var historicalVelocityData      = [0, 0, 0, 0, 109.5, 198.5, 221.0, 243.0, 223.5, 222.5, 65, 65, 65];
+var historicalZombieData        = [50, 47, 49, 53, 51, 48, 50, 52, 51, 63, 51, 33, 14];
+var historicalContaminationSources = [{"reactive": 4, "external": 2, "internal": 3, "uncategorized": 0}, {"reactive": 0, "external": 1, "internal": 1, "uncategorized": 0}];
 
 // ── Scope / chart state ────────────────────────────────────────────────────
 var currentScope = 'rse';
@@ -656,44 +640,41 @@ function renderContaminationSources() {
     var items = data.items || [];
     var total = data.total || 0;
 
-    // Colour config keyed by the color field from Python
     var colorMap = {
-        amber:  { chip: 'background:#fef3c7;color:#92400e;', bar: '#f59e0b' },
-        purple: { chip: 'background:#ede9fe;color:#5b21b6;', bar: '#a78bfa' },
-        blue:   { chip: 'background:#dbeafe;color:#1e40af;', bar: '#60a5fa' },
-        gray:   { chip: 'background:#f1f5f9;color:#475569;', bar: '#94a3b8' }
+        amber:  { chip: 'background:#FAEEDA;color:#854F0B;', bar: '#D14900' },
+        purple: { chip: 'background:#ECF6FF;color:#0A4F8A;', bar: '#5BA3D6' },
+        blue:   { chip: 'background:#ECF6FF;color:#0A4F8A;', bar: '#1D73BF' },
+        gray:   { chip: 'background:#E5E5E5;color:#404040;', bar: '#7F8183' }
     };
 
-    // ── Summary chips ─────────────────────────────────────────────────────
     var html = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">' +
-        '<div style="background:#fff7ed;border-radius:8px;padding:8px;text-align:center;">' +
-            '<div style="font-size:1.25rem;font-weight:600;color:#c2610c;">' + total + '</div>' +
-            '<div style="font-size:0.65rem;color:#64748b;">carried over</div>' +
+        '<div style="background:#FAFAFA;border-radius:8px;padding:8px;text-align:center;">' +
+            '<div style="font-size:1.25rem;font-weight:600;color:#09090B;">' + total + '</div>' +
+            '<div style="font-size:0.65rem;color:#A1A1AA;">carried over</div>' +
         '</div>' +
-        '<div style="background:#fff7ed;border-radius:8px;padding:8px;text-align:center;">' +
-            '<div style="font-size:1.25rem;font-weight:600;color:#c2610c;" id="src-rate-display">--</div>' +
-            '<div style="font-size:0.65rem;color:#64748b;">of sprint total</div>' +
+        '<div style="background:#FAFAFA;border-radius:8px;padding:8px;text-align:center;">' +
+            '<div style="font-size:1.25rem;font-weight:600;color:#09090B;" id="src-rate-display">--</div>' +
+            '<div style="font-size:0.65rem;color:#A1A1AA;">of sprint total</div>' +
         '</div>' +
     '</div>';
 
-    // ── Category rows ─────────────────────────────────────────────────────
     if (items.length === 0) {
-        html += '<div style="text-align:center;color:#94a3b8;font-size:0.7rem;padding:8px 0;">No source data recorded</div>';
+        html += '<div style="text-align:center;color:#A1A1AA;font-size:0.7rem;padding:8px 0;">No source data recorded</div>';
     } else {
-        html += '<div style="border-top:1px solid #e2e8f0;padding-top:10px;">';
+        html += '<div style="border-top:1px solid #F4F4F5;padding-top:10px;">';
         items.forEach(function(item) {
             var c = colorMap[item.color] || colorMap.gray;
             html +=
                 '<div style="margin-bottom:9px;">' +
                     '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">' +
                         '<div style="display:flex;align-items:center;gap:5px;">' +
-                            '<span style="font-size:0.72rem;font-weight:500;color:#334155;">' + item.source + '</span>' +
-                            '<span style="font-size:0.6rem;font-weight:600;padding:1px 6px;border-radius:9999px;' + c.chip + '">' + item.badge + '</span>' +
+                            '<span style="font-size:0.72rem;font-weight:500;color:#404040;">' + item.source + '</span>' +
+                            '<span style="font-size:0.6rem;font-weight:600;padding:1px 6px;border-radius:4px;' + c.chip + '">' + item.badge + '</span>' +
                         '</div>' +
-                        '<span style="font-size:0.72rem;font-weight:700;color:#1e293b;">' + item.count + ' (' + item.percent + '%)</span>' +
+                        '<span style="font-size:0.72rem;font-weight:700;color:#171717;">' + item.count + ' (' + item.percent + '%)</span>' +
                     '</div>' +
-                    '<div style="width:100%;background:#e2e8f0;border-radius:9999px;height:5px;">' +
-                        '<div style="background:' + c.bar + ';height:5px;border-radius:9999px;width:' + item.percent + '%;transition:width 1s ease-out;"></div>' +
+                    '<div style="width:100%;background:#F4F4F5;border-radius:9999px;height:4px;">' +
+                        '<div style="background:' + c.bar + ';height:4px;border-radius:9999px;width:' + item.percent + '%;transition:width 600ms ease-out;"></div>' +
                     '</div>' +
                 '</div>';
         });
@@ -702,8 +683,7 @@ function renderContaminationSources() {
 
     container.innerHTML = html;
 
-    // Fill in the contamination rate chip once the KPI card value is available
-    var rateEl = document.querySelector('[data-counter][class*="from-orange-600"]');
+    var rateEl = document.querySelector('#contaminationLink .stat-num');
     if (rateEl) {
         document.getElementById('src-rate-display').textContent = rateEl.dataset.counter + '%';
     }
@@ -817,8 +797,8 @@ document.addEventListener('DOMContentLoaded', function() {
         data: {
             labels: ['Done','In Review','In Progress','To Do'],
             datasets: [{ data:[d.done,d.in_review,d.in_progress,d.to_do],
-                backgroundColor:['rgba(16,185,129,0.8)','rgba(59,130,246,0.8)','rgba(245,158,11,0.8)','rgba(148,163,184,0.8)'],
-                borderColor:    ['rgba(16,185,129,1)',  'rgba(59,130,246,1)',  'rgba(245,158,11,1)',  'rgba(148,163,184,1)'],
+                backgroundColor:['#2A9D90','#378ADD','#A1A1AA','#525252'],
+                borderColor:    ['#2A9D90','#378ADD','#A1A1AA','#525252'],
                 borderWidth:3 }]
         },
         options: { responsive:true, maintainAspectRatio:false,
@@ -836,8 +816,8 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(document.getElementById('sprintVelocityChart'), {
         type:'bar',
         data:{ labels:sprintLabels, datasets:[
-            { label:'Planned',   data:sprintDataWithDates.map(function(s){return s.planned;}),   backgroundColor:'rgba(147,197,253,0.8)', borderColor:'rgba(59,130,246,1)',  borderWidth:2, borderRadius:6 },
-            { label:'Completed', data:sprintDataWithDates.map(function(s){return s.completed;}), backgroundColor:'rgba(59,130,246,0.8)',  borderColor:'rgba(37,99,235,1)',   borderWidth:2, borderRadius:6 }
+            { label:'Planned',   data:sprintDataWithDates.map(function(s){return s.planned;}),   backgroundColor:'#ECF6FF', borderColor:'#5BA3D6',  borderWidth:1, borderRadius:4 },
+            { label:'Completed', data:sprintDataWithDates.map(function(s){return s.completed;}), backgroundColor:'#2E7D32',  borderColor:'#1B5E20',   borderWidth:1, borderRadius:4 }
         ]},
         options:{ responsive:true, maintainAspectRatio:false,
             scales:{ y:{beginAtZero:true,grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} },
@@ -853,9 +833,9 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(document.getElementById('ageDistributionChart'), {
         type:'bar',
         data:{ labels:['0-30 days','31-90 days','91-180 days','181-365 days','365+ days'],
-            datasets:[{ label:'Issues', data: AGE_DIST_DATA,
-                backgroundColor:['rgba(16,185,129,0.8)','rgba(59,130,246,0.8)','rgba(245,158,11,0.8)','rgba(239,68,68,0.8)','rgba(124,58,237,0.8)'],
-                borderColor:    ['rgba(16,185,129,1)',  'rgba(59,130,246,1)',  'rgba(245,158,11,1)',  'rgba(239,68,68,1)',  'rgba(124,58,237,1)'],
+            datasets:[{ label:'Issues', data:AGE_DIST_DATA,
+                backgroundColor:['#2E7D32','#5BA3D6','#D14900','#CC2231','#7A0E14'],
+                borderColor:    ['#1B5E20','#1D73BF','#A03700','#7A0E14','#4A0A0D'],
                 borderWidth:2, borderRadius:6 }]
         },
         options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
@@ -863,14 +843,14 @@ document.addEventListener('DOMContentLoaded', function() {
             plugins:{ legend:{display:false},
                 tooltip:{ callbacks:{
                     label: function(ctx) {
-                        var current = ctx.parsed.x;
-                        var prev    = AGE_DIST_PREV[ctx.dataIndex];
-                        var delta   = current - prev;
-                        var line    = current + ' issues';
+                        var cur   = ctx.parsed.x;
+                        var prev  = AGE_DIST_PREV[ctx.dataIndex];
+                        var delta = cur - prev;
+                        var line  = cur + ' issues';
                         if (prev > 0 || delta !== 0) {
-                            if      (delta > 0)  line += '  ▲ +' + delta + ' since last run';
-                            else if (delta < 0)  line += '  ▼ ' + delta + ' since last run';
-                            else                 line += '  — no change';
+                            if      (delta > 0) line += '  ▲ +' + delta + ' since last run';
+                            else if (delta < 0) line += '  ▼ ' + delta + ' since last run';
+                            else                line += '  — no change';
                         }
                         return line;
                     }
@@ -878,7 +858,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             onClick:function(evt,els){
                 if(!els.length) return;
-                var q=['/issues/?jql=created%3E%3D-30d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-90d%20AND%20created%3C-30d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-180d%20AND%20created%3C-90d%20AND%20status!%3DDone','/issues/?jql=created%3E%3D-365d%20AND%20created%3C-180d%20AND%20status!%3DDone',JIRA_CONFIG.zombieFilter];
+                var q=['/issues/?jql=created%3E%3D-30d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22','/issues/?jql=created%3E%3D-90d%20AND%20created%3C-30d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22','/issues/?jql=created%3E%3D-180d%20AND%20created%3C-90d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22','/issues/?jql=created%3E%3D-365d%20AND%20created%3C-180d%20AND%20status!%3DDone%20AND%20issuetype%20not%20in%20(Epic%2C%22Sub-task%22)%20AND%20cf%5B10001%5D%20%3D%20%22e83576e2-2517-4baf-8dd6-8d277b5eba80-3%22',JIRA_CONFIG.zombieFilter];
                 window.open(JIRA_CONFIG.baseUrl+q[els[0].index],'_blank');
             }
         }
@@ -888,25 +868,95 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(document.getElementById('historicalChurnChart'), {
         type:'line',
         data:{ labels:historicalMonths, datasets:[{ label:'Monthly Churn Rate (%)', data:historicalChurnData,
-            borderColor:'rgba(239,68,68,1)', backgroundColor:'rgba(239,68,68,0.1)',
-            borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(239,68,68,1)' }]},
+            borderColor:'#CC2231', backgroundColor:'rgba(204,34,49,0.08)',
+            borderWidth:2, tension:0.3, fill:true, pointRadius:3, pointHoverRadius:5, pointBackgroundColor:'#CC2231' }]},
         options:{ responsive:true, maintainAspectRatio:false,
             scales:{ y:{beginAtZero:true,ticks:{callback:function(v){return v+'%';}},grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} },
             plugins:{ legend:{position:'top'}, tooltip:{ callbacks:{ afterLabel:function(ctx){ return 'Issues Completed: '+historicalCompletedData[ctx.dataIndex]; }}}}
         }
     });
 
-    // ── Historical Contamination ──────────────────────────────────────────
-    new Chart(document.getElementById('historicalContaminationChart'), {
-        type:'line',
-        data:{ labels:historicalMonths, datasets:[{ label:'Sprint Contamination (%)', data:historicalContaminationData,
-            borderColor:'rgba(245,158,11,1)', backgroundColor:'rgba(245,158,11,0.1)',
-            borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(245,158,11,1)' }]},
-        options:{ responsive:true, maintainAspectRatio:false,
-            scales:{ y:{beginAtZero:true,ticks:{callback:function(v){return v+'%';}},grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} },
-            plugins:{ legend:{position:'top'}, tooltip:{ callbacks:{ afterLabel:function(ctx){ return 'Issues Completed: '+historicalCompletedData[ctx.dataIndex]; }}}}
+    // ── Historical Contamination (stacked bar + ghost line) ───────────────
+    (function() {
+        var n = null;
+        var numMonths = historicalMonths.length;
+        var srcLen    = historicalContaminationSources.length;
+
+        // Build per-category arrays: null for months with no source data
+        var reactive      = [];
+        var external      = [];
+        var internal      = [];
+        var uncategorized = [];
+
+        for (var i = 0; i < numMonths; i++) {
+            var srcIdx = srcLen - (numMonths - i);
+            if (srcIdx >= 0 && srcIdx < srcLen && historicalContaminationSources[srcIdx] !== null) {
+                var s = historicalContaminationSources[srcIdx];
+                reactive.push(s.reactive      || 0);
+                external.push(s.external      || 0);
+                internal.push(s.internal      || 0);
+                uncategorized.push(s.uncategorized || 0);
+            } else {
+                reactive.push(n);
+                external.push(n);
+                internal.push(n);
+                uncategorized.push(n);
+            }
         }
-    });
+
+        new Chart(document.getElementById('historicalContaminationChart'), {
+            data: {
+                labels: historicalMonths,
+                datasets: [
+                    { type:'bar',  label:'Reactive',      data:reactive,      backgroundColor:'#D14900', stack:'sources', yAxisID:'y2', borderRadius:2 },
+                    { type:'bar',  label:'External',      data:external,      backgroundColor:'#1D73BF', stack:'sources', yAxisID:'y2', borderRadius:2 },
+                    { type:'bar',  label:'Internal',      data:internal,      backgroundColor:'#5BA3D6', stack:'sources', yAxisID:'y2', borderRadius:2 },
+                    { type:'bar',  label:'Uncategorized', data:uncategorized, backgroundColor:'#7F8183', stack:'sources', yAxisID:'y2', borderRadius:2 },
+                    {
+                        type:'line', label:'Total %', data:historicalContaminationData,
+                        borderColor:'#CC2231', backgroundColor:'transparent',
+                        borderWidth:2, borderDash:[5,4],
+                        pointRadius:4, pointBackgroundColor:'rgba(249,115,22,0.6)',
+                        pointHoverRadius:6, tension:0.3,
+                        yAxisID:'y1', spanGaps:false
+                    }
+                ]
+            },
+            options: {
+                responsive:true, maintainAspectRatio:false,
+                interaction:{ mode:'index', intersect:false },
+                scales:{
+                    x:{ grid:{display:false}, ticks:{font:{size:11}, autoSkip:false, maxRotation:45} },
+                    y2:{ type:'linear', position:'left',  beginAtZero:true,
+                         title:{display:true, text:'Issue count', font:{size:11}},
+                         grid:{color:'rgba(0,0,0,0.05)'}, ticks:{stepSize:1, font:{size:11}} },
+                    y1:{ type:'linear', position:'right', beginAtZero:true, max:55,
+                         title:{display:true, text:'Contamination %', font:{size:11}},
+                         grid:{display:false}, ticks:{callback:function(v){return v+'%';}, font:{size:11}} }
+                },
+                plugins:{
+                    legend:{display:false},
+                    tooltip:{
+                        callbacks:{
+                            label: function(ctx) {
+                                if (ctx.dataset.label === 'Total %') return null;
+                                if (ctx.parsed.y === null || ctx.parsed.y === undefined) return null;
+                                return ctx.dataset.label + ': ' + ctx.parsed.y;
+                            },
+                            footer: function(items) {
+                                var idx = items[0].dataIndex;
+                                var pct = historicalContaminationData[idx];
+                                if (pct !== null && pct !== undefined) {
+                                    return 'Total contamination: ' + pct.toFixed(1) + '%';
+                                }
+                                return '';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    })();
 
     // ── Historical Velocity ───────────────────────────────────────────────
     var rollingAvg = historicalVelocityData.map(function(_,i) {
@@ -916,8 +966,8 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(document.getElementById('historicalVelocityChart'), {
         type:'line',
         data:{ labels:historicalMonths, datasets:[
-            { label:'Sprint Velocity', data:historicalVelocityData, borderColor:'rgba(59,130,246,1)', backgroundColor:'rgba(59,130,246,0.1)', borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(59,130,246,1)' },
-            { label:'3-Sprint Rolling Average', data:rollingAvg, borderColor:'rgba(16,185,129,1)', backgroundColor:'transparent', borderWidth:2, borderDash:[5,5], tension:0.4, pointRadius:0, pointHoverRadius:5 }
+            { label:'Sprint Velocity', data:historicalVelocityData, borderColor:'#525252', backgroundColor:'rgba(82,82,82,0.06)', borderWidth:2, tension:0.3, fill:true, pointRadius:3, pointHoverRadius:5, pointBackgroundColor:'#525252' },
+            { label:'3-Sprint Rolling Average', data:rollingAvg, borderColor:'#378ADD', backgroundColor:'transparent', borderWidth:2, borderDash:[5,5], tension:0.3, pointRadius:0, pointHoverRadius:5 }
         ]},
         options:{ responsive:true, maintainAspectRatio:false,
             scales:{ y:{beginAtZero:true,ticks:{callback:function(v){return v+' pts';}},grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} },
@@ -929,8 +979,8 @@ document.addEventListener('DOMContentLoaded', function() {
     new Chart(document.getElementById('historicalZombieChart'), {
         type:'line',
         data:{ labels:historicalMonths, datasets:[{ label:'Zombie Issues (90+ days)', data:historicalZombieData,
-            borderColor:'rgba(124,58,237,1)', backgroundColor:'rgba(124,58,237,0.1)',
-            borderWidth:3, tension:0.4, fill:true, pointRadius:5, pointHoverRadius:7, pointBackgroundColor:'rgba(124,58,237,1)' }]},
+            borderColor:'#CC2231', backgroundColor:'rgba(204,34,49,0.08)',
+            borderWidth:2, tension:0.3, fill:true, pointRadius:3, pointHoverRadius:5, pointBackgroundColor:'#CC2231' }]},
         options:{ responsive:true, maintainAspectRatio:false,
             scales:{ y:{beginAtZero:true,ticks:{callback:function(v){return v+' issues';},stepSize:10},grid:{color:'rgba(0,0,0,0.05)'}}, x:{grid:{display:false}} },
             plugins:{ legend:{position:'top'}, tooltip:{ callbacks:{ afterLabel:function(ctx){ return 'Issues Completed: '+historicalCompletedData[ctx.dataIndex]; }}}}
