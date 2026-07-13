@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RSE 26Q3 S1 — Day 13 Sprint Health</title>
+<title>RSE 26Q3 S1 — Day 10 Sprint Health</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js"></script>
 <style>
   :root { color-scheme: light; }
@@ -58,28 +58,28 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>RSE 26Q3 S1 7/1-7/15 — Day 13 of 14 <span class="pill red">Highly Volatile</span> <span class="pill red">Velocity At Risk</span> <span class="pill amber">Tagging Improving</span></h1>
-  <div class="sub">2026-07-13 · Active sprint · 2026-07-01 to 2026-07-15 · Injection has now exceeded the S6801 baseline on both items and SP</div>
+  <h1>RSE 26Q3 S1 7/1-7/15 — Day 10 of 14 <span class="pill red">Highly Volatile</span> <span class="pill red">Velocity At Risk</span> <span class="pill amber">Tagging Improving</span></h1>
+  <div class="sub">2026-07-10 · Active sprint · 2026-07-01 to 2026-07-15 · Injection matched S6801 baseline for the first time this sprint</div>
 
   <div class="kpis">
-    <div class="kpi"><div class="label">Items Done</div><div class="val red">37/111</div><div class="sub2">33.3% — ideal ~92.9%</div></div>
-    <div class="kpi"><div class="label">SP Done</div><div class="val red">65/193</div><div class="sub2">33.7% SP done</div></div>
-    <div class="kpi"><div class="label">True Injections</div><div class="val red">26</div><div class="sub2">23.4% items / 17.1% SP</div></div>
+    <div class="kpi"><div class="label">Items Done</div><div class="val red">28/109</div><div class="sub2">25.7% — ideal ~71.4%</div></div>
+    <div class="kpi"><div class="label">SP Done</div><div class="val red">50/191</div><div class="sub2">26.2% SP done</div></div>
+    <div class="kpi"><div class="label">True Injections</div><div class="val red">23</div><div class="sub2">21.1% items / 14.7% SP</div></div>
     <div class="kpi"><div class="label">Day-1 Dump</div><div class="val">2</div><div class="sub2">3 SP · 1.8% of items</div></div>
-    <div class="kpi"><div class="label">Tag Coverage</div><div class="val amber">71.4%</div><div class="sub2">20 of 28 tagged</div></div>
-    <div class="kpi"><div class="label">vs. S6801</div><div class="val red">↑</div><div class="sub2">S6801: 21% injections; this: 23.4%</div></div>
+    <div class="kpi"><div class="label">Tag Coverage</div><div class="val amber">64%</div><div class="sub2">16 of 25 tagged</div></div>
+    <div class="kpi"><div class="label">vs. S6801</div><div class="val amber">≈</div><div class="sub2">S6801: 21% injections; this: 21.1%</div></div>
   </div>
 
   <h2>Status Bar</h2>
   <div class="status-bar">
-    <span style="width:33.3%;background:#34a853"></span>
-    <span style="width:54.1%;background:#fbbc05"></span>
-    <span style="width:12.6%;background:#e0e0dc"></span>
+    <span style="width:25.7%;background:#34a853"></span>
+    <span style="width:55.0%;background:#fbbc05"></span>
+    <span style="width:19.3%;background:#e0e0dc"></span>
   </div>
   <div style="font-size:11px;color:#6b6b66;margin-bottom:16px">
-    <span style="color:#34a853">■</span> Done: 37 &nbsp;
+    <span style="color:#34a853">■</span> Done: 28 &nbsp;
     <span style="color:#fbbc05">■</span> In Progress/Review: 60 &nbsp;
-    <span style="color:#9a9a95">■</span> Open/To Do: 14
+    <span style="color:#9a9a95">■</span> Open/To Do: 21
   </div>
 
   <h2>Sprint Volatility</h2>
@@ -90,17 +90,17 @@
     <span class="val pill amber">Tagging improving</span>
   </div>
   <p style="font-size:13px;line-height:1.5;color:#3a3a36;margin:0 0 12px;">
-    With one day left before the sprint closes, true mid-sprint injection (23.4% items / 17.1% SP) has now overtaken the S6801 baseline (21% / 16%) on both measures — the first time this sprint that injection has exceeded rather than trailed the reference "problem sprint." Three more items (4 SP) landed on 2026-07-12, and the Day 8 batch grew by 1 SP as TRI-53916 was pointed and self-tagged. No new injections have landed yet on 2026-07-13. Velocity is the dominant risk: only 33.3% of items and 33.7% of SP are Done against a Day-13 linear ideal of 92.9% — a roughly 60-point gap with the sprint closing in two days.
+    Since the Day 8 snapshot (2026-07-08), true mid-sprint injections jumped from 14 items / 17 SP to 23 items / 28 SP — a gain of 9 items / 11 SP in two days, almost entirely from a batch of 8 items (9 SP) created on 2026-07-08 that hadn't yet surfaced in the sprint's issue list as of that day's run, plus one more item on 2026-07-09. The Day 6 count also grew again, from 9/12 to 9/13, as a ninth issue (TRI-53843) only just surfaced. Item-share (21.1%) has now essentially caught up to the S6801 baseline (21%), and SP-share (14.7%) is closing in on that sprint's 16%. Velocity remains the more immediate risk: only 25.7% of items and 26.2% of SP are Done against a Day-10 linear ideal of 71.4%.
   </p>
 
   <div class="card">
     <h3>Scope Composition</h3>
     <table>
       <tr><th>Category</th><th class="num-right">Items</th><th class="num-right">SP</th><th class="num-right">% Items</th><th class="num-right">% SP</th></tr>
-      <tr><td>Pre-sprint (before 2026-07-01T20:30 UTC)</td><td class="num-right">83</td><td class="num-right">157</td><td class="num-right">74.8%</td><td class="num-right">81.3%</td></tr>
+      <tr><td>Pre-sprint (before 2026-07-01T20:30 UTC)</td><td class="num-right">84</td><td class="num-right">160</td><td class="num-right">77.1%</td><td class="num-right">83.8%</td></tr>
       <tr class="warn-row"><td>Day-1 planning dump (2026-07-01T20:30 → 2026-07-02T20:30 UTC)</td><td class="num-right">2</td><td class="num-right">3</td><td class="num-right">1.8%</td><td class="num-right">1.6%</td></tr>
-      <tr class="new-row"><td>True mid-sprint injections (after 2026-07-02T20:30 UTC)</td><td class="num-right">26</td><td class="num-right">33</td><td class="num-right">23.4%</td><td class="num-right">17.1%</td></tr>
-      <tr style="background:#f7f7f3;font-weight:600"><td>Current sprint total</td><td class="num-right">111</td><td class="num-right">193</td><td class="num-right">100%</td><td class="num-right">100%</td></tr>
+      <tr class="new-row"><td>True mid-sprint injections (after 2026-07-02T20:30 UTC)</td><td class="num-right">23</td><td class="num-right">28</td><td class="num-right">21.1%</td><td class="num-right">14.7%</td></tr>
+      <tr style="background:#f7f7f3;font-weight:600"><td>Current sprint total</td><td class="num-right">109</td><td class="num-right">191</td><td class="num-right">100%</td><td class="num-right">100%</td></tr>
     </table>
   </div>
 
@@ -109,9 +109,9 @@
     <table>
       <tr><th>Day</th><th>Date</th><th>+Items</th><th>+SP</th><th>Issues &amp; Contamination Source</th><th>Notes</th></tr>
       <tr>
-        <td>1</td><td>2026-07-01</td><td>+83</td><td>+157</td>
+        <td>1</td><td>2026-07-01</td><td>+84</td><td>+160</td>
         <td class="muted">Pre-sprint load (carryover + planned)</td>
-        <td class="muted">Down 1 item / 3 SP vs. last run — scope re-check, not a true injection</td>
+        <td class="muted">Unchanged from Day 8</td>
       </tr>
       <tr class="warn-row">
         <td>1–2</td><td>2026-07-01–02</td><td>+2</td><td>+3</td>
@@ -121,13 +121,13 @@
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53762">TRI-53762</a>
           <span class="pill gray">Untagged</span>
         </td>
-        <td class="muted">Day-1 dump, exempt from nudges</td>
+        <td class="muted">"Validate colour perception prod env" (Arijit Saha) · "Entra JWT exposure in AgentCore Runtime CloudWatch" (Sarthak Khandelwal) — both Day-1 dump, exempt from nudges</td>
       </tr>
       <tr><td>2</td><td>2026-07-02</td><td>0</td><td>0</td><td class="muted">—</td><td class="muted">No additions</td></tr>
       <tr><td>3</td><td>2026-07-03</td><td>0</td><td>0</td><td class="muted">—</td><td class="muted">No additions</td></tr>
       <tr><td>4</td><td>2026-07-04</td><td>0</td><td>0</td><td class="muted">—</td><td class="muted">No additions</td></tr>
       <tr><td>5</td><td>2026-07-05</td><td>0</td><td>0</td><td class="muted">—</td><td class="muted">No additions</td></tr>
-      <tr>
+      <tr class="new-row">
         <td>6</td><td>2026-07-06</td><td>+9</td><td>+13</td>
         <td>
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53843">TRI-53843</a> <span class="pill green">Dependency Unblock</span> ·
@@ -140,9 +140,9 @@
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53840">TRI-53840</a> <span class="pill green">Bug Discovery</span> ·
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53841">TRI-53841</a> <span class="pill gray">Untagged</span>
         </td>
-        <td class="muted">TRI-53841 still untagged after two nudges — final reminder sent this run.</td>
+        <td class="muted">9th item (TRI-53843, 3 SP) newly surfaced since Day 8 — recounts Day 6 from 9/12 to 9/13. TRI-53840 now tagged; TRI-53841 still untagged despite a Day-8 nudge.</td>
       </tr>
-      <tr>
+      <tr class="new-row">
         <td>7</td><td>2026-07-07</td><td>+5</td><td>+5</td>
         <td>
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53878">TRI-53878</a> <span class="pill green">Mis-Planning</span> ·
@@ -151,49 +151,38 @@
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53891">TRI-53891</a> <span class="pill gray">Untagged</span> ·
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53892">TRI-53892</a> <span class="pill gray">Untagged</span>
         </td>
-        <td class="muted">3 Veera Raghavulu items still untagged — final reminders sent this run.</td>
+        <td class="muted">TRI-53881 now tagged since Day 8; the 3 Veera Raghavulu design-system items remain untagged.</td>
       </tr>
-      <tr>
-        <td>8</td><td>2026-07-08</td><td>+8</td><td>+10</td>
+      <tr class="new-row">
+        <td>8</td><td>2026-07-08</td><td>+8</td><td>+9</td>
         <td>
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53925">TRI-53925</a> <span class="pill green">Bug Discovery</span> ·
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53923">TRI-53923</a> <span class="pill green">Cross-Team Cadence</span> ·
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53921">TRI-53921</a> <span class="pill green">Bug Discovery</span> ·
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53918">TRI-53918</a> <span class="pill green">Mis-Planning</span> ·
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53917">TRI-53917</a> <span class="pill green">Stakeholder Urgent</span> ·
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53916">TRI-53916</a> <span class="pill green">Cross-Team Cadence</span> ·
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53916">TRI-53916</a> <span class="pill gray">Untagged</span> ·
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53911">TRI-53911</a> <span class="pill green">Unexpected Capacity</span> ·
           <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53908">TRI-53908</a> <span class="pill gray">Untagged</span>
         </td>
-        <td class="muted">TRI-53916 self-tagged and pointed (1 SP) since last run. TRI-53908 still untagged — final reminder sent this run.</td>
+        <td class="muted">Entire batch created 2026-07-08 but not yet visible in Day 8's snapshot (which reported 0 additions that day) — same lag pattern as Day 6. First-time nudges posted on TRI-53916 and TRI-53908 this run.</td>
       </tr>
-      <tr>
+      <tr class="new-row">
         <td>9</td><td>2026-07-09</td><td>+1</td><td>+1</td>
         <td>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53926">TRI-53926</a> <span class="pill green">Bug Discovery</span>
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53926">TRI-53926</a> <span class="pill gray">Untagged</span>
         </td>
-        <td class="muted">Self-tagged since last run — no nudge needed.</td>
+        <td class="muted">"Add conversation memory to ops-chatbot agent" (Sarthak Khandelwal). First-time nudge posted this run.</td>
       </tr>
-      <tr><td>10</td><td>2026-07-10</td><td>0</td><td>0</td><td class="muted">—</td><td class="muted">No additions</td></tr>
-      <tr><td>11</td><td>2026-07-11</td><td>0</td><td>0</td><td class="muted">—</td><td class="muted">No additions</td></tr>
-      <tr class="new-row">
-        <td>12</td><td>2026-07-12</td><td>+3</td><td>+4</td>
-        <td>
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53990">TRI-53990</a> <span class="pill green">Planning Absence</span> ·
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53988">TRI-53988</a> <span class="pill green">Planning Absence</span> ·
-          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53963">TRI-53963</a> <span class="pill gray">Untagged</span>
-        </td>
-        <td class="muted">New since last run. First-time nudge posted on TRI-53963 this run.</td>
-      </tr>
-      <tr><td>13</td><td>2026-07-13 (today)</td><td>0</td><td>0</td><td class="muted">—</td><td class="muted">No new injections yet as of this run</td></tr>
+      <tr><td>10</td><td>2026-07-10 (today)</td><td>0</td><td>0</td><td class="muted">—</td><td class="muted">No new injections yet as of this run</td></tr>
     </table>
   </div>
 
   <div class="card">
     <h3>Contamination Tagging Coverage</h3>
     <div class="tag-gap">
-      <strong>⚠ 20 / 28 tagged (71.4%) — below 80% threshold, improving steadily</strong>
-      Up from 64% at the last run. Two previously-nudged items self-tagged since then (TRI-53916, TRI-53926). 6 true mid-sprint injections remain untagged: TRI-53841, TRI-53890, TRI-53891, TRI-53892, TRI-53908 (final day-before-close reminders sent this run) and TRI-53963 (first-time nudge this run). The 2 Day-1 dump items remain untagged but are exempt from nudges per policy.
+      <strong>⚠ 16 / 25 tagged (64%) — below 80% threshold, improving steadily</strong>
+      Up from 50% on Day 8 and 0% on Day 7. 7 true mid-sprint injections remain untagged: TRI-53841, TRI-53890, TRI-53891, TRI-53892 (nudged Day 8, not re-nudged today), and TRI-53908, TRI-53916, TRI-53926 (first-time nudges posted this run). The 2 Day-1 dump items remain untagged but are exempt from nudges per policy.
     </div>
   </div>
 
@@ -212,7 +201,7 @@
         <tr><td>Refinement Count</td><td class="num-right">0</td><td class="muted">Not tracked this sprint</td></tr>
         <tr><td>Monthly Churn Rate</td><td class="num-right">5.1%</td><td class="muted">2 of 39 (Not Needed, Won't Do)</td></tr>
         <tr><td>Sprint Contamination / Zombie</td><td class="num-right">n/a</td><td class="muted">Dashboard JS widget did not resolve in fetch</td></tr>
-        <tr><td>Dashboard Updated</td><td class="num-right">2026-06-30</td><td class="muted">13 days stale vs. this snapshot</td></tr>
+        <tr><td>Dashboard Updated</td><td class="num-right">2026-06-30</td><td class="muted">10 days stale vs. this snapshot</td></tr>
       </table>
     </div>
   </div>
@@ -220,34 +209,34 @@
   <div class="card">
     <h3>vs. S6801 Baseline (prior sprint reference)</h3>
     <table>
-      <tr><th>Metric</th><th class="num-right">S6801 Final</th><th class="num-right">RSE 26Q3 S1 Day 13</th><th>Status</th></tr>
-      <tr><td>Total items</td><td class="num-right">138</td><td class="num-right">111</td><td class="muted">Smaller scope (Q3 fresh start)</td></tr>
-      <tr><td>Total SP</td><td class="num-right">214.5</td><td class="num-right">193</td><td class="muted">—</td></tr>
-      <tr><td>True injection % (items)</td><td class="num-right">21%</td><td class="num-right">23.4%</td><td><span class="pill red">↑ Above baseline</span></td></tr>
-      <tr><td>True injection % (SP)</td><td class="num-right">16%</td><td class="num-right">17.1%</td><td><span class="pill red">↑ Above baseline</span></td></tr>
+      <tr><th>Metric</th><th class="num-right">S6801 Final</th><th class="num-right">RSE 26Q3 S1 Day 10</th><th>Status</th></tr>
+      <tr><td>Total items</td><td class="num-right">138</td><td class="num-right">109</td><td class="muted">Smaller scope (Q3 fresh start)</td></tr>
+      <tr><td>Total SP</td><td class="num-right">214.5</td><td class="num-right">191</td><td class="muted">—</td></tr>
+      <tr><td>True injection % (items)</td><td class="num-right">21%</td><td class="num-right">21.1%</td><td><span class="pill amber">≈ Matched</span></td></tr>
+      <tr><td>True injection % (SP)</td><td class="num-right">16%</td><td class="num-right">14.7%</td><td><span class="pill amber">↓ Slightly below</span></td></tr>
       <tr><td>Day-1 dump items</td><td class="num-right">22</td><td class="num-right">2</td><td><span class="pill green">↓ Much lighter</span></td></tr>
-      <tr><td>Items done %</td><td class="num-right">89%</td><td class="num-right">33.3%</td><td class="muted">Day 13 of 14 — 60 pt gap vs. linear ideal</td></tr>
+      <tr><td>Items done %</td><td class="num-right">89%</td><td class="num-right">25.7%</td><td class="muted">Day 10 of 14 — 45+ pt gap vs. linear ideal</td></tr>
     </table>
   </div>
 
   <h2>Assessment</h2>
   <div class="assess">
-    With the sprint closing in two days (2026-07-15), velocity is the dominant risk: only 33.3% of items and 33.7% of SP are Done against a Day-13 linear ideal of 92.9% — a roughly 60-point gap that guarantees significant carryover into the next sprint regardless of what happens tomorrow. Compounding that, true mid-sprint injection (23.4% items / 17.1% SP) has now overtaken the S6801 baseline (21% / 16%) on both measures for the first time this sprint, driven by a steady trickle of new items through Day 12 rather than a single spike. The clearest positive: contamination tagging coverage kept improving, from 64% to 71.4%, and two previously-nudged items were self-tagged by the team without a repeat nudge. Six true injections remain untagged; all received a final reminder today since this is the day before sprint close. Expect a Finalize run once Jira marks this sprint closed, which will freeze these numbers and archive them to Confluence.
+    The single biggest risk is velocity: only 25.7% of items and 26.2% of SP are Done against a Day-10 linear ideal of 71.4%, a 45+ point gap with only 4 days left in the sprint. The second risk, now converging with the first, is that true mid-sprint injection has caught up to the S6801 baseline: item-share (21.1%) now essentially matches S6801's 21%, driven almost entirely by a batch of 8 items created on 2026-07-08 that only became visible in the sprint's issue list after the fact, plus a Day-6 recount that added a ninth item (TRI-53843). This "created but not yet visible" lag has now happened twice (Day 6, Day 8) and means each day's injection figures should be treated as a floor, not a ceiling, until the following day's run confirms them. The clearest positive: contamination tagging coverage kept climbing, from 50% to 64%, and 3 more first-time nudges went out today on the newly-surfaced Day 8/9 items. Tagging is still below the 80% threshold and remains a process gap worth calling out in standup.
   </div>
 
   <div class="gridline"></div>
-  <div class="footer">Frozen snapshot · 2026-07-13 · <a href="https://meganpeurachctr-ux.github.io/rse-volatility-dashboard/sprint-health-latest.html">Live URL</a></div>
+  <div class="footer">Frozen snapshot · 2026-07-10 · <a href="https://meganpeurachctr-ux.github.io/rse-volatility-dashboard/sprint-health-latest.html">Live URL</a></div>
 </div>
 
 <script>
 if (typeof Chart !== 'undefined') {
   const SNAPSHOT = {
     sprintDays: 14,
-    totalItems: 111,
-    doneItems: 37,
-    dayN: 13,
-    ideal: [111.0, 103.07, 95.14, 87.21, 79.29, 71.36, 63.43, 55.5, 47.57, 39.64, 31.71, 23.79, 15.86, 7.93],
-    actual: [83, 79, 79, 79, 74, 82, 80, 81, 80, 80, 79, 74, 74, null]
+    totalItems: 109,
+    doneItems: 28,
+    dayN: 10,
+    ideal: [109.0, 101.21, 93.43, 85.64, 77.86, 70.07, 62.29, 54.5, 46.71, 38.93, 31.14, 23.36, 15.57, 7.79],
+    actual: [84, 80, 80, 80, 75, 83, 81, 82, 81, 81, null, null, null, null]
   };
   const labels = Array.from({length: 14}, (_, i) => `D${i+1}`);
   document.addEventListener('DOMContentLoaded', function() {
