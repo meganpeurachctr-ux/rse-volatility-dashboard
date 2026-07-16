@@ -72,7 +72,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">July 16, 2026 at 01:37 PM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">July 16, 2026 at 04:02 PM</span></span>
             </div>
         </div>
     </div>
@@ -123,11 +123,11 @@
                     <div class="text-xs text-slate-600 font-medium mt-1">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="6">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="7">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="8">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="7">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">To Do</div>
                 </div>
             </div>
@@ -748,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setText('hist-vel-low',  historicalMonths[vs.minIdx]);
 
     // ── Status Doughnut ───────────────────────────────────────────────────
-    var d = {"total": 24, "done": 0, "in_review": 10, "in_progress": 6, "to_do": 8, "rate": 0.0};
+    var d = {"total": 24, "done": 0, "in_review": 10, "in_progress": 7, "to_do": 7, "rate": 0.0};
     statusChartInstance = new Chart(document.getElementById('statusChart'), {
         type: 'doughnut',
         data: {
