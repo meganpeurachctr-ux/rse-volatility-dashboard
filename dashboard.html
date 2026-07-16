@@ -162,7 +162,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="status-badge"></div>
                 <span class="text-sm font-medium" style="color: var(--tri-neutral-700);">Live</span>
-                <span class="text-xs" style="color: var(--tri-neutral-400);">Updated: <span id="lastUpdated">July 16, 2026 at 11:28 AM</span></span>
+                <span class="text-xs" style="color: var(--tri-neutral-400);">Updated: <span id="lastUpdated">July 16, 2026 at 01:37 PM</span></span>
             </div>
         </div>
     </div>
@@ -220,15 +220,15 @@
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">Total Issues</div>
                 </div>
                 <div class="glass-effect rounded-xl p-5 text-center card-hover">
-                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-rate" data-counter="3.4" data-decimal="true">0</div>
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-rate" data-counter="10.2" data-decimal="true">0</div>
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl p-5 text-center card-hover">
-                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-inprogress" data-counter="13">0</div>
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-inprogress" data-counter="15">0</div>
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl p-5 text-center card-hover">
-                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-todo" data-counter="39">0</div>
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-todo" data-counter="34">0</div>
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">To Do</div>
                 </div>
             </div>
@@ -302,7 +302,7 @@
                     <div class="space-y-2">
                         <div class="flex justify-between items-center p-3 rounded-lg border" style="border-color: var(--tri-neutral-200);">
                             <span class="text-sm" style="color: var(--tri-neutral-700);">Done</span>
-                            <span class="text-lg font-semibold" style="color: var(--tri-neutral-950);">1</span>
+                            <span class="text-lg font-semibold" style="color: var(--tri-neutral-950);">5</span>
                         </div>
                         <div class="flex justify-between items-center p-3 rounded-lg border" style="border-color: var(--tri-neutral-200);">
                             <span class="text-sm" style="color: var(--tri-neutral-700);">Duplicate</span>
@@ -318,7 +318,7 @@
                         </div>
                         <div class="flex justify-between items-center p-3 rounded-lg" style="background: var(--tri-neutral-100);">
                             <span class="text-sm font-medium" style="color: var(--tri-neutral-900);">Grand Total</span>
-                            <span class="text-lg font-semibold" style="color: var(--tri-neutral-950);">1</span>
+                            <span class="text-lg font-semibold" style="color: var(--tri-neutral-950);">5</span>
                         </div>
                     </div>
                 </div>
@@ -328,7 +328,7 @@
                         <div class="p-5 rounded-lg border" style="border-color: var(--tri-neutral-200);">
                             <div class="text-xs font-medium mb-2" style="color: var(--tri-neutral-500);">Monthly Churn Rate</div>
                             <div class="text-4xl font-semibold mb-2" style="color: var(--tri-red); letter-spacing: -0.015em;">0.0%</div>
-                            <div class="text-xs" style="color: var(--tri-neutral-400);">0 churned items out of 1 total</div>
+                            <div class="text-xs" style="color: var(--tri-neutral-400);">0 churned items out of 5 total</div>
                         </div>
                         <div class="p-4 rounded-lg" style="background: var(--tri-neutral-50); border: 1px solid var(--tri-neutral-200);">
                             <div class="text-xs font-medium mb-3" style="color: var(--tri-neutral-600);">Churn Categories</div>
@@ -359,7 +359,7 @@
                         <div class="p-4 rounded-lg border" style="border-color: var(--tri-neutral-200);">
                             <div class="text-xs font-medium mb-2" style="color: var(--tri-neutral-500);">Completion Rate</div>
                             <div class="text-3xl font-semibold" style="color: var(--tri-neutral-950);">100.0%</div>
-                            <div class="text-xs mt-1" style="color: var(--tri-neutral-400);">1 successfully completed</div>
+                            <div class="text-xs mt-1" style="color: var(--tri-neutral-400);">5 successfully completed</div>
                         </div>
                     </div>
                 </div>
@@ -592,11 +592,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
-var RSE_DATA = {"total": 59, "done": 2, "in_review": 5, "in_progress": 13, "to_do": 39, "rate": 3.4};
-var RSE_PLUS_DATA = {"total": 92, "done": 4, "in_review": 13, "in_progress": 23, "to_do": 52, "rate": 4.3};
+var RSE_DATA = {"total": 59, "done": 6, "in_review": 4, "in_progress": 15, "to_do": 34, "rate": 10.2};
+var RSE_PLUS_DATA = {"total": 92, "done": 8, "in_review": 13, "in_progress": 25, "to_do": 46, "rate": 8.7};
 var CONTAMINATION_SOURCES = {"Planning Absence": 1, "Stakeholder Urgent": 1};
 var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Planning Absence", "count": 1, "percent": 50, "badge": "other", "color": "gray"}, {"source": "Stakeholder Urgent", "count": 1, "percent": 50, "badge": "external", "color": "blue"}], "total": 2};
-var AGE_DIST_DATA = [60, 29, 33, 18, 30];
+var AGE_DIST_DATA = [59, 30, 33, 18, 30];
 var AGE_DIST_PREV = [60, 29, 33, 18, 30];
 
 // ── Jira links ─────────────────────────────────────────────────────────────
