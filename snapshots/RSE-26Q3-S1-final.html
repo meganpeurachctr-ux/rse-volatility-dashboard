@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSE 26Q3 S1 7/1-7/15 — FINAL Sprint Health</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js"></script>
+<style>
+  :root { color-scheme: light; }
+  html, body { margin: 0; padding: 0; background: #fafaf7; color: #1d1d1b; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 20px 24px 48px; }
+  h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.01em; }
+  h2 { font-size: 15px; font-weight: 600; margin: 28px 0 10px; letter-spacing: -0.01em; color: #1d1d1b; }
+  .sub { color: #6b6b66; font-size: 13px; margin-bottom: 18px; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 500; margin-left: 6px; }
+  .pill.green { background: #e6f4ea; color: #1e6b36; }
+  .pill.amber { background: #fff4e0; color: #8a5a12; }
+  .pill.red   { background: #fdeaea; color: #a63434; }
+  .pill.blue  { background: #e8f0fb; color: #1e4f9d; }
+  .pill.gray  { background: #eee; color: #555; }
+  .kpis { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 10px 0 4px; }
+  .kpi { background: #fff; border: 1px solid #ececea; border-radius: 10px; padding: 12px 12px 10px; }
+  .kpi .label { font-size: 11px; color: #6b6b66; text-transform: uppercase; letter-spacing: 0.04em; }
+  .kpi .val { font-size: 22px; font-weight: 600; margin-top: 4px; line-height: 1.1; }
+  .kpi .val.red { color: #a63434; }
+  .kpi .val.amber { color: #8a5a12; }
+  .kpi .val.green { color: #1e6b36; }
+  .kpi .sub2 { font-size: 11px; color: #8a8a85; margin-top: 2px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card { background: #fff; border: 1px solid #ececea; border-radius: 12px; padding: 16px 18px; margin-top: 12px; }
+  .card h3 { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: #3a3a36; letter-spacing: -0.005em; }
+  .card .note { font-size: 12px; color: #6b6b66; margin-bottom: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #f0f0ec; }
+  th { color: #6b6b66; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .muted { color: #8a8a85; }
+  .assess { background: #f7f7f3; border-left: 3px solid #c9b375; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.5; margin-top: 12px; }
+  .verdict { display: flex; gap: 12px; align-items: baseline; margin: 4px 0 12px; }
+  .verdict .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: #6b6b66; }
+  .verdict .val { font-size: 15px; font-weight: 600; }
+  .status-bar { display: flex; height: 10px; border-radius: 6px; overflow: hidden; background: #f0f0ec; margin: 8px 0 4px; }
+  .status-bar span { display: block; height: 100%; }
+  canvas { max-width: 100%; }
+  .gridline { height: 1px; background: #ececea; margin: 22px 0 0; }
+  a { color: #1e4f9d; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .footer { font-size: 11px; color: #8a8a85; margin-top: 22px; }
+  .num-right { text-align: right; font-variant-numeric: tabular-nums; }
+  .tag-ok { background: #e6f4ea; border: 1px solid #b2dfca; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #1e6b36; margin-top: 8px; }
+  .tag-ok strong { display: block; margin-bottom: 2px; }
+  .tag-gap { background: #fdeaea; border: 1px solid #f5c6c6; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #7a2020; margin-top: 8px; }
+  .tag-gap strong { display: block; margin-bottom: 2px; }
+  .new-row { background: #fffbea; font-weight: 500; }
+  .warn-row { background: #fff8e8; }
+  .scope-warn { background: #fff8e0; border: 1px solid #f5d78e; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #7a5a12; margin-top: 8px; }
+  .final-banner { background: #f0f4ff; border: 1px solid #c2d0f5; border-radius: 8px; padding: 8px 14px; font-size: 12px; color: #1e4f9d; margin-bottom: 16px; }
+  @media (max-width: 820px){ .kpis { grid-template-columns: repeat(3, 1fr); } .row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>RSE 26Q3 S1 7/1-7/15 <span class="pill gray">FINAL</span></h1>
+  <div class="sub">Sprint closed 2026-07-15 · 14-day sprint · 2026-07-01 to 2026-07-15 · <a href="https://toyotaresearchinstitute.atlassian.net/secure/GHGoToBoard.jspa?sprintId=7508">Jira board</a></div>
+  <div class="final-banner">📋 This is the archived final snapshot. Sprint closed 2026-07-15. Data reflects the complete, exhaustive final-close fetch (118/118 issues).</div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="label">Items Done</div><div class="val green">113/118</div><div class="sub2">95.8% — baseline 89%</div></div>
+    <div class="kpi"><div class="label">SP Done</div><div class="val green">189/196</div><div class="sub2">96.4% — baseline 91%</div></div>
+    <div class="kpi"><div class="label">Carryover</div><div class="val green">5 items</div><div class="sub2">7 SP into RSE 26Q3 S2</div></div>
+    <div class="kpi"><div class="label">True Injections</div><div class="val red">37</div><div class="sub2">31.4% items / 23.5% SP</div></div>
+    <div class="kpi"><div class="label">Tag Coverage</div><div class="val green">84.6%</div><div class="sub2">33/39 — above 80%</div></div>
+    <div class="kpi"><div class="label">Day-1 Dump</div><div class="val">2</div><div class="sub2">3 SP · 1.7% of items</div></div>
+  </div>
+
+  <h2>Final Status</h2>
+  <div class="status-bar">
+    <span style="width:95.8%;background:#34a853"></span>
+    <span style="width:4.2%;background:#fbbc05"></span>
+  </div>
+  <div style="font-size:11px;color:#6b6b66;margin-bottom:16px">
+    <span style="color:#34a853">■</span> Done: 113 &nbsp;
+    <span style="color:#fbbc05">■</span> In Progress/Review at close: 5 (2 pre-sprint, 3 true-injection)
+  </div>
+
+  <h2>Sprint Volatility</h2>
+  <div class="verdict">
+    <span class="label">Verdict</span>
+    <span class="val pill green">High injection rate, but strong execution — closed above baseline completion</span>
+  </div>
+  <p style="font-size:13px;line-height:1.5;color:#3a3a36;margin:0 0 12px;">
+    True mid-sprint injections totaled 37 items (31.4%) and 46 SP (23.5%) — the highest injection rate recorded against the <a href="https://toyotaresearchinstitute.atlassian.net/secure/GHGoToBoard.jspa?sprintId=6801">RSE 26Q2 S1 4/8-4/22</a> baseline (21% items / 16% SP). Despite that scope pressure, the team closed strong: 113/118 items (95.8%) and 189/196 SP (96.4%) done, both above the baseline's 89%/91%. Only 5 items / 7 SP carried into RSE 26Q3 S2 — a much smaller carryover than the prior sprint (RSE 26Q2 S6: 21 items / 41 SP). Contamination tagging closed at 84.6% (33/39), above the 80% process threshold. Two bursts stand out: Day 8 (2026-07-08, +11 items/+13 SP, the sprint's largest) and Day 13 (2026-07-13, +8 items/+12 SP).
+  </p>
+
+  <div class="card">
+    <h3>Scope Composition (Final)</h3>
+    <table>
+      <tr><th>Category</th><th class="num-right">Items</th><th class="num-right">SP</th><th class="num-right">% Items</th><th class="num-right">% SP</th></tr>
+      <tr><td>Pre-sprint (before 2026-07-01T20:30:04.655Z UTC)</td><td class="num-right">79</td><td class="num-right">147</td><td class="num-right">66.9%</td><td class="num-right">75.0%</td></tr>
+      <tr class="warn-row"><td>Day-1 planning dump (2026-07-01T20:30 to 2026-07-02T20:30 UTC)</td><td class="num-right">2</td><td class="num-right">3</td><td class="num-right">1.7%</td><td class="num-right">1.5%</td></tr>
+      <tr class="new-row"><td>True mid-sprint injections (days 2–14)</td><td class="num-right">37</td><td class="num-right">46</td><td class="num-right">31.4%</td><td class="num-right">23.5%</td></tr>
+      <tr style="background:#f7f7f3;font-weight:600"><td>Sprint total (final)</td><td class="num-right">118</td><td class="num-right">196</td><td class="num-right">100%</td><td class="num-right">100%</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Injection Timeline (True Mid-Sprint Only)</h3>
+    <table>
+      <tr><th>Day</th><th>Date</th><th>+Items</th><th>+SP</th><th>Issues &amp; Contamination Source</th><th>Notes</th></tr>
+      <tr>
+        <td>6</td><td>2026-07-06</td><td>+5</td><td>+5</td>
+        <td>
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53834">TRI-53834</a> <span class="pill gray">Planning Absence</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53836">TRI-53836</a> <span class="pill gray">Planning Absence</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53837">TRI-53837</a> <span class="pill green">Bug Discovery</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53839">TRI-53839</a> <span class="pill gray">Planning Absence</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53840">TRI-53840</a> <span class="pill green">Bug Discovery</span>
+        </td>
+        <td class="muted">Devang Motwani / Ashish Mangukiya — all Done</td>
+      </tr>
+      <tr>
+        <td>7</td><td>2026-07-07</td><td>+3</td><td>+3</td>
+        <td>
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53843">TRI-53843</a> <span class="pill blue">Dependency Unblock</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53878">TRI-53878</a> <span class="pill amber">Mis-Planning</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53881">TRI-53881</a> <span class="pill gray">Planning Absence</span>
+        </td>
+        <td class="muted">All Done</td>
+      </tr>
+      <tr class="warn-row">
+        <td>8</td><td>2026-07-08</td><td>+11</td><td>+13</td>
+        <td>
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53905">TRI-53905</a> <span class="pill red">Stakeholder Urgent</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53908">TRI-53908</a> <span class="pill blue">Unexpected Capacity</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53910">TRI-53910</a> <span class="pill amber">Mis-Planning</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53911">TRI-53911</a> <span class="pill blue">Unexpected Capacity</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53916">TRI-53916</a> <span class="pill blue">Cross-Team Cadence</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53917">TRI-53917</a> <span class="pill red">Stakeholder Urgent</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53918">TRI-53918</a> <span class="pill amber">Mis-Planning</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53921">TRI-53921</a> <span class="pill green">Bug Discovery</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53890">TRI-53890</a> <span class="pill amber">UNTAGGED at close</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53891">TRI-53891</a> <span class="pill amber">UNTAGGED at close</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53892">TRI-53892</a> <span class="pill amber">UNTAGGED at close</span>
+        </td>
+        <td class="muted">Largest burst; 3 Veera Raghavulu design-system items untagged AND not-done at close — carried into S2</td>
+      </tr>
+      <tr>
+        <td>9</td><td>2026-07-09</td><td>+3</td><td>+4</td>
+        <td>
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53923">TRI-53923</a> <span class="pill blue">Cross-Team Cadence</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53925">TRI-53925</a> <span class="pill green">Bug Discovery</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53926">TRI-53926</a> <span class="pill green">Bug Discovery</span>
+        </td>
+        <td class="muted">All Done</td>
+      </tr>
+      <tr>
+        <td>12</td><td>2026-07-12</td><td>+1</td><td>+2</td>
+        <td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53963">TRI-53963</a> <span class="pill blue">Unexpected Capacity</span></td>
+        <td class="muted">Jose Rojas — Done</td>
+      </tr>
+      <tr class="new-row">
+        <td>13</td><td>2026-07-13</td><td>+8</td><td>+12</td>
+        <td>
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53988">TRI-53988</a> <span class="pill gray">Planning Absence</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53990">TRI-53990</a> <span class="pill gray">Planning Absence</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53999">TRI-53999</a> <span class="pill blue">Unexpected Capacity</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54000">TRI-54000</a> <span class="pill blue">Unexpected Capacity</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54036">TRI-54036</a> <span class="pill blue">Unexpected Capacity</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54037">TRI-54037</a> <span class="pill blue">Unexpected Capacity</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54038">TRI-54038</a> <span class="pill blue">Unexpected Capacity</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54039">TRI-54039</a> <span class="pill blue">Unexpected Capacity</span>
+        </td>
+        <td class="muted">All Done</td>
+      </tr>
+      <tr class="new-row">
+        <td>14</td><td>2026-07-14</td><td>+6</td><td>+7</td>
+        <td>
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54068">TRI-54068</a> <span class="pill blue">Dependency Unblock</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54069">TRI-54069</a> <span class="pill blue">Dependency Unblock</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54070">TRI-54070</a> <span class="pill blue">Dependency Unblock</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54071">TRI-54071</a> <span class="pill blue">Dependency Unblock</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54072">TRI-54072</a> <span class="pill blue">Dependency Unblock</span>&nbsp;
+          <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54115">TRI-54115</a> <span class="pill amber">UNTAGGED at close</span>
+        </td>
+        <td class="muted">Priyadharshan Pargunan cluster — all Done. TRI-54115 (Michael Puzon) discovered only at final-close fetch</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Contamination Tagging Coverage (Final)</h3>
+    <div class="tag-ok">
+      <strong>✓ 84.6% coverage at close — above 80% process threshold</strong>
+      33 of 39 eligible items (true injections + day-1 dump) tagged at sprint close. 4 true-injection items remain untagged; 2 day-1-dump items are exempt from nudge policy.
+    </div>
+    <table style="margin-top:10px">
+      <tr><th>Key</th><th>Assignee</th><th>Date Added</th><th>Final Status</th></tr>
+      <tr class="warn-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54115">TRI-54115</a></td><td>Michael Puzon</td><td>2026-07-14</td><td>Done</td></tr>
+      <tr class="warn-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53890">TRI-53890</a></td><td>Veera Raghavulu (Contractor)</td><td>2026-07-08</td><td>Not Done — carried to S2</td></tr>
+      <tr class="warn-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53891">TRI-53891</a></td><td>Veera Raghavulu (Contractor)</td><td>2026-07-08</td><td>Not Done — carried to S2</td></tr>
+      <tr class="warn-row"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53892">TRI-53892</a></td><td>Veera Raghavulu (Contractor)</td><td>2026-07-08</td><td>Not Done — carried to S2</td></tr>
+    </table>
+    <div style="font-size:12px;color:#6b6b66;margin-top:10px">
+      Tagged sources: Unexpected Capacity ×9, Planning Absence ×6, Dependency Unblock ×6, Bug Discovery ×5, Mis-Planning ×3, Cross-Team Cadence ×2, Stakeholder Urgent ×2.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Scope Composition</h3>
+    <canvas id="scopeChart" height="120"></canvas>
+  </div>
+
+  <h2>Assessment</h2>
+  <div class="assess">
+    RSE 26Q3 S1 7/1-7/15 closed on 2026-07-15 with 113/118 items (95.8%) and 189/196 SP (96.4%) done — well above the RSE 26Q2 S1 4/8-4/22 baseline of 89%/91%, and a marked improvement over the prior sprint's close (RSE 26Q2 S6: 76.1%/74.1%). This was achieved despite the highest true-injection rate recorded to date (31.4% items / 23.5% SP vs. baseline's 21%/16%), driven mainly by a Day 8 burst (+11 items/+13 SP) and a Day 13 burst (+8 items/+12 SP). Only 5 items / 7 SP carried into RSE 26Q3 S2, a small carryover versus the prior sprint's 21 items / 41 SP. Contamination tagging closed at 84.6% (33/39), above threshold, though 3 of the 4 untagged true injections (TRI-53890/53891/53892, all Veera Raghavulu design-system work) are also still not-done at close and rolling into S2 — worth direct follow-up given repeated nudges went unresolved. One item, TRI-54115, was discovered only at this final-close fetch and had not appeared in the pre-close Day 15 running snapshot; final scope (118/196) differs slightly from that snapshot (119/200) due to this addition plus TRI-53842 rolling out of the sprint entirely.
+  </div>
+
+  <div class="gridline"></div>
+  <div class="footer">Final snapshot · sprint closed 2026-07-15 · Archive: <a href="https://meganpeurachctr-ux.github.io/rse-volatility-dashboard/snapshots/RSE-26Q3-S1-final.html">GitHub Pages</a></div>
+</div>
+
+<script>
+if (typeof Chart !== 'undefined') {
+  new Chart(document.getElementById('scopeChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Pre-sprint (79)', 'Day-1 dump (2)', 'True injections (37)'],
+      datasets: [{ data: [79, 2, 37], backgroundColor: ['#4285f4', '#fbbc05', '#e64c3c'], borderWidth: 2 }]
+    },
+    options: { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } } }
+  });
+}
+</script>
+</body>
+</html>
