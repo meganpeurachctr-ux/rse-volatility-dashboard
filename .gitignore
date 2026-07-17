@@ -7,3 +7,6 @@ update_dashboard.py
 
 debug_fields.py
 .env
+update_dashboard_new.py
+diagnose_fields.py
+fix_historical_churn.py
