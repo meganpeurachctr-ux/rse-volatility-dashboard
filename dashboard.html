@@ -162,7 +162,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="status-badge"></div>
                 <span class="text-sm font-medium" style="color: var(--tri-neutral-700);">Live</span>
-                <span class="text-xs" style="color: var(--tri-neutral-400);">Updated: <span id="lastUpdated">July 30, 2026 at 12:25 PM</span></span>
+                <span class="text-xs" style="color: var(--tri-neutral-400);">Updated: <span id="lastUpdated">July 30, 2026 at 02:04 PM</span></span>
             </div>
         </div>
     </div>
@@ -216,7 +216,7 @@
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 animate-slide-in" style="animation-delay:0.18s;">
                 <div class="glass-effect rounded-xl p-5 text-center card-hover">
-                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-total" data-counter="57">0</div>
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-total" data-counter="59">0</div>
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">Total Issues</div>
                 </div>
                 <div class="glass-effect rounded-xl p-5 text-center card-hover">
@@ -224,7 +224,7 @@
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl p-5 text-center card-hover">
-                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-inprogress" data-counter="11">0</div>
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-inprogress" data-counter="13">0</div>
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl p-5 text-center card-hover">
@@ -269,7 +269,7 @@
             <a href="#" id="contaminationLink" class="stat-card flag cursor-pointer animate-slide-in" style="animation-delay:0.5s;">
                 <div class="stat-label"><span>Sprint contamination</span></div>
                 <div class="count-animate">
-                    <div class="stat-num flag" data-counter="20.7" data-decimal="true">0</div>
+                    <div class="stat-num flag" data-counter="21.3" data-decimal="true">0</div>
                     <div class="stat-meta">carryover rate</div>
                 </div>
                 <div class="stat-footer"><span class="flag-text">↑ above 15% target</span><span>Jira →</span></div>
@@ -407,9 +407,9 @@
                         </div>
                     </div>
                     <div class="stat-num flag" id="priority-change-affected">25</div>
-                    <div class="stat-meta">of <span id="priority-change-total-issues">57</span> sprint issues</div>
+                    <div class="stat-meta">of <span id="priority-change-total-issues">59</span> sprint issues</div>
                     <div class="stat-footer">
-                        <span class="flag-text" id="priority-change-percent">43.9%</span>
+                        <span class="flag-text" id="priority-change-percent">42.4%</span>
                         <span>affected</span>
                     </div>
                     <div class="w-full rounded-full h-1 mt-2" style="background: var(--tri-neutral-200);">
@@ -592,12 +592,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
-var RSE_DATA = {"total": 57, "done": 0, "in_review": 4, "in_progress": 11, "to_do": 42, "rate": 0.0};
-var RSE_PLUS_DATA = {"total": 92, "done": 1, "in_review": 4, "in_progress": 24, "to_do": 63, "rate": 1.1};
-var CONTAMINATION_SOURCES = {"Unexpected Capacity": 1, "Stakeholder Urgent": 1, "Bug Discovery": 1};
-var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Unexpected Capacity", "count": 1, "percent": 33, "badge": "internal", "color": "sky"}, {"source": "Stakeholder Urgent", "count": 1, "percent": 33, "badge": "external", "color": "blue"}, {"source": "Bug Discovery", "count": 1, "percent": 33, "badge": "reactive", "color": "amber"}], "total": 3};
+var RSE_DATA = {"total": 59, "done": 0, "in_review": 4, "in_progress": 13, "to_do": 42, "rate": 0.0};
+var RSE_PLUS_DATA = {"total": 94, "done": 1, "in_review": 4, "in_progress": 26, "to_do": 63, "rate": 1.1};
+var CONTAMINATION_SOURCES = {"Stakeholder Urgent": 3, "Unexpected Capacity": 1, "Bug Discovery": 1, "Dependency Unblock": 1};
+var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Stakeholder Urgent", "count": 3, "percent": 50, "badge": "external", "color": "blue"}, {"source": "Unexpected Capacity", "count": 1, "percent": 17, "badge": "internal", "color": "sky"}, {"source": "Bug Discovery", "count": 1, "percent": 17, "badge": "reactive", "color": "amber"}, {"source": "Dependency Unblock", "count": 1, "percent": 17, "badge": "external", "color": "blue"}], "total": 6};
 var AGE_DIST_DATA = [59, 49, 29, 22, 31];
-var AGE_DIST_PREV = [63, 48, 28, 22, 31];
+var AGE_DIST_PREV = [59, 49, 29, 22, 31];
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
