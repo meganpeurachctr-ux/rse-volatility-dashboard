@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RSE 26Q3 S3 &mdash; Day 15 Sprint Health (Rev 2)</title>
+<title>RSE 26Q3 S3 7/29-8/12 &mdash; FINAL</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js"></script>
 <style>
   :root { color-scheme: light; }
@@ -62,102 +62,130 @@
   .untag { color:#a63434; font-weight:600; }
   .cardgrid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
   @media (max-width:820px) { .cardgrid { grid-template-columns:1fr; } }
-  .revnote { background:#fdf6e8; border-left:4px solid #d99a2b; padding:12px 14px; margin:14px 0 20px; font-size:13px; line-height:1.55; }
+  .finalbanner { background:#eef7ee; border-left:4px solid #34a853; padding:12px 14px; margin:14px 0 20px; font-size:13px; line-height:1.55; }
+  .keyfind { background:#fdf6e8; border-left:4px solid #d99a2b; padding:14px 16px; margin:16px 0; }
   .was { color:#8a8a85; text-decoration:line-through; }
-  .stale { color:#a63434; font-weight:600; }
-  td.wrapcell { max-width:340px; }
+  td.wrapcell { max-width:330px; }
+  .big { font-size:26px; font-weight:700; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>RSE 26Q3 S3 7/29-8/12 &mdash; Day 15 of 15 <span class="pill amber">Moderately volatile</span> <span class="pill green">Tagging 94.7%</span> <span class="pill amber">Close-day rescoping</span></h1>
-  <div class="sub">Revision 2 &middot; data as of 2026-08-12 10:30 PDT &middot; Sprint started 2026-07-29T20:43:19Z UTC &middot; closes 2026-08-12T20:55:41Z UTC &mdash; <strong>still open at this reading</strong> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/secure/GHGoToBoard.jspa?sprintId=7583">Jira board</a></div>
+  <h1>RSE 26Q3 S3 7/29-8/12 &mdash; FINAL <span class="pill green">95.2% complete</span> <span class="pill green">Tagging 100% on injections</span> <span class="pill amber">Close-day recording</span></h1>
+  <div class="sub">Sprint closed <strong>2026-08-12</strong> &middot; closed in Jira ~13:15 PDT, about 40 min ahead of the nominal end 2026-08-12T20:55:41Z UTC &middot; <a href="https://toyotaresearchinstitute.atlassian.net/secure/GHGoToBoard.jspa?sprintId=7583">Jira board</a></div>
 
-  <div class="revnote"><strong>Revision 2.</strong> Revision 1 of this snapshot was written at 2026-08-12 10:14 PDT from Jira reads taken earlier in the same run, and reported 86/106 items done. Four items were resolved between 07:50 and 09:49 PDT that it did not reflect. Figures below are revised; every close-day change is itemised in <em>Close-Day Movement</em> for the retro record.</div>
+  <div class="finalbanner"><strong>Authoritative final record.</strong> Supersedes the daily snapshot revisions written earlier on 2026-08-12 (Revision 1 at 10:14 PDT reported 86/106; Revision 2 at 10:30 PDT reported 90/106). See <em>Data Integrity</em> for the reconciliation.</div>
 
   <div class="kpis">
-    <div class="kpi"><div class="label">Items Done</div><div class="val">90/106</div><div class="sub2">84.9% &mdash; up from 81.1% (Rev 1) and 63.0% on 2026-08-11</div></div>
-    <div class="kpi"><div class="label">SP Done</div><div class="val">162/191.5</div><div class="sub2">84.6% &mdash; up from 79.4% (Rev 1) and 61.2% on 2026-08-11</div></div>
-    <div class="kpi"><div class="label">vs. Ideal Pace</div><div class="val amber">&minus;15.1</div><div class="sub2">84.9% actual vs. 100% ideal at Day 15</div></div>
-    <div class="kpi"><div class="label">True Injections</div><div class="val amber">14</div><div class="sub2">13.2% items / 10.7% SP &mdash; unchanged</div></div>
-    <div class="kpi"><div class="label">Tag Coverage</div><div class="val green">94.7%</div><div class="sub2">18 of 19 eligible &middot; <strong>14/14 true injections</strong></div></div>
-    <div class="kpi"><div class="label">Carryover</div><div class="val amber">16</div><div class="sub2">16 items / 29.5 SP (15.4% of scope)</div></div>
+    <div class="kpi"><div class="label">Items Done</div><div class="val green">100/105</div><div class="sub2">95.2% &mdash; beat baseline 89% and prior sprint 93.8%</div></div>
+    <div class="kpi"><div class="label">SP Done</div><div class="val green">183/191.5</div><div class="sub2">95.6% &mdash; beat baseline 91%</div></div>
+    <div class="kpi"><div class="label">True Injections</div><div class="val green">14</div><div class="sub2">13.3% items / 10.7% SP &mdash; ~2/3 of both comparators</div></div>
+    <div class="kpi"><div class="label">Tag Coverage</div><div class="val green">100%</div><div class="sub2">14/14 true injections &middot; 18/19 eligible (94.7%)</div></div>
+    <div class="kpi"><div class="label">Total Unfinished</div><div class="val green">8</div><div class="sub2">8 items / 13.5 SP (7.0%) &mdash; under baseline 9%</div></div>
+    <div class="kpi"><div class="label">Assignees at 100%</div><div class="val green">15/19</div><div class="sub2">Only 4 finished below 100%</div></div>
+  </div>
+
+  <h2>Headline vs. Comparators</h2>
+  <table>
+    <tr><th>Metric</th><th class="num-right">Final</th><th class="num-right">RSE 26Q2 S1 (baseline)</th><th class="num-right">RSE 26Q3 S2 (prior)</th></tr>
+    <tr><td>Final scope</td><td class="num-right">105 items / 191.5 SP</td><td class="num-right">138 / 214.5</td><td class="num-right">113 / 195.5</td></tr>
+    <tr style="background:#eef7ee"><td>Items done</td><td class="num-right"><strong>95.2%</strong></td><td class="num-right">89% (+6.2)</td><td class="num-right">93.8% (+1.4)</td></tr>
+    <tr style="background:#eef7ee"><td>SP done</td><td class="num-right"><strong>95.6%</strong></td><td class="num-right">91% (+4.6)</td><td class="num-right">&mdash;</td></tr>
+    <tr style="background:#eef7ee"><td>True injections</td><td class="num-right">13.3% / 10.7%</td><td class="num-right">21% / 16%</td><td class="num-right">21.2% / 17.9%</td></tr>
+    <tr><td>Day-1 dump items</td><td class="num-right">5</td><td class="num-right">22</td><td class="num-right">1</td></tr>
+    <tr style="background:#eef7ee"><td>Total unfinished</td><td class="num-right">13.5 SP (7.0%)</td><td class="num-right">20 SP (9%)</td><td class="num-right">&mdash;</td></tr>
+  </table>
+  <div class="note">On every headline measure this sprint beat both comparators. Read the caveats below before treating that as a clean result.</div>
+
+  <div class="keyfind">
+    <h3>The finding that matters most: about a third of the sprint was recorded complete on the last day</h3>
+    <p>At the 2026-08-11 (Day 14) reading, 68 items were done. Final is 100. <span class="big">~32 items / ~64 SP</span> &mdash; roughly a third of scope and SP &mdash; were recorded complete on close day, 2026-08-12. Intermediate readings drifted by up to 2 items, so treat the delta as &plusmn;2.</p>
+    <p><strong>Two explanations, opposite conclusions:</strong></p>
+    <p><strong>Status-tracking lag.</strong> Work finished progressively but tickets were not transitioned until close day. Delivery was healthy; the daily burndown was wrong all sprint &mdash; which makes every mid-sprint carryover projection in this series unreliable and explains why 2026-08-10 and 2026-08-11 both over-predicted carryover by roughly 2&times;.</p>
+    <p><strong>Genuine last-day crunch.</strong> A third of the sprint really landed in the final 24 hours. The 95.2% is real but the delivery profile is heavily back-loaded, carrying quality risk on work with no review runway.</p>
+    <p><strong>The evidence leans to status-tracking lag.</strong> Several close-day closures carry completion write-ups describing multi-day work &mdash; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54837">TRI-54837</a>'s RGBD training runs took ~3.6 h and ~8.6 h and were launched 2026-08-09; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54838">TRI-54838</a>'s RGB runs launched 2026-08-07. The work predates the close-day transition by days. <strong>This is the single most useful thing to take to retro: the board was not a reliable picture of progress during the sprint.</strong></p>
   </div>
 
   <h2>Close-Day Movement (2026-08-12)</h2>
+  <table>
+    <tr><th>Window (PDT)</th><th class="num-right">Items</th><th class="num-right">SP</th><th>Evidence</th></tr>
+    <tr><td>Before 07:50</td><td class="num-right">~18</td><td class="num-right">~33</td><td class="muted">Captured in the 10:14 reading (68 &rarr; 86 done); keys not captured at the time</td></tr>
+    <tr><td>07:50 &ndash; 09:49</td><td class="num-right">4</td><td class="num-right">10</td><td class="muted">Keys below</td></tr>
+    <tr><td>10:39 &ndash; 13:12</td><td class="num-right">8</td><td class="num-right">18</td><td class="muted">Keys below</td></tr>
+    <tr><td>Reading correction</td><td class="num-right">+2</td><td class="num-right">+3</td><td class="muted">Under-count of John Shepherd's queue &mdash; see Data Integrity</td></tr>
+    <tr style="background:#f7f7f3;font-weight:600"><td>Total</td><td class="num-right">~32</td><td class="num-right">~64</td><td>Final done = 100 items / 183 SP</td></tr>
+  </table>
+
+  <h3>Itemised closures, 07:50 &ndash; 13:12 PDT</h3>
+  <table>
+    <tr><th>Time</th><th>Key</th><th>Assignee</th><th class="num-right">SP</th><th>Note</th></tr>
+    <tr><td>07:50:42</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55186">TRI-55186</a></td><td>Sem Onyalo</td><td class="num-right">2</td><td class="wrapcell">True injection (Day 13, Unexpected Capacity) &mdash; injected 2026-08-10, closed inside 3 days</td></tr>
+    <tr><td>08:26:22</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54187">TRI-54187</a></td><td>Sarthak Khandelwal</td><td class="num-right">2</td><td class="wrapcell"><strong>Retitled build &rarr; investigate before closing</strong></td></tr>
+    <tr><td>09:09:44</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54800">TRI-54800</a></td><td>Jason Johnson</td><td class="num-right">3</td><td class="wrapcell">&quot;LookOut: General-purpose local VLM observer&quot;</td></tr>
+    <tr><td>09:49:11</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54835">TRI-54835</a></td><td>Pooja Kabra</td><td class="num-right">3</td><td class="wrapcell"><strong>Retitled.</strong> Closed with full results: D&rarr;D 1.324, ABC&rarr;D 0.990 vs. ~1.2 June reference</td></tr>
+    <tr><td>10:39:24</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54755">TRI-54755</a></td><td>John Shepherd</td><td class="num-right">2</td><td class="wrapcell">&quot;Props Slack &rarr; Jira tracking mirror&quot;</td></tr>
+    <tr><td>11:11:36</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54837">TRI-54837</a></td><td>Pooja Kabra</td><td class="num-right"><strong>3</strong> (was 2)</td><td class="wrapcell"><strong>Re-estimated 2&rarr;3 SP.</strong> RGBD training runs launched 2026-08-09</td></tr>
+    <tr><td>11:11:51</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54838">TRI-54838</a></td><td>Pooja Kabra</td><td class="num-right"><strong>3</strong> (was 2)</td><td class="wrapcell"><strong>Re-estimated 2&rarr;3 SP.</strong> RGB training runs launched 2026-08-07</td></tr>
+    <tr><td>12:57:33</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55184">TRI-55184</a></td><td>Michael Puzon</td><td class="num-right">2</td><td class="wrapcell">True injection (Day 13, Dependency Unblock)</td></tr>
+    <tr><td>12:57:55</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54204">TRI-54204</a></td><td>Krish Sharma</td><td class="num-right">3</td><td class="wrapcell">In Review since 2026-08-06</td></tr>
+    <tr><td>13:01:14</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54783">TRI-54783</a></td><td>Hieu Nguyen</td><td class="num-right">1</td><td class="wrapcell">The sprint's only <strong>Highest-priority</strong> item &mdash; 54 min before close</td></tr>
+    <tr><td>13:11:11</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53914">TRI-53914</a></td><td>Carla Bellido</td><td class="num-right">2</td><td class="wrapcell"><strong>Carla's first completion of the sprint</strong> &mdash; In Review since 2026-07-29</td></tr>
+    <tr><td>13:12:41</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54841">TRI-54841</a></td><td>Carla Bellido</td><td class="num-right">2</td><td class="wrapcell">Carla's second, 43 min before close</td></tr>
+  </table>
+  <div class="note">All closed with resolution <strong>Done</strong> &mdash; no Won't Do, Duplicate or Not Needed, so none of this is churn.</div>
+
   <div class="card">
-    <h3>Items resolved on close day &mdash; 4 items / 10 SP</h3>
-    <table>
-      <tr><th>Time (PDT)</th><th>Key</th><th>Assignee</th><th class="num-right">SP</th><th>Bucket</th><th>Note</th></tr>
-      <tr><td>07:50:42</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55186">TRI-55186</a></td><td>Sem Onyalo</td><td class="num-right">2</td><td class="muted">True injection (Day 13, Unexpected Capacity)</td><td class="wrapcell">&quot;Initialize RAG pipeline project and documents&quot;. Created 2026-08-10 16:49 PDT &mdash; injected and closed inside 3 days</td></tr>
-      <tr><td>08:26:22</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54187">TRI-54187</a></td><td>Sarthak Khandelwal</td><td class="num-right">2</td><td class="muted">Pre-sprint (created 2026-07-14)</td><td class="wrapcell"><strong>Retitled before closing</strong> &mdash; see rescope table</td></tr>
-      <tr><td>09:09:44</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54800">TRI-54800</a></td><td>Jason Johnson</td><td class="num-right">3</td><td class="muted">Pre-sprint (created 2026-07-29 09:20 PDT)</td><td class="wrapcell">&quot;LookOut: General-purpose local VLM observer&quot;</td></tr>
-      <tr><td>09:49:11</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54835">TRI-54835</a></td><td>Pooja Kabra</td><td class="num-right">3</td><td class="muted">Pre-sprint (created 2026-07-29 12:41 PDT)</td><td class="wrapcell"><strong>Retitled before closing.</strong> Closed with full results write-up: D&rarr;D 1.324, ABC&rarr;D 0.990 vs. ~1.2 for the June reference checkpoint</td></tr>
-    </table>
-    <div class="note">All four closed with resolution <strong>Done</strong> &mdash; no Won't Do, Duplicate or Not Needed, so none of this is churn.</div>
+    <h3>Estimate changes &mdash; 2, both on close day</h3>
+    <p><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54837">TRI-54837</a> and <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54838">TRI-54838</a> were each re-estimated from 2 SP to 3 SP at 11:11 PDT, immediately before being closed. That is +2 SP to final scope and the <strong>first and only re-estimation of the sprint</strong>. The volatility dashboard reported 0 estimate changes as of its 08:37 PDT refresh &mdash; accurate at the time; the changes came later. Re-estimating upward at the moment of closing inflates recorded velocity by 2 SP against what was committed.</p>
   </div>
 
   <div class="card">
-    <h3>In-place rescopes &mdash; 5 items retitled on close day, 0 SP change</h3>
-    <p>This is the finding the injection framework does not capture. Five items had their summaries rewritten on 2026-08-12 with no change to <code>created</code> date or story points, so scope-composition and injection metrics register nothing &mdash; but the actual deliverables changed on the last day of the sprint.</p>
+    <h3>In-place rescopes &mdash; 5 items retitled on close day, no change to created date</h3>
+    <p>Injection rate, scope composition and story points register nothing for these; only a summary diff reveals them.</p>
     <table>
-      <tr><th>Time</th><th>Key</th><th>Assignee</th><th class="num-right">SP</th><th>Status</th><th>Was &rarr; Now</th></tr>
-      <tr><td>~08:26</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54187">TRI-54187</a></td><td>Sarthak Khandelwal</td><td class="num-right">2</td><td><span class="pill green">Done</span></td><td class="wrapcell"><span class="was">Implement stop stream button</span><br>&rarr; Investigate safe cancellation for AgentCore streaming responses</td></tr>
-      <tr><td>09:49</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54835">TRI-54835</a></td><td>Pooja Kabra</td><td class="num-right">3</td><td><span class="pill green">Done</span></td><td class="wrapcell"><span class="was">Add plumbing for new Calvin RGBD checkpoints on VLA eval harness</span><br>&rarr; Validate vla-foundry v0.3 <strong>RGB</strong> checkpoints on CALVIN with the VLA eval harness</td></tr>
-      <tr><td>09:59</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54836">TRI-54836</a></td><td>Pooja Kabra</td><td class="num-right">2</td><td><span>In Progress</span></td><td class="wrapcell"><span class="was">Investigate RoboMME benchmark and integration into VLA eval harness</span><br>&rarr; Validate vla-foundry v0.3 <strong>RGB-D</strong> checkpoints on CALVIN with the VLA eval harness</td></tr>
-      <tr><td>10:10</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54838">TRI-54838</a></td><td>Pooja Kabra</td><td class="num-right">2</td><td><span>In Progress</span></td><td class="wrapcell"><span class="was">Train on un-chunked ABC_D Calvin dataset with pointmaps</span><br>&rarr; Train diffusion-policy on CALVIN D_D and ABC_D with the <strong>RGB</strong> camera set on v0.3 data</td></tr>
-      <tr><td>10:11</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54837">TRI-54837</a></td><td>Pooja Kabra</td><td class="num-right">2</td><td><span>To Do</span></td><td class="wrapcell"><span class="was">Train on un-chunked D_D Calvin dataset with pointmaps</span><br>&rarr; Train diffusion-policy on CALVIN D_D and ABC_D with the <strong>RGBD</strong> camera set on v0.3 data</td></tr>
+      <tr><th>Key</th><th>Assignee</th><th class="num-right">SP</th><th>Final status</th><th>Was &rarr; Now</th></tr>
+      <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54187">TRI-54187</a></td><td>Sarthak Khandelwal</td><td class="num-right">2</td><td>Done</td><td class="wrapcell"><span class="was">Implement stop stream button</span><br>&rarr; Investigate safe cancellation for AgentCore streaming responses</td></tr>
+      <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54835">TRI-54835</a></td><td>Pooja Kabra</td><td class="num-right">3</td><td>Done</td><td class="wrapcell"><span class="was">Add plumbing for new Calvin RGBD checkpoints&hellip;</span><br>&rarr; Validate vla-foundry v0.3 <strong>RGB</strong> checkpoints on CALVIN&hellip;</td></tr>
+      <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54836">TRI-54836</a></td><td>Pooja Kabra</td><td class="num-right">2</td><td>Moved to S4</td><td class="wrapcell"><span class="was">Investigate RoboMME benchmark and integration into VLA eval harness</span><br>&rarr; Validate vla-foundry v0.3 <strong>RGB-D</strong> checkpoints on CALVIN&hellip;</td></tr>
+      <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54838">TRI-54838</a></td><td>Pooja Kabra</td><td class="num-right">3</td><td>Done</td><td class="wrapcell"><span class="was">Train on un-chunked ABC_D Calvin dataset with pointmaps</span><br>&rarr; Train diffusion-policy on CALVIN D_D and ABC_D, <strong>RGB</strong> camera set, v0.3</td></tr>
+      <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54837">TRI-54837</a></td><td>Pooja Kabra</td><td class="num-right">3</td><td>Done</td><td class="wrapcell"><span class="was">Train on un-chunked D_D Calvin dataset with pointmaps</span><br>&rarr; Train diffusion-policy on CALVIN D_D and ABC_D, <strong>RGBD</strong> camera set, v0.3</td></tr>
     </table>
-    <p><strong>Two distinct patterns, and they should be read differently.</strong></p>
-    <p><strong>Pooja Kabra's four-item block (9 SP) was reorganised wholesale.</strong> The original framing (pointmaps, un-chunked datasets, a RoboMME benchmark investigation) was replaced by a clean RGB / RGB-D split against v0.3 checkpoints. TRI-54836's rewrite is the most substantial: the RoboMME benchmark investigation is simply gone, replaced by RGB-D validation that now explicitly depends on the RGB validation completed in TRI-54835. Read charitably, this is mid-sprint technical discovery &mdash; the v0.3 checkpoints diverged from the June checkpoint on every interface the CALVIN adapter touched, so new decode plumbing was needed and the ticket structure was corrected to match reality. Read less charitably, four tickets were rewritten to describe the work that actually happened. Both readings matter for retro; the ticket history is the evidence either way.</p>
-    <div class="scope-warn"><strong>TRI-54187 was narrowed from build to investigate, then closed.</strong> Its description now states that "Stop-button implementation is explicitly out of scope." A 2 SP story that was going to implement a stop button closed as a completed investigation instead. That counts as done in every metric on this page, but the stop button does not exist &mdash; this is the one close-day change that inflates apparent completion.</div>
-    <div class="note">None of this shows up in injection rate, story points, or the estimate-change counter (the dashboard still reports 0 re-estimations). It is only visible by diffing issue summaries between snapshots. <strong>Adding a summary-diff check to the daily run is the concrete process improvement from this sprint.</strong></div>
+    <p><strong>Pooja Kabra's four-item block was reorganised wholesale.</strong> The original framing (pointmaps, un-chunked datasets, a RoboMME benchmark investigation) was replaced by a clean RGB / RGB-D split against v0.3 checkpoints. TRI-54836's rewrite is the most substantial &mdash; the RoboMME investigation is gone entirely, replaced by RGB-D validation that then moved to S4. The technical justification is documented and credible: v0.3 checkpoints diverged from the June checkpoint on every interface the CALVIN adapter touched, requiring new decode plumbing, and the depth-augmentation bug (fix <code>8e64c776</code>) was real work with a regression test. Read charitably this is mid-sprint discovery correctly reflected in tickets; read less charitably, four tickets were rewritten to describe the work that actually happened. Worth a five-minute retro conversation rather than an assumption.</p>
+    <div class="scope-warn"><strong>TRI-54187 was narrowed from build to investigate, then closed.</strong> Its description now states that "Stop-button implementation is explicitly out of scope." A 2 SP story that was to implement a stop button closed as a completed investigation. It counts inside the 95.2%, but <strong>the stop button does not exist.</strong> This is the one close-day change that unambiguously inflates completion against what was committed.</div>
   </div>
 
-  <h2>Scope Composition</h2>
+  <h2>Final Scope Composition</h2>
   <table>
     <tr><th>Category</th><th class="num-right">Items</th><th class="num-right">SP</th><th class="num-right">% Items</th><th class="num-right">% SP</th></tr>
-    <tr><td>Pre-sprint (before 2026-07-29T20:43:19Z UTC)</td><td class="num-right">87</td><td class="num-right">164</td><td class="num-right">82.1%</td><td class="num-right">85.6%</td></tr>
-    <tr><td>Day 1 planning dump (first 24h)</td><td class="num-right">5</td><td class="num-right">7</td><td class="num-right">4.7%</td><td class="num-right">3.7%</td></tr>
-    <tr><td>True mid-sprint injections (days 2+)</td><td class="num-right">14</td><td class="num-right">20.5</td><td class="num-right">13.2%</td><td class="num-right">10.7%</td></tr>
-    <tr style="background:#f7f7f3;font-weight:600"><td>Current sprint total</td><td class="num-right">106</td><td class="num-right">191.5</td><td class="num-right">100%</td><td class="num-right">100%</td></tr>
+    <tr><td>Pre-sprint (before 2026-07-29T20:43:19Z UTC)</td><td class="num-right">86</td><td class="num-right">164</td><td class="num-right">81.9%</td><td class="num-right">85.6%</td></tr>
+    <tr><td>Day 1 planning dump (first 24h)</td><td class="num-right">5</td><td class="num-right">7</td><td class="num-right">4.8%</td><td class="num-right">3.7%</td></tr>
+    <tr><td>True mid-sprint injections (days 2+)</td><td class="num-right">14</td><td class="num-right">20.5</td><td class="num-right">13.3%</td><td class="num-right">10.7%</td></tr>
+    <tr style="background:#f7f7f3;font-weight:600"><td>Final sprint total</td><td class="num-right">105</td><td class="num-right">191.5</td><td class="num-right">100%</td><td class="num-right">100%</td></tr>
   </table>
-  <div class="note">All 106 items carry a story-point estimate. No subtasks in this sprint's issue list, so the exclusion rule filtered nothing this run. Composition is unchanged from Revision 1 &mdash; the close-day activity was completion and rescoping, not injection.</div>
+  <div class="note">All 105 items carried an estimate. No subtasks, so the exclusion rule filtered nothing. <strong>Injection completion: 13 of 14 true injections closed (92.9%)</strong> &mdash; higher than the sprint average. The single open injection is <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54915">TRI-54915</a> (0.5 SP, In Review), blocked on IT for an Okta app that does not yet exist.</div>
 
   <h2>Burndown &amp; Velocity</h2>
   <div class="cardgrid">
     <div class="card"><h3>Remaining % vs. ideal</h3><div style="height:260px"><canvas id="burndownChart"></canvas></div></div>
     <div class="card"><h3>Cumulative items done</h3><div style="height:260px"><canvas id="velocityChart"></canvas></div></div>
   </div>
-  <div class="note">Gaps in the actual series are days with no snapshot run (including the 2026-08-07/08/09 reporting gap).</div>
+  <div class="note">The near-vertical drop at D15 is the close-day recording effect, not a real one-day delivery curve. Gaps are days with no snapshot run (including the 2026-08-07/08/09 reporting gap).</div>
 
-  <h2>Injection Timeline</h2>
+  <h2>Injection Timeline (final)</h2>
   <table>
-    <tr><th>Sprint Day</th><th>Date</th><th class="num-right">+Items</th><th class="num-right">+SP</th><th>Issues &amp; Contamination Source</th><th>Notes</th></tr>
-    <tr><td>Day 1 (dump)</td><td>2026-07-29</td><td class="num-right">+1</td><td class="num-right">+1</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54875">TRI-54875</a> <em>Bug Discovery</em> (Devang Motwani)</td><td class="muted">Done</td></tr>
-    <tr><td>Day 2 (dump closes)</td><td>2026-07-30</td><td class="num-right">+5</td><td class="num-right">+7</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54876">TRI-54876</a> <em>Unexpected Capacity</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54889">TRI-54889</a> <span class="untag">untagged</span> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54891">TRI-54891</a> <em>Stakeholder Urgent</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54892">TRI-54892</a> <em>Stakeholder Urgent</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54899">TRI-54899</a> <em>Bug Discovery</em></td><td class="muted">First 4 = day-1 dump; TRI-54899 (21:14 UTC) is the sprint's first true injection</td></tr>
-    <tr><td>Day 3</td><td>2026-07-31</td><td class="num-right">+2</td><td class="num-right">+2</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54908">TRI-54908</a> <em>Planning Absence</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54909">TRI-54909</a> <em>Dependency Unblock</em></td><td class="muted">Both Done. TRI-54908 tagged 2026-08-11 after the day-before-close nudge</td></tr>
-    <tr><td>Day 4</td><td>2026-08-01</td><td class="num-right">0</td><td class="num-right">0</td><td>&mdash;</td><td class="muted">No additions</td></tr>
-    <tr><td>Day 5</td><td>2026-08-02</td><td class="num-right">+1</td><td class="num-right">+0.5</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54915">TRI-54915</a> <em>Dependency Unblock</em> (Krish Sharma)</td><td class="muted">In Review &mdash; still open</td></tr>
-    <tr><td>Day 6</td><td>2026-08-03</td><td class="num-right">+1</td><td class="num-right">+2</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54961">TRI-54961</a> <em>Unexpected Capacity</em> (Arijit Saha)</td><td class="muted">Done</td></tr>
-    <tr><td>Day 7</td><td>2026-08-04</td><td class="num-right">+1</td><td class="num-right">+1</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54973">TRI-54973</a> <em>Bug Discovery</em> (Chris Fajardo)</td><td class="muted">Done</td></tr>
-    <tr><td>Day 8</td><td>2026-08-05</td><td class="num-right">0</td><td class="num-right">0</td><td>&mdash;</td><td class="muted">No additions</td></tr>
-    <tr><td>Day 9</td><td>2026-08-06</td><td class="num-right">+1</td><td class="num-right">+3</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55032">TRI-55032</a> <em>Bug Discovery</em> (Krish Sharma)</td><td class="muted">Done &mdash; P1 pipeline-concurrency incident</td></tr>
-    <tr><td>Day 10</td><td>2026-08-07</td><td class="num-right">+4</td><td class="num-right">+5</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55041">TRI-55041</a> <em>Unexpected Capacity</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55059">TRI-55059</a> <em>Stakeholder Urgent</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55060">TRI-55060</a> <em>Stakeholder Urgent</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55061">TRI-55061</a> <em>Stakeholder Urgent</em></td><td class="muted">Largest single-day cluster; landed during the 2026-08-07/08/09 reporting gap</td></tr>
-    <tr><td>Day 11</td><td>2026-08-08</td><td class="num-right">0</td><td class="num-right">0</td><td>&mdash;</td><td class="muted">No additions</td></tr>
-    <tr><td>Day 12</td><td>2026-08-09</td><td class="num-right">0</td><td class="num-right">0</td><td>&mdash;</td><td class="muted">No additions</td></tr>
-    <tr style="background:#fdf6e8"><td>Day 13</td><td>2026-08-10</td><td class="num-right">+3</td><td class="num-right">+6</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55103">TRI-55103</a> <em>Stakeholder Urgent</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55184">TRI-55184</a> <em>Dependency Unblock</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55186">TRI-55186</a> <em>Unexpected Capacity</em></td><td class="muted">Revised twice: +1/+2 on 2026-08-10, +2/+4 on 2026-08-11. TRI-55103 and TRI-55186 now Done; TRI-55184 In Progress</td></tr>
-    <tr><td>Day 14</td><td>2026-08-11</td><td class="num-right">0</td><td class="num-right">0</td><td>&mdash;</td><td class="muted">No additions. +13 items / +22 SP completed</td></tr>
-    <tr style="background:#fdf6e8"><td>Day 15 (close day)</td><td>2026-08-12</td><td class="num-right">0</td><td class="num-right">0</td><td>&mdash;</td><td class="muted">No additions. +22 items / +43 SP completed. 3 pre-sprint items / 5 SP <strong>removed</strong>; 5 items <strong>retitled in place</strong></td></tr>
+    <tr><th>Sprint Day</th><th>Date</th><th class="num-right">+Items</th><th class="num-right">+SP</th><th>Issues &amp; Contamination Source</th></tr>
+    <tr><td>Day 1 (dump)</td><td>2026-07-29</td><td class="num-right">+1</td><td class="num-right">+1</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54875">TRI-54875</a> <em>Bug Discovery</em></td></tr>
+    <tr><td>Day 2 (dump closes)</td><td>2026-07-30</td><td class="num-right">+5</td><td class="num-right">+7</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54876">TRI-54876</a> <em>Unexpected Capacity</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54889">TRI-54889</a> <span class="untag">untagged</span> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54891">TRI-54891</a> <em>Stakeholder Urgent</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54892">TRI-54892</a> <em>Stakeholder Urgent</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54899">TRI-54899</a> <em>Bug Discovery</em> (first true injection, 21:14 UTC)</td></tr>
+    <tr><td>Day 3</td><td>2026-07-31</td><td class="num-right">+2</td><td class="num-right">+2</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54908">TRI-54908</a> <em>Planning Absence</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54909">TRI-54909</a> <em>Dependency Unblock</em></td></tr>
+    <tr><td>Day 5</td><td>2026-08-02</td><td class="num-right">+1</td><td class="num-right">+0.5</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54915">TRI-54915</a> <em>Dependency Unblock</em></td></tr>
+    <tr><td>Day 6</td><td>2026-08-03</td><td class="num-right">+1</td><td class="num-right">+2</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54961">TRI-54961</a> <em>Unexpected Capacity</em></td></tr>
+    <tr><td>Day 7</td><td>2026-08-04</td><td class="num-right">+1</td><td class="num-right">+1</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54973">TRI-54973</a> <em>Bug Discovery</em></td></tr>
+    <tr><td>Day 9</td><td>2026-08-06</td><td class="num-right">+1</td><td class="num-right">+3</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55032">TRI-55032</a> <em>Bug Discovery</em> &mdash; P1 pipeline-concurrency incident</td></tr>
+    <tr style="background:#fdf6e8"><td>Day 10</td><td>2026-08-07</td><td class="num-right">+4</td><td class="num-right">+5</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55041">TRI-55041</a> <em>Unexpected Capacity</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55059">TRI-55059</a> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55060">TRI-55060</a> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55061">TRI-55061</a> all <em>Stakeholder Urgent</em> &mdash; largest cluster</td></tr>
+    <tr><td>Day 13</td><td>2026-08-10</td><td class="num-right">+3</td><td class="num-right">+6</td><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55103">TRI-55103</a> <em>Stakeholder Urgent</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55184">TRI-55184</a> <em>Dependency Unblock</em> &middot; <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55186">TRI-55186</a> <em>Unexpected Capacity</em></td></tr>
+    <tr><td>Days 4, 8, 11, 12, 14, 15</td><td>&mdash;</td><td class="num-right">0</td><td class="num-right">0</td><td>No additions</td></tr>
   </table>
-
-  <h2>Contamination Tagging Coverage</h2>
-  <div class="card">
-    <p><strong>18/19 eligible items tagged = 94.7%.</strong> True mid-sprint injections alone: <strong>14/14 = 100%</strong> &mdash; full coverage, comfortably above the 80% process-gap threshold. Unchanged since Revision 1; the close-day completions did not affect tagging.</p>
-    <p>The 2026-08-11 day-before-close nudge worked. <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54908">TRI-54908</a> was the sprint's one untagged true injection across twelve consecutive runs; it is now tagged <strong>"Planning Absence"</strong> &mdash; a value not present in <code>contamination-source-tag-glossary.md</code>, worth reconciling before the next sprint so it counts consistently in trend analysis.</p>
-    <p>Remaining untagged: <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54889">TRI-54889</a> &mdash; day-1 dump, Ashish Mangukiya, status Done. Day-1 dump items are excluded from nudging, so this closes out untagged.</p>
-    <p><strong>Nudged 0 issues this run.</strong> No true injection lacks a Contamination Source. Day 15 is also past the day-before-close trigger (<code>day_n == total_days</code>), which fired on 2026-08-11.</p>
-  </div>
+  <div class="note">No single-day spike. Largest cluster was four items on 2026-08-07, well short of the baseline sprint's 10-item burst on 2026-04-14. Injection concentrated in the second half: 8 of 14 true injections arrived on Day 9 or later.</div>
 
   <h2>Contamination Source Distribution (14 true injections)</h2>
   <table>
@@ -168,100 +196,112 @@
     <tr><td>Unexpected Capacity</td><td class="num-right">3</td><td class="num-right">21.4%</td></tr>
     <tr><td>Planning Absence</td><td class="num-right">1</td><td class="num-right">7.1%</td></tr>
   </table>
-  <div class="note">Stakeholder-driven work is the largest injection category, and all four such items arrived in the second half of the sprint (2026-08-07 and 2026-08-10). That is the pattern most worth raising in retro.</div>
+  <div class="card">
+    <h3>Contamination Tagging &mdash; final</h3>
+    <p><strong>True mid-sprint injections: 14/14 = 100%.</strong> Eligible items (day-1 dump + true injections): 18/19 = 94.7%.</p>
+    <p>The day-before-close nudge on 2026-08-11 worked. <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54908">TRI-54908</a> had been the sprint's one untagged true injection across twelve consecutive runs; it was tagged <strong>"Planning Absence"</strong> on 2026-08-11 &mdash; a value not present in <code>contamination-source-tag-glossary.md</code>. <strong>Action: add "Planning Absence" to the glossary</strong> so it counts consistently in cross-sprint trend analysis.</p>
+    <p>Closing out untagged: <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54889">TRI-54889</a> (day-1 dump, Ashish Mangukiya, Done) &mdash; outside the nudge framework by design. Nudges sent on close day: <strong>0</strong>.</p>
+  </div>
 
-  <h2>Volatility Dashboard Cross-Reference</h2>
+  <h2>Assignee Breakdown &mdash; final</h2>
   <table>
-    <tr><th>Signal</th><th>Value</th><th>How this sprint compares</th></tr>
-    <tr><td>Priority changes</td><td>31 of 73 (42.5%)</td><td><span class="pill green">Refreshed</span> Up from 27 of 63 (42.9%); rate flat, denominator grew &mdash; dashboard tracking again</td></tr>
-    <tr style="background:#fdf6e8"><td>Estimate changes</td><td>0</td><td>Technically correct and <strong>misleading this sprint</strong>: no story points were re-sized, but 5 items had their scope rewritten on close day. Points are not capturing that</td></tr>
+    <tr><th>Assignee</th><th class="num-right">Items</th><th class="num-right">Done</th><th class="num-right">% Done</th><th class="num-right">Unfinished</th><th class="num-right">Unfin. SP</th></tr>
+    <tr><td>John Shepherd</td><td class="num-right">13</td><td class="num-right">12</td><td class="num-right">92.3%</td><td class="num-right">1</td><td class="num-right">2</td></tr>
+    <tr style="background:#eef7ee"><td>Sarthak Khandelwal (Contractor)</td><td class="num-right">8</td><td class="num-right">8</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr><td>Krish Sharma (Contractor)</td><td class="num-right">7</td><td class="num-right">6</td><td class="num-right">85.7%</td><td class="num-right">1</td><td class="num-right">0.5</td></tr>
+    <tr style="background:#eef7ee"><td>Michael Puzon</td><td class="num-right">7</td><td class="num-right">7</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Jose Rojas (Contractor)</td><td class="num-right">7</td><td class="num-right">7</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Chris Fajardo</td><td class="num-right">7</td><td class="num-right">7</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Ayush Nema (Contractor)</td><td class="num-right">7</td><td class="num-right">7</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Hieu Nguyen</td><td class="num-right">6</td><td class="num-right">6</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Nadimpalli Varma (Contractor)</td><td class="num-right">5</td><td class="num-right">5</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Ashish Mangukiya (Contractor)</td><td class="num-right">5</td><td class="num-right">5</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Sem Onyalo (Contractor)</td><td class="num-right">4</td><td class="num-right">4</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Samit Pranav (Contractor)</td><td class="num-right">4</td><td class="num-right">4</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Arijit Saha (Contractor)</td><td class="num-right">4</td><td class="num-right">4</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Priyadharshan Pargunan (Contractor)</td><td class="num-right">4</td><td class="num-right">4</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Veera Raghavulu (Contractor)</td><td class="num-right">4</td><td class="num-right">4</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#fbeeee"><td>Carla Bellido (Contractor)</td><td class="num-right">4</td><td class="num-right">2</td><td class="num-right">50.0%</td><td class="num-right">2</td><td class="num-right">4</td></tr>
+    <tr style="background:#eef7ee"><td>Pooja Kabra (Contractor)</td><td class="num-right">3</td><td class="num-right">3</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#eef7ee"><td>Jason Johnson (Contractor)</td><td class="num-right">3</td><td class="num-right">3</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td></tr>
+    <tr style="background:#fbeeee"><td>Devang Motwani</td><td class="num-right">3</td><td class="num-right">2</td><td class="num-right">66.7%</td><td class="num-right">1</td><td class="num-right">2</td></tr>
+    <tr style="background:#f7f7f3;font-weight:600"><td>Total</td><td class="num-right">105</td><td class="num-right">100</td><td class="num-right">95.2%</td><td class="num-right">5</td><td class="num-right">8.5</td></tr>
+  </table>
+  <div class="card">
+    <p><strong>15 of 19 assignees finished at 100%.</strong> Two trajectories are worth noting:</p>
+    <p><strong>Pooja Kabra went from 0/4 to 3/3 (100%) on close day.</strong> She closed TRI-54835 (09:49), TRI-54837 and TRI-54838 (11:11); her fourth item TRI-54836 moved to S4. Her queue was flagged as the top risk in three consecutive snapshots &mdash; the work was evidently in flight the whole time and the board did not show it.</p>
+    <div class="scope-warn"><strong>Carla Bellido finished at 50% (2/4)</strong>, closing TRI-53914 and TRI-54841 in the last 45 minutes before close. She was flagged in four consecutive snapshots as the only assignee at zero. Her two remaining items are the largest single block of unfinished work.</div>
+  </div>
+
+  <h2>Unfinished Work</h2>
+  <h3>Remained on the closed sprint &mdash; 5 items / 8.5 SP</h3>
+  <table>
+    <tr><th>Key</th><th>Assignee</th><th class="num-right">SP</th><th>Status</th><th>Summary</th></tr>
+    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54849">TRI-54849</a></td><td>Carla Bellido</td><td class="num-right">2</td><td>Open</td><td class="wrapcell">About page</td></tr>
+    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54839">TRI-54839</a></td><td>Carla Bellido</td><td class="num-right">2</td><td>In Progress</td><td class="wrapcell">UX/UI Exploration &mdash; Early stages</td></tr>
+    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54246">TRI-54246</a></td><td>Devang Motwani</td><td class="num-right">2</td><td>In Progress</td><td class="wrapcell">B1 &mdash; Thread actor + session identity to the agent</td></tr>
+    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54764">TRI-54764</a></td><td>John Shepherd</td><td class="num-right">2</td><td>In Progress</td><td class="wrapcell">Federate the hosted mori MCP Cognito pool to TRI Okta via SAML</td></tr>
+    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54915">TRI-54915</a></td><td>Krish Sharma</td><td class="num-right">0.5</td><td>In Review</td><td class="wrapcell">Okta SSO for self-hosted Langfuse &mdash; blocked on IT</td></tr>
+  </table>
+  <div class="scope-warn">These five still reference the closed sprint rather than having been rolled forward. <strong>Worth checking whether that is intentional</strong> &mdash; if they were meant to move to S4 and did not, they will be invisible on the S4 board.</div>
+
+  <h3>Explicitly moved to <a href="https://toyotaresearchinstitute.atlassian.net/secure/GHGoToBoard.jspa?sprintId=7630">RSE 26Q3 S4 8/12-8/26</a> &mdash; 3 items / 5 SP</h3>
+  <table>
+    <tr><th>Key</th><th>Assignee</th><th class="num-right">SP</th><th>Status</th><th>Summary</th></tr>
+    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54820">TRI-54820</a></td><td>Krish Sharma</td><td class="num-right">2</td><td>In Progress</td><td class="wrapcell">Harness PoC: Task discovery &amp; pilot planning with John/Pooja</td></tr>
+    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54821">TRI-54821</a></td><td>Krish Sharma</td><td class="num-right">1</td><td>Open</td><td class="wrapcell">Harness PoC: Node 2 hardware audit and dedication to harness track</td></tr>
+    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54836">TRI-54836</a></td><td>Pooja Kabra</td><td class="num-right">2</td><td>In Progress</td><td class="wrapcell">Validate vla-foundry v0.3 RGB-D checkpoints on CALVIN (retitled close day)</td></tr>
+  </table>
+  <div class="note">Total unfinished across both groups: <strong>8 items / 13.5 SP (7.0% of final SP)</strong> &mdash; still below the baseline sprint's 20 SP (9%) carryover.</div>
+
+  <h2>Volatility Dashboard &mdash; final cross-reference</h2>
+  <table>
+    <tr><th>Signal</th><th>Value</th><th>Read</th></tr>
+    <tr><td>Priority changes</td><td>31 of 73 (42.5%)</td><td class="muted">Refreshed 2026-08-12 08:37 PDT after six days frozen at 2026-08-05</td></tr>
+    <tr style="background:#fdf6e8"><td>Estimate changes</td><td>0 (as of 08:37 PDT)</td><td><strong>Now stale</strong> &mdash; 2 re-estimations occurred at 11:11 PDT. Expect 2 on the next refresh</td></tr>
     <tr><td>Refinement count</td><td>0</td><td class="muted">Not tracked this sprint</td></tr>
-    <tr><td>Sprint contamination %</td><td>0 (placeholder)</td><td class="muted">Not usable; our own measure is 13.2% items / 10.7% SP</td></tr>
+    <tr><td>Sprint contamination %</td><td>0 (placeholder)</td><td class="muted">Not usable &mdash; client-side render. Our measure: 13.3% items / 10.7% SP</td></tr>
     <tr><td>Zombie issues</td><td>0 (placeholder)</td><td class="muted">Not usable</td></tr>
-    <tr><td>Monthly churn rate</td><td>2.2% (1 of 46)</td><td>Improved from 7.1% (1 of 14). 97.8% genuine completions. All four close-day resolutions were Done, so churn does not rise</td></tr>
-    <tr><td>Dashboard "Updated:"</td><td>2026-08-12 08:37 AM PT</td><td><span class="pill green">Current</span> The 6-day staleness flagged on 2026-08-06/10/11 has cleared</td></tr>
+    <tr><td>Monthly churn rate</td><td>2.2% (1 of 46)</td><td>97.8% genuine completions. All close-day resolutions were Done, so churn does not rise</td></tr>
+    <tr><td>Dashboard denominator</td><td>73 issues</td><td class="muted">Does not reconcile with 105 &mdash; dashboard is scoped RSE-only vs. our RSE+</td></tr>
   </table>
 
-  <h2>Baseline Comparison</h2>
-  <table>
-    <tr><th>Measure</th><th class="num-right">RSE 26Q2 S1 (baseline)</th><th class="num-right">RSE 26Q3 S2 (prior)</th><th class="num-right">This sprint</th><th>Read</th></tr>
-    <tr><td>True injections &mdash; items</td><td class="num-right">21%</td><td class="num-right">21.2%</td><td class="num-right">13.2%</td><td><span class="pill amber">Under baseline, over ~10% guideline</span></td></tr>
-    <tr><td>True injections &mdash; SP</td><td class="num-right">16%</td><td class="num-right">17.9%</td><td class="num-right">10.7%</td><td><span class="pill green">Under baseline and near guideline</span></td></tr>
-    <tr><td>Day-1 dump items</td><td class="num-right">22</td><td class="num-right">1</td><td class="num-right">5</td><td class="muted">In line with baseline pattern</td></tr>
-    <tr><td>Items done %</td><td class="num-right">89%</td><td class="num-right">93.8%</td><td class="num-right">84.9%</td><td><span class="pill amber">8.9 pts behind prior sprint</span></td></tr>
-    <tr><td>Carryover</td><td class="num-right">20 SP (9%)</td><td class="num-right">&mdash;</td><td class="num-right">29.5 SP (15.4%)</td><td><span class="pill green">Well under the 70-75 SP projected on 2026-08-10/11</span></td></tr>
-  </table>
+  <h2>Data Integrity &mdash; read before trusting the daily series</h2>
+  <div class="card">
+    <p>Three reading-drift incidents occurred on 2026-08-12, all under-reporting completion:</p>
+    <ol>
+      <li><strong>Revision 1 (written 10:14 PDT) reported 86/106 done.</strong> Four items had already resolved at 07:50, 08:26, 09:09 and 09:49 PDT. Its Jira reads were taken near the start of the run, not at write time.</li>
+      <li><strong>Revision 2 (10:30 PDT) reported 90/106 done.</strong> Eight further items resolved between 10:39 and 13:12.</li>
+      <li><strong>Intermediate readings under-counted John Shepherd's queue by 2 items / 3 SP</strong> &mdash; read as 11 items when the closed-sprint state shows 13.</li>
+    </ol>
+    <p><strong>Reconciliation, verified:</strong> 191.5 SP (10:30) &minus; 5 SP moved to S4 + 3 SP reading correction + 2 SP re-estimates = 191.5 SP final. Scope 108 actual &minus; 3 moved = 105 items.</p>
+    <p><strong>Process changes before the next sprint:</strong></p>
+    <ol>
+      <li><strong>Stamp every snapshot with "data as of HH:MM"</strong> separate from file write time. All three incidents would have been visible immediately.</li>
+      <li><strong>Re-read Jira immediately before writing the file</strong>, not once at the start of the run.</li>
+      <li><strong>Add a summary-diff check between consecutive snapshots.</strong> The five in-place rescopes were invisible to every existing metric.</li>
+      <li><strong>Add an estimate-change check.</strong> The two 2&rarr;3 SP changes were caught only by comparing SP distributions between readings.</li>
+      <li><strong>Treat mid-sprint carryover projections as unreliable</strong> until the status-lag question is answered. 2026-08-10 and 2026-08-11 both over-predicted by roughly 2&times;.</li>
+    </ol>
+  </div>
 
   <h2>Assessment</h2>
   <div class="card">
-    <p>RSE 26Q3 S3 7/29-8/12 reaches close (2026-08-12, 20:55:41Z UTC) with 106 items / 191.5 SP in scope and <strong>90 items / 162 SP done (84.9% / 84.6%)</strong>, 15.1 points short of a full burn-down and 8.9 points behind the prior sprint's 93.8% final completion. The late recovery was real: Days 14 and 15 closed 35 items and 65 SP between them, and carryover landed at 16 items / 29.5 SP against the 70&ndash;75 SP projected on 2026-08-10 and 2026-08-11.</p>
-    <p><strong>The single biggest risk is now one person, not two.</strong> Pooja Kabra moved off zero on close day (TRI-54835, 3 SP, closed 09:49 PDT with a substantive results write-up), and her three remaining items were all actively edited this morning. That leaves <strong>Carla Bellido as the only assignee finishing with zero completions</strong> &mdash; 4 items / 8 SP, 27.1% of all remaining SP &mdash; and her queue is not just incomplete, it is inactive: last touches are 2026-07-29, 2026-08-04, 2026-08-06 and 2026-08-11, with nothing on close day. Krish Sharma's 4 open items / 6.5 SP are similarly stale (latest 2026-08-06). <strong>Ten of the 16 carryover items have not been touched since 2026-08-06 or earlier</strong>, which is the number to bring to retro rather than the headline carryover figure.</p>
-    <p><strong>The finding that would otherwise have been missed is the close-day rescoping</strong> &mdash; five items retitled in place with no change to created date or story points, so injection rate, scope composition and the estimate-change counter all register zero. See the rescope table above.</p>
-    <p>On the positive side: <strong>13 of 19 assignees finished at 100%</strong> (up from 10 in Revision 1), contamination tagging reached 100% on true injections for the first time this sprint, all four close-day resolutions were genuine Done outcomes with no churn, and the volatility dashboard is publishing current data again. Contamination tagging is <em>not</em> a process gap.</p>
-    <p class="muted"><strong>Method caveats.</strong> (1) The Jira MCP ignores field-level projection and returns full issue bodies, so a 106-issue detail pull exceeds response limits; totals were derived from reconciled count-mode aggregates (items 106, SP 191.5, done 90, SP done 162, all cross-checking to the assignee table) with the 16 open items pulled in full detail. (2) Revision 1 reported 86 items done because its Jira reads were taken near the start of the run while the file was written at 10:14 PDT &mdash; four items resolved at 07:50, 08:26, 09:09 and 09:49 PDT were missed. Daily snapshots should carry an explicit "data as of HH:MM" stamp separate from the file date so this gap is visible without a re-read.</p>
+    <p>RSE 26Q3 S3 7/29-8/12 closed on 2026-08-12 at 100/105 items (95.2%) and 183/191.5 SP (95.6%), beating both the RSE 26Q2 S1 baseline (89% / 91%) and the prior sprint RSE 26Q3 S2 (93.8% items). Injection was well controlled at 13.3% of items and 10.7% of SP, roughly two-thirds of both comparators, with no single-day spike and full contamination-source coverage on true injections for the first time in the series. Total unfinished work came in at 8 items / 13.5 SP (7.0% of SP), below the baseline's 9% carryover. <strong>On the numbers, this is the strongest sprint in the tracked series.</strong></p>
+    <p><strong>Three things temper that.</strong> First, about a third of the scope was recorded complete on close day, and the evidence &mdash; multi-day training runs closed hours before the sprint ended &mdash; points to status-tracking lag rather than a genuine final-day surge. The board was not a reliable picture of progress, which is why every mid-sprint carryover projection in this series was roughly 2&times; too pessimistic. Second, five items were retitled in place on close day with no change to created date or story points, so no volatility metric registered them; one of those, TRI-54187, was narrowed from implementing a stop button to investigating cancellation and then closed as Done, which inflates completion against what was committed. Third, two items were re-estimated upward from 2 to 3 SP minutes before being closed, adding 2 SP to recorded velocity.</p>
+    <p><strong>Carla Bellido's queue is the one genuine delivery concern.</strong> She finished at 50% (2 of 4), both completions landing in the final 45 minutes; her two unfinished items are the largest single block of remaining work. She was flagged in four consecutive snapshots as the only assignee at zero, and the pattern held to the end. Krish Sharma also carries 3 unfinished items across the sprint boundary (one on the closed sprint, two moved to S4), all Harness PoC or blocked-on-IT work.</p>
+    <p><strong>One housekeeping item:</strong> the five items that remained on the closed sprint rather than rolling into S4 should be checked &mdash; if unintentional they will not appear on the S4 board.</p>
   </div>
 
-  <h2>Assignee Breakdown (data as of 2026-08-12 10:30 PDT)</h2>
-  <div class="note">106 items / 191.5 SP across 19 assignees &middot; Done column reconciles exactly to the sprint total of 90. Total SP per assignee is omitted: 5 SP of pre-sprint descope cannot be attributed to specific items from current Jira state. Items, Done and open SP are exact.</div>
-  <table>
-    <tr><th>Assignee</th><th class="num-right">Items</th><th class="num-right">Done</th><th class="num-right">% Done</th><th class="num-right">Open items</th><th class="num-right">Open SP</th><th>&Delta; since Rev 1</th></tr>
-    <tr><td>John Shepherd</td><td class="num-right">11</td><td class="num-right">9</td><td class="num-right">81.8%</td><td class="num-right">2</td><td class="num-right">4</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr><td>Krish Sharma (Contractor)</td><td class="num-right">9</td><td class="num-right">5</td><td class="num-right">55.6%</td><td class="num-right">4</td><td class="num-right">6.5</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr style="background:#eef7ee"><td>Sarthak Khandelwal (Contractor)</td><td class="num-right">8</td><td class="num-right">8</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><strong>+1 done</strong></td></tr>
-    <tr style="background:#eef7ee"><td>Jose Rojas (Contractor)</td><td class="num-right">7</td><td class="num-right">7</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr style="background:#eef7ee"><td>Chris Fajardo</td><td class="num-right">7</td><td class="num-right">7</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr style="background:#eef7ee"><td>Ayush Nema (Contractor)</td><td class="num-right">7</td><td class="num-right">7</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr><td>Michael Puzon</td><td class="num-right">7</td><td class="num-right">6</td><td class="num-right">85.7%</td><td class="num-right">1</td><td class="num-right">2</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr><td>Hieu Nguyen</td><td class="num-right">6</td><td class="num-right">5</td><td class="num-right">83.3%</td><td class="num-right">1</td><td class="num-right">1</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr style="background:#eef7ee"><td>Nadimpalli Varma (Contractor)</td><td class="num-right">5</td><td class="num-right">5</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr style="background:#eef7ee"><td>Ashish Mangukiya (Contractor)</td><td class="num-right">5</td><td class="num-right">5</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr style="background:#eef7ee"><td>Sem Onyalo (Contractor)</td><td class="num-right">4</td><td class="num-right">4</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><strong>+1 done</strong></td></tr>
-    <tr style="background:#eef7ee"><td>Samit Pranav (Contractor)</td><td class="num-right">4</td><td class="num-right">4</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr style="background:#eef7ee"><td>Arijit Saha (Contractor)</td><td class="num-right">4</td><td class="num-right">4</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr style="background:#eef7ee"><td>Priyadharshan Pargunan (Contractor)</td><td class="num-right">4</td><td class="num-right">4</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr style="background:#eef7ee"><td>Veera Raghavulu (Contractor)</td><td class="num-right">4</td><td class="num-right">4</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr><td>Pooja Kabra (Contractor)</td><td class="num-right">4</td><td class="num-right">1</td><td class="num-right">25.0%</td><td class="num-right">3</td><td class="num-right">6</td><td><strong>+1 done</strong></td></tr>
-    <tr style="background:#fbeeee"><td>Carla Bellido (Contractor)</td><td class="num-right">4</td><td class="num-right">0</td><td class="num-right">0.0%</td><td class="num-right">4</td><td class="num-right">8</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr style="background:#eef7ee"><td>Jason Johnson (Contractor)</td><td class="num-right">3</td><td class="num-right">3</td><td class="num-right">100.0%</td><td class="num-right">0</td><td class="num-right">0</td><td><strong>+1 done</strong></td></tr>
-    <tr><td>Devang Motwani</td><td class="num-right">3</td><td class="num-right">2</td><td class="num-right">66.7%</td><td class="num-right">1</td><td class="num-right">2</td><td><span class="muted">&mdash;</span></td></tr>
-    <tr style="background:#f7f7f3;font-weight:600"><td>Total</td><td class="num-right">106</td><td class="num-right">90</td><td class="num-right">84.9%</td><td class="num-right">16</td><td class="num-right">29.5</td><td>+4 done</td></tr>
-  </table>
-  <div class="scope-warn">Thirteen of 19 assignees finished at 100% (green rows), up from 10 in Revision 1. <strong>Carla Bellido is the only assignee ending at zero</strong> (red row) &mdash; 4 items / 8 SP, 27.1% of all remaining SP.</div>
-
-  <h2>Carryover Roster (16 items / 29.5 SP open at this reading)</h2>
-  <div class="note">Sorted by staleness &mdash; last-updated date is the signal to act on.</div>
-  <table>
-    <tr><th>Key</th><th>Assignee</th><th class="num-right">SP</th><th>Status</th><th>Last updated</th><th>Summary</th></tr>
-    <tr style="background:#eef2fa"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53914">TRI-53914</a></td><td>Carla Bellido</td><td class="num-right">2</td><td>In Review</td><td class="stale">2026-07-29</td><td class="wrapcell">Design &mdash; how to show users there is an existing simulation</td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54821">TRI-54821</a></td><td>Krish Sharma</td><td class="num-right">1</td><td>Open</td><td class="stale">2026-07-29</td><td class="wrapcell">Harness PoC: Node 2 hardware audit and dedication to harness track</td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54820">TRI-54820</a></td><td>Krish Sharma</td><td class="num-right">2</td><td>In Progress</td><td class="stale">2026-07-30</td><td class="wrapcell">Harness PoC: Task discovery &amp; pilot planning with John/Pooja</td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54246">TRI-54246</a></td><td>Devang Motwani</td><td class="num-right">2</td><td>In Progress</td><td class="stale">2026-07-30</td><td class="wrapcell">B1 &mdash; Thread actor + session identity to the agent</td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54839">TRI-54839</a></td><td>Carla Bellido</td><td class="num-right">2</td><td>In Progress</td><td class="stale">2026-08-04</td><td class="wrapcell">UX/UI Exploration &mdash; Early stages</td></tr>
-    <tr style="background:#eef2fa"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54915">TRI-54915</a></td><td>Krish Sharma</td><td class="num-right">0.5</td><td>In Review</td><td class="stale">2026-08-05</td><td class="wrapcell">Okta SSO for self-hosted Langfuse (team access + break-glass)</td></tr>
-    <tr style="background:#eef2fa"><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54204">TRI-54204</a></td><td>Krish Sharma</td><td class="num-right">3</td><td>In Review</td><td class="stale">2026-08-06</td><td class="wrapcell">Vehicle Signal Availability Audit</td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54849">TRI-54849</a></td><td>Carla Bellido</td><td class="num-right">2</td><td>Open</td><td class="stale">2026-08-06</td><td class="wrapcell">About page</td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54783">TRI-54783</a></td><td>Hieu Nguyen</td><td class="num-right">1</td><td>In Progress</td><td>2026-08-11</td><td class="wrapcell">Fix motion sim target <strong>(Highest priority)</strong></td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54841">TRI-54841</a></td><td>Carla Bellido</td><td class="num-right">2</td><td>In Progress</td><td>2026-08-11</td><td class="wrapcell">Setup Project Request Process</td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-55184">TRI-55184</a></td><td>Michael Puzon</td><td class="num-right">2</td><td>In Progress</td><td>2026-08-11</td><td class="wrapcell">Update sedan sliders and silhouette rendering to v4_sedan_7_30_26</td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54755">TRI-54755</a></td><td>John Shepherd</td><td class="num-right">2</td><td>In Progress</td><td>2026-08-11</td><td class="wrapcell">Props Slack &rarr; Jira tracking mirror</td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54764">TRI-54764</a></td><td>John Shepherd</td><td class="num-right">2</td><td>In Progress</td><td>2026-08-11</td><td class="wrapcell">Federate the hosted mori MCP Cognito pool to TRI Okta via SAML</td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54836">TRI-54836</a></td><td>Pooja Kabra</td><td class="num-right">2</td><td>In Progress</td><td>2026-08-12</td><td class="wrapcell">Validate vla-foundry v0.3 RGB-D checkpoints on CALVIN <em>(retitled close day)</em></td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54838">TRI-54838</a></td><td>Pooja Kabra</td><td class="num-right">2</td><td>In Progress</td><td>2026-08-12</td><td class="wrapcell">Train diffusion-policy, RGB camera set <em>(retitled close day)</em></td></tr>
-    <tr><td><a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54837">TRI-54837</a></td><td>Pooja Kabra</td><td class="num-right">2</td><td>To Do</td><td>2026-08-12</td><td class="wrapcell">Train diffusion-policy, RGBD camera set <em>(retitled close day)</em></td></tr>
-  </table>
-  <div class="scope-warn"><strong>Ten of the 16 carryover items have not been touched since 2026-08-06 or earlier</strong> (red dates). Three In Review items (blue rows) are work substantially complete and awaiting review &mdash; the cheapest to land before close at 20:55:41Z UTC, and <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-53914">TRI-53914</a> has been sitting in review since 2026-07-29. <a href="https://toyotaresearchinstitute.atlassian.net/browse/TRI-54783">TRI-54783</a> is the only Highest-priority item in the carryover set.</div>
-
-  <div class="footer">Frozen snapshot &middot; Revision 2 &middot; data as of 2026-08-12 10:30 PDT &middot; <a href="https://meganpeurachctr-ux.github.io/rse-volatility-dashboard/sprint-health-latest.html">Live URL</a></div>
+  <div class="footer">Final snapshot &middot; sprint closed 2026-08-12</div>
 </div>
 
 <script>
   const SNAPSHOT = {
-    sprintDays: 15,
-    dayN: 15,
-    scope: 106,
+    sprintDays: 15, scope: 105,
     ideal:  [93.3, 86.7, 80.0, 73.3, 66.7, 60.0, 53.3, 46.7, 40.0, 33.3, 26.7, 20.0, 13.3, 6.7, 0],
-    actual: [null, 98.9, null, null, null, 91.0, 83.0, 78.2, 68.4, null, null, null, 48.1, 37.0, 15.1],
-    doneCum:[null, 1, null, null, null, 9, 17, 21, 31, null, null, null, 55, 68, 90]
+    actual: [null, 98.9, null, null, null, 91.0, 83.0, 78.2, 68.4, null, null, null, 48.1, 37.0, 4.8],
+    doneCum:[null, 1, null, null, null, 9, 17, 21, 31, null, null, null, 55, 68, 100]
   };
   const labels = Array.from({length: 15}, (_, i) => `D${i+1}`);
   const baseOpts = {
@@ -286,7 +326,7 @@
       type: 'line',
       data: { labels, datasets: [
         { label: 'Cumulative items done', data: SNAPSHOT.doneCum, borderColor: '#1e4f9d', backgroundColor: 'rgba(30,79,157,0.08)', borderWidth: 2, pointRadius: 3, spanGaps: true, fill: true, tension: 0.1 },
-        { label: 'Scope (106 items)', data: Array(15).fill(SNAPSHOT.scope), borderColor: '#9a9a95', borderDash: [4,3], borderWidth: 1.5, pointRadius: 0 }
+        { label: 'Final scope (105 items)', data: Array(15).fill(105), borderColor: '#9a9a95', borderDash: [4,3], borderWidth: 1.5, pointRadius: 0 }
       ]},
       options: baseOpts
     });
