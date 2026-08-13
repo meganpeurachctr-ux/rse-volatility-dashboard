@@ -163,7 +163,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="status-badge"></div>
                 <span class="text-sm font-medium" style="color: var(--tri-neutral-700);">Live</span>
-                <span class="text-xs" style="color: var(--tri-neutral-400);">Updated: <span id="lastUpdated">August 13, 2026 at 11:36 AM</span></span>
+                <span class="text-xs" style="color: var(--tri-neutral-400);">Updated: <span id="lastUpdated">August 13, 2026 at 04:16 PM</span></span>
             </div>
         </div>
     </div>
@@ -225,11 +225,11 @@
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl p-5 text-center card-hover">
-                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-inprogress" data-counter="11">0</div>
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-inprogress" data-counter="15">0</div>
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl p-5 text-center card-hover">
-                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-todo" data-counter="53">0</div>
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-todo" data-counter="49">0</div>
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">To Do</div>
                 </div>
             </div>
@@ -270,7 +270,7 @@
             <a href="#" id="contaminationLink" class="stat-card flag cursor-pointer animate-slide-in" style="animation-delay:0.5s;">
                 <div class="stat-label"><span>Sprint contamination</span></div>
                 <div class="count-animate">
-                    <div class="stat-num flag" data-counter="32.7" data-decimal="true">0</div>
+                    <div class="stat-num flag" data-counter="33.3" data-decimal="true">0</div>
                     <div class="stat-meta">carryover rate</div>
                 </div>
                 <div class="stat-footer"><span class="flag-text">↑ above 15% target</span><span>Jira →</span></div>
@@ -593,12 +593,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
-var RSE_DATA = {"total": 65, "done": 1, "in_review": 0, "in_progress": 11, "to_do": 53, "rate": 1.5};
-var RSE_PLUS_DATA = {"total": 98, "done": 1, "in_review": 1, "in_progress": 23, "to_do": 73, "rate": 1.0};
+var RSE_DATA = {"total": 65, "done": 1, "in_review": 0, "in_progress": 15, "to_do": 49, "rate": 1.5};
+var RSE_PLUS_DATA = {"total": 99, "done": 1, "in_review": 1, "in_progress": 29, "to_do": 68, "rate": 1.0};
 var CONTAMINATION_SOURCES = {"Stakeholder Urgent": 1, "Dependency Unblock": 1};
 var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Stakeholder Urgent", "count": 1, "percent": 50, "badge": "external", "color": "blue"}, {"source": "Dependency Unblock", "count": 1, "percent": 50, "badge": "external", "color": "blue"}], "total": 2};
 var AGE_DIST_DATA = [87, 40, 30, 21, 32];
-var AGE_DIST_PREV = [90, 42, 30, 22, 32];
+var AGE_DIST_PREV = [87, 40, 30, 21, 32];
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
