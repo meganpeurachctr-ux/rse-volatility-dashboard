@@ -72,7 +72,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="w-2 h-2 bg-green-500 rounded-full status-badge"></div>
                 <span class="text-sm font-medium text-slate-700">Live</span>
-                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">September 02, 2026 at 04:01 PM</span></span>
+                <span class="text-xs text-slate-500">Updated: <span id="lastUpdated">September 03, 2026 at 01:40 PM</span></span>
             </div>
         </div>
     </div>
@@ -119,15 +119,15 @@
                     <div class="text-xs text-slate-600 font-medium mt-1">Total Issues</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="22.2" data-decimal="true">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent" id="stat-rate" data-counter="42.2" data-decimal="true">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="11">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent" id="stat-inprogress" data-counter="8">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl shadow-lg p-5 text-center card-hover">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="17">0</div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent" id="stat-todo" data-counter="12">0</div>
                     <div class="text-xs text-slate-600 font-medium mt-1">To Do</div>
                 </div>
             </div>
@@ -256,7 +256,7 @@
                     <div class="space-y-3">
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Done</span>
-                            <span class="text-2xl font-bold text-green-600">6</span>
+                            <span class="text-2xl font-bold text-green-600">13</span>
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Duplicate</span>
@@ -264,7 +264,7 @@
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border border-amber-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Not Needed</span>
-                            <span class="text-2xl font-bold text-amber-600">0</span>
+                            <span class="text-2xl font-bold text-amber-600">1</span>
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-red-50 to-rose-50 rounded-xl border border-red-200 hover:shadow-md transition-shadow">
                             <span class="font-medium text-slate-700">Won't Do</span>
@@ -272,7 +272,7 @@
                         </div>
                         <div class="flex justify-between items-center p-4 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl border-2 border-slate-400 shadow-md">
                             <span class="font-bold text-slate-800">Grand Total</span>
-                            <span class="text-2xl font-bold text-slate-800">6</span>
+                            <span class="text-2xl font-bold text-slate-800">14</span>
                         </div>
                     </div>
                 </div>
@@ -296,7 +296,7 @@
                                 </div>
                                 <div class="flex justify-between items-center pt-2">
                                     <span class="text-slate-600">Not Needed (wasted effort)</span>
-                                    <span class="font-semibold text-amber-600">0 (0.0%)</span>
+                                    <span class="font-semibold text-amber-600">1 (7.1%)</span>
                                 </div>
                                 <div class="w-full bg-slate-200 rounded-full h-1.5">
                                     <div class="bg-amber-500 h-1.5 rounded-full progress-bar" style="width: 0.0%;"></div>
@@ -586,8 +586,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
-var CONTAMINATION_SOURCES = {"Production Incident": 21, "Mis-Planning": 3, "Stakeholder Urgent": 2, "SLA Expected": 2, "Bug Discovery": 1};
-var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Production Incident", "count": 21, "percent": 72, "badge": "reactive", "color": "amber"}, {"source": "Mis-Planning", "count": 3, "percent": 10, "badge": "internal", "color": "sky"}, {"source": "Stakeholder Urgent", "count": 2, "percent": 7, "badge": "external", "color": "blue"}, {"source": "SLA Expected", "count": 2, "percent": 7, "badge": "internal", "color": "sky"}, {"source": "Bug Discovery", "count": 1, "percent": 3, "badge": "reactive", "color": "amber"}], "total": 29};
+var CONTAMINATION_SOURCES = {"Production Incident": 19, "Mis-Planning": 3, "Stakeholder Urgent": 2, "SLA Expected": 2, "Bug Discovery": 1};
+var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Production Incident", "count": 19, "percent": 70, "badge": "reactive", "color": "amber"}, {"source": "Mis-Planning", "count": 3, "percent": 11, "badge": "internal", "color": "sky"}, {"source": "Stakeholder Urgent", "count": 2, "percent": 7, "badge": "external", "color": "blue"}, {"source": "SLA Expected", "count": 2, "percent": 7, "badge": "internal", "color": "sky"}, {"source": "Bug Discovery", "count": 1, "percent": 4, "badge": "reactive", "color": "amber"}], "total": 27};
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
@@ -748,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setText('hist-vel-low',  historicalMonths[vs.minIdx]);
 
     // ── Status Doughnut ───────────────────────────────────────────────────
-    var d = {"total": 45, "done": 10, "in_review": 7, "in_progress": 11, "to_do": 17, "rate": 22.2};
+    var d = {"total": 45, "done": 19, "in_review": 6, "in_progress": 8, "to_do": 12, "rate": 42.2};
     statusChartInstance = new Chart(document.getElementById('statusChart'), {
         type: 'doughnut',
         data: {
