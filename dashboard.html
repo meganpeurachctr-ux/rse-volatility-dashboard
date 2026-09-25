@@ -163,7 +163,7 @@
             <div class="flex items-center gap-3 glass-effect px-4 py-2 rounded-full">
                 <div class="status-badge"></div>
                 <span class="text-sm font-medium" style="color: var(--tri-neutral-700);">Live</span>
-                <span class="text-xs" style="color: var(--tri-neutral-400);">Updated: <span id="lastUpdated">September 24, 2026 at 11:30 AM</span></span>
+                <span class="text-xs" style="color: var(--tri-neutral-400);">Updated: <span id="lastUpdated">September 25, 2026 at 04:27 AM</span></span>
             </div>
         </div>
     </div>
@@ -225,11 +225,11 @@
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">Completion Rate</div>
                 </div>
                 <div class="glass-effect rounded-xl p-5 text-center card-hover">
-                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-inprogress" data-counter="8">0</div>
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-inprogress" data-counter="12">0</div>
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">In Progress</div>
                 </div>
                 <div class="glass-effect rounded-xl p-5 text-center card-hover">
-                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-todo" data-counter="37">0</div>
+                    <div class="text-2xl font-semibold" style="color: var(--tri-neutral-950);" id="stat-todo" data-counter="33">0</div>
                     <div class="text-xs font-medium mt-1" style="color: var(--tri-neutral-500);">To Do</div>
                 </div>
             </div>
@@ -252,7 +252,7 @@
             <a href="#" id="backlogLink" class="stat-card cursor-pointer animate-slide-in" style="animation-delay:0.3s;">
                 <div class="stat-label"><span>Current backlog</span></div>
                 <div class="count-animate">
-                    <div class="stat-num" data-counter="271">0</div>
+                    <div class="stat-num" data-counter="270">0</div>
                     <div class="stat-meta">open items</div>
                 </div>
                 <div class="stat-footer"><span>vs. last sprint</span><span>Jira →</span></div>
@@ -270,7 +270,7 @@
             <a href="#" id="contaminationLink" class="stat-card flag cursor-pointer animate-slide-in" style="animation-delay:0.5s;">
                 <div class="stat-label"><span>Sprint contamination</span></div>
                 <div class="count-animate">
-                    <div class="stat-num flag" data-counter="31.0" data-decimal="true">0</div>
+                    <div class="stat-num flag" data-counter="34.2" data-decimal="true">0</div>
                     <div class="stat-meta">carryover rate</div>
                 </div>
                 <div class="stat-footer"><span class="flag-text">↑ above 15% target</span><span>Jira →</span></div>
@@ -593,12 +593,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 // ── Embedded data (written by update_dashboard.py) ────────────────────────
-var RSE_DATA = {"total": 51, "done": 6, "in_review": 0, "in_progress": 8, "to_do": 37, "rate": 11.8};
-var RSE_PLUS_DATA = {"total": 71, "done": 6, "in_review": 0, "in_progress": 17, "to_do": 48, "rate": 8.5};
+var RSE_DATA = {"total": 51, "done": 6, "in_review": 0, "in_progress": 12, "to_do": 33, "rate": 11.8};
+var RSE_PLUS_DATA = {"total": 73, "done": 6, "in_review": 2, "in_progress": 20, "to_do": 45, "rate": 8.2};
 var CONTAMINATION_SOURCES = {"Cross-Team Cadence": 1, "Bug Discovery": 1};
 var CONTAMINATION_SOURCES_FULL = {"items": [{"source": "Cross-Team Cadence", "count": 1, "percent": 50, "badge": "other", "color": "gray"}, {"source": "Bug Discovery", "count": 1, "percent": 50, "badge": "reactive", "color": "amber"}], "total": 2};
-var AGE_DIST_DATA = [70, 78, 59, 30, 34];
-var AGE_DIST_PREV = [69, 88, 49, 29, 34];
+var AGE_DIST_DATA = [69, 78, 59, 30, 34];
+var AGE_DIST_PREV = [70, 78, 59, 30, 34];
 
 // ── Jira links ─────────────────────────────────────────────────────────────
 var JIRA_CONFIG = {
@@ -614,7 +614,7 @@ var sprintDataWithDates = [
     { sprint:"RSE 26Q3 S1 7/1-7/15", startDate:"2026-07-01", endDate:"2026-07-15", planned:196.0, completed:196.0, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7508" },
     { sprint:"RSE 26Q3 S2 7/15-7/29", startDate:"2026-07-15", endDate:"2026-07-29", planned:195.5, completed:192.5, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7571" },
     { sprint:"RSE 26Q3 S3 7/29-8/12", startDate:"2026-07-29", endDate:"2026-08-12", planned:191.5, completed:189.5, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7583" },
-    { sprint:"RSE 26Q3 S4 8/12-8/26", startDate:"2026-08-12", endDate:"2026-08-26", planned:204.5, completed:201.5, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7630" },
+    { sprint:"RSE 26Q3 S4 8/12-8/26", startDate:"2026-08-12", endDate:"2026-08-26", planned:207.5, completed:204.5, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7630" },
     { sprint:"RSE 26Q3 S5 8/26-9/9", startDate:"2026-08-26", endDate:"2026-09-09", planned:194.0, completed:185.0, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7644" },
     { sprint:"RSE 26Q3 S6 9/9-9/23", startDate:"2026-09-09", endDate:"2026-09-23", planned:258.0, completed:241.0, jiraUrl:"https://toyotaresearchinstitute.atlassian.net/secure/RapidBoard.jspa?rapidView=17&sprint=7651" }
 ];
